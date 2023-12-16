@@ -1,0 +1,97 @@
+# MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining \[MAT-Tools Framework\]
+---
+
+\[[Publication](#)\] \[[citation.bib](citation.bib)\] \[[GitHub](https://github.com/ttportela/mat-analysis)\] \[[PyPi](https://pypi.org/project/mat-analysis/)\]
+
+
+The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+
+Created on Dec, 2023
+Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
+
+
+### Installation
+
+Install directly from PyPi repository, or, download from github. (python >= 3.7 required)
+
+```bash
+    pip3 install mat-analysis
+```
+
+### Getting Started
+
+On how to use this package, see [MAT-analysis-Tutorial.ipynb](https://github.com/ttportela/mat-analysis/blob/main/MAT-analysis-Tutorial.ipynb) (or the HTML [MAT-analysis-Tutorial.html](https://github.com/ttportela/mat-analysis/blob/main/MAT-analysis-Tutorial.html))
+
+### Available Classifiers (TODO update):
+
+* **MLP (Movelet)**: Multilayer-Perceptron (MLP) with movelets features. The models were implemented using the Python language, with the keras, fully-connected hidden layer of 100 units, Dropout Layer with dropout rate of 0.5, learning rate of 10−3 and softmax activation function in the Output Layer. Adam Optimization is used to avoid the categorical cross entropy loss, with 200 of batch size, and a total of 200 epochs per training. \[[REFERENCE](https://doi.org/10.1007/s10618-020-00676-x)\]
+* **RF (Movelet)**: Random Forest (RF) with movelets features, that consists of an ensemble of 300 decision trees. The models were implemented using the Python language, with the keras. \[[REFERENCE](https://doi.org/10.1007/s10618-020-00676-x)\]
+* **SVN (Movelet)**: Support Vector Machine (SVM) with movelets features. The models were implemented using the Python language, with the keras, linear kernel and default structure. Other structure details are default settings. \[[REFERENCE](https://doi.org/10.1007/s10618-020-00676-x)\]
+* **POI-S**: Frequency-based method to extract features of trajectory datasets (TF-IDF approach), the method runs one dimension at a time (or more if concatenated). The models were implemented using the Python language, with the keras. \[[REFERENCE](https://doi.org/10.1145/3341105.3374045)\]
+* **MARC**: Uses word embeddings for trajectory classification. It encapsulates all trajectory dimensions: space, time and semantics, and uses them as input to a neural network classifier, and use the geoHash on the spatial dimension, combined with others. The models were implemented using the Python language, with the keras. \[[REFERENCE](https://doi.org/10.1080/13658816.2019.1707835)\]
+* **TRF**: Random Forest for trajectory data (TRF). Find the optimal set of hyperparameters for each model, applying the grid-search technique: varying number of trees (ne), the maximum number of features to consider at every split (mf), the maximum number of levels in a tree (md), the minimum number of samples required to split a node (mss), the minimum number of samples required at each leaf node (msl), and finally, the method of selecting samples for training each tree (bs). \[[REFERENCE](http://dx.doi.org/10.5220/0010227906640671)\]
+* **XGBost**: Find the optimal set of hyperparameters for each model, applying the grid-search technique:  number of estimators (ne), the maximum depth of a tree (md), the learning rate (lr), the gamma (gm), the fraction of observations to be randomly samples for each tree (ss), the sub sample ratio of columns when constructing each tree (cst), the regularization parameters (l1) and (l2). \[[REFERENCE](http://dx.doi.org/10.5220/0010227906640671)\]
+* **BITULER**: Find the optimal set of hyperparameters for each model, applying the grid-search technique: keeps 64 as the batch size and 0.001 as the learning rate and vary the units (un) of the recurrent layer, the embedding size to each attribute (es) and the dropout (dp). \[[REFERENCE](http://dx.doi.org/10.5220/0010227906640671)\]
+* **TULVAE**: Find the optimal set of hyperparameters for each model, applying the grid-search technique: keeps 64 as the batch size and 0.001 as the learning rate and vary the units (un) of the recurrent layer, the embedding size to each attribute (es), the dropout (dp), and latent variable (z). \[[REFERENCE](http://dx.doi.org/10.5220/0010227906640671)\]
+* **DEEPEST**: DeepeST employs a Recurrent Neural Network (RNN), both LSTM and Bidirectional LSTM (BLSTM). Find the optimal set of hyperparameters for each model, applying the grid-search technique: keeps 64 as the batch size and 0.001 as the learning rate and vary the units (un) of the recurrent layer, the embedding size to each attribute (es) and the dropout (dp). \[[REFERENCE](http://dx.doi.org/10.5220/0010227906640671)\]
+
+#### Available Scripts (TODO update):
+
+By installing the package the following python scripts will be installed for use in system command line tools:
+
+* `MAT-TC.py`: Script to run classifiers on trajectory datasets, to details type: `MAT-TC.py --help`;
+* `MAT-MC.py`: Script to run **movelet-based** classifiers on trajectory datasets, to details type: `MAT-MC.py --help`;
+* `POIS-TC.py`: Script to run POI-F/POI-S classifiers on the methods feature matrix, to details type: `POIS-TC.py --help`;
+* `MARC.py`: Script to run MARC classifier on trajectory datasets, to details type: `MARC.py --help`.
+
+One script for running the **POI-F/POI-S** method:
+
+* `POIS.py`: Script to run POI-F/POI-S feature extraction methods (`poi`, `npoi`, and `wnpoi`), to details type: `POIS.py --help`.
+
+### Citing
+
+If you use `mat-analysis` please cite the following paper (this package is fragmented from `automatize` realease):
+
+    Portela, Tarlis Tortelli; Bogorny, Vania; Bernasconi, Anna; Renso, Chiara. AutoMATise: Multiple Aspect Trajectory Data Mining Tool Library. 2022 23rd IEEE International Conference on Mobile Data Management (MDM), 2022, pp. 282-285, doi: 10.1109/MDM55031.2022.00060.
+
+Bibtex:
+```bash
+@inproceedings{Portela2022automatise,
+    title={AutoMATise: Multiple Aspect Trajectory Data Mining Tool Library},
+    author={Portela, Tarlis Tortelli and Bogorny, Vania and Bernasconi, Anna and Renso, Chiara},
+    booktitle = {2022 23rd IEEE International Conference on Mobile Data Management (MDM)},
+    volume={},
+    number={},
+    address = {Online},
+    year={2022},
+    pages = {282--285},
+    doi={10.1109/MDM55031.2022.00060}
+}
+```
+
+### Collaborate with us
+
+Any contribution is welcome. This is an active project and if you would like to include your code, feel free to fork the project, open an issue and contact us.
+
+Feel free to contribute in any form, such as scientific publications referencing this package, teaching material and workshop videos.
+
+### Related packages
+
+This package is part of _MAT-Tools Framework_ for Multiple Aspect Trajectory Data Mining:
+
+- [automatize](https://github.com/ttportela/automatize): automatize for experimental evaluation of MAT classification
+- [movelets](https://github.com/ttportela/movelets): movelets for MAT classification methods (based on movelets)
+- [mat-data](https://github.com/ttportela/mat-data): mat-data is a preprocessing library for MAT data
+- **[mat-analysis](https://github.com/ttportela/mat-analysis)**: mat-analysis for MAT classification methods
+- [mat-view](https://github.com/ttportela/mat-view): mat-view for MAT and movelets visualization, and interpratation tools
+
+And others:
+
+- [scikit-mobility](https://github.com/scikit-mobility/scikit-mobility): Human trajectory representation and visualizations in Python;
+- [geopandas](https://geopandas.org/en/stable/): Library to help work with geospatial data in Python;
+- [movingpandas](https://anitagraser.github.io/movingpandas/): Based on `geopandas` for movement data exploration and analysis.
+- [PyMove](https://github.com/InsightLab/PyMove): a Python library for processing and visualization of trajectories and other spatial-temporal data.
+
+### Change Log
+
+This is a package under construction, see [CHANGELOG.md](./CHANGELOG.md)
