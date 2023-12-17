@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 '''
-Multiple Aspect Trajectory Data Mining Tool Library
+MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
 
-The present application offers a tool, to support the user in the classification task of multiple aspect trajectories, specifically for extracting and visualizing the movelets, the parts of the trajectory that better discriminate a class. It integrates into a unique platform the fragmented approaches available for multiple aspects trajectories and in general for multidimensional sequence classification into a unique web-based and python library system. Offers both movelets visualization and a complete configuration of classification experimental settings.
+The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
@@ -11,16 +11,22 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 '''
 # --------------------------------------------------------------------------------
 # # ANALYSIS
-from .main import importer #, display
-importer(['S', 'datetime'], globals())
+#from .main import importer #, display
+#importer(['S', 'datetime'], globals())
+import os
+import numpy as np
+import pandas as pd
+import tqdm.auto as tqdm
 
-from .methods.movelet.classification import *
+from datetime import datetime
+import glob2 as glob
+import random
+
+from matanalysis.methods.movelet.classification import *
 
 def printNow():
     print(datetime.now().isoformat())
 
-# --------------------------------------------------------------------------------
-# from PACKAGE_NAME.Methods import Approach1, Approach2, ApproachRF, ApproachRFHP , ApproachMLP, ApproachDT, ApproachSVC
 # --------------------------------------------------------------------------------
 def ACC4All(res_path, res_folder, save_results = True, modelfolder='model', classifiers=['MLP', 'RF', 'SVM'], random_seed=1, data_path=''):
 #     import os
@@ -30,7 +36,7 @@ def ACC4All(res_path, res_folder, save_results = True, modelfolder='model', clas
 #     import glob2 as glob
 # #     from datetime import datetime
 #     from ..main import importer
-    importer(['S', 'glob'], globals())
+#    importer(['S', 'glob'], globals())
 
     filelist = []
     filesList = []
@@ -58,7 +64,7 @@ def ClassifyByMovelet(res_path, dataset, dir_path, data_path='', save_results = 
 #     from ..main import importer
 #     importer(['S'], locals())
 
-    importer(['random'], globals())
+#    importer(['random'], globals())
     np.random.seed(seed=random_seed)
     #random.set_seed(random_seed)
     
@@ -138,42 +144,3 @@ def ClassifyByTrajectory(res_path, data_path, prefix=None,
     printNow()
 
 # ----------------------------------------------------------------------------------
-#def MLP(res_path, prefix, dir_path, save_results = True, modelfolder='model'):
-##     import os
-##     from ..main import importer
-##     importer(['os'], locals())
-##     def_random_seed(random_num, seed_num)
-#    
-#    dir_path = os.path.join(res_path, prefix, dir_path)
-#    t = Classifier_MLP(dir_path, save_results, modelfolder)
-#    return t
-#
-#def RF(res_path, prefix, dir_path, save_results = True, modelfolder='model'):
-##     import os
-##     from ..main import importer
-##     importer(['os'], locals())
-##     def_random_seed(random_num, seed_num)
-#    
-#    dir_path = os.path.join(res_path, prefix, dir_path)
-#    t = Classifier_RF(dir_path, save_results, modelfolder)
-#    return t
-#
-#def SVM(res_path, prefix, dir_path, save_results = True, modelfolder='model'):
-##     import os
-##     from ..main import importer
-##     importer(['os'], locals())
-##     def_random_seed(random_num, seed_num)
-#    
-#    dir_path = os.path.join(res_path, prefix, dir_path)
-#    t = Classifier_SVM(dir_path, save_results, modelfolder)
-#    return t
-#
-#def TrajectoryRF(res_path, prefix, dir_path, save_results = True, modelfolder='model'):
-##     import os
-##     from ..main import importer
-##     importer(['os'], locals())
-##     def_random_seed(random_num, seed_num)
-#    
-#    dir_path = os.path.join(res_path, prefix, dir_path)
-#    t = Classifier_SVM(dir_path, save_results, modelfolder)
-#    return t

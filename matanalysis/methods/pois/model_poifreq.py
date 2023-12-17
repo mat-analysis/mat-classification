@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 '''
-Multiple Aspect Trajectory Data Mining Tool Library
+MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
 
-The present application offers a tool, to support the user in the classification task of multiple aspect trajectories, specifically for extracting and visualizing the movelets, the parts of the trajectory that better discriminate a class. It integrates into a unique platform the fragmented approaches available for multiple aspects trajectories and in general for multidimensional sequence classification into a unique web-based and python library system. Offers both movelets visualization and a complete configuration of classification experimental settings.
+The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
 
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
@@ -10,20 +11,87 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 @author: Tarlis Portela
 @author: Francisco Vicenzi (adapted)
 '''
-import sys, os 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from automatize.main import importer
-importer(['S'], globals())
+# --------------------------------------------------------------------------------
+import os
+from os import path
+import pandas as pd
+import numpy as np
+
+from tqdm.auto import tqdm
+from datetime import datetime
+# --------------------------------------------------------------------------------
+from tensorflow import random
+from numpy import argmax
+
+from sklearn.preprocessing import scale, OneHotEncoder
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.regularizers import l2
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.callbacks import EarlyStopping, History
+
+from tensorflow.keras import backend as K
+
+from sklearn.metrics import f1_score
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import precision_score
+from sklearn.metrics import recall_score
+
+from matanalysis.methods.pois.poifreq import pois
+
+from matanalysis.methods._lib.datahandler import loadTrajectories
+from matanalysis.methods._lib.pymove.models import metrics
 
 ## --------------------------------------------------------------------------------------------
 ## CLASSIFIER:
-### Run Before: poifreq(sequences, dataset, features, folder, result_dir, method='npoi')
+### Run Before: pois(df_train, df_test, sequences, features)
 ## --------------------------------------------------------------------------------------------
-def model_poifreq(dir_path, METHOD='npoi', METRICS_FILE=None, RESULTS_FILE=None, random_seed=1):
-    importer(['S', 'POIS', 'random', 'datetime'], globals())
+def POIS_read(dir_path, sequences, features, dataset='specific', method='npoi', res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10, tid_col='tid', class_col='label'):
+#    importer(['S', 'POIS', 'random', 'datetime'], globals())
 
-    np.random.seed(random_seed)
-    random.seed(random_seed)
+    # Load Data - Tarlis:
+    df_train, df_test = loadTrajectories(dir_path, prefix)
+    
+    return POIS(df_train, df_test, sequences, features, dataset, method, res_path, prefix, save_results, n_jobs, random_state, rounds, tid_col, class_col)
+
+def POIS(df_train, df_test, sequences, features, dataset='specific', method='npoi', res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10, tid_col='tid', class_col='label'):
+    
+    x_train, x_test, y_train, y_test, _ = pois(df_train, df_test, sequences, features, method, dataset, res_path, save_results, tid_col, class_col)
+    
+    classifier, x_test, labels = pois_model(x_train, x_test, y_train, y_test, method, res_path, prefix, save_results, n_jobs, random_state, rounds)
+    
+    y_pred = classifier.predict(x_test) 
+    final_pred = [argmax(f) for f in y_pred]
+    final_pred = [labels[f] for f in final_pred]
+    
+    classification_report = metrics.compute_acc_acc5_f1_prec_rec(y_test, np.array(final_pred))
+    return classification_report
+
+def POIS_xy(dir_path, method='npoi', res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10):
+#    importer(['S', 'POIS', 'random', 'datetime'], globals())
+
+    x_train, x_test, y_train, y_test = loadData(dir_path)
+    
+    classifier, x_test, labels = pois_model(x_train, x_test, y_train, y_test, method, res_path, prefix, save_results, n_jobs, random_state, rounds)
+
+    y_pred = classifier.predict(x_test) 
+    final_pred = [argmax(f) for f in y_pred]
+    final_pred = [labels[f] for f in final_pred]
+    
+    classification_report = metrics.compute_acc_acc5_f1_prec_rec(y_test, np.array(final_pred))
+    return classification_report
+
+## --------------------------------------------------------------------------------------------
+def pois_model(x_train, x_test, y_train, y_test, method='npoi', res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10):
+#    importer(['S', 'POIS', 'random', 'datetime'], globals())
+# TODO: n_jobs=-1, rounds=10, geohash=False, geo_precision=30
+# TODO: Transform into a model class
+
+    (num_features, num_classes, labels, x_train, x_test, y_train, y_test) = prepareData(x_train, x_test, y_train, y_test)
+
+    np.random.seed(random_state)
+    random.set_seed(random_state)
 
     keep_prob = 0.5
 
@@ -34,23 +102,19 @@ def model_poifreq(dir_path, METHOD='npoi', METRICS_FILE=None, RESULTS_FILE=None,
     BASELINE_VALUE = 0.5
     BATCH_SIZE = 64
     EPOCHS = 250
-    #METHOD = 'npoi'
-    
-    (num_features, num_classes, labels,
-            x_train, y_train,
-            x_test, y_test) = loadData(dir_path)
+    #method = 'npoi'
     
 #     labels = y_test
 
     print('[POI-S:] Building Neural Network')
     time = datetime.now()
     
-    if not METRICS_FILE:
-        METRICS_FILE = os.path.join(os.path.dirname(dir_path), 'POIFREQ-metrics.csv')
+    metrics_file = os.path.join(res_path, 'POIFREQ-metrics.csv')
 
-    if not os.path.exists(os.path.join(os.path.dirname(METRICS_FILE))):
-        os.makedirs(os.path.join(os.path.dirname(METRICS_FILE)))
-    metrics = MetricsLogger().load(METRICS_FILE)
+    if save_results:
+        if not os.path.exists(os.path.join(os.path.dirname(metrics_file))):
+            os.makedirs(os.path.join(os.path.dirname(metrics_file)))
+    metrics = MetricsLogger().load(metrics_file)
 
     print('keep_prob =', keep_prob)
     print('HIDDEN_UNITS =', HIDDEN_UNITS)
@@ -97,12 +161,13 @@ def model_poifreq(dir_path, METHOD='npoi', METRICS_FILE=None, RESULTS_FILE=None,
              test_rec_macro) = compute_acc_acc5_f1_prec_rec(y_test, pred_y_test,
                                                             print_metrics=True,
                                                             print_pfx='TEST')
-            metrics.log(METHOD, int(epoch + 1), '',
+            metrics.log(method, int(epoch + 1), '',
                         logs['loss'], train_acc, train_acc5,
                         train_f1_macro, train_prec_macro, train_rec_macro,
                         logs['val_loss'], test_acc, test_acc5,
                         test_f1_macro, test_prec_macro, test_rec_macro)
-            metrics.save(METRICS_FILE)
+            if save_results:
+                metrics.save(metrics_file)
 
             if self._baseline_met:
                 super(EpochLogger, self).on_epoch_end(epoch, logs)
@@ -144,36 +209,35 @@ def model_poifreq(dir_path, METHOD='npoi', METRICS_FILE=None, RESULTS_FILE=None,
               callbacks=[EpochLogger(metric=BASELINE_METRIC,
                                      baseline=BASELINE_VALUE), hist])
     
-    #print(METRICS_FILE)
-    df = pd.read_csv(METRICS_FILE)
-    
-    if not RESULTS_FILE:
-        RESULTS_FILE = os.path.join(os.path.dirname(dir_path), METHOD+'_results.txt')
-    f = open(RESULTS_FILE, 'a+')
-    print('------------------------------------------------------------------------------------------------', file=f)
-#     print(f"Method: {METHOD} | Dataset: {DATASET}", file=f)
-    print(f"Acc: {np.array(df['test_acc'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
-    print(f"Acc_top_5: {np.array(df['test_acc_top5'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
-    print(f"F1_Macro: {np.array(df['test_f1_macro'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
-    print(f"Precision_Macro: {np.array(df['test_prec_macro'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
-    print(f"Recall_Macro: {np.array(df['test_rec_macro'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
-    
+    #print(metrics_file)
     time_ext = (datetime.now()-time).total_seconds() * 1000
-    print(f"Processing time: {time_ext} milliseconds. Done.", file=f)
-    print('------------------------------------------------------------------------------------------------', file=f)
-    f.close()
+    print("[POI-S:] Processing time: {time_ext} milliseconds. Done.")
+    print('------------------------------------------------------------------------------------------------')
     
-    print('[POI-S:] OK')
+    if save_results:
+        results_file = os.path.join(res_path, method+'_results.txt')
+
+        f = open(results_file, 'a+')
+        print('------------------------------------------------------------------------------------------------', file=f)
+    #     print(f"method: {method} | Dataset: {DATASET}", file=f)
+        print(f"Acc: {np.array(df['test_acc'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
+        print(f"Acc_top_5: {np.array(df['test_acc_top5'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
+        print(f"F1_Macro: {np.array(df['test_f1_macro'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
+        print(f"Precision_Macro: {np.array(df['test_prec_macro'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
+        print(f"Recall_Macro: {np.array(df['test_rec_macro'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
+    
+        print(f"Processing time: {time_ext} milliseconds. Done.", file=f)
+        print('------------------------------------------------------------------------------------------------', file=f)
+        f.close()
     
 #     print(labels)
     
 #     return classifier.predict(x_test)
-    return classifier, x_test
-# --------------------------------------------------------------------------------------------------------
-# --------------------------------------------------------------------------------------------------------    
+    return classifier, x_test, labels
+# --------------------------------------------------------------------------------------------------------  
 def loadData(dir_path):
 #     from ..main import importer
-    importer(['S', 'PP', 'OneHotEncoder'], globals())
+#    importer(['S', 'PP', 'OneHotEncoder'], globals())
 #     from sklearn.preprocessing import OneHotEncoder
 #     from sklearn import preprocessing
 
@@ -185,34 +249,39 @@ def loadData(dir_path):
     # x_test = x_test[x_test.columns[:-1]]
     y_test = pd.read_csv(dir_path+'-y_test.csv')
     
-    labels = list(y_test['label'])
+    return x_train, x_test, y_train, y_test
+    
+# --------------------------------------------------------------------------------------------------------    
+def prepareData(x_train, x_test, y_train, y_test):
+    
+#    labels = list(y_test[class_col])
+    labels = list(y_test)
 
     num_features = len(list(x_train))
-    num_classes = len(y_train['label'].unique())
-
+#    num_classes = len(y_train[class_col].unique())
+    num_classes = len(set(y_train))
+    
+    y_train = y_train.reshape(-1, 1)
+    y_test = y_test.reshape(-1, 1)
 
     one_hot_y = OneHotEncoder()
-    one_hot_y.fit(y_train.loc[:, ['label']])
+#    one_hot_y.fit(y_train.loc[:, [class_col]])
+    one_hot_y.fit(y_train)
 
-    y_train = one_hot_y.transform(y_train.loc[:, ['label']]).toarray()
-    y_test = one_hot_y.transform(y_test.loc[:, ['label']]).toarray()
+#    y_train = one_hot_y.transform(y_train.loc[:, [class_col]]).toarray()
+#    y_test = one_hot_y.transform(y_test.loc[:, [class_col]]).toarray()
+    y_train = one_hot_y.transform(y_train).toarray()
+    y_test = one_hot_y.transform(y_test).toarray()
 
-    x_train = preprocessing.scale(x_train)
-    x_test = preprocessing.scale(x_test)
+    x_train = scale(x_train)
+    x_test = scale(x_test)
     
-    return (num_features, num_classes, labels,
-            x_train, y_train,
-            x_test, y_test)
+    return (num_features, num_classes, labels, x_train, x_test, y_train, y_test)
 
 
 ## --------------------------------------------------------------------------------------------
 # from ..main import importer
-importer(['metrics', 'datetime'], globals())
-# from sklearn.metrics import f1_score
-# from sklearn.metrics import accuracy_score
-# from sklearn.metrics import precision_score
-# from sklearn.metrics import recall_score
-# from datetime import datetime
+#importer(['metrics', 'datetime'], globals())
 
 
 def _process_pred(y_pred):
@@ -226,7 +295,6 @@ def _process_pred(y_pred):
 
 
 def f1_tensorflow_macro(y_true, y_pred):
-    from keras import backend as K
     print(K.eval(y_pred))
     print(y_pred.shape)
     y_pred = np.zeros(y_pred.shape)

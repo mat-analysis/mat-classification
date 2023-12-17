@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 '''
-Multiple Aspect Trajectory Data Mining Tool Library
+MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
 
-The present application offers a tool, to support the user in the classification task of multiple aspect trajectories, specifically for extracting and visualizing the movelets, the parts of the trajectory that better discriminate a class. It integrates into a unique platform the fragmented approaches available for multiple aspects trajectories and in general for multidimensional sequence classification into a unique web-based and python library system. Offers both movelets visualization and a complete configuration of classification experimental settings.
+The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
 
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
@@ -10,21 +11,15 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 @author: Tarlis Portela
 @author: Lucas May Petry
 '''
-import sys, os 
-sys.path.insert(0, os.path.abspath('.')) # TODO fix imports
-
-###############################################################################
-#from core.logger import Logger
-from automatize.methods._lib.logger import Logger
-#from core.utils.metrics import MetricsLogger
-from automatize.methods._lib.metrics import MetricsLogger
-
-import pandas as pd
+import os 
 import numpy as np
+import pandas as pd
 from datetime import datetime
+#sys.path.insert(0, os.path.abspath('.')) # TODO fix imports
+
+# --------------------------------------------------------------------------------
+from numpy import argmax
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
-#from core.utils.geohash import bin_geohash
-from automatize.methods._lib.geohash import bin_geohash
   
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.models import Model
@@ -36,53 +31,80 @@ from tensorflow.keras.layers import Input, Add, Average, Concatenate, Embedding
 from tensorflow.keras.callbacks import EarlyStopping
 #from core.utils.metrics import compute_acc_acc5_f1_prec_rec 
 from tensorflow import random
-###############################################################################
-from numpy import argmax
 from sklearn.metrics import classification_report
 #from automatize.methods._lib.metrics import classification_report_csv
-from automatize.methods._lib.metrics import classification_report_dict2csv
-from automatize.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
-from automatize.preprocessing import readDataset
+# --------------------------------------------------------------------------------
+from matdata.preprocess import readDataset
+#from core.utils.geohash import bin_geohash
+from matanalysis.methods._lib.geohash import bin_geohash
+#from core.logger import Logger
+from matanalysis.methods._lib.logger import Logger
+#from core.utils.metrics import MetricsLogger
+from matanalysis.methods._lib.metrics import MetricsLogger
+from matanalysis.methods._lib.metrics import classification_report_dict2csv, classification_report_dict2df
+from matanalysis.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
+# --------------------------------------------------------------------------------
 
-# importer(['S', 'sys', 'datetime', 'encoding', 'MARC'], globals())
+def MARC_read(train_file, test_file, res_path='.', prefix='', dataset='', save_results=False, n_jobs=-1, random_state=42, geo_precision=8, embedder_size=100, merge_type='concatenate', rnn_cell='lstm'):
+    
+    df_train, df_test = loadTrajectories(train_file, test_file)
+    
+    return MARC(df_train, df_test, res_path, prefix, dataset, save_results, random_seed, geo_precision, embedder_size, merge_type, rnn_cell)
 
-def marc(METHOD, TRAIN_FILE, TEST_FILE, METRICS_FILE, DATASET, EMBEDDER_SIZE=100, MERGE_TYPE='concatenate', RNN_CELL='lstm', 
-         save_results=True, random_seed=1, geo_precision=8,
-         CLASS_DROPOUT = 0.5, CLASS_HIDDEN_UNITS = 100, CLASS_LRATE = 0.001, CLASS_BATCH_SIZE = 64, CLASS_EPOCHS = 1000,
-         EARLY_STOPPING_PATIENCE = 30, BASELINE_METRIC = 'acc', BASELINE_VALUE = 0.5):
+def MARC(df_train, df_test, res_path='.', prefix='', dataset='', save_results=False, n_jobs=-1, random_state=42, geo_precision=8, embedder_size=100, merge_type='concatenate', rnn_cell='lstm'):
+    
+    classifier, x_test, classification_report = marc_model(df_train, df_test, res_path, prefix, dataset, save_results, n_jobs, random_state, geo_precision, embedder_size, merge_type, rnn_cell)
+    
+    return classification_report
+    
 
-    np.random.seed(seed=random_seed)
-    random.set_seed(random_seed)
+def marc_model(df_train, df_test, res_path='.', prefix='', dataset='', save_results=False, n_jobs=-1, random_state=42, geo_precision=8, embedder_size=100, merge_type='concatenate', rnn_cell='lstm'):
+
+    np.random.seed(seed=random_state)
+    random.set_seed(random_state)
     #random.seed(random_seed)
     
     logger = Logger()
 
-    print("MARC Starting: building neural network for", METHOD, DATASET)
+    METHOD = 'MARC'
+    METRICS_FILE = 'MARC-'+prefix+'_results.csv'
+    METRICS_FILE = os.path.join(res_path, METRICS_FILE)
+                                            
+    CLASS_DROPOUT = 0.5
+    CLASS_HIDDEN_UNITS = 100
+    CLASS_LRATE = 0.001
+    CLASS_BATCH_SIZE = 64
+    CLASS_EPOCHS = 1000
+    EARLY_STOPPING_PATIENCE = 30
+    BASELINE_METRIC = 'acc'
+    BASELINE_VALUE = 0.5
+    
+    print("[MARC:] Starting: building neural network for", METHOD, dataset)
     # from datetime import datetime
     time = datetime.now()
 
     VALID_MERGES = ['add', 'average', 'concatenate']
     VALID_CELLS = ['lstm', 'gru']
 
-    if MERGE_TYPE not in VALID_MERGES:
-        print("Merge type '" + MERGE_TYPE + "' is not valid!\n",
+    if merge_type not in VALID_MERGES:
+        print("Merge type '" + merge_type + "' is not valid!\n",
               "Please choose 'add', 'average', or 'concatenate'.")
         exit()
 
-    if RNN_CELL not in VALID_CELLS:
-        print("RNN cell type '" + RNN_CELL + "' is not valid!\n",
+    if rnn_cell not in VALID_CELLS:
+        print("RNN cell type '" + rnn_cell + "' is not valid!\n",
               "Please choose 'lstm' or 'gru'.")
         exit()
 
 
     print('====================================', 'PARAMS',
           '====================================')
-    print('TRAIN_FILE =', TRAIN_FILE)
-    print('TEST_FILE =', TEST_FILE)
+#    print('TRAIN_FILE =', TRAIN_FILE)
+#    print('TEST_FILE =', TEST_FILE)
     print('METRICS_FILE =', METRICS_FILE)
-    print('DATASET =', DATASET)
-    print('EMBEDDER_SIZE =', EMBEDDER_SIZE)
-    print('MERGE_TYPE =', MERGE_TYPE, '\n')
+    print('dataset =', dataset)
+    print('embedder_size =', embedder_size)
+    print('merge_type =', merge_type, '\n')
 
     # from core.utils.metrics import MetricsLogger
     metrics = MetricsLogger().load(METRICS_FILE)
@@ -93,8 +115,7 @@ def marc(METHOD, TRAIN_FILE, TEST_FILE, METRICS_FILE, DATASET, EMBEDDER_SIZE=100
      max_length,
      le,
      x_train, x_test,
-     y_train, y_test) = get_trajectories(train_file=TRAIN_FILE,
-                                         test_file=TEST_FILE,
+     y_train, y_test) = prepareTrajectories(df_train.copy(), df_test.copy(),
                                          tid_col='tid',
                                          label_col='label',
                                          logger=logger,
@@ -135,7 +156,7 @@ def marc(METHOD, TRAIN_FILE, TEST_FILE, METRICS_FILE, DATASET, EMBEDDER_SIZE=100
 #    BASELINE_VALUE = 0.5
 
 
-    print('=====================================', 'OURS',
+    print('=====================================', METHOD,
           '=====================================')
 
     print('CLASS_DROPOUT =', CLASS_DROPOUT)
@@ -184,12 +205,13 @@ def marc(METHOD, TRAIN_FILE, TEST_FILE, METRICS_FILE, DATASET, EMBEDDER_SIZE=100
                                                             pred_y_test,
                                                             print_metrics=True,
                                                             print_pfx='TEST')
-            metrics.log(METHOD, int(epoch + 1), DATASET,
+            metrics.log(METHOD, int(epoch + 1), dataset,
                         logs['loss'], train_acc, train_acc5,
                         train_f1_macro, train_prec_macro, train_rec_macro,
                         logs['val_loss'], test_acc, test_acc5,
                         test_f1_macro, test_prec_macro, test_rec_macro)
-            metrics.save(METRICS_FILE)
+            if save_results:
+                metrics.save(METRICS_FILE)
 
             if self._baseline_met:
                 super(EpochLogger, self).on_epoch_end(epoch, logs)
@@ -212,14 +234,14 @@ def marc(METHOD, TRAIN_FILE, TEST_FILE, METRICS_FILE, DATASET, EMBEDDER_SIZE=100
         if key == 'lat_lon':
             i = Input(shape=(max_length, vocab_size[key]),
                       name='input_' + key)
-            e = Dense(units=EMBEDDER_SIZE,
+            e = Dense(units=embedder_size,
                       kernel_initializer=he_uniform(seed=1),
                       name='emb_' + key)(i)
         else:
             i = Input(shape=(max_length,),
                       name='input_' + key)
             e = Embedding(vocab_size[key],
-                          EMBEDDER_SIZE,
+                          embedder_size,
                           input_length=max_length,
                           name='emb_' + key)(i)
         inputs.append(i)
@@ -227,16 +249,16 @@ def marc(METHOD, TRAIN_FILE, TEST_FILE, METRICS_FILE, DATASET, EMBEDDER_SIZE=100
 
     if len(embeddings) == 1:
         hidden_input = embeddings[0]
-    elif MERGE_TYPE == 'add':
+    elif merge_type == 'add':
         hidden_input = Add()(embeddings)
-    elif MERGE_TYPE == 'average':
+    elif merge_type == 'average':
         hidden_input = Average()(embeddings)
     else:
         hidden_input = Concatenate(axis=2)(embeddings)
 
     hidden_dropout = Dropout(CLASS_DROPOUT)(hidden_input)
 
-    if RNN_CELL == 'lstm':
+    if rnn_cell == 'lstm':
         rnn_cell = LSTM(units=CLASS_HIDDEN_UNITS,
                         recurrent_regularizer=l1(0.02))(hidden_dropout)
     else:
@@ -267,19 +289,22 @@ def marc(METHOD, TRAIN_FILE, TEST_FILE, METRICS_FILE, DATASET, EMBEDDER_SIZE=100
                    callbacks=[EpochLogger(metric=BASELINE_METRIC,
                                           baseline=BASELINE_VALUE)])
 
+    # Prediction
+    # ---------------------------------------------------------------------------------
+    y_test_true_dec = le.inverse_transform(argmax( cls_y_test, axis = 1)) # le.inverse_transform(argmax(y_test1, axis = 1))
+    y_test_pred_dec = le.inverse_transform(argmax( classifier.predict(cls_x_test), axis = 1)) # le.inverse_transform(argmax( classifier.predict(X_test) , axis = 1))
+
+    report = classification_report(y_test_true_dec, y_test_pred_dec, output_dict=True, zero_division=False)
+#    report = classification_report_dict2df(report, "MARC")  
     # ---------------------------------------------------------------------------------
     if (save_results) :
         dir_path = os.path.dirname(METRICS_FILE)
         #if not os.path.exists(os.path.join(dir_path, modelfolder)):
         #    os.makedirs(os.path.join(dir_path, modelfolder))
         #classifier.save(os.path.join(dir_path, modelfolder, 'model_approach1.h5'))
-        
-        y_test_true_dec = le.inverse_transform(argmax( cls_y_test, axis = 1)) # le.inverse_transform(argmax(y_test1, axis = 1))
-        y_test_pred_dec = le.inverse_transform(argmax( classifier.predict(cls_x_test), axis = 1)) # le.inverse_transform(argmax( classifier.predict(X_test) , axis = 1))
-        
-        report = classification_report(y_test_true_dec, y_test_pred_dec, output_dict=True, zero_division=False)
 
-        classification_report_dict2csv(report, os.path.join(dir_path, 'model_marc_report.csv'),"MARC")            
+        classification_report_dict2csv(report, os.path.join(dir_path, 'model_marc_report.csv'),"MARC")  
+#        dataframe.to_csv(os.path.join(dir_path, 'model_marc_report.csv'), index = False)
         pd.DataFrame(history.history).to_csv(os.path.join(dir_path, "model_marc_history.csv"))
         pd.DataFrame(y_test_true_dec,y_test_pred_dec).to_csv(os.path.join(dir_path, 'model_marc_prediction.csv'), header=['true_label'], index_label='prediction')
     
@@ -287,7 +312,7 @@ def marc(METHOD, TRAIN_FILE, TEST_FILE, METRICS_FILE, DATASET, EMBEDDER_SIZE=100
     print(f"Processing time: {time_ext} milliseconds. Done.")
     print('------------------------------------------------------------------------------------------------')
     
-#    return classifier, cls_x_test
+    return classifier, cls_x_test, pd.DataFrame(history.history)
 
 
 ###############################################################################
@@ -298,16 +323,23 @@ def marc(METHOD, TRAIN_FILE, TEST_FILE, METRICS_FILE, DATASET, EMBEDDER_SIZE=100
 # from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 # from core.utils.geohash import bin_geohash
 
-def get_trajectories(train_file, test_file, tid_col='tid',
-                     label_col='label', geo_precision=8, drop=[], logger=None):
-    file_str = "'" + train_file + "' and '" + test_file + "'"
+def loadTrajectories(train_file, test_file):
+    print('\n###########      DATA LOADING        ###########')
+    print('TRAIN_FILE =', train_file)
+    print('TEST_FILE =', test_file)
     if logger:
-        logger.log(Logger.INFO, "Loading data from file(s) " + file_str + "... ")
+        logger.log(Logger.INFO, "Loading data from file(s) ... ")
     
 #     df_train = pd.read_csv(train_file)
 #     df_test = pd.read_csv(test_file)
     df_train = readDataset(os.path.dirname(train_file), file=os.path.basename(train_file), missing='-999')
     df_test = readDataset(os.path.dirname(test_file), file=os.path.basename(test_file), missing='-999')
+    
+    return df_train, df_test
+
+def prepareTrajectories(df_train, df_test, tid_col='tid',
+                     label_col='label', geo_precision=8, drop=[], logger=None):
+    print('\n###########    DATA PREPARATION      ###########')
     
 #     df_train = df_train.replace('?', np.nan)
 #     df_test  = df_test.replace('?', np.nan)
@@ -410,12 +442,11 @@ def get_trajectories(train_file, test_file, tid_col='tid',
         vocab_size['lat_lon'] = geo_precision * 5
 
     one_hot_y = OneHotEncoder().fit(df.loc[:, [label_col]])
-    #one_hot_y = OneHotEncoder().fit(df.loc[:, [label_col]].values)
 
     x = [np.asarray(f) for f in x]
     y = one_hot_y.transform(pd.DataFrame(y)).toarray()
     if logger:
-        logger.log(Logger.INFO, "Loading data from files " + file_str + "... DONE!")
+        logger.log(Logger.INFO, "Loading data from files ... DONE!")
 
 #    x_train = np.asarray([f[idx_train] for f in x])
 #    y_train = y[idx_train]
@@ -435,10 +466,12 @@ def get_trajectories(train_file, test_file, tid_col='tid',
         logger.log(Logger.INFO, 'Labels:        ' + str(len(y[0])))
         logger.log(Logger.INFO, 'Train size:    ' + str(len(x_train[0]) / trajs))
         logger.log(Logger.INFO, 'Test size:     ' + str(len(x_test[0]) / trajs))
-        logger.log(Logger.INFO, 'x_train shape: ' + str(np.shape(x_train)))
-        logger.log(Logger.INFO, 'y_train shape: ' + str(y_train.shape))
-        logger.log(Logger.INFO, 'x_test shape:  ' + str(np.shape(x_test)))
-        logger.log(Logger.INFO, 'y_test shape:  ' + str(y_test.shape))
+        
+        #TODO: discover why this problem happen, maybe an error on preparing input (!important)
+        #logger.log(Logger.INFO, 'x_train shape: ' + str(np.shape(x_train)))
+        #logger.log(Logger.INFO, 'y_train shape: ' + str(y_train.shape))
+        #logger.log(Logger.INFO, 'x_test shape:  ' + str(np.shape(x_test)))
+        #logger.log(Logger.INFO, 'y_test shape:  ' + str(y_test.shape))
 
     return (keys, vocab_size, num_classes, max_length, le,
             x_train, x_test,

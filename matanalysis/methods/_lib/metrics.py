@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 '''
-Multiple Aspect Trajectory Data Mining Tool Library
+MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
 
-The present application offers a tool, to support the user in the classification task of multiple aspect trajectories, specifically for extracting and visualizing the movelets, the parts of the trajectory that better discriminate a class. It integrates into a unique platform the fragmented approaches available for multiple aspects trajectories and in general for multidimensional sequence classification into a unique web-based and python library system. Offers both movelets visualization and a complete configuration of classification experimental settings.
+The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
@@ -11,14 +11,20 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 @author: Lucas May Petry (adapted)
 @author: Francisco Vicenzi (adapted)
 '''
-import os, sys
-script_dir = os.path.dirname( __file__ )
-main_dir = os.path.abspath(os.path.join( script_dir, '..' , '..'))
-sys.path.append( main_dir )
+# --------------------------------------------------------------------------------
+import os
+import numpy as np
+import pandas as pd
 
-from main import importer #, display
-importer(['S', 'datetime', 'metrics', 'K'], globals())
+#from main import importer #, display
+#importer(['S', 'datetime', 'metrics', 'K'], globals())
 
+from datetime import datetime
+
+from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
+
+from tensorflow.keras import backend as K
+# --------------------------------------------------------------------------------
 
 def _process_pred(y_pred):
     argmax = np.argmax(y_pred, axis=1)
@@ -31,7 +37,7 @@ def _process_pred(y_pred):
 
 
 def f1_tensorflow_macro(y_true, y_pred):
-    from keras import backend as K
+#    from keras import backend as K
     print(K.eval(y_pred))
     print(y_pred.shape)
     y_pred = np.zeros(y_pred.shape)
@@ -168,7 +174,13 @@ def classification_report_csv(report, reportfile, classifier):
     dataframe = pd.DataFrame.from_dict(report_data)
     dataframe.to_csv(reportfile, index = False)
     return dataframe
-def classification_report_dict2csv(report, reportfile, classifier):    
+
+def classification_report_dict2csv(report, reportfile, classifier): 
+    dataframe = classification_report_dict2df(report, classifier)
+    dataframe.to_csv(reportfile, index = False)
+    return dataframe
+
+def classification_report_dict2df(report, classifier):    
     report_data = []  
     for k, v in report.items():
         if k in ['accuracy', 'macro avg', 'weighted avg']:
@@ -185,7 +197,7 @@ def classification_report_dict2csv(report, reportfile, classifier):
         report_data.append(row)
 
     dataframe = pd.DataFrame.from_dict(report_data)
-    dataframe.to_csv(reportfile, index = False)
+#    dataframe.to_csv(reportfile, index = False)
     return dataframe
 
 # ------------------------------------------------------------------------------

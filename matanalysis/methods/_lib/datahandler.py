@@ -1,21 +1,29 @@
 # -*- coding: utf-8 -*-
 '''
-Multiple Aspect Trajectory Data Mining Tool Library
+MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
 
-The present application offers a tool, to support the user in the classification task of multiple aspect trajectories, specifically for extracting and visualizing the movelets, the parts of the trajectory that better discriminate a class. It integrates into a unique platform the fragmented approaches available for multiple aspects trajectories and in general for multidimensional sequence classification into a unique web-based and python library system. Offers both movelets visualization and a complete configuration of classification experimental settings.
+The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 
-Created on Jun, 2022
+Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
 @author: Tarlis Portela
 '''
-import sys, os 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from main import importer
+# --------------------------------------------------------------------------------
 
+import os
+import pandas as pd
+import numpy as np
+
+from tqdm.auto import tqdm
+
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+
+from matdata.preprocess import readDataset, organizeFrame, trainAndTestSplit
 
 ###############################################################################
-#   LOAD DATA
+#   LOAD DATA - For Classification Methods
 ###############################################################################
 def loadTrajectories(dir_path, 
                      file_prefix='', 
@@ -29,19 +37,35 @@ def loadTrajectories(dir_path,
                      split_test_validation=True,
                      data_preparation=1):
 
-    importer(['S', 'io', 'encoding'], globals(), {'preprocessing': ['trainAndTestSplit']}) #, modules={'preprocessing': ['readDataset', 'organizeFrame']})
+#    importer(['S', 'io', 'encoding'], globals(), {'preprocessing': ['trainAndTestSplit']}) #, modules={'preprocessing': ['readDataset', 'organizeFrame']})
     
     print('\n###########      DATA LOADING        ###########')
     if file_prefix == '':
         train_file = os.path.join(dir_path, 'train.csv')
         test_file  = os.path.join(dir_path, 'test.csv')
     else:
-        train_file = os.path.join(dir_path, file_prefix+'train.csv')
-        test_file  = os.path.join(dir_path, file_prefix+'test.csv')
+        train_file = os.path.join(dir_path, file_prefix+'_train.csv')
+        test_file  = os.path.join(dir_path, file_prefix+'_test.csv')
         
     df_train = readDataset(os.path.dirname(train_file), file=os.path.basename(train_file), missing='-999')
     df_test = readDataset(os.path.dirname(test_file), file=os.path.basename(test_file), missing='-999')
     
+    return df_train, df_test
+    
+def prepareTrajectories(df_train, df_test,
+                     tid_col='tid', 
+                     class_col='label',
+                     space_geohash=False, # True: Geohash, False: indexgrid
+                     geo_precision=8,     # Geohash: precision OR IndexGrid: meters
+                     features=None,
+                     features_encoding=True, 
+                     y_one_hot_encodding=False,
+                     split_test_validation=True,
+                     data_preparation=1):
+
+#    importer(['S', 'io', 'encoding'], globals(), {'preprocessing': ['trainAndTestSplit']}) #, modules={'preprocessing': ['readDataset', 'organizeFrame']})
+    
+    print('\n###########    DATA PREPARATION      ###########')
     df_train, _, columns_order = organizeFrame(df_train, tid_col=tid_col, class_col=class_col)
     df_test, _, _ = organizeFrame(df_test, tid_col=tid_col, class_col=class_col)
 
@@ -142,9 +166,10 @@ def generate_X_y_ml( data,
     max_lenght = df_.groupby(tid_col).agg({class_col:'count'}).max()[0]
     
     dic_tid = {}
+    print('Checking sets split count (train, <validation>, test):')
     for i, d in enumerate(data):
         dic_tid[i] = d[tid_col].unique()
-        print('TIDs_{}: {}'.format(i, len(dic_tid[i])))#, dic_tid[i])
+        print('   TIDs_{}: {}'.format(i, len(dic_tid[i])))#, dic_tid[i])
     
     dic_parameters = {}
     if features_encoding == True:

@@ -9,3 +9,4 @@
 # *TODO*:
  - Document comments on all public interface funcions and modules
  - Incorporate new classifiers
+ - Bug: sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.

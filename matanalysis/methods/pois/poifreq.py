@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 '''
-Multiple Aspect Trajectory Data Mining Tool Library
+MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
 
-The present application offers a tool, to support the user in the classification task of multiple aspect trajectories, specifically for extracting and visualizing the movelets, the parts of the trajectory that better discriminate a class. It integrates into a unique platform the fragmented approaches available for multiple aspects trajectories and in general for multidimensional sequence classification into a unique web-based and python library system. Offers both movelets visualization and a complete configuration of classification experimental settings.
+The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
 
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
@@ -10,10 +11,156 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 @author: Tarlis Portela
 @author: Francisco Vicenzi (adapted)
 '''
-import sys, os 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from main import importer
+# --------------------------------------------------------------------------------
+import os
+from os import path
+import pandas as pd
+import numpy as np
 
+from datetime import datetime
+# --------------------------------------------------------------------------------
+from matdata.preprocess import readDataset, dfVariance
+from matanalysis.methods._lib.geohash import bin_geohash
+
+## POI-S: POI Sequence (POI-F extension) [By Tarlis]
+## --------------------------------------------------------------------------------------------
+
+def pois_read(sequences, features, method='npoi', dataset='specific', folder='./data', result_dir='.', save_all=False, tid_col='tid', class_col='label'):
+    
+    df_train, df_test = loadTrainTest(features, folder, dataset)
+    
+    return pois(df_train, df_test, sequences, dataset, features, method, result_dir, save_all, tid_col, class_col)
+
+def pois(df_train, df_test, sequences, features, method='npoi', dataset='specific', result_dir='.', save_all=False, tid_col='tid', class_col='label'):
+#    from ..main import importer
+#    importer(['S', 'datetime'], globals(), {'preprocessing': ['dfVariance']})
+#     print('Dataset: {}, Feature: {}, Sequence: {}'.format(dataset, feature, sequence))
+#     from datetime import datetime
+#     if dataset is '':
+#         df_train = pd.read_csv(os.path.join(folder, 'train.csv'))
+#         df_test = pd.read_csv(os.path.join(folder, 'test.csv'))
+#     else:
+#         df_train = pd.read_csv(os.path.join(folder, dataset+'_train.csv'))
+#         df_test = pd.read_csv(os.path.join(folder, dataset+'_test.csv'))
+    
+#    df_train, df_test = loadTrainTest(features, folder, dataset)
+    
+
+    print("[POIS:] Starting feature extractor ... ")
+    time = datetime.now()
+    
+    if features is None:
+#        df_train
+        stats = dfVariance(df[[x for x in df.columns if x not in [tid_col, class_col]]])
+        features = [stats.iloc[0].index[0]]
+    
+    if save_all:
+        save_all = result_dir
+        
+    agg_x_train = None
+    agg_x_test  = None
+    
+    for sequence in sequences:
+        aux_x_train = None
+        aux_x_test  = None
+        for feature in features:
+            print('Dataset: {}, Feature: {}, Sequence: {}'.format(dataset, feature, sequence))
+            unique_features = df_train[feature].unique().tolist()
+
+            points = df_train[feature].values
+            possible_sequences = []
+            for idx in range(0, (len(points)-(sequence - 1))):
+                aux = []
+                for i in range (0, sequence):
+                    aux.append(points[idx + i])
+                aux = tuple(aux)
+                if aux not in possible_sequences:
+                    possible_sequences.append(aux)
+
+            seq2idx = dict(zip(possible_sequences, np.r_[0:len(possible_sequences)]))
+
+            if save_all:
+                if not os.path.exists(result_dir):
+                    os.makedirs(result_dir)
+
+                pd.DataFrame(possible_sequences).to_csv(os.path.join(result_dir, \
+                   feature+'_'+str(sequence)+'_'+dataset+'-sequences.csv'), index=False, header=None)
+            
+            if method == 'poi':
+                x_train, x_test, y_train, y_test = poi(df_train, df_test, possible_sequences, \
+                                                       seq2idx, sequence, dataset, feature, result_dir=save_all, 
+                                                       tid_col=tid_col, class_col=class_col)
+            elif method == 'npoi':
+                x_train, x_test, y_train, y_test = npoi(df_train, df_test, possible_sequences, \
+                                                       seq2idx, sequence, dataset, feature, result_dir=save_all, 
+                                                       tid_col=tid_col, class_col=class_col)
+            else:
+                x_train, x_test, y_train, y_test = wnpoi(df_train, df_test, possible_sequences, \
+                                                       seq2idx, sequence, dataset, feature, result_dir=save_all, 
+                                                       tid_col=tid_col, class_col=class_col)
+
+            # Concat columns:
+            if aux_x_train is None:
+                aux_x_train = pd.DataFrame(x_train)
+            else:
+                aux_x_train = pd.concat([aux_x_train, pd.DataFrame(x_train)], axis=1)   
+
+            if aux_x_test is None:
+                aux_x_test = pd.DataFrame(x_test)
+            else:
+                aux_x_test = pd.concat([aux_x_test, pd.DataFrame(x_test)], axis=1)    
+                
+        # Write features concat:
+        if save_all:
+            core_name = os.path.join(result_dir, method+'_'+('_'.join(features))+'_'+('_'.join([str(sequence)])) ) #+'_'+dataset)
+            to_file(core_name, aux_x_train, aux_x_test, y_train, y_test)
+        
+        if agg_x_train is None:
+            agg_x_train = aux_x_train
+        else:
+            agg_x_train = pd.concat([agg_x_train, aux_x_train], axis=1)   
+
+        if agg_x_test is None:
+            agg_x_test = aux_x_test
+        else:
+            agg_x_test = pd.concat([agg_x_test, aux_x_test], axis=1)    
+                
+    
+    del df_train
+    del df_test 
+    del x_train
+    del x_test   
+   
+    core_name = os.path.join(result_dir, method+'_'+('_'.join(features))+'_'+('_'.join([str(n) for n in sequences])) ) #+'_'+dataset)
+    if save_all:
+        to_file(core_name, agg_x_train, agg_x_test, y_train, y_test)
+
+    time_ext = (datetime.now()-time).total_seconds() * 1000
+    print('[POIS:] Processing time: {} milliseconds. Done.'.format(time_ext))
+    print('------------------------------------------------------------------------------------------------')
+    
+#    del agg_x_train
+#    del agg_x_test 
+#    del y_train
+#    del y_test 
+    
+#    if doclass:
+#        time = datetime.now()
+#        
+#        importer(['TEC.POIS'], locals())
+#        model, x_test = model_poifreq(core_name)
+#        model = model.predict(x_test)
+#        time_cls = (datetime.now()-time).total_seconds() * 1000
+#        
+#        f=open(os.path.join(result_dir, 'results_summary.txt'), "a+")
+#        f.write("Processing time: %d milliseconds\r\n" % (time_ext))
+#        f.write("Classification time: %d milliseconds\r\n" % (time_cls))
+#        f.write("Total time: %d milliseconds\r\n" % (time_ext+time_cls))
+#        f.close()
+        
+    return agg_x_train, agg_x_test, y_train, y_test, core_name
+    
+## --------------------------------------------------------------------------------------------
 ## POI-F: POI Frequency
 def poi(df_train, df_test, possible_sequences, seq2idx, sequence, dataset, feature, result_dir=None, tid_col='tid', class_col='label'):
 #     from ..main import importer
@@ -219,138 +366,6 @@ def poifreq_all(sequence, dataset, feature, folder, result_dir, tid_col='tid', c
     poi(df_train, df_test, possible_sequences, seq2idx, sequence, dataset, feature, result_dir, tid_col, class_col)
     npoi(df_train, df_test, possible_sequences, seq2idx, sequence, dataset, feature, result_dir, tid_col, class_col)
     wnpoi(df_train, df_test, possible_sequences, seq2idx, sequence, dataset, feature, result_dir, tid_col, class_col)
-    
-## By Tarlis: Run this first...
-## --------------------------------------------------------------------------------------------
-def poifreq(sequences, dataset, features, folder, result_dir, method='npoi', save_all=False, doclass=True, tid_col='tid', class_col='label'):
-#    from ..main import importer
-    importer(['S', 'datetime'], globals(), {'preprocessing': ['dfVariance']})
-#     print('Dataset: {}, Feature: {}, Sequence: {}'.format(dataset, feature, sequence))
-#     from datetime import datetime
-
-    time = datetime.now()
-#     if dataset is '':
-#         df_train = pd.read_csv(os.path.join(folder, 'train.csv'))
-#         df_test = pd.read_csv(os.path.join(folder, 'test.csv'))
-#     else:
-#         df_train = pd.read_csv(os.path.join(folder, dataset+'_train.csv'))
-#         df_test = pd.read_csv(os.path.join(folder, dataset+'_test.csv'))
-    
-    df_train, df_test = loadTrainTest(features, folder, dataset)
-    
-    if features is None:
-        df_train
-        stats = dfVariance(df[[x for x in df.columns if x not in [tid_col, class_col]]])
-        features = [stats.iloc[0].index[0]]
-    
-    if save_all:
-        save_all = result_dir
-        
-    agg_x_train = None
-    agg_x_test  = None
-    
-    for sequence in sequences:
-        aux_x_train = None
-        aux_x_test  = None
-        for feature in features:
-            print('Dataset: {}, Feature: {}, Sequence: {}'.format(dataset, feature, sequence))
-            unique_features = df_train[feature].unique().tolist()
-
-            points = df_train[feature].values
-            possible_sequences = []
-            for idx in range(0, (len(points)-(sequence - 1))):
-                aux = []
-                for i in range (0, sequence):
-                    aux.append(points[idx + i])
-                aux = tuple(aux)
-                if aux not in possible_sequences:
-                    possible_sequences.append(aux)
-
-            seq2idx = dict(zip(possible_sequences, np.r_[0:len(possible_sequences)]))
-
-            if not os.path.exists(result_dir):
-                os.makedirs(result_dir)
-
-            pd.DataFrame(possible_sequences).to_csv(os.path.join(result_dir, \
-               feature+'_'+str(sequence)+'_'+dataset+'-sequences.csv'), index=False, header=None)
-
-            if method == 'poi':
-                x_train, x_test, y_train, y_test = poi(df_train, df_test, possible_sequences, \
-                                                       seq2idx, sequence, dataset, feature, result_dir=save_all, 
-                                                       tid_col=tid_col, class_col=class_col)
-            elif method == 'npoi':
-                x_train, x_test, y_train, y_test = npoi(df_train, df_test, possible_sequences, \
-                                                       seq2idx, sequence, dataset, feature, result_dir=save_all, 
-                                                       tid_col=tid_col, class_col=class_col)
-            else:
-                x_train, x_test, y_train, y_test = wnpoi(df_train, df_test, possible_sequences, \
-                                                       seq2idx, sequence, dataset, feature, result_dir=save_all, 
-                                                       tid_col=tid_col, class_col=class_col)
-
-            # Concat columns:
-            if aux_x_train is None:
-                aux_x_train = pd.DataFrame(x_train)
-            else:
-                aux_x_train = pd.concat([aux_x_train, pd.DataFrame(x_train)], axis=1)   
-
-            if aux_x_test is None:
-                aux_x_test = pd.DataFrame(x_test)
-            else:
-                aux_x_test = pd.concat([aux_x_test, pd.DataFrame(x_test)], axis=1)    
-                
-        # Write features concat:
-        core_name = os.path.join(result_dir, method+'_'+('_'.join(features))+'_'+('_'.join([str(sequence)])) ) #+'_'+dataset)
-        to_file(core_name, aux_x_train, aux_x_test, y_train, y_test)
-        
-        if agg_x_train is None:
-            agg_x_train = aux_x_train
-        else:
-            agg_x_train = pd.concat([agg_x_train, aux_x_train], axis=1)   
-
-        if agg_x_test is None:
-            agg_x_test = aux_x_test
-        else:
-            agg_x_test = pd.concat([agg_x_test, aux_x_test], axis=1)    
-                
-    
-    del df_train
-    del df_test 
-    del x_train
-    del x_test   
-   
-    core_name = os.path.join(result_dir, method+'_'+('_'.join(features))+'_'+('_'.join([str(n) for n in sequences])) ) #+'_'+dataset)
-    to_file(core_name, agg_x_train, agg_x_test, y_train, y_test)
-    time_ext = (datetime.now()-time).total_seconds() * 1000
-    
-    del agg_x_train
-    del agg_x_test 
-    del y_train
-    del y_test 
-    
-    if doclass:
-        time = datetime.now()
-        
-#         from ensemble_models.poifreq import model_poifreq
-        importer(['TEC.POIS'], locals())
-        model, x_test = model_poifreq(core_name)
-        model = model.predict(x_test)
-        time_cls = (datetime.now()-time).total_seconds() * 1000
-        
-#         f=open(os.path.join(result_dir, method+'_results.txt'), "a+")
-        f=open(os.path.join(result_dir, 'results_summary.txt'), "a+")
-        f.write("Processing time: %d milliseconds\r\n" % (time_ext))
-        f.write("Classification time: %d milliseconds\r\n" % (time_cls))
-        f.write("Total time: %d milliseconds\r\n" % (time_ext+time_cls))
-        f.close()
-        
-#     else:
-        
-# #         f=open(os.path.join(result_dir, method+'_results.txt'), "a+")
-#         f=open(os.path.join(result_dir, 'results_summary.txt'), "a+")
-#         f.write("Processing time: %d milliseconds\r\n" % (time_ext))
-#         f.close()
-        
-    return core_name
    
     
 ## --------------------------------------------------------------------------------------------
@@ -364,13 +379,13 @@ def to_file(core_name, x_train, x_test, y_train, y_test):
     
 def geoHasTransform(df, geo_precision=8):
 #     from ..main import importer
-    importer(['geohash'], globals()) #globals
+#    importer(['geohash'], globals()) #globals
 #     from ensemble_models.utils import geohash
     return [geohash(df['lat'].values[i], df['lon'].values[i], geo_precision) for i in range(0, len(df))]
 
 def loadTrainTest(features, folder, dataset=''):
 #     from ..main import importer
-    importer(['readDataset'], globals())
+#    importer(['readDataset'], globals())
 #     if dataset == '':
 #         df_train = pd.read_csv(os.path.join(folder, 'train.csv'))
 #         df_test = pd.read_csv(os.path.join(folder, 'test.csv'))

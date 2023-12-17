@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 '''
-Multiple Aspect Trajectory Data Mining Tool Library
+MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
 
-The present application offers a tool, to support the user in the classification task of multiple aspect trajectories, specifically for extracting and visualizing the movelets, the parts of the trajectory that better discriminate a class. It integrates into a unique platform the fragmented approaches available for multiple aspects trajectories and in general for multidimensional sequence classification into a unique web-based and python library system. Offers both movelets visualization and a complete configuration of classification experimental settings.
+The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
 
-Created on Jun, 2022
+Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (this portion of code is subject to licensing from source project distribution)
 
 @author: Tarlis Portela (adapted)
@@ -18,33 +19,42 @@ Copyright (C) 2022, License GPL Version 3 or superior (this portion of code is s
 # Adapted from: https://github.com/nickssonfreitas/ICAART2021
 '''
 # --------------------------------------------------------------------------------
-import sys, os 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-#sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import os
+from os import path
+import pandas as pd
+import numpy as np
 
-#import pandas as pd
-#import numpy as np
-#import mplleaflet as mpl
-#import traceback
-#import time
-#import gc
-#import os
-#import itertools
-#import collections
-#import itertools
-#from os import path
-#from tqdm.auto import tqdm
-#from glob import glob
-#from joblib import load, dump
-#from methods._lib.pymove.models.classification import RandomForest as rf
-#from methods._lib.pymove.models import datautils
-#from methods._lib.pymove.core import utils
-#import json
+from tqdm.auto import tqdm
+from datetime import datetime
+from glob2 import glob
+import json
+import mplleaflet as mpl
+import traceback
+import time
+import gc
+import itertools
+import collections
+from joblib import load, dump
 
-from main import importer
-#importer(['S'], globals())
+# --------------------------------------------------------------------------------
+from matanalysis.methods._lib.pymove.core import utils
+from matanalysis.methods._lib.pymove.models.classification import RandomForest as rf
+#from matanalysis.methods._lib.pymove.models import datautils
 
-def TrajectoryRF(dir_path, res_path, prefix='', save_results=True, n_jobs=-1, random_state=42, geohash=False, geo_precision=30):
+# --------------------------------------------------------------------------------
+from matanalysis.methods._lib.datahandler import loadTrajectories, prepareTrajectories
+from matanalysis.methods._lib.utils import update_report, print_params, concat_params
+# --------------------------------------------------------------------------------
+
+def TRF_read(dir_path, res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10, geohash=False, geo_precision=30):
+    
+    # Load Data - Tarlis:
+    df_train, df_test = loadTrajectories(dir_path, prefix)
+    
+    return TRF(df_train, df_test, res_path, prefix, save_results, n_jobs, random_state, rounds, geohash, geo_precision)
+    
+
+def TRF(df_train, df_test, res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10, geohash=False, geo_precision=30):
     
     #import time
     #import mplleaflet as mpl
@@ -53,13 +63,13 @@ def TrajectoryRF(dir_path, res_path, prefix='', save_results=True, n_jobs=-1, ra
     #from joblib import load, dump
     
     # TODO - replace for pymove package version when implemented
-    from methods._lib.pymove.models.classification import RandomForest as rf
+#    from methods._lib.pymove.models.classification import RandomForest as rf
 ##    from methods._lib.pymove.models import datautils
-    from methods._lib.pymove.core import utils
+#    from methods._lib.pymove.core import utils
     
-    importer(['S', 'TCM', 'sys', 'json', 'tqdm', 'datetime'], globals())
-    from methods._lib.datahandler import loadTrajectories
-    from methods._lib.utils import update_report, print_params, concat_params
+#    importer(['S', 'TCM', 'sys', 'json', 'tqdm', 'datetime'], globals())
+#    from methods._lib.datahandler import loadTrajectories
+#    from methods._lib.utils import update_report, print_params, concat_params
 
 #    paper = 'SAC'
 #    dataset = 'brightkite' #['fousquare_nyc', 'brightkite', 'foursquare_global', gowalla,'criminal_id', 'criminal_activity']
@@ -76,7 +86,7 @@ def TrajectoryRF(dir_path, res_path, prefix='', save_results=True, n_jobs=-1, ra
     #geo_precision=30 #meters
     
     # Load Data - Tarlis:
-    X, y, features, num_classes, space, dic_parameters = loadTrajectories(dir_path, prefix+'_', 
+    X, y, features, num_classes, space, dic_parameters = prepareTrajectories(df_train.copy(), df_test.copy(), 
                                                                           split_test_validation=True,
                                                                           features_encoding=True, 
                                                                           y_one_hot_encodding=False,
@@ -248,7 +258,7 @@ def TrajectoryRF(dir_path, res_path, prefix='', save_results=True, n_jobs=-1, ra
     if not os.path.exists(filename):
         print('[TRF:] Creating a model to test set')
         evaluate_report = []
-        rounds = 10
+#        rounds = 10
         
         print("[TRF:] Parameters: \n\tn_estimators: {}. \n\tmax_depth: {}. \n\tmin_samples_split: {}. \n\tmin_samples_leaf: {}. \n\tmax_features: {}. \n\tbootstrap: {}. \n\tfeatures: {}.".format(ne, md, mss, msl, mf, bs, features))
 
@@ -285,6 +295,7 @@ def TrajectoryRF(dir_path, res_path, prefix='', save_results=True, n_jobs=-1, ra
             
         end_time = (datetime.now()-start_time).total_seconds() * 1000
         print('[TRF:] Processing time: {} milliseconds. Done.'.format(end_time))
+        return evaluate_report
     else:
         print('[TRF:] Model previoulsy built.')
         

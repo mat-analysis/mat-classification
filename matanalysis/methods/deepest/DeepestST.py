@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 '''
-Multiple Aspect Trajectory Data Mining Tool Library
+MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
 
-The present application offers a tool, to support the user in the classification task of multiple aspect trajectories, specifically for extracting and visualizing the movelets, the parts of the trajectory that better discriminate a class. It integrates into a unique platform the fragmented approaches available for multiple aspects trajectories and in general for multidimensional sequence classification into a unique web-based and python library system. Offers both movelets visualization and a complete configuration of classification experimental settings.
+The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
 
-Created on Jun, 2022
+Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (this portion of code is subject to licensing from source project distribution)
 
 @author: Tarlis Portela (adapted)
@@ -18,45 +19,53 @@ Copyright (C) 2022, License GPL Version 3 or superior (this portion of code is s
 # Adapted from: https://github.com/nickssonfreitas/ICAART2021
 '''
 # --------------------------------------------------------------------------------
-#import pandas as pd
-#import numpy as np
-#import mplleaflet as mpl
-#import traceback
-#import time
-#import gc
-#import os
-#import itertools
-#import collections
-#import itertools
-#from os import path
-#from tqdm.auto import tqdm
-#from glob import glob
-#from joblib import load, dump
-#import json
-#
-## From commom
-#from _lib.pymove.models.classification import DeepestST as DST
-#from _lib.pymove.models import datautils
-#from _lib.pymove.core import utils
+import os
+from os import path
+import pandas as pd
+import numpy as np
 
-import sys, os 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from main import importer
+from tqdm.auto import tqdm
+from datetime import datetime
+from glob2 import glob
+import json
+import mplleaflet as mpl
+import traceback
+import time
+import gc
+import itertools
+import collections
+from joblib import load, dump
 
-def TrajectoryDeepestST(dir_path, res_path, prefix='', save_results=True, n_jobs=-1, random_state=42, 
-                        label_poi = 'poi', y_one_hot_encodding=True, geohash=False, geo_precision=30):
+# --------------------------------------------------------------------------------
+from matanalysis.methods._lib.pymove.core import utils
+from matanalysis.methods._lib.pymove.models.classification import DeepestST as DST
+
+# --------------------------------------------------------------------------------
+from matanalysis.methods._lib.datahandler import loadTrajectories, prepareTrajectories
+from matanalysis.methods._lib.utils import update_report, print_params, concat_params
+# --------------------------------------------------------------------------------
+
+def DeepestST_read(dir_path, res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10, geohash=False, geo_precision=30):
     
-    importer(['S', 'TCM', 'sys', 'json', 'tqdm', 'datetime'], globals())
-    from methods._lib.pymove.core import utils
-    from methods._lib.pymove.models.classification import DeepestST as DST
-    from methods._lib.datahandler import loadTrajectories
-    from methods._lib.utils import update_report, print_params, concat_params
+    # Load Data - Tarlis:
+    df_train, df_test = loadTrajectories(dir_path, prefix)
+    
+    return DeepestST(df_train, df_test, res_path, prefix, save_results, n_jobs, random_state, rounds, label_poi, y_one_hot_encodding, geohash, geo_precision)
+    
+
+def DeepestST(df_train, df_test, res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10, label_poi='poi', y_one_hot_encodding=True, geohash=False, geo_precision=30):
+    
+#    importer(['S', 'TCM', 'sys', 'json', 'tqdm', 'datetime'], globals())
+#    from methods._lib.pymove.core import utils
+#    from methods._lib.pymove.models.classification import DeepestST as DST
+#    from methods._lib.datahandler import loadTrajectories
+#    from methods._lib.utils import update_report, print_params, concat_params
     
     dir_validation = os.path.join(res_path, 'DEEPEST-'+prefix, 'validation')
     dir_evaluation = os.path.join(res_path, 'DEEPEST-'+prefix)
     
     # Load Data - Tarlis:
-    X, y, features, num_classes, space, dic_parameters = loadTrajectories(dir_path, prefix+'_', 
+    X, y, features, num_classes, space, dic_parameters = prepareTrajectories(df_train.copy(), df_test.copy(), 
                                                                           split_test_validation=True,
                                                                           features_encoding=True, 
                                                                           y_one_hot_encodding=y_one_hot_encodding,
@@ -258,7 +267,7 @@ def TrajectoryDeepestST(dir_path, res_path, prefix='', save_results=True, n_jobs
             nn, un, mt, dp_bf, dp_af, em_s, bs, epoch, pat, mon, opt, lr, ls, y_ohe, features) )
         
         evaluate_report = []
-        rounds = 10
+#        rounds = 10
 
         pbar = tqdm(range(rounds), desc="Model Testing")
         for e in pbar:
@@ -312,6 +321,7 @@ def TrajectoryDeepestST(dir_path, res_path, prefix='', save_results=True, n_jobs
             
         end_time = (datetime.now()-start_time).total_seconds() * 1000
         print('[DEEPEST:] Processing time: {} milliseconds. Done.'.format(end_time))
+        return evaluate_report
     else:
         print('[DEEPEST:] Model previoulsy built.')
         
