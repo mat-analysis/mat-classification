@@ -10,16 +10,32 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
 @author: Tarlis Portela
 '''
-import sys, os 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from automatize.main import importer
-importer(['S'], globals())
-
+# --------------------------------------------------------------------------------
+import os 
+import numpy as np
+import pandas as pd
+from datetime import datetime
+# --------------------------------------------------------------------------------
+import tensorflow as tf
+from stensorflow.keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.metrics import classification_report
+# --------------------------------------------------------------------------------
+from matdata.preprocess import readDataset
+# --------------------------------------------------------------------------------
+# TEC.MLP
+# --------------------------------------------------------------------------------
+# TEC.NN
+# --------------------------------------------------------------------------------
+# TEC.MARC
+# --------------------------------------------------------------------------------
+# TEC.POIS
+# --------------------------------------------------------------------------------
+from matanalysis.methods._lib.models import ModelContainer
 # --------------------------------------------------------------------------------
 # ANALYSIS By Ensemble Learning Models
 def TEC(data_path, results_path, ensembles, dataset='specific', save_results=True, modelfolder='model_ensemble', random_seed=1):
 #     from ..main import importer
-    importer(['S', 'datetime', 'tf', 'TEC.report', 'KerasClassifier', 'readDataset'], globals())
+#    importer(['S', 'datetime', 'tf', 'TEC.report', 'KerasClassifier', 'readDataset'], globals())
     
 #     import os
 #     import pandas as pd

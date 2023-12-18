@@ -42,6 +42,7 @@ from matanalysis.methods.pois.poifreq import pois
 
 from matanalysis.methods._lib.datahandler import loadTrajectories
 from matanalysis.methods._lib.pymove.models import metrics
+from matanalysis.methods._lib.models import ModelContainer
 
 ## --------------------------------------------------------------------------------------------
 ## CLASSIFIER:
@@ -59,28 +60,27 @@ def POIS(df_train, df_test, sequences, features, dataset='specific', method='npo
     
     x_train, x_test, y_train, y_test, _ = pois(df_train, df_test, sequences, features, method, dataset, res_path, save_results, tid_col, class_col)
     
-    classifier, x_test, labels = pois_model(x_train, x_test, y_train, y_test, method, res_path, prefix, save_results, n_jobs, random_state, rounds)
-    
-    y_pred = classifier.predict(x_test) 
-    final_pred = [argmax(f) for f in y_pred]
-    final_pred = [labels[f] for f in final_pred]
-    
-    classification_report = metrics.compute_acc_acc5_f1_prec_rec(y_test, np.array(final_pred))
-    return classification_report
+    return pois_model(x_train, x_test, y_train, y_test, method, res_path, prefix, save_results, n_jobs, random_state, rounds)
+#    
+#    y_pred = classifier.predict(x_test) 
+#    final_pred = [argmax(f) for f in y_pred]
+#    final_pred = [labels[f] for f in final_pred]
+#    
+#    return classification_report
 
 def POIS_xy(dir_path, method='npoi', res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10):
 #    importer(['S', 'POIS', 'random', 'datetime'], globals())
 
     x_train, x_test, y_train, y_test = loadData(dir_path)
     
-    classifier, x_test, labels = pois_model(x_train, x_test, y_train, y_test, method, res_path, prefix, save_results, n_jobs, random_state, rounds)
-
-    y_pred = classifier.predict(x_test) 
-    final_pred = [argmax(f) for f in y_pred]
-    final_pred = [labels[f] for f in final_pred]
-    
-    classification_report = metrics.compute_acc_acc5_f1_prec_rec(y_test, np.array(final_pred))
-    return classification_report
+    return pois_model(x_train, x_test, y_train, y_test, method, res_path, prefix, save_results, n_jobs, random_state, rounds)
+#
+#    y_pred = classifier.predict(x_test) 
+#    final_pred = [argmax(f) for f in y_pred]
+#    final_pred = [labels[f] for f in final_pred]
+#    
+#    classification_report = metrics.compute_acc_acc5_f1_prec_rec(y_test, np.array(final_pred))
+#    return classification_report
 
 ## --------------------------------------------------------------------------------------------
 def pois_model(x_train, x_test, y_train, y_test, method='npoi', res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10):
@@ -88,7 +88,7 @@ def pois_model(x_train, x_test, y_train, y_test, method='npoi', res_path='.', pr
 # TODO: n_jobs=-1, rounds=10, geohash=False, geo_precision=30
 # TODO: Transform into a model class
 
-    (num_features, num_classes, labels, x_train, x_test, y_train, y_test) = prepareData(x_train, x_test, y_train, y_test)
+    (num_features, num_classes, labels, x_train, x_test, y_train, y_test, one_hot_y) = prepareData(x_train, x_test, y_train, y_test)
 
     np.random.seed(random_state)
     random.set_seed(random_state)
@@ -214,26 +214,36 @@ def pois_model(x_train, x_test, y_train, y_test, method='npoi', res_path='.', pr
     print("[POI-S:] Processing time: {time_ext} milliseconds. Done.")
     print('------------------------------------------------------------------------------------------------')
     
-    if save_results:
-        results_file = os.path.join(res_path, method+'_results.txt')
-
-        f = open(results_file, 'a+')
-        print('------------------------------------------------------------------------------------------------', file=f)
-    #     print(f"method: {method} | Dataset: {DATASET}", file=f)
-        print(f"Acc: {np.array(df['test_acc'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
-        print(f"Acc_top_5: {np.array(df['test_acc_top5'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
-        print(f"F1_Macro: {np.array(df['test_f1_macro'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
-        print(f"Precision_Macro: {np.array(df['test_prec_macro'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
-        print(f"Recall_Macro: {np.array(df['test_rec_macro'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
-    
-        print(f"Processing time: {time_ext} milliseconds. Done.", file=f)
-        print('------------------------------------------------------------------------------------------------', file=f)
-        f.close()
+#    if save_results:
+#        results_file = os.path.join(res_path, method+'_results.txt')
+#
+#        f = open(results_file, 'a+')
+#        print('------------------------------------------------------------------------------------------------', file=f)
+#    #     print(f"method: {method} | Dataset: {DATASET}", file=f)
+#        print(f"Acc: {np.array(df['test_acc'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
+#        print(f"Acc_top_5: {np.array(df['test_acc_top5'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
+#        print(f"F1_Macro: {np.array(df['test_f1_macro'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
+#        print(f"Precision_Macro: {np.array(df['test_prec_macro'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
+#        print(f"Recall_Macro: {np.array(df['test_rec_macro'])[-EARLY_STOPPING_PATIENCE]} ", file=f)
+#    
+#        print(f"Processing time: {time_ext} milliseconds. Done.", file=f)
+#        print('------------------------------------------------------------------------------------------------', file=f)
+#        f.close()
     
 #     print(labels)
     
 #     return classifier.predict(x_test)
-    return classifier, x_test, labels
+#    return classifier, x_test, labels
+
+    # ---------------------------------------------------------------------------------
+    # Prediction
+    # ---------------------------------------------------------------------------------
+    model = ModelContainer(classifier, y_test, x_test, cls_history=metrics._df, approach='POIS', le=one_hot_y)
+    
+    if save_results:
+        model.save(dir_path, modelfolder)
+    
+    return model
 # --------------------------------------------------------------------------------------------------------  
 def loadData(dir_path):
 #     from ..main import importer
@@ -276,7 +286,7 @@ def prepareData(x_train, x_test, y_train, y_test):
     x_train = scale(x_train)
     x_test = scale(x_test)
     
-    return (num_features, num_classes, labels, x_train, x_test, y_train, y_test)
+    return (num_features, num_classes, labels, x_train, x_test, y_train, y_test, one_hot_y)
 
 
 ## --------------------------------------------------------------------------------------------

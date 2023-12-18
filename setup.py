@@ -34,9 +34,18 @@ setuptools.setup(
 #    packages=setuptools.find_packages(include=[PACKAGE_NAME, PACKAGE_NAME+'.*']),
     packages=setuptools.find_packages(),
 #    include_package_data=True,
-#    scripts=[
-#         'scripts/x.py', # For future
-#    ],
+    scripts=[
+        'matanalysis/scripts/MAT-Summary.py',
+        'matanalysis/scripts/MAT-ResultsTo.py',
+        'matanalysis/scripts/MAT-ExportResults.py',
+        
+        'matanalysis/scripts/MARC.py',
+        'matanalysis/scripts/POIS.py',
+        'matanalysis/scripts/MAT-MC.py',
+        'matanalysis/scripts/MAT-TC.py',
+        'matanalysis/scripts/POIS-TC.py',
+#        'matanalysis/scripts/MAT-TEC.py', # Under Dev.
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",

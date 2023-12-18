@@ -11,6 +11,7 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 @author: Tarlis Portela
 @author: Lucas May Petry
 '''
+# --------------------------------------------------------------------------------
 import os 
 import numpy as np
 import pandas as pd
@@ -43,6 +44,7 @@ from matanalysis.methods._lib.logger import Logger
 from matanalysis.methods._lib.metrics import MetricsLogger
 from matanalysis.methods._lib.metrics import classification_report_dict2csv, classification_report_dict2df
 from matanalysis.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
+from matanalysis.methods._lib.models import ModelContainer
 # --------------------------------------------------------------------------------
 
 def MARC_read(train_file, test_file, res_path='.', prefix='', dataset='', save_results=False, n_jobs=-1, random_state=42, geo_precision=8, embedder_size=100, merge_type='concatenate', rnn_cell='lstm'):
@@ -53,10 +55,7 @@ def MARC_read(train_file, test_file, res_path='.', prefix='', dataset='', save_r
 
 def MARC(df_train, df_test, res_path='.', prefix='', dataset='', save_results=False, n_jobs=-1, random_state=42, geo_precision=8, embedder_size=100, merge_type='concatenate', rnn_cell='lstm'):
     
-    classifier, x_test, classification_report = marc_model(df_train, df_test, res_path, prefix, dataset, save_results, n_jobs, random_state, geo_precision, embedder_size, merge_type, rnn_cell)
-    
-    return classification_report
-    
+    return marc_model(df_train, df_test, res_path, prefix, dataset, save_results, n_jobs, random_state, geo_precision, embedder_size, merge_type, rnn_cell)
 
 def marc_model(df_train, df_test, res_path='.', prefix='', dataset='', save_results=False, n_jobs=-1, random_state=42, geo_precision=8, embedder_size=100, merge_type='concatenate', rnn_cell='lstm'):
 
@@ -291,28 +290,33 @@ def marc_model(df_train, df_test, res_path='.', prefix='', dataset='', save_resu
 
     # Prediction
     # ---------------------------------------------------------------------------------
-    y_test_true_dec = le.inverse_transform(argmax( cls_y_test, axis = 1)) # le.inverse_transform(argmax(y_test1, axis = 1))
-    y_test_pred_dec = le.inverse_transform(argmax( classifier.predict(cls_x_test), axis = 1)) # le.inverse_transform(argmax( classifier.predict(X_test) , axis = 1))
-
-    report = classification_report(y_test_true_dec, y_test_pred_dec, output_dict=True, zero_division=False)
-#    report = classification_report_dict2df(report, "MARC")  
-    # ---------------------------------------------------------------------------------
-    if (save_results) :
-        dir_path = os.path.dirname(METRICS_FILE)
-        #if not os.path.exists(os.path.join(dir_path, modelfolder)):
-        #    os.makedirs(os.path.join(dir_path, modelfolder))
-        #classifier.save(os.path.join(dir_path, modelfolder, 'model_approach1.h5'))
-
-        classification_report_dict2csv(report, os.path.join(dir_path, 'model_marc_report.csv'),"MARC")  
-#        dataframe.to_csv(os.path.join(dir_path, 'model_marc_report.csv'), index = False)
-        pd.DataFrame(history.history).to_csv(os.path.join(dir_path, "model_marc_history.csv"))
-        pd.DataFrame(y_test_true_dec,y_test_pred_dec).to_csv(os.path.join(dir_path, 'model_marc_prediction.csv'), header=['true_label'], index_label='prediction')
+    model = ModelContainer(classifier, cls_y_test, cls_x_test, cls_history=history.history, approach='MARC', le=le)
+    
+    if save_results:
+        model.save(dir_path, modelfolder)
+    
+#    y_test_true_dec = le.inverse_transform(argmax( cls_y_test, axis = 1)) # le.inverse_transform(argmax(y_test1, axis = 1))
+#    y_test_pred_dec = le.inverse_transform(argmax( classifier.predict(cls_x_test), axis = 1)) # le.inverse_transform(argmax( classifier.predict(X_test) , axis = 1))
+#
+#    report = classification_report(y_test_true_dec, y_test_pred_dec, output_dict=True, zero_division=False)
+##    report = classification_report_dict2df(report, "MARC")  
+#    # ---------------------------------------------------------------------------------
+#    if (save_results) :
+#        dir_path = os.path.dirname(METRICS_FILE)
+#        #if not os.path.exists(os.path.join(dir_path, modelfolder)):
+#        #    os.makedirs(os.path.join(dir_path, modelfolder))
+#        #classifier.save(os.path.join(dir_path, modelfolder, 'model_approach1.h5'))
+#
+#        classification_report_dict2csv(report, os.path.join(dir_path, 'model_marc_report.csv'),"MARC")  
+##        dataframe.to_csv(os.path.join(dir_path, 'model_marc_report.csv'), index = False)
+#        pd.DataFrame(history.history).to_csv(os.path.join(dir_path, "model_marc_history.csv"))
+#        pd.DataFrame(y_test_true_dec,y_test_pred_dec).to_csv(os.path.join(dir_path, 'model_marc_prediction.csv'), header=['true_label'], index_label='prediction')
     
     time_ext = (datetime.now()-time).total_seconds() * 1000
     print(f"Processing time: {time_ext} milliseconds. Done.")
     print('------------------------------------------------------------------------------------------------')
     
-    return classifier, cls_x_test, pd.DataFrame(history.history)
+    return model
 
 
 ###############################################################################

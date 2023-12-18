@@ -11,22 +11,32 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 @author: Tarlis Portela
 @author: Carlos Andres Ferreira (adapted)
 '''
-import sys, os 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from main import importer #, display
-importer(['S', 'MC.report'], globals()) #, 'K'
+# --------------------------------------------------------------------------------
+import os 
+import numpy as np
+import pandas as pd
 
-def Approach1(X_train, y_train, X_test, y_test, par_batch_size, par_epochs, par_lr, par_dropout, save_results, dir_path, modelfolder='model') :
-    
-#     from ..main import importer
-    importer(['S', 'NN'], globals())
-    
-#     from tensorflow.keras.models import Sequential
-#     from tensorflow.keras.layers import Dense, Dropout
-#     from tensorflow.keras.optimizers import Adam
-#     import pandas as pd
-#     import os
-        
+from datetime import datetime
+from numpy import argmax
+# --------------------------------------------------------------------------------
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras import regularizers
+from tensorflow.keras.utils import to_categorical
+
+from sklearn import preprocessing
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import RandomizedSearchCV
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import svm as SVC 
+from sklearn.metrics import classification_report
+# --------------------------------------------------------------------------------
+from matanalysis.methods._lib.metrics import classification_report_csv, classification_report_dict2csv, calculateAccTop5, f1
+from matanalysis.methods._lib.models import ModelContainer
+# --------------------------------------------------------------------------------
+
+def Approach1(X_train, y_train, X_test, y_test, par_batch_size, par_epochs, par_lr, par_dropout, save_results, dir_path, modelfolder='model') :        
     nattr = len(X_train[1,:])    
     
     # Scaling y and transforming to keras format
@@ -53,20 +63,29 @@ def Approach1(X_train, y_train, X_test, y_test, par_batch_size, par_epochs, par_
     classifier.compile(optimizer = adam, loss = 'categorical_crossentropy', metrics = ['accuracy','top_k_categorical_accuracy',f1])
     # Fitting our model 
     history = classifier.fit(X_train, y_train1, validation_data = (X_test, y_test1), batch_size = par_batch_size, epochs = par_epochs)
-    # ---------------------------------------------------------------------------------
     
+    
+#    # ---------------------------------------------------------------------------------
+#    if (save_results) :
+#        if not os.path.exists(os.path.join(dir_path, modelfolder)):
+#            os.makedirs(os.path.join(dir_path, modelfolder))
+#        classifier.save(os.path.join(dir_path, modelfolder, 'model_approach1.h5'))
+##         from numpy import argmax
+#        y_test_true_dec = le.inverse_transform(argmax(y_test1, axis = 1))
+#        y_test_pred_dec =  le.inverse_transform(argmax( classifier.predict(X_test) , axis = 1)) 
+#        report = classification_report(y_test_true_dec, y_test_pred_dec, output_dict=True)
+#        classification_report_dict2csv(report, os.path.join(dir_path, modelfolder, 'model_approach1_report.csv'),"Approach1")            
+#        pd.DataFrame(history.history).to_csv(os.path.join(dir_path, modelfolder, "model_approach1_history.csv"))
+#        pd.DataFrame(y_test_true_dec,y_test_pred_dec).to_csv(os.path.join(dir_path, modelfolder, 'model_approach1_prediction.csv'), header = True)  
+    # --------------------------------------------------------------------------------- 
+    # Prediction
     # ---------------------------------------------------------------------------------
-    if (save_results) :
-        if not os.path.exists(os.path.join(dir_path, modelfolder)):
-            os.makedirs(os.path.join(dir_path, modelfolder))
-        classifier.save(os.path.join(dir_path, modelfolder, 'model_approach1.h5'))
-#         from numpy import argmax
-        y_test_true_dec = le.inverse_transform(argmax(y_test1, axis = 1))
-        y_test_pred_dec =  le.inverse_transform(argmax( classifier.predict(X_test) , axis = 1)) 
-        report = classification_report(y_test_true_dec, y_test_pred_dec, output_dict=True)
-        classification_report_dict2csv(report, os.path.join(dir_path, modelfolder, 'model_approach1_report.csv'),"Approach1")            
-        pd.DataFrame(history.history).to_csv(os.path.join(dir_path, modelfolder, "model_approach1_history.csv"))
-        pd.DataFrame(y_test_true_dec,y_test_pred_dec).to_csv(os.path.join(dir_path, modelfolder, 'model_approach1_prediction.csv'), header = True)    
+    model = ModelContainer(classifier, y_test1, X_test, cls_history=history.history, approach='approach1', le=le)
+    
+    if save_results:
+        model.save(dir_path, modelfolder)
+    
+    return model
     
 # --------------------------------------------------------------------------------------
 def Approach2(X_train, y_train, X_test, y_test, par_batch_size, lst_par_epochs, lst_par_lr, par_dropout, save_results, dir_path, modelfolder='model') :
@@ -78,7 +97,7 @@ def Approach2(X_train, y_train, X_test, y_test, par_batch_size, lst_par_epochs, 
 #     import os
     
 #     from ..main import importer
-    importer(['S', 'MLP'], globals())
+#    importer(['S', 'MLP'], globals())
         
     nattr = len(X_train[1,:])    
 
@@ -123,12 +142,22 @@ def Approach2(X_train, y_train, X_test, y_test, par_batch_size, lst_par_epochs, 
             classification_report_dict2csv(report, os.path.join(dir_path, modelfolder, 'model_approach2_report_Step'+str(k+1)+'.csv'), "Approach2_Step"+str(k+1)) 
             pd.DataFrame(history.history).to_csv(os.path.join(dir_path, modelfolder, 'model_approach2_history_Step'+str(k+1)+'.csv'))
             pd.DataFrame(y_test_true_dec,y_test_pred_dec).to_csv(os.path.join(dir_path, modelfolder, 'model_approach2_prediction_Step'+str(k+1)+'.csv'), header = True)  
+
+    # ---------------------------------------------------------------------------------
+    # Prediction - Only last epoch
+    # ---------------------------------------------------------------------------------
+    model = ModelContainer(model, y_test1, X_test, cls_history=history.history, approach='approach2', le=le)
+    
+#    if save_results:
+#        model.save(dir_path, modelfolder)
+    
+    return model
     
 
 def ApproachRF(X_train, y_train, X_test, y_test, n_trees_set, save_results, dir_path, modelfolder='model') :
         
 #     from ..main import importer
-    importer(['S', 'RF'], globals())
+#    importer(['S', 'RF'], globals())
     
 #     import os
 #     import pandas as pd
@@ -159,6 +188,19 @@ def ApproachRF(X_train, y_train, X_test, y_test, n_trees_set, save_results, dir_
             pd.DataFrame(y_test, y_predicted).to_csv(os.path.join(dir_path, modelfolder, "model_approachRF"+ str(n_tree) +"_prediction.csv"), header = False) 
     
     print(lines)
+#    cls_history = pd.DataFrame(lines)  
+#    
+#    return classifier, X_test, cls_history
+    
+    # ---------------------------------------------------------------------------------
+    # Prediction
+    # ---------------------------------------------------------------------------------
+    model = ModelContainer(classifier, y_test, X_test, cls_history=pd.DataFrame(lines), approach='RF')
+    
+#    if save_results:
+#        model.save(dir_path, modelfolder)
+    
+    return model
     
     
 def ApproachRFHP(X_train, y_train, X_test, y_test, save_results, dir_path, modelfolder='model') :
@@ -169,7 +211,7 @@ def ApproachRFHP(X_train, y_train, X_test, y_test, save_results, dir_path, model
 #     from sklearn.ensemble import RandomForestClassifier
 #     from sklearn.model_selection import RandomizedSearchCV
 #     from ..main import importer
-    importer(['S', 'RFHP'], globals())
+#    importer(['S', 'RFHP'], globals())
         
     # ---------------------------------------------------------------------------------
     # Number of trees in random forest
@@ -209,14 +251,24 @@ def ApproachRFHP(X_train, y_train, X_test, y_test, save_results, dir_path, model
     line=[acc,accTop5]
     print(line)
         
+#    # ---------------------------------------------------------------------------------
+#    if (save_results) :
+#        if not os.path.exists(os.path.join(dir_path, modelfolder)):
+#            os.makedirs(os.path.join(dir_path, modelfolder))
+#        report = classification_report(y_test, classifier.predict(X_test), output_dict=True)
+#        classification_report_dict2csv(report, os.path.join(dir_path, modelfolder, "model_approachRFHP_report.csv"),"RFHP") 
+#        pd.DataFrame(line).to_csv(os.path.join(dir_path, modelfolder, "model_approachRFHP_history.csv")) 
+#        pd.DataFrame(y_test, y_predicted).to_csv(os.path.join(dir_path, modelfolder, "model_approachRFHP_prediction.csv"), header = False) 
+    
     # ---------------------------------------------------------------------------------
-    if (save_results) :
-        if not os.path.exists(os.path.join(dir_path, modelfolder)):
-            os.makedirs(os.path.join(dir_path, modelfolder))
-        report = classification_report(y_test, classifier.predict(X_test), output_dict=True)
-        classification_report_dict2csv(report, os.path.join(dir_path, modelfolder, "model_approachRFHP_report.csv"),"RFHP") 
-        pd.DataFrame(line).to_csv(os.path.join(dir_path, modelfolder, "model_approachRFHP_history.csv")) 
-        pd.DataFrame(y_test, y_predicted).to_csv(os.path.join(dir_path, modelfolder, "model_approachRFHP_prediction.csv"), header = False) 
+    # Prediction
+    # ---------------------------------------------------------------------------------
+    model = ModelContainer(classifier, y_test, X_test, cls_history=pd.DataFrame(line), approach='RFHP')
+    
+    if save_results:
+        model.save(dir_path, modelfolder)
+    
+    return model
     
     
 # ----------------------------------------------------------------------------------
@@ -228,7 +280,7 @@ def ApproachDT(X_train, y_train, X_test, y_test, save_results, dir_path, modelfo
     
 #     from sklearn.tree import DecisionTreeClassifier    
 #     from ..main import importer
-    importer(['S', 'DT'], globals())
+#    importer(['S', 'DT'], globals())
     # ---------------------------------------------------------------------------------
     
     classifier = DecisionTreeClassifier()
@@ -238,14 +290,23 @@ def ApproachDT(X_train, y_train, X_test, y_test, save_results, dir_path, modelfo
     line=[acc, accTop5]
     print(line)
     
+#    # ---------------------------------------------------------------------------------
+#    if (save_results) :
+#        if not os.path.exists(os.path.join(dir_path, modelfolder)):
+#            os.makedirs(os.path.join(dir_path, modelfolder))
+#        report = classification_report(y_test, classifier.predict(X_test), output_dict=True)
+#        classification_report_dict2csv(report, os.path.join(dir_path, modelfolder, "model_approachDT_report.csv"),"DT") 
+#        pd.DataFrame(line).to_csv(os.path.join(dir_path, modelfolder, "model_approachDT_history.csv")) 
+    
     # ---------------------------------------------------------------------------------
-    if (save_results) :
-        if not os.path.exists(os.path.join(dir_path, modelfolder)):
-            os.makedirs(os.path.join(dir_path, modelfolder))
-        report = classification_report(y_test, classifier.predict(X_test), output_dict=True)
-        classification_report_dict2csv(report, os.path.join(dir_path, modelfolder, "model_approachDT_report.csv"),"DT") 
-        pd.DataFrame(line).to_csv(os.path.join(dir_path, modelfolder, "model_approachDT_history.csv")) 
-# ----------------------------------------------------------------------------------
+    # Prediction
+    # ---------------------------------------------------------------------------------
+    model = ModelContainer(classifier, y_test, X_test, cls_history=pd.DataFrame(line), approach='DT')
+    
+    if save_results:
+        model.save(dir_path, modelfolder)
+    
+    return model
 
 # ----------------------------------------------------------------------------------
 
@@ -256,7 +317,7 @@ def ApproachSVC(X_train, y_train, X_test, y_test, save_results, dir_path, modelf
     
 #     from sklearn import svm 
 #     from ..main import importer
-    importer(['S', 'SVC'], globals())  
+#    importer(['S', 'SVC'], globals())  
     # ---------------------------------------------------------------------------------
     
     classifier = SVC(kernel="linear", probability=True)
@@ -266,14 +327,23 @@ def ApproachSVC(X_train, y_train, X_test, y_test, save_results, dir_path, modelf
     line=[acc, accTop5]
     print(line)
     
+#    # ---------------------------------------------------------------------------------
+#    if (save_results) :
+#        if not os.path.exists(os.path.join(dir_path, modelfolder)):
+#            os.makedirs(os.path.join(dir_path, modelfolder))
+#        report = classification_report(y_test, classifier.predict(X_test), output_dict=True)
+#        classification_report_dict2csv(report,os.path.join(dir_path, modelfolder, "model_approachSVC_report.csv"),"SVC") 
+#        pd.DataFrame(line).to_csv(os.path.join(dir_path, modelfolder, "model_approachSVC_history.csv")) 
+        
     # ---------------------------------------------------------------------------------
-    if (save_results) :
-        if not os.path.exists(os.path.join(dir_path, modelfolder)):
-            os.makedirs(os.path.join(dir_path, modelfolder))
-        report = classification_report(y_test, classifier.predict(X_test), output_dict=True)
-        classification_report_dict2csv(report,os.path.join(dir_path, modelfolder, "model_approachSVC_report.csv"),"SVC") 
-        pd.DataFrame(line).to_csv(os.path.join(dir_path, modelfolder, "model_approachSVC_history.csv")) 
-# ----------------------------------------------------------------------------------
+    # Prediction
+    # ---------------------------------------------------------------------------------
+    model = ModelContainer(classifier, y_test, X_test, cls_history=pd.DataFrame(line), approach='SVC')
+    
+    if save_results:
+        model.save(dir_path, modelfolder)
+    
+    return model
 
 def ApproachMLP(X_train, y_train, X_test, y_test, par_batch_size, par_epochs, par_lr, par_dropout, save_results, dir_path, modelfolder='model') :
     
@@ -283,7 +353,7 @@ def ApproachMLP(X_train, y_train, X_test, y_test, par_batch_size, par_epochs, pa
 #     import pandas as pd
 #     import os
 #     from ..main import importer
-    importer(['S', 'MLP'], globals())
+#    importer(['S', 'MLP'], globals())
         
     nattr = len(X_train[1,:])    
 
@@ -315,18 +385,28 @@ def ApproachMLP(X_train, y_train, X_test, y_test, par_batch_size, par_epochs, pa
     history = classifier.fit(X_train, y_train1, validation_data = (X_test, y_test1), batch_size = par_batch_size, epochs = par_epochs)
     # ---------------------------------------------------------------------------------
     
+#    # ---------------------------------------------------------------------------------
+#    if (save_results) :
+#        if not os.path.exists(os.path.join(dir_path, modelfolder)):
+#            os.makedirs(os.path.join(dir_path, modelfolder))
+#        classifier.save(os.path.join(dir_path, modelfolder, 'model_MLP.h5'))
+##         from numpy import argmax
+#        y_test_true_dec = le.inverse_transform(argmax(y_test1, axis = 1))
+#        y_test_pred_dec =  le.inverse_transform(argmax( classifier.predict(X_test) , axis = 1)) 
+#        report = classification_report(y_test_true_dec, y_test_pred_dec, output_dict=True)
+#        classification_report_dict2csv(report,os.path.join(dir_path, modelfolder, "model_approachMLP_report.csv"),"MLP") 
+#        pd.DataFrame(history.history).to_csv(os.path.join(dir_path, modelfolder, "model_MLP_history.csv"))
+#        pd.DataFrame(y_test_true_dec, y_test_pred_dec).to_csv(os.path.join(dir_path, modelfolder, "model_MLP_prediction.csv"), header = False)
+    
     # ---------------------------------------------------------------------------------
-    if (save_results) :
-        if not os.path.exists(os.path.join(dir_path, modelfolder)):
-            os.makedirs(os.path.join(dir_path, modelfolder))
-        classifier.save(os.path.join(dir_path, modelfolder, 'model_MLP.h5'))
-#         from numpy import argmax
-        y_test_true_dec = le.inverse_transform(argmax(y_test1, axis = 1))
-        y_test_pred_dec =  le.inverse_transform(argmax( classifier.predict(X_test) , axis = 1)) 
-        report = classification_report(y_test_true_dec, y_test_pred_dec, output_dict=True)
-        classification_report_dict2csv(report,os.path.join(dir_path, modelfolder, "model_approachMLP_report.csv"),"MLP") 
-        pd.DataFrame(history.history).to_csv(os.path.join(dir_path, modelfolder, "model_MLP_history.csv"))
-        pd.DataFrame(y_test_true_dec, y_test_pred_dec).to_csv(os.path.join(dir_path, modelfolder, "model_MLP_prediction.csv"), header = False)    
+    # Prediction
+    # ---------------------------------------------------------------------------------
+    model = ModelContainer(classifier, y_test1, X_test, cls_history=history.history, approach='MLP', le=le)
+    
+    if save_results:
+        model.save(dir_path, modelfolder)
+    
+    return model    
         
 
 # Importing the Keras libraries and packages (Verificar de onde foi pego este codigo

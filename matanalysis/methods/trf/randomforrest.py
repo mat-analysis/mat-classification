@@ -40,7 +40,7 @@ from joblib import load, dump
 from matanalysis.methods._lib.pymove.core import utils
 from matanalysis.methods._lib.pymove.models.classification import RandomForest as rf
 #from matanalysis.methods._lib.pymove.models import datautils
-
+from matanalysis.methods._lib.models import ModelContainer
 # --------------------------------------------------------------------------------
 from matanalysis.methods._lib.datahandler import loadTrajectories, prepareTrajectories
 from matanalysis.methods._lib.utils import update_report, print_params, concat_params
@@ -284,18 +284,27 @@ def TRF(df_train, df_test, res_path='.', prefix='', save_results=False, n_jobs=-
             #eval_report, y_pred = RF.predict(X_val, y_val)
             evaluate_report.append(eval_report)
 
-            RF.free()
+            ### RF.free()
 
+        evaluate_report = pd.concat(evaluate_report)
         if save_results:
             if not os.path.exists(dir_evaluation):
                 os.makedirs(dir_evaluation)
                 
-            evaluate_report = pd.concat(evaluate_report)
             evaluate_report.to_csv(filename, index=False)
             
         end_time = (datetime.now()-start_time).total_seconds() * 1000
         print('[TRF:] Processing time: {} milliseconds. Done.'.format(end_time))
-        return evaluate_report
+        #return evaluate_report
+        # ---------------------------------------------------------------------------------
+        # Prediction
+        # ---------------------------------------------------------------------------------
+        model = ModelContainer(RF, y_test, X_test, cls_history=evaluate_report, approach='TRF', le=dic_parameters['encode_y'])
+
+#        if save_results:
+#            model.save(dir_path, modelfolder)
+
+        return model
     else:
         print('[TRF:] Model previoulsy built.')
         

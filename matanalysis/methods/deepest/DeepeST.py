@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 '''
 MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
@@ -45,7 +46,7 @@ from matanalysis.methods._lib.datahandler import loadTrajectories, prepareTrajec
 from matanalysis.methods._lib.utils import update_report, print_params, concat_params
 # --------------------------------------------------------------------------------
 
-def DeepestST_read(dir_path, res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10, geohash=False, geo_precision=30):
+def DeepeST_read(dir_path, res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10, geohash=False, geo_precision=30):
     
     # Load Data - Tarlis:
     df_train, df_test = loadTrajectories(dir_path, prefix)
@@ -53,7 +54,7 @@ def DeepestST_read(dir_path, res_path='.', prefix='', save_results=False, n_jobs
     return DeepestST(df_train, df_test, res_path, prefix, save_results, n_jobs, random_state, rounds, label_poi, y_one_hot_encodding, geohash, geo_precision)
     
 
-def DeepestST(df_train, df_test, res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10, label_poi='poi', y_one_hot_encodding=True, geohash=False, geo_precision=30):
+def DeepeST(df_train, df_test, res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10, label_poi='poi', y_one_hot_encodding=True, geohash=False, geo_precision=30):
     
 #    importer(['S', 'TCM', 'sys', 'json', 'tqdm', 'datetime'], globals())
 #    from methods._lib.pymove.core import utils
@@ -310,18 +311,27 @@ def DeepestST(df_train, df_test, res_path='.', prefix='', save_results=False, n_
             eval_report, y_pred = deepest.predict(X_test, y_test)
             evaluate_report.append(eval_report)
 
-            deepest.free()
+            ###deepest.free()
 
+        evaluate_report = pd.concat(evaluate_report)
         if save_results:
             if not os.path.exists(dir_evaluation):
                 os.makedirs(dir_evaluation)
                 
-            evaluate_report = pd.concat(evaluate_report)
             evaluate_report.to_csv(filename, index=False)
             
         end_time = (datetime.now()-start_time).total_seconds() * 1000
         print('[DEEPEST:] Processing time: {} milliseconds. Done.'.format(end_time))
-        return evaluate_report
+        #return evaluate_report
+        # ---------------------------------------------------------------------------------
+        # Prediction
+        # ---------------------------------------------------------------------------------
+        model = ModelContainer(deepest, y_test, X_test, cls_history=evaluate_report, approach='DeepeST', le=dic_parameters['encode_y'])
+
+#        if save_results:
+#            model.save(dir_path, modelfolder)
+
+        return model
     else:
         print('[DEEPEST:] Model previoulsy built.')
         

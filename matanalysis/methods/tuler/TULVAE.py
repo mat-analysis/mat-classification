@@ -42,6 +42,7 @@ from matanalysis.methods._lib.utils import update_report, print_params, concat_p
 # --------------------------------------------------------------------------------
 from matanalysis.methods._lib.pymove.core import utils
 from matanalysis.methods._lib.pymove.models.classification import Tulvae as tva
+from matanalysis.methods._lib.models import ModelContainer
 # --------------------------------------------------------------------------------
 
 def TULVAE_read(dir_path, res_path='.', prefix='', save_results=False, n_jobs=-1, random_state=42, rounds=10, label_poi='poi', geohash=False, geo_precision=30):
@@ -269,18 +270,27 @@ def TULVAE(df_train, df_test, res_path='.', prefix='', save_results=False, n_job
             #evaluate_report.append(tulvae.predict(X_test, y_test))
             eval_report, y_pred = tulvae.predict(X_test, y_test)
             evaluate_report.append(eval_report)
-            tulvae.free()
+            ###tulvae.free()
             
+        evaluate_report = pd.concat(evaluate_report)
         if save_results:
             if not os.path.exists(dir_evaluation):
                 os.makedirs(dir_evaluation)
                 
-            evaluate_report = pd.concat(evaluate_report)
             evaluate_report.to_csv(filename, index=False)
             
         end_time = (datetime.now()-start_time).total_seconds() * 1000
         print('[TULVAE:] Processing time: {} milliseconds. Done.'.format(end_time))
-        return evaluate_report
+        #return evaluate_report
+        # ---------------------------------------------------------------------------------
+        # Prediction
+        # ---------------------------------------------------------------------------------
+        model = ModelContainer(tulvae, y_test, X_test, cls_history=evaluate_report, approach='TULVAE', le=dic_parameters['encode_y'])
+
+#        if save_results:
+#            model.save(dir_path, modelfolder)
+
+        return model
     else:
         print('[TULVAE:] Model previoulsy built.')
         

@@ -1,5 +1,5 @@
 from matanalysis.methods.trf.randomforrest import TRF, TRF_read
-from matanalysis.methods.deepest.DeepestST import DeepestST, DeepestST_read
+from matanalysis.methods.deepest.DeepeST import DeepeST, DeepeST_read
 from matanalysis.methods.tuler.BITULER import BITULER, BITULER_read
 from matanalysis.methods.tuler.TULVAE import TULVAE, TULVAE_read
 from matanalysis.methods.txgboost.XGBoost import TXGB, TXGB_read
