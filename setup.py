@@ -35,16 +35,20 @@ setuptools.setup(
     packages=setuptools.find_packages(),
 #    include_package_data=True,
     scripts=[
-        'matanalysis/scripts/MAT-Summary.py',
-        'matanalysis/scripts/MAT-ResultsTo.py',
-        'matanalysis/scripts/MAT-ExportResults.py',
+        'matanalysis/scripts/helpers/MAT-Summary.py',
+        'matanalysis/scripts/helpers/MAT-ResultsTo.py',
+        'matanalysis/scripts/helpers/MAT-ExportResults.py',
+        'matanalysis/scripts/helpers/MAT-MergeDatasets.py',
+        'matanalysis/scripts/helpers/MAT-PrintResults.py',
+        'matanalysis/scripts/helpers/MAT-ResultsTo.py',
         
-        'matanalysis/scripts/MARC.py',
-        'matanalysis/scripts/POIS.py',
-        'matanalysis/scripts/MAT-MC.py',
-        'matanalysis/scripts/MAT-TC.py',
-        'matanalysis/scripts/POIS-TC.py',
-#        'matanalysis/scripts/MAT-TEC.py', # Under Dev.
+        'matanalysis/scripts/cls/MARC.py',
+        'matanalysis/scripts/cls/POIS-TC.py',
+        'matanalysis/scripts/cls/MAT-MC.py',
+        'matanalysis/scripts/cls/MAT-TC.py',
+        'matanalysis/scripts/cls/MAT-TEC.py', # Under Dev.
+        
+        'matanalysis/scripts/features/POIS.py',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

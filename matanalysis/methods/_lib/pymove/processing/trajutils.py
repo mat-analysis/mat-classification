@@ -3,10 +3,11 @@ import pandas as pd
 import time
 from scipy.interpolate import interp1d
 from tqdm.auto import tqdm
-from automatize.methods._lib.pymove.core import utils as ut
-from automatize.methods._lib.pymove.processing import gridutils
-from automatize.methods._lib.pymove.processing import segment
-from automatize.methods._lib.pymove.core import labels
+
+from matanalysis.methods._lib.pymove.core import utils as ut
+from matanalysis.methods._lib.pymove.processing import gridutils
+from matanalysis.methods._lib.pymove.processing import segment
+from matanalysis.methods._lib.pymove.core import labels
 
 """main labels """
 dic_labels = labels.dic_labels

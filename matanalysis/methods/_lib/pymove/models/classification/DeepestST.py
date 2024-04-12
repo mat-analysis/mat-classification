@@ -38,6 +38,7 @@ class DeepeST(object):
         self.vocab_size = vocab_size
         self.col_name = list(vocab_size.keys())
         self.max_lenght = max_lenght
+        self.num_classes = num_classes # Tarlis
         input_model = []
         embedding_layers = []
         hidden_input = []
@@ -164,6 +165,10 @@ class DeepeST(object):
                 loss = ['sparse_categorical_crossentropy'] #sparse_categorical_crossentropy
                 my_metrics = ['acc', 'sparse_top_k_categorical_accuracy']  
            
+            # Tarlis: removed the top_k metric in cases of less than 5 classes
+            if self.num_classes < 5:
+                my_metrics = ['acc']
+            
             if new_metrics is not None:
                 my_metrics = new_metrics + my_metrics
 

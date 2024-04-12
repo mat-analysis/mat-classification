@@ -1,11 +1,13 @@
-from automatize.methods._lib.pymove.processing import trajutils
-from automatize.methods._lib.pymove.core import  utils as ut
 import numpy as np
 #import numpy as np
 import pandas as pd
 import time
 from tqdm.auto import tqdm
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+
+from matanalysis.methods._lib.pymove.processing import trajutils
+from matanalysis.methods._lib.pymove.core import  utils as ut
+
 
 """main labels """
 dic_labels = {"id" : 'id', 'lat' : 'lat', 'lon' : 'lon', 'datetime' : 'datetime'}

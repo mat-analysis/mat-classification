@@ -21,7 +21,7 @@ import pandas as pd
 
 from datetime import datetime
 
-from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
+from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score, top_k_accuracy_score, balanced_accuracy_score
 
 from tensorflow.keras import backend as K
 # --------------------------------------------------------------------------------
@@ -78,21 +78,65 @@ def accuracy_top_k(y_true, y_pred, K=5):
 
     return correct / len(y_true)
 
+# by Tarlis --
+def acc_top_k(y_true, y_pred, n_y_pred, K ):
+    order = np.argsort(n_y_pred, axis=1)
+    correct = 0
 
-def compute_acc_acc5_f1_prec_rec(y_true, y_pred, print_metrics=True,
-                                 print_pfx=''):
+    for i, sample in enumerate(np.argmax(y_true, axis=1)):
+        if sample in order[i, -K:]:
+            correct += 1
+
+    return correct / len(y_true)
+
+
+def balanced_accuracy(y_true, y_pred):
+    if y_pred.ndim == 1:
+        return balanced_accuracy_score(y_true, y_pred)
+    else:
+        return balanced_accuracy_score(y_true.argmax(axis=1), y_pred.argmax(axis=1))
+
+def compute_acc_acc5_f1_prec_rec(y_true, y_pred, print_metrics=True, print_pfx=''):
     acc = accuracy(y_true, y_pred)
     acc_top5 = accuracy_top_k(y_true, y_pred, K=5)
+    bal_acc = balanced_accuracy(y_true, y_pred)
     _f1_macro = f1_macro(y_true, y_pred)
     _prec_macro = precision_macro(y_true, y_pred)
     _rec_macro = recall_macro(y_true, y_pred)
 
+#    dic_model = {
+#        'acc': acc,
+#        'acc_top_K5': acc_top5,
+#        'balanced_accuracy': bal_acc,
+#        'precision_macro': _f1_macro,
+#        'recall_macro': _prec_macro,
+#        'f1_macro': _rec_macro,
+#    } 
+    
     if print_metrics:
         pfx = '' if print_pfx == '' else print_pfx + '\t\t'
         print(pfx + 'acc: %.6f\tacc_top5: %.6f\tf1_macro: %.6f\tprec_macro: %.6f\trec_macro: %.6f'
               % (acc, acc_top5, _f1_macro, _prec_macro, _rec_macro))
+    
+#    result = pd.DataFrame(dic_model, index=[0])
 
-    return acc, acc_top5, _f1_macro, _prec_macro, _rec_macro
+    return acc, acc_top5, _f1_macro, _prec_macro, _rec_macro, bal_acc
+
+#def compute_acc_acc5_f1_prec_rec(y_true, y_pred, print_metrics=True,
+#                                 print_pfx=''):
+#    acc = accuracy(y_true, y_pred)
+#    acc_top5 = accuracy_top_k(y_true, y_pred, K=5)
+##    acc_top5 = top_k_accuracy_score(y_true, np.array(y_pred), k=5)
+#    _f1_macro = f1_macro(y_true, y_pred)
+#    _prec_macro = precision_macro(y_true, y_pred)
+#    _rec_macro = recall_macro(y_true, y_pred)
+#
+#    if print_metrics:
+#        pfx = '' if print_pfx == '' else print_pfx + '\t\t'
+#        print(pfx + 'acc: %.6f\tacc_top5: %.6f\tf1_macro: %.6f\tprec_macro: %.6f\trec_macro: %.6f'
+#              % (acc, acc_top5, _f1_macro, _prec_macro, _rec_macro))
+#
+#    return acc, acc_top5, _f1_macro, _prec_macro, _rec_macro
 
 # ------------------------------------------------------------------------------
 # From Movelets ML
