@@ -1,10 +1,10 @@
-# MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining \[MAT-Tools Framework\]
+# MAT-classification: Analysis and Classification methods for Multiple Aspect Trajectory Data Mining \[MAT-Tools Framework\]
 ---
 
-\[[Publication](#)\] \[[citation.bib](citation.bib)\] \[[GitHub](https://github.com/ttportela/mat-analysis)\] \[[PyPi](https://pypi.org/project/mat-analysis/)\]
+\[[Publication](#)\] \[[citation.bib](citation.bib)\] \[[GitHub](https://github.com/mat-analysis/mat-classification)\] \[[PyPi](https://pypi.org/project/mat-classification/)\]
 
 
-The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+The present package offers a tool, to support the user in the task of classification of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 
 Created on Dec, 2023
 Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
@@ -15,12 +15,12 @@ Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
 Install directly from PyPi repository, or, download from github. (python >= 3.7 required)
 
 ```bash
-    pip3 install mat-analysis
+    pip3 install mat-classification
 ```
 
 ### Getting Started
 
-On how to use this package, see [MAT-analysis-Tutorial.ipynb](https://github.com/ttportela/mat-analysis/blob/main/MAT-analysis-Tutorial.ipynb) (or the HTML [MAT-analysis-Tutorial.html](https://github.com/ttportela/mat-analysis/blob/main/MAT-analysis-Tutorial.html))
+On how to use this package, see [MAT-classification-Tutorial.ipynb](https://github.com/mat-analysis/mat-analysis/blob/main/MAT-classification-Tutorial.ipynb) (or the HTML [MAT-classification-Tutorial.html](https://github.com/mat-analysis/mat-classification/blob/main/MAT-classification-Tutorial.html))
 
 ### Available Classifiers (TODO update):
 
@@ -50,7 +50,7 @@ One script for running the **POI-F/POI-S** method:
 
 ### Citing
 
-If you use `mat-analysis` please cite the following paper (this package is fragmented from `automatize` realease):
+If you use `matclassification` please cite the following paper (this package is fragmented from `automatize` realease):
 
     Portela, Tarlis Tortelli; Bogorny, Vania; Bernasconi, Anna; Renso, Chiara. AutoMATise: Multiple Aspect Trajectory Data Mining Tool Library. 2022 23rd IEEE International Conference on Mobile Data Management (MDM), 2022, pp. 282-285, doi: 10.1109/MDM55031.2022.00060.
 
@@ -77,20 +77,13 @@ Feel free to contribute in any form, such as scientific publications referencing
 
 ### Related packages
 
-This package is part of _MAT-Tools Framework_ for Multiple Aspect Trajectory Data Mining:
+This package is part of _MAT-Tools Framework_ for Multiple Aspect Trajectory Data Mining, check the guide project:
 
-- [automatize](https://github.com/ttportela/automatize): automatize for experimental evaluation of MAT classification
-- [movelets](https://github.com/ttportela/movelets): movelets for MAT classification methods (based on movelets)
-- [mat-data](https://github.com/ttportela/mat-data): mat-data is a preprocessing library for MAT data
-- **[mat-analysis](https://github.com/ttportela/mat-analysis)**: mat-analysis for MAT classification methods
-- [mat-view](https://github.com/ttportela/mat-view): mat-view for MAT and movelets visualization, and interpratation tools
+- **[mat-tools](https://github.com/mat-analysis/mat-tools)**: Reference guide for MAT-Tools Framework repositories
 
 And others:
 
-- [scikit-mobility](https://github.com/scikit-mobility/scikit-mobility): Human trajectory representation and visualizations in Python;
-- [geopandas](https://geopandas.org/en/stable/): Library to help work with geospatial data in Python;
-- [movingpandas](https://anitagraser.github.io/movingpandas/): Based on `geopandas` for movement data exploration and analysis.
-- [PyMove](https://github.com/InsightLab/PyMove): a Python library for processing and visualization of trajectories and other spatial-temporal data.
+
 
 ### Change Log
 

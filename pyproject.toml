@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 [project]
-name = "mat-analysis"
+name = "mat-classification"
 version = "0.1b0"
-description = "MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining"
+description = "MAT-classification: Analysis and Classification methods for Multiple Aspect Trajectory Data Mining"
 authors = [
     {name = "Tarlis Tortelli Portela", email = "tarlis@tarlis.com.br"},
  ]
@@ -17,7 +17,7 @@ keywords = [
     "trajectory",
     "multiple-trajectory",
     "trajectory-classification",
-    "preprocess",
+    "classification",
   ]
 classifiers = [
     "Intended Audience :: Science/Research",
@@ -43,6 +43,7 @@ dependencies = [
     "pandas",
     "scikit-learn",
     "python-dateutil",
+    "mat-data",
  ]
 
 [project.optional-dependencies]
@@ -73,11 +74,11 @@ dl = [
  ]
 
 [project.urls]
-"Homepage" = "https://github.com/ttportela/mat-analysis"
-"Repository" = "https://github.com/ttportela/mat-analysis"
-"Documentation" = "https://github.com/ttportela/mat-analysis/blob/main/README.md"
-"Download" = "https://pypi.org/project/mat-analysis/#files"
-"Bug Tracker" = "https://github.com/ttportela/mat-analysis/issues"
+"Homepage" = "https://github.com/mat-analysis/mat-classification/"
+"Repository" = "https://github.com/mat-analysis/mat-classification"
+"Documentation" = "https://github.com/mat-analysis/mat-classification/blob/main/README.md"
+"Download" = "https://pypi.org/project/mat-classification/#files"
+"Bug Tracker" = "https://github.com/mat-analysis/mat-classification/issues"
 
 [project.license]
 text = 'GPL Version 3 or superior (see LICENSE file)'
