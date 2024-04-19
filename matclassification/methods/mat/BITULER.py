@@ -28,12 +28,12 @@ from tqdm.auto import tqdm
 
 import itertools
 # --------------------------------------------------------------------------------
-from matanalysis.methods._lib.datahandler import prepareTrajectories
+from matclassification.methods._lib.datahandler import prepareTrajectories
 
-from matanalysis.methods._lib.pymove.models.classification import Tuler as tul
+from matclassification.methods._lib.pymove.models.classification import Tuler as tul
 # --------------------------------------------------------------------------------
 
-from matanalysis.methods.core import HPOClassifier
+from matclassification.methods.core import HPOClassifier
 
 class BITULER(HPOClassifier):
     

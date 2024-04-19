@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-analysis: Analysis and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-classification: Analysis and Classification methods for Multiple Aspect Trajectory Data Mining
 
-The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+The present package offers a tool, to support the user in the task of classification of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
@@ -18,7 +18,9 @@ VERSION = config['project']['version'].strip('"')
 PACKAGE_NAME = config['project']['name'].strip('"')
 DEV_VERSION = "0.1b0"
 
-with open("matclassification/README.md", "r", encoding="utf-8") as fh:
+VERSION = VERSION.replace('"', '')
+
+with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
     
 setuptools.setup(
@@ -30,25 +32,25 @@ setuptools.setup(
     description="MAT-classification: Analysis and Classification methods for Multiple Aspect Trajectory Data Mining",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ttportela/mat-analysis",
+    url="https://github.com/mat-analysis/mat-classification",
 #    packages=setuptools.find_packages(include=[PACKAGE_NAME, PACKAGE_NAME+'.*']),
     packages=setuptools.find_packages(),
 #    include_package_data=True,
     scripts=[
-        'matanalysis/scripts/helpers/MAT-Summary.py',
-        'matanalysis/scripts/helpers/MAT-ResultsTo.py',
-        'matanalysis/scripts/helpers/MAT-ExportResults.py',
-        'matanalysis/scripts/helpers/MAT-MergeDatasets.py',
-        'matanalysis/scripts/helpers/MAT-PrintResults.py',
-        'matanalysis/scripts/helpers/MAT-ResultsTo.py',
+        'matclassification/scripts/helpers/MAT-Summary.py',
+        'matclassification/scripts/helpers/MAT-ResultsTo.py',
+        'matclassification/scripts/helpers/MAT-ExportResults.py',
+        'matclassification/scripts/helpers/MAT-MergeDatasets.py',
+        'matclassification/scripts/helpers/MAT-PrintResults.py',
+        'matclassification/scripts/helpers/MAT-ResultsTo.py',
         
-        'matanalysis/scripts/cls/MARC.py',
-        'matanalysis/scripts/cls/POIS-TC.py',
-        'matanalysis/scripts/cls/MAT-MC.py',
-        'matanalysis/scripts/cls/MAT-TC.py',
-        'matanalysis/scripts/cls/MAT-TEC.py', # Under Dev.
+        'matclassification/scripts/cls/MARC.py',
+        'matclassification/scripts/cls/POIS-TC.py',
+        'matclassification/scripts/cls/MAT-MC.py',
+        'matclassification/scripts/cls/MAT-TC.py',
+        'matclassification/scripts/cls/MAT-TEC.py', # Under Dev.
         
-        'matanalysis/scripts/features/POIS.py',
+        'matclassification/scripts/features/POIS.py',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -57,7 +59,6 @@ setuptools.setup(
         "Intended Audience :: Science/Research",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
         "Topic :: Scientific/Engineering :: Information Analysis",
-        "Topic :: Scientific/Engineering :: Visualization",
     ],
     keywords='data mining, python, trajectory classification, trajectory analysis, movelets',
     license='GPL Version 3 or superior (see LICENSE file)',

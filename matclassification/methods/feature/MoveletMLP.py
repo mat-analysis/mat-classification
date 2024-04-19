@@ -25,12 +25,12 @@ from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras import regularizers
 from tensorflow.keras.utils import to_categorical
-from matanalysis.methods._lib.metrics import f1
-from matanalysis.methods._lib.pymove.models import metrics
+from matclassification.methods._lib.metrics import f1
+from matclassification.methods._lib.pymove.models import metrics
 from sklearn.metrics import classification_report
-from matanalysis.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
+from matclassification.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
 
-from matanalysis.methods.core import MHPOClassifier
+from matclassification.methods.core import MHPOClassifier
 
 # Approach 2
 class MMLP(MHPOClassifier):

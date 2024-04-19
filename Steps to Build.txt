@@ -12,13 +12,13 @@ python3 -m build
 python3 -m twine upload --repository testpypi dist/* 
 
 # Install from the test PyPi:
-python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps mat-data
+python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps mat-classification
 
 
 # --- 2nd upload to the PyPi:
 python3 -m twine upload dist/* 
 
-python3 -m pip install mat-data
+python3 -m pip install mat-classification
 
 # ---------------------------------
 # For making the docs

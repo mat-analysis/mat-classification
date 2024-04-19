@@ -7,8 +7,8 @@ from tqdm.auto import tqdm
 
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-from matanalysis.methods._lib.pymove.models import metrics
-from matanalysis.methods._lib.pymove.core import video as vi
+from matclassification.methods._lib.pymove.models import metrics
+from matclassification.methods._lib.pymove.core import video as vi
 
 class XGBoostClassifier(object):
     

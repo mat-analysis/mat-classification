@@ -5,8 +5,8 @@ import time
 from tqdm.auto import tqdm
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 
-from matanalysis.methods._lib.pymove.processing import trajutils
-from matanalysis.methods._lib.pymove.core import  utils as ut
+from matclassification.methods._lib.pymove.processing import trajutils
+from matclassification.methods._lib.pymove.core import  utils as ut
 
 
 """main labels """

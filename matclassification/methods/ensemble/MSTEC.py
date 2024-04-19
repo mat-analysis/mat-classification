@@ -23,8 +23,8 @@ from tqdm.auto import tqdm
 # --------------------------------------------------------------------------------
 from sklearn import preprocessing
 # --------------------------------------------------------------------------------
-from matanalysis.methods._lib.metrics import *
-from matanalysis.methods.ensemble.TEC import TEC
+from matclassification.methods._lib.metrics import *
+from matclassification.methods.ensemble.TEC import TEC
 
 #from matanalysis.methods import *
 

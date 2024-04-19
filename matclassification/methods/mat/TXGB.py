@@ -28,10 +28,10 @@ from tqdm.auto import tqdm
 
 import itertools
 # --------------------------------------------------------------------------------
-from matanalysis.methods._lib.pymove.models.classification import XGBoost as xg
+from matclassification.methods._lib.pymove.models.classification import XGBoost as xg
 # --------------------------------------------------------------------------------
 
-from matanalysis.methods.core import HPOClassifier
+from matclassification.methods.core import HPOClassifier
 
 class TXGB(HPOClassifier):
     

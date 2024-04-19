@@ -20,7 +20,7 @@ import numpy as np
 from datetime import datetime
 # --------------------------------------------------------------------------------
 from matdata.preprocess import readDataset, dfVariance
-from matanalysis.methods._lib.geohash import bin_geohash
+from matclassification.methods._lib.geohash import bin_geohash
 
 ## POI-S: POI Sequence (POI-F extension) [By Tarlis]
 ## --------------------------------------------------------------------------------------------

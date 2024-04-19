@@ -25,10 +25,10 @@ from sklearn import tree
 # --------------------------------------------------------------------------------
 from sklearn.tree import DecisionTreeClassifier
 
-from matanalysis.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
-from matanalysis.methods._lib.metrics import *
+from matclassification.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
+from matclassification.methods._lib.metrics import *
 
-from matanalysis.methods.core import MClassifier
+from matclassification.methods.core import MClassifier
 
 class MDT(MClassifier):
     

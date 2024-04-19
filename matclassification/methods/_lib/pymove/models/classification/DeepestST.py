@@ -14,8 +14,8 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.regularizers import l1
 from tensorflow.keras import backend as K
 
-from matanalysis.methods._lib.pymove.models import metrics
-from matanalysis.methods._lib.pymove.processing import trajutils
+from matclassification.methods._lib.pymove.models import metrics
+from matclassification.methods._lib.pymove.processing import trajutils
 
 
 class DeepeST(object):

@@ -9,7 +9,7 @@ from shapely.geometry import Polygon
 from geojson import Polygon as jsonPolygon
 import pickle
 
-from matanalysis.methods._lib.pymove.processing import trajutils
+from matclassification.methods._lib.pymove.processing import trajutils
 
 
 """main labels """

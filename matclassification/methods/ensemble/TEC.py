@@ -23,11 +23,15 @@ from tqdm.auto import tqdm
 # --------------------------------------------------------------------------------
 from sklearn import preprocessing
 # --------------------------------------------------------------------------------
-from matanalysis.methods._lib.metrics import *
-from matanalysis.methods.core import AbstractClassifier, MClassifier, MHPOClassifier, HPOClassifier
+from matclassification.methods._lib.metrics import *
+from matclassification.methods.core import AbstractClassifier, MClassifier, MHPOClassifier, HPOClassifier
 
-from matanalysis.methods import *
+from matclassification.methods import *
 
+def dinamic_import():
+    return getattr(__import__('matclassification'), 'methods')
+
+# --------------------------------------------------------------------------------
 class TEC(MHPOClassifier, HPOClassifier):
     
     def __init__(self, 
@@ -112,7 +116,7 @@ class TEC(MHPOClassifier, HPOClassifier):
                 print('['+self.name+':] *WARNING* model \'{}\' has no matching data format input.'.format(method))
         
     def create(self):
-        module = getattr(__import__('matanalysis'), 'methods')
+        module = dinamic_import()
         
         # create the ensemble models
         ensembles = self.config['ensembles']

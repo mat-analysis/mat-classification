@@ -23,7 +23,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder, MinMaxScaler
 
 from matdata.preprocess import readDataset, organizeFrame, trainAndTestSplit
 
-from matanalysis.methods._lib.pymove.processing.gridutils import create_virtual_grid, create_update_index_grid_feature
+from matclassification.methods._lib.pymove.processing.gridutils import create_virtual_grid, create_update_index_grid_feature
 
 ###############################################################################
 #   LOAD DATA - For Classification Methods

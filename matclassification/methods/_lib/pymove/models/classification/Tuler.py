@@ -16,8 +16,8 @@ from tensorflow.keras import backend as K
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from tensorflow.keras.regularizers import l1
 
-from matanalysis.methods._lib.pymove.models import metrics
-from matanalysis.methods._lib.pymove.processing import geoutils, trajutils
+from matclassification.methods._lib.pymove.models import metrics
+from matclassification.methods._lib.pymove.processing import geoutils, trajutils
 
 class BiTulerLSTM(object):
 

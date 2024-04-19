@@ -13,10 +13,10 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 # --------------------------------------------------------------------------------
 from numpy import argmax
 # --------------------------------------------------------------------------------
-from matanalysis.methods._lib.metrics import *
 from sklearn import svm #as SVC 
 
-from matanalysis.methods.core import MClassifier
+from matclassification.methods._lib.metrics import *
+from matclassification.methods.core import MClassifier
 # --------------------------------------------------------------------------------
 
 class MSVC(MClassifier):

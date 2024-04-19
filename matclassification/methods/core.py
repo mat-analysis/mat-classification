@@ -21,16 +21,16 @@ from tqdm.auto import tqdm
 # --------------------------------------------------------------------------------
 from tensorflow import random
 from matdata.preprocess import trainAndTestSplit
-from matanalysis.methods._lib.datahandler import prepareTrajectories
+from matclassification.methods._lib.datahandler import prepareTrajectories
 from sklearn.preprocessing import MinMaxScaler, LabelEncoder
 from tensorflow.keras.utils import to_categorical
 
 from sklearn.metrics import classification_report
-#from matanalysis.methods._lib.pymove.models import metrics
-#from matanalysis.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
-#from matanalysis.methods._lib.metrics import classification_report_csv, classification_report_dict2csv
-from matanalysis.methods._lib.metrics import *
-from matanalysis.methods._lib.pymove.models import metrics
+#from matclassification.methods._lib.pymove.models import metrics
+#from matclassification.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
+#from matclassification.methods._lib.metrics import classification_report_csv, classification_report_dict2csv
+from matclassification.methods._lib.metrics import *
+from matclassification.methods._lib.pymove.models import metrics
 # --------------------------------------------------------------------------------
 import warnings
 # --------------------------------------------------------------------------------

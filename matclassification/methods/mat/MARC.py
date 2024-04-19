@@ -22,7 +22,7 @@ from numpy import argmax
 from tensorflow import random
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from matanalysis.methods._lib.geohash import bin_geohash
+from matclassification.methods._lib.geohash import bin_geohash
   
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, LSTM, GRU, Dropout
@@ -32,14 +32,14 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.layers import Input, Add, Average, Concatenate, Embedding
 from tensorflow.keras.callbacks import EarlyStopping
 
-from matanalysis.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
+from matclassification.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
 from sklearn.metrics import classification_report
-#from matanalysis.methods._lib.pymove.models import metrics
+#from matclassification.methods._lib.pymove.models import metrics
 # --------------------------------------------------------------------------------
-from matanalysis.methods._lib.logger import Logger
-from matanalysis.methods._lib.metrics import MetricsLogger
+from matclassification.methods._lib.logger import Logger
+from matclassification.methods._lib.metrics import MetricsLogger
 # --------------------------------------------------------------------------------
-from matanalysis.methods.core import AbstractClassifier
+from matclassification.methods.core import AbstractClassifier
 
 class MARC(AbstractClassifier):
     

@@ -29,17 +29,17 @@ from tensorflow.keras.regularizers import l2
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping, History
 
-from matanalysis.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
+from matclassification.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
 from sklearn.metrics import classification_report
-#from matanalysis.methods._lib.pymove.models import metrics
+#from matclassification.methods._lib.pymove.models import metrics
 # --------------------------------------------------------------------------------
-from matanalysis.methods._lib.logger import Logger
-from matanalysis.methods._lib.metrics import MetricsLogger
-from matanalysis.methods.mat.MARC import EpochLogger
+from matclassification.methods._lib.logger import Logger
+from matclassification.methods._lib.metrics import MetricsLogger
+from matclassification.methods.mat.MARC import EpochLogger
 # --------------------------------------------------------------------------------
-from matanalysis.methods.core import MHPOClassifier
+from matclassification.methods.core import MHPOClassifier
 
-from matanalysis.methods.feature.feature_extraction.pois import pois
+from matclassification.methods.feature.feature_extraction.pois import pois
 
 class POIS(MHPOClassifier):
     
