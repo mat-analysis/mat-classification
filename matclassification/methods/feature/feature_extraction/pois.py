@@ -381,8 +381,8 @@ def poifreq_all(sequence, dataset, feature, folder, result_dir, tid_col='tid', c
 def to_file(core_name, x_train, x_test, y_train, y_test):
 #     from ..main import importer
 #     importer(['pd'], locals())
-    df_x_train = pd.DataFrame(x_train).to_csv(core_name+'-x_train.csv', index=False, header=None)
-    df_x_test = pd.DataFrame(x_test).to_csv(core_name+'-x_test.csv', index=False, header=None)
+    df_x_train = pd.DataFrame(x_train).to_csv(core_name+'-x_train.csv', index=False)#, header=None)
+    df_x_test = pd.DataFrame(x_test).to_csv(core_name+'-x_test.csv', index=False)#, header=None)
     df_y_train = pd.DataFrame(y_train, columns=['label']).to_csv(core_name+'-y_train.csv', index=False)
     df_y_test = pd.DataFrame(y_test, columns=['label']).to_csv(core_name+'-y_test.csv', index=False)
     
@@ -393,14 +393,13 @@ def geoHasTransform(df, geo_precision=8):
     return [geohash(df['lat'].values[i], df['lon'].values[i], geo_precision) for i in range(0, len(df))]
 
 def loadTrainTest(features, folder, dataset=''):
-#     from ..main import importer
-#    importer(['readDataset'], globals())
 #     if dataset == '':
-#         df_train = pd.read_csv(os.path.join(folder, 'train.csv'))
-#         df_test = pd.read_csv(os.path.join(folder, 'test.csv'))
-#     else:
-#         df_train = pd.read_csv(os.path.join(folder, dataset+'_train.csv'))
-#         df_test = pd.read_csv(os.path.join(folder, dataset+'_test.csv'))
+#        df_train = pd.read_csv(os.path.join(folder, 'train.csv'))
+#        df_test = pd.read_csv(os.path.join(folder, 'test.csv'))
+#    else:
+#        df_train = pd.read_csv(os.path.join(folder, dataset+'_train.csv'))
+#        df_test = pd.read_csv(os.path.join(folder, dataset+'_test.csv'))
+    
     na_values = -999
     if dataset == '':
         df_train = readDataset(folder, file='train.csv', missing=na_values)

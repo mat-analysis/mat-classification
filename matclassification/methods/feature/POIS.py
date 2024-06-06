@@ -21,7 +21,7 @@ from numpy import argmax
 # --------------------------------------------------------------------------------
 from tensorflow import random
 from sklearn.preprocessing import scale, OneHotEncoder
-from matdata.preprocess import trainAndTestSplit
+from matdata.preprocess import trainTestSplit
   
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
@@ -63,15 +63,23 @@ class POIS(MHPOClassifier):
         
         np.random.seed(seed=random_state)
         random.set_seed(random_state)
-        #TODO tensorflow random?
-    
-    def prepare_input(self,
-                      train, test,
-                      tid_col='tid', 
-                      class_col='label',
-#                      space_geohash=False, # For future implementation
-                      geo_precision=8,
-                      validate=False): # For future implementation
+        
+    def xy(self,
+           train, test,
+           tid_col='tid', 
+           class_col='label',
+#          space_geohash=False, # For future implementation
+           geo_precision=8,
+           validate=False): # For future implementation
+        
+        def check_label_sort(df):
+            labels = list(df[class_col])
+            indexes = [index for index, _ in enumerate(labels) if labels[index] != labels[index-1]]
+            final = list(map(lambda i: labels[i], indexes))
+            print(len(final), len(set(final)), len(final) != len(set(final)))
+            return len(final) == len(set(final))
+        
+        assert check_label_sort(train) and check_label_sort(test), "This method requires input data to be ordered by labels."
         
         res_path=''
         save_results=False
@@ -81,20 +89,57 @@ class POIS(MHPOClassifier):
         method = self.config['method']
         dataset = self.config['dataset']
         
+        random_num = self.config['random_state']
+        
         X_train, X_test, y_train, y_test, _ = pois(train, test, 
                                                    sequences, features, method, dataset, 
-                                                   res_path, save_results, tid_col, class_col, verbose=self.isverbose)
+                                                   res_path, save_results, tid_col, class_col, 
+                                                   verbose=self.isverbose)
         
-        (num_features, num_classes, labels, X, y, one_hot_y) = prepareData(X_train, X_test, y_train, y_test, 
-                                                                           validate=validate,random_state=self.config['random_state'])
+        # return: (num_features, num_classes, labels, X, y, one_hot_y)
+        return prepareData(X_train, X_test, y_train, y_test,
+                             validate=validate,random_state=random_num)
+    
+    def prepare_input(self,
+                      train, test,
+                      tid_col='tid', 
+                      class_col='label',
+#                      space_geohash=False, # For future implementation
+                      geo_precision=8,
+                      validate=False): # For future implementation
         
+#        def check_label_sort(df):
+#            labels = list(df[class_col])
+#            indexes = [index for index, _ in enumerate(labels) if labels[index] != labels[index-1]]
+#            final = list(map(lambda i: labels[i], indexes))
+#            print(len(final), len(set(final)), len(final) != len(set(final)))
+#            return len(final) == len(set(final))
+#        
+#        assert check_label_sort(train) and check_label_sort(test), "This method requires input data to be ordered by labels."
+#        
+#        res_path=''
+#        save_results=False
+#        
+#        sequences = self.config['sequences']
+#        features = self.config['features']
+#        method = self.config['method']
+#        dataset = self.config['dataset']
+#        
+#        X_train, X_test, y_train, y_test, _ = pois(train, test, 
+#                                                   sequences, features, method, dataset, 
+#                                                   res_path, save_results, tid_col, class_col, verbose=self.isverbose)
+#        
+#        (num_features, num_classes, labels, X, y, one_hot_y) = prepareData(X_train, X_test, y_train, y_test, 
+#                                                                           validate=validate,random_state=self.config['random_state'])
+        (num_features, num_classes, labels, X, y, one_hot_y) = self.xy(train, test, tid_col, class_col, geo_precision, validate)
+    
         self.add_config(num_features=num_features,
                         num_classes=num_classes, 
                         labels=labels)
         
         
-        self.config['num_features'] = num_features
-        self.config['num_classes'] = num_classes
+#        self.config['num_features'] = num_features
+#        self.config['num_classes'] = num_classes
         
         self.le = one_hot_y
               
@@ -163,6 +208,15 @@ class POIS(MHPOClassifier):
             save_results=False,
             res_path='.'):
         
+        # Check if config is done:
+        if 'num_features' not in self.config.keys():
+            labels = list(y_train)
+            num_features = len(list(X_train.columns))
+            num_classes = len(set(y_train))
+            self.add_config(num_features=num_features,
+                            num_classes=num_classes, 
+                            labels=labels)
+        
         EPOCHS = 250
         BASELINE_METRIC = 'acc'
         BASELINE_VALUE = 0.5
@@ -201,12 +255,12 @@ class POIS(MHPOClassifier):
         
         y_pred = self.model.predict(X_test)#, y_test)
         
-        self.y_test_true = y_test#argmax(y_test, axis = 1)
-        self.y_test_pred = y_pred#argmax(y_pred , axis = 1)
+        self.y_test_true = y_test #argmax(y_test, axis = 1)
+        self.y_test_pred = y_pred #argmax(y_pred , axis = 1)
         
         if self.le:
-            self.y_test_true = self.le.inverse_transform(self.y_test_true).reshape(1, -1)[0]
-            self.y_test_pred = self.le.inverse_transform(self.y_test_pred).reshape(1, -1)[0]
+            self.y_test_true = self.le.inverse_transform(self.y_test_true)#.reshape(1, -1)[0]
+            self.y_test_pred = self.le.inverse_transform(self.y_test_pred)#.reshape(1, -1)[0]
             
         self._summary = self.score(X_test, y_test, y_pred)
         
@@ -272,7 +326,7 @@ class POIS(MHPOClassifier):
             
 
 ###############################################################################    
-def prepareData(x_train, x_test, y_train, y_test, validate=True, random_state=42):
+def prepareData(x_train, x_test, y_train, y_test, validate=False, random_state=42):
     
     if validate:
         raise NotImplementedError('POIS method prepareData(validate=True) is not implemented.')
@@ -287,10 +341,12 @@ def prepareData(x_train, x_test, y_train, y_test, validate=True, random_state=42
         df_ytrain = pd.DataFrame(y_train)
         df_xtrain['tid'] = df_xtrain.index
         df_ytrain['tid'] = df_ytrain.index
+        
+        return df_xtrain, df_ytrain, df_xtrain, df_ytrain
 
-        df_xtrain, df_xval = trainAndTestSplit(df_xtrain, train_size=0.75,
+        df_xtrain, df_xval = trainTestSplit(df_xtrain, train_size=0.75,
                                              random_num=random_state, outformats=[])
-        df_ytrain, df_yval = trainAndTestSplit(df_ytrain, train_size=0.75,
+        df_ytrain, df_yval = trainTestSplit(df_ytrain, train_size=0.75,
                                              random_num=random_state, outformats=[])
 
         df_xtrain.drop(columns=['tid'], inplace=True)
@@ -302,35 +358,22 @@ def prepareData(x_train, x_test, y_train, y_test, validate=True, random_state=42
     else:
         data = [(x_train, x_test), (y_train, y_test)]
         
+    
     X = []
     y = []
     
-    
-    for df in data[0]:
-        df = scale(df)
-        X.append(df)
-    
     one_hot_y = OneHotEncoder()
-    one_hot_y.fit(y_train.reshape(-1, 1))
+    one_hot_y.fit(pd.DataFrame(y_train))
 #    one_hot_y.fit(y_train.loc[:, [class_col]])
-    for df in data[1]:
-        df = df.reshape(-1, 1)
-        df = one_hot_y.transform(df).toarray()
+    for df in data[1]:       
+#        df = df.reshape(-1, 1)
+        df = one_hot_y.transform(pd.DataFrame(df)).toarray()
 #        df = one_hot_y.transform(df.loc[:, [class_col]]).toarray()
-        
         y.append(df)
-
-#    y_train = y_train.reshape(-1, 1)
-#    y_test = y_test.reshape(-1, 1)
-#
-#    one_hot_y = OneHotEncoder()
-#    one_hot_y.fit(y_train)
-#
-#    y_train = one_hot_y.transform(y_train).toarray()
-#    y_test = one_hot_y.transform(y_test).toarray()
-#
-#    x_train = scale(x_train)
-#    x_test = scale(x_test)
+        
+    for df in data[0]:
+        df = scale(df, axis=0)
+        X.append(df)
     
     return (num_features, num_classes, labels, X, y, one_hot_y)
 
@@ -341,12 +384,13 @@ def loadData(dir_path):
 #     from sklearn.preprocessing import OneHotEncoder
 #     from sklearn import preprocessing
 
-    x_train = pd.read_csv(dir_path+'-x_train.csv', header=None)
+    x_train = pd.read_csv(dir_path+'-x_train.csv')#, header=None)
     # x_train = x_train[x_train.columns[:-1]]
     y_train = pd.read_csv(dir_path+'-y_train.csv')
 
-    x_test = pd.read_csv(dir_path+'-x_test.csv', header=None)
+    x_test = pd.read_csv(dir_path+'-x_test.csv')#, header=None)
     # x_test = x_test[x_test.columns[:-1]]
     y_test = pd.read_csv(dir_path+'-y_test.csv')
     
     return x_train, x_test, y_train, y_test
+

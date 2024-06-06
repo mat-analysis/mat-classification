@@ -20,7 +20,7 @@ from datetime import datetime
 from tqdm.auto import tqdm
 # --------------------------------------------------------------------------------
 from tensorflow import random
-from matdata.preprocess import trainAndTestSplit
+from matdata.preprocess import trainTestSplit
 from matclassification.methods._lib.datahandler import prepareTrajectories
 from sklearn.preprocessing import MinMaxScaler, LabelEncoder
 from tensorflow.keras.utils import to_categorical
@@ -96,6 +96,9 @@ class AbstractClassifier(ABC):
         self.model = None
         
         return self.model
+    
+    def clear(self):
+        del self.model 
 
 ##    @abstractmethod
 #    def fit(self, 
@@ -157,7 +160,7 @@ class AbstractClassifier(ABC):
         y_pred = self.model.predict(X_test, y_test)
         
         self.y_test_true = argmax(y_test, axis = 1)
-        self.y_test_pred = argmax(y_pred , axis = 1)
+        self.y_test_pred = argmax(y_pred, axis = 1)
         
         if self.le:
             self.y_test_true = self.le.inverse_transform(self.y_test_true)
@@ -305,7 +308,6 @@ class AbstractClassifier(ABC):
 #    def report(self):
 #        return classification_report(self.y_test_true, self.y_test_pred, output_dict=True)  
 
-    
     def summary(self):
         return pd.DataFrame(self.test_report.mean()).T
     
@@ -368,13 +370,13 @@ class MClassifier(AbstractClassifier):
 #        } 
 #        
 #        return pd.DataFrame(dic_model, index=[0])
-    
-    def prepare_input(self,
-                      train, test,
-                      
-                      tid_col='tid', class_col='label',
-                      geo_precision=30, # TODO for future implementation
-                      validate = True):
+    def xy(self,
+           train, test,
+
+           tid_col='tid', 
+           class_col='label',
+           geo_precision=30, # TODO for future implementation
+           validate = False):
         
         #Preparing the input of movelets:
         #nattr = len(train.iloc[1,:])
@@ -387,7 +389,7 @@ class MClassifier(AbstractClassifier):
             if tid_col not in df_train.columns:
                 df_train[tid_col] = df_train.index
             
-            df_train, df_val = trainAndTestSplit(df_train, train_size=0.75, 
+            df_train, df_val = trainTestSplit(df_train, train_size=0.75, 
                                                  tid_col=tid_col, class_col=class_col, 
                                                  random_num=self.config['random_state'], outformats=[])
             
@@ -402,14 +404,9 @@ class MClassifier(AbstractClassifier):
         for df in data:
             if tid_col in df.columns:
                 df.drop(columns=[tid_col], inplace=True)
-                
         
-        self.config['num_classes'] = len(train[class_col].unique())
-        
-        nattr = len(data[0].iloc[1,:])
-        #print("Number of attributes: " + str(nattr))
-        self.config['num_features'] = nattr
-        
+        num_classes = len(train[class_col].unique())
+        num_features = len(data[0].iloc[1,:])
 
         # Scaling y and transforming to keras format
         self.le = LabelEncoder()
@@ -422,8 +419,8 @@ class MClassifier(AbstractClassifier):
         y_set = []
         # Separating attribute data (X) than class attribute (y)
         for dataset in data:            
-            X = dataset.iloc[:, 0:(nattr-1)].values
-            y = dataset.iloc[:, (nattr-1)].values
+            X = dataset.iloc[:, 0:(num_features-1)].values
+            y = dataset.iloc[:, (num_features-1)].values
             
             # Replace distance 0 for presence 1
             # and distance 2 to non presence 0
@@ -436,7 +433,22 @@ class MClassifier(AbstractClassifier):
             
             X_set.append(X)
             y_set.append(y)
+        
+        return num_classes, num_features, le, X_set, y_set
+    
+    def prepare_input(self,
+                      train, test,
+                      
+                      tid_col='tid', 
+                      class_col='label',
+                      geo_precision=30, # TODO for future implementation
+                      validate = False):
+        
+        num_classes, num_features, le, X_set, y_set = self.xy(train, test, tid_col, class_col, geo_precision, validate)
 
+        self.add_config(num_classes=num_classes,
+                        num_features=num_features)
+        self.le = le
         
         if len(X_set) == 2:
             self.X_train = X_set[0] 
@@ -453,7 +465,7 @@ class MClassifier(AbstractClassifier):
             self.y_test = y_set[2]
             self.validate = True
             
-        return X, y, self.config['num_features'], self.config['num_classes']
+        return X, y, num_features, num_classes
     
 #    def predict(self,                 
 #                X_test,
@@ -669,33 +681,49 @@ class HPOClassifier(AbstractClassifier):
             i+=1
         return validation_report
     
+    def xy(self,
+           train, test,
+           tid_col='tid', 
+           class_col='label',
+           space_geohash=False, # True: Geohash, False: indexgrid
+           geo_precision=30,    # Geohash: precision OR IndexGrid: meters
+           validate=False):
+        
+        # RETURN: X, y, features, num_classes, space, dic_parameters
+        return prepareTrajectories(train.copy(), test.copy(),
+                                   tid_col=tid_col, 
+                                   class_col=class_col,
+                                   # space_geohash, True: Geohash, False: indexgrid
+                                   space_geohash=space_geohash, 
+                                   # Geohash: precision OR IndexGrid: meters
+                                   geo_precision=geo_precision,     
+
+                                   features_encoding=True, 
+                                   y_one_hot_encodding=False,
+                                   split_test_validation=validate,
+                                   data_preparation=1,
+
+                                   verbose=self.isverbose)
+    
     def prepare_input(self,
                       train, test,
                       tid_col='tid', 
                       class_col='label',
                       space_geohash=False, # True: Geohash, False: indexgrid
                       geo_precision=30,    # Geohash: precision OR IndexGrid: meters
-                      validate=True):
+                      validate=False):
         
         # Load Data - Tarlis:
-        X, y, features, num_classes, space, dic_parameters = prepareTrajectories(train.copy(), test.copy(),
-                                                                                 tid_col=tid_col, 
-                                                                                 class_col=class_col,
-                                                                                 # space_geohash, True: Geohash, False: indexgrid
-                                                                                 space_geohash=space_geohash, 
-                                                                                 # Geohash: precision OR IndexGrid: meters
-                                                                                 geo_precision=geo_precision,     
-                                                                                 
-                                                                                 features_encoding=True, 
-                                                                                 y_one_hot_encodding=False,
-                                                                                 split_test_validation=validate,
-                                                                                 data_preparation=1,
-                                                                                 
-                                                                                 verbose=self.isverbose)
-        self.config['features'] = features
-        self.config['num_classes'] = num_classes
-        self.config['space'] = space
-        self.config['dic_parameters'] = dic_parameters
+        X, y, features, num_classes, space, dic_parameters = self.xy(train, test, tid_col, class_col, geo_precision, validate)
+        
+        self.add_config(features=features,
+                        num_classes=num_classes, 
+                        space=space,
+                        dic_parameters=dic_parameters)
+#        self.config['features'] = features
+#        self.config['num_classes'] = num_classes
+#        self.config['space'] = space
+#        self.config['dic_parameters'] = dic_parameters
         
         if 'encode_y' in dic_parameters.keys():
             self.le = dic_parameters['encode_y']
@@ -704,7 +732,7 @@ class HPOClassifier(AbstractClassifier):
             self.X_train = X[0] 
             self.X_test = X[1]
             self.y_train = y[0] 
-            self.y_test = y[1]
+            self.y_test = y[1]           
             self.validate = False
         if len(X) > 2:
             self.X_train = X[0] 
@@ -738,8 +766,8 @@ class HPOClassifier(AbstractClassifier):
                 X_test,
                 y_test):
         
-#        self._summary, y_pred = self.model.predict(X_test, y_test)
-        y_pred = self.model.model.predict_proba(X_test) 
+        self._summary, y_pred = self.model.predict(X_test, y_test)
+#        y_pred = self.model.model.predict_proba(X_test)
         
 #        print('Generating Classification Report')
         self._summary = metrics.compute_acc_acc5_f1_prec_rec(y_test, y_pred)
@@ -794,7 +822,8 @@ class HPOClassifier(AbstractClassifier):
                 self.model = self.create(config)
                 self.fit(X_train, y_train, X_val, y_val, config)
 
-                validation_report, y_pred = self.model.predict(X_val, y_val)
+#                validation_report, y_pred = self.model.predict(X_val, y_val)
+                validation_report, y_pred = self.predict(X_val, y_val)
 
                 if self.save_results:
                     validation_report.to_csv(filename, index=False)

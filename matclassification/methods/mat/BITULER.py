@@ -78,6 +78,32 @@ class BITULER(HPOClassifier):
         
         self.model = None
     
+    def xy(self,
+           train, test,
+           tid_col='tid', 
+           class_col='label',
+           space_geohash=False, # True: Geohash, False: indexgrid
+           geo_precision=30,    # Geohash: precision OR IndexGrid: meters
+           features=['poi'],
+           validate=False):
+        
+        # RETURN: X, y, features, num_classes, space, dic_parameters
+        return prepareTrajectories(train.copy(), test.copy(),
+                                   tid_col=tid_col, 
+                                   class_col=class_col,
+                                   # space_geohash, True: Geohash, False: indexgrid
+                                   space_geohash=space_geohash, 
+                                   # Geohash: precision OR IndexGrid: meters
+                                   geo_precision=geo_precision,     
+
+                                   features=features,
+                                   features_encoding=True, 
+                                   y_one_hot_encodding=False,
+                                   split_test_validation=validate,
+                                   data_preparation=2,
+
+                                   verbose=self.isverbose)
+    
     def prepare_input(self,
                       train, test,
                       tid_col='tid', 
@@ -85,28 +111,18 @@ class BITULER(HPOClassifier):
                       space_geohash=False, # True: Geohash, False: indexgrid
                       geo_precision=30,     # Geohash: precision OR IndexGrid: meters
                       features=['poi'],
-                      validate=True):
+                      validate=False):
         
         ## Rewriting the method to change default params
-        X, y, features, num_classes, space, dic_parameters = prepareTrajectories(train.copy(), test.copy(),
-                                                                                 tid_col=tid_col, 
-                                                                                 class_col=class_col,
-                                                                                 # space_geohash, True: Geohash, False: indexgrid
-                                                                                 space_geohash=space_geohash, 
-                                                                                 # Geohash: precision OR IndexGrid: meters
-                                                                                 geo_precision=geo_precision,   
-                                                                                 
-                                                                                 features=features,
-                                                                                 features_encoding=True, 
-                                                                                 y_one_hot_encodding=False,
-                                                                                 split_test_validation=validate,
-                                                                                 data_preparation=2,
-                                                                                 
-                                                                                 verbose=self.isverbose)
+        X, y, features, num_classes, space, dic_parameters = self.xy(train, test, tid_col, class_col, space_geohash, geo_precision, features, validate)
         
-        self.config['space'] = space
-        self.config['dic_parameters'] = dic_parameters
-        self.config['num_classes'] = num_classes
+        self.add_config(space=space,
+                        features=features,
+                        num_classes=num_classes, 
+                        dic_parameters=dic_parameters)
+#        self.config['space'] = space
+#        self.config['dic_parameters'] = dic_parameters
+#        self.config['num_classes'] = num_classes
         
         if 'encode_y' in dic_parameters.keys():
             self.le = dic_parameters['encode_y']

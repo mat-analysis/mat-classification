@@ -37,20 +37,20 @@ setuptools.setup(
     packages=setuptools.find_packages(),
 #    include_package_data=True,
     scripts=[
-        'matclassification/scripts/helpers/MAT-Summary.py',
-        'matclassification/scripts/helpers/MAT-ResultsTo.py',
-        'matclassification/scripts/helpers/MAT-ExportResults.py',
-        'matclassification/scripts/helpers/MAT-MergeDatasets.py',
-        'matclassification/scripts/helpers/MAT-PrintResults.py',
-        'matclassification/scripts/helpers/MAT-ResultsTo.py',
+        'scripts/helpers/MAT-Summary.py',
+        'scripts/helpers/MAT-ResultsTo.py',
+        'scripts/helpers/MAT-ExportResults.py',
+        'scripts/helpers/MAT-MergeDatasets.py',
+        'scripts/helpers/MAT-PrintResults.py',
+        'scripts/helpers/MAT-ResultsTo.py',
         
-        'matclassification/scripts/cls/MARC.py',
-        'matclassification/scripts/cls/POIS-TC.py',
-        'matclassification/scripts/cls/MAT-MC.py',
-        'matclassification/scripts/cls/MAT-TC.py',
-        'matclassification/scripts/cls/MAT-TEC.py', # Under Dev.
+        'scripts/cls/MARC.py',
+        'scripts/cls/POIS-TC.py',
+        'scripts/cls/MAT-MC.py',
+        'scripts/cls/MAT-TC.py',
+        'scripts/cls/MAT-TEC.py', # Under Dev.
         
-        'matclassification/scripts/features/POIS.py',
+        'scripts/features/POIS.py',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

@@ -45,7 +45,7 @@ class MDT(MClassifier):
                       tid_col='tid', class_col='label',
 #                      space_geohash=False, # For future implementation
                       geo_precision=30,
-                      validate=True):
+                      validate=False):
         
         X, y, nattr, num_classes = super().prepare_input(train, test,
                                                          tid_col=tid_col, class_col=class_col, 

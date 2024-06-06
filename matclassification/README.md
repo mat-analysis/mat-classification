@@ -20,7 +20,7 @@ Install directly from PyPi repository, or, download from github. (python >= 3.7 
 
 ### Getting Started
 
-On how to use this package, see [MAT-classification-Tutorial.ipynb](https://github.com/mat-analysis/mat-analysis/blob/main/MAT-classification-Tutorial.ipynb) (or the HTML [MAT-classification-Tutorial.html](https://github.com/mat-analysis/mat-classification/blob/main/MAT-classification-Tutorial.html))
+On how to use this package, see [MAT-classification-Tutorial.ipynb](https://github.com/mat-analysis/mat-classification/blob/main/MAT-classification-Tutorial.ipynb)
 
 ### Available Classifiers (TODO update):
 
@@ -80,10 +80,6 @@ Feel free to contribute in any form, such as scientific publications referencing
 This package is part of _MAT-Tools Framework_ for Multiple Aspect Trajectory Data Mining, check the guide project:
 
 - **[mat-tools](https://github.com/mat-analysis/mat-tools)**: Reference guide for MAT-Tools Framework repositories
-
-And others:
-
-
 
 ### Change Log
 

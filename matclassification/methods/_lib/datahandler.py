@@ -21,7 +21,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, MinMaxScaler
 
-from matdata.preprocess import readDataset, organizeFrame, trainAndTestSplit
+from matdata.preprocess import readDataset, organizeFrame, trainTestSplit
 
 from matclassification.methods._lib.pymove.processing.gridutils import create_virtual_grid, create_update_index_grid_feature
 
@@ -38,17 +38,18 @@ def loadTrajectories(dir_path,
                      features_encoding=True, 
                      y_one_hot_encodding=False,
                      split_test_validation=True,
-                     data_preparation=1):
+                     data_preparation=1,
+                     file_suffix='parquet'):
 
 #    importer(['S', 'io', 'encoding'], globals(), {'preprocessing': ['trainAndTestSplit']}) #, modules={'preprocessing': ['readDataset', 'organizeFrame']})
     
     print('\n###########      DATA LOADING        ###########')
     if file_prefix == '':
-        train_file = os.path.join(dir_path, 'train.csv')
-        test_file  = os.path.join(dir_path, 'test.csv')
+        train_file = os.path.join(dir_path, 'train.'+file_suffix)
+        test_file  = os.path.join(dir_path, 'test.'+file_suffix)
     else:
-        train_file = os.path.join(dir_path, file_prefix+'_train.csv')
-        test_file  = os.path.join(dir_path, file_prefix+'_test.csv')
+        train_file = os.path.join(dir_path, file_prefix+'_train.'+file_suffix)
+        test_file  = os.path.join(dir_path, file_prefix+'_test.'+file_suffix)
         
     df_train = readDataset(os.path.dirname(train_file), file=os.path.basename(train_file), missing='-999')
     df_test = readDataset(os.path.dirname(test_file), file=os.path.basename(test_file), missing='-999')
@@ -74,7 +75,7 @@ def prepareTrajectories(df_train, df_test,
     df_train, _, columns_order = organizeFrame(df_train, tid_col=tid_col, class_col=class_col)
     df_test, _, _ = organizeFrame(df_test, tid_col=tid_col, class_col=class_col)
 
-    # TODO:
+    # TODO: split column space
     if 'lat' in df_train.columns and 'lon' in df_train.columns:
         if space_geohash:
     #        keys.remove('lat')
@@ -97,7 +98,7 @@ def prepareTrajectories(df_train, df_test,
         columns_order = list(filter(lambda x: x in features + [tid_col,class_col], columns_order))
         
     if split_test_validation:
-        df_train, df_val = trainAndTestSplit(df_train, train_size=0.75, tid_col=tid_col, class_col=class_col, outformats=[])
+        df_train, df_val = trainTestSplit(df_train, train_size=0.75, tid_col=tid_col, class_col=class_col, outformats=[])
         
         df_train = df_train[columns_order]
         df_val  = df_val[columns_order]
@@ -111,7 +112,9 @@ def prepareTrajectories(df_train, df_test,
 
     #df_ = pd.concat(data)
     
-    features = list(df_train.keys())
+    if not features:
+        features = list(df_train.keys())
+    
     num_classes = len(set(df_train[class_col])) 
     count_attr = 0
     space = False

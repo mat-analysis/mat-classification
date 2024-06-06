@@ -44,9 +44,9 @@ from matclassification.methods.core import AbstractClassifier
 class MARC(AbstractClassifier):
     
     def __init__(self, 
-                 embedder_size=100, 
-                 merge_type='concatenate', 
-                 rnn_cell='lstm',
+                 embedder_size=100, # [100, 200, 300] ?
+                 merge_type='concatenate', # ['add', 'average', 'concatenate']
+                 rnn_cell='lstm', # ['gru', 'lstm']
                  
                  # This are Default:
                  class_dropout = 0.5,
@@ -88,7 +88,38 @@ class MARC(AbstractClassifier):
                         early_stopping_patience=early_stopping_patience, 
                         baseline_metric=baseline_metric, 
                         baseline_value=baseline_value)
+        
+    def xy(self,
+           train, test,
+           tid_col='tid', 
+           class_col='label',
+#          space_geohash=True, # Always True for MARC
+           geo_precision=8,
+           validate=False): # validate - unused, for future implementation (TODO)
 
+#        return (keys, vocab_size,
+#         num_classes,
+#         max_length,
+#         le,
+#         x_train, x_test,
+#         y_train, y_test)
+    
+        (keys, vocab_size,
+         num_classes,
+         max_length,
+         le,
+         x_train, x_test,
+         y_train, y_test) = prepareTrajectories(train.copy(), test.copy(),
+                                             tid_col=tid_col,
+                                             label_col=class_col,
+                                             logger=Logger() if self.isverbose else None,
+                                             geo_precision=geo_precision)
+        
+        x_train = [pad_sequences(f, max_length, padding='pre') for f in x_train]
+        x_test = [pad_sequences(f, max_length, padding='pre') for f in x_test]
+        
+        return (keys, vocab_size, num_classes, max_length, le, 
+                x_train, x_test, y_train, y_test)
     
     def prepare_input(self,
                       train, test,
@@ -103,11 +134,7 @@ class MARC(AbstractClassifier):
          max_length,
          le,
          x_train, x_test,
-         y_train, y_test) = prepareTrajectories(train.copy(), test.copy(),
-                                             tid_col=tid_col,
-                                             label_col=class_col,
-                                             logger=Logger() if self.isverbose else None,
-                                             geo_precision=geo_precision)
+         y_train, y_test) = self.xy(train, test, tid_col, class_col, geo_precision, validate)
         
         self.add_config(keys=keys, 
                         vocab_size=vocab_size,
@@ -116,8 +143,8 @@ class MARC(AbstractClassifier):
         
         self.le = le
         
-        self.X_train = [pad_sequences(f, max_length, padding='pre') for f in x_train]
-        self.X_test = [pad_sequences(f, max_length, padding='pre') for f in x_test]
+        self.X_train = x_train #[pad_sequences(f, max_length, padding='pre') for f in x_train]
+        self.X_test = x_test #[pad_sequences(f, max_length, padding='pre') for f in x_test]
         self.y_train = y_train
         self.y_test = y_test
         
@@ -534,8 +561,6 @@ def prepareTrajectories(df_train, df_test, tid_col='tid',
     
     #x_train = np.asarray(x_train)
     #x_test = np.asarray(x_test)
-    
-    print('MARC', y_train)
 
     if logger:
         logger.log(Logger.INFO, 'Trajectories:  ' + str(trajs))
