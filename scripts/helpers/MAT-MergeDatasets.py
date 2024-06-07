@@ -38,7 +38,8 @@ results_path    = config["results-path"]
 def mergeDatasets(dir_path, file='train.csv'):
 #     from ..main import importer
     
-    files = [i for i in glob.glob(os.path.join(dir_path, '*', '**', file))]
+#    files = [i for i in glob.glob(os.path.join(dir_path, '*', '**', file))]
+    files = list(map(lambda f: f, glob.glob(os.path.join(dir_path, '*', '**', file))))
     by_time = {os.path.getctime(file): file for file in files}
     keys = sorted(by_time.keys())
     
@@ -46,8 +47,12 @@ def mergeDatasets(dir_path, file='train.csv'):
     
     print("Loading files - " + file)
     # combine all files in the list
-    combined_csv = pd.concat([pd.read_csv(f).drop(['tid','label'], axis=1, errors='ignore') for f in files[:len(files)-1]], axis=1)
-    combined_csv = pd.concat([combined_csv, pd.read_csv(files[len(files)-1])], axis=1)
+#    combined_csv = pd.concat([pd.read_csv(f).drop(['tid','label'], axis=1, errors='ignore') for f in files[:len(files)-1]], axis=1)
+    combined_csv = list(map(lambda f: pd.read_csv(f).drop(['tid','class','label'], axis=1, errors='ignore'), files[:len(files)-1] ))
+    combined_csv = pd.concat(combined_csv + [pd.read_csv(files[len(files)-1])], axis=1)
+    
+    combined_csv.rename(columns={'class': 'label'}, errors="ignore", inplace=True)
+    
     #export to csv
     print("Writing "+file+" file")
     combined_csv.to_csv(os.path.join(dir_path, file), index=False)

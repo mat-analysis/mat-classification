@@ -28,9 +28,9 @@ from sklearn.tree import DecisionTreeClassifier
 from matclassification.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
 from matclassification.methods._lib.metrics import *
 
-from matclassification.methods.core import MClassifier
+from matclassification.methods.core import MHPOClassifier
 
-class MDT(MClassifier):
+class MDT(MHPOClassifier):
     
     def __init__(self, 
                  n_jobs=-1,

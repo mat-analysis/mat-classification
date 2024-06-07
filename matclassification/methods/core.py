@@ -70,7 +70,7 @@ class AbstractClassifier(ABC):
         
         if self.isverbose:
             print('\n['+self.name+':] Building model')
-        self.start_time = datetime.now()
+#        self.start_time = datetime.now()
         
         #assert (eval_metric == 'merror') | (eval_metric == 'mlogloss'), "ERR: invalid loss, set loss as mlogloss or merror" 
 
@@ -372,11 +372,15 @@ class MClassifier(AbstractClassifier):
 #        return pd.DataFrame(dic_model, index=[0])
     def xy(self,
            train, test,
-
+           
            tid_col='tid', 
            class_col='label',
            geo_precision=30, # TODO for future implementation
-           validate = False):
+           validate = False,
+           encode_labels=True):
+        
+        
+        assert (len( set(test.columns).symmetric_difference(set(train.columns)) ) == 0), '['+self.name+':] ERROR. Divergence in train and test columns: ' + str(len(train.columns)) + ' train and ' + str(len(test.columns)) + ' test'
         
         #Preparing the input of movelets:
         #nattr = len(train.iloc[1,:])
@@ -402,34 +406,43 @@ class MClassifier(AbstractClassifier):
             data = [train, test]
         
         for df in data:
-            if tid_col in df.columns:
-                df.drop(columns=[tid_col], inplace=True)
+            df.drop(columns=[tid_col], errors="ignore", inplace=True)
         
         num_classes = len(train[class_col].unique())
-        num_features = len(data[0].iloc[1,:])
+        num_features = len(data[0].iloc[1,:]) -1 # Minus label
 
         # Scaling y and transforming to keras format
-        self.le = LabelEncoder()
-        self.le.fit(train[class_col])
+        le = None
+        if encode_labels:
+            le = LabelEncoder()
+            le.fit(train[class_col])
         
         # For Scaling data
-        min_max_scaler = MinMaxScaler()
+        min_max_scaler = None
             
         X_set = []
         y_set = []
-        # Separating attribute data (X) than class attribute (y)
-        for dataset in data:            
-            X = dataset.iloc[:, 0:(num_features-1)].values
-            y = dataset.iloc[:, (num_features-1)].values
+
+        for dataset in data:
+            # Separating attribute data (X) than class attribute (y)
+            X = dataset.iloc[:, 0:(num_features)].values
+            y = dataset.iloc[:, (num_features)].values
             
             # Replace distance 0 for presence 1
             # and distance 2 to non presence 0
             X[X == 0] = 1
             X[X == 2] = 0
-            X = min_max_scaler.fit_transform(X)
             
-            y = self.le.transform(y) 
-            y = to_categorical(y)
+            # Scaling data
+            if not min_max_scaler:
+                min_max_scaler = MinMaxScaler()
+                min_max_scaler.fit(X)
+                
+            X = min_max_scaler.transform(X)
+            
+            if encode_labels:
+                y = le.transform(y)
+                y = to_categorical(y)
             
             X_set.append(X)
             y_set.append(y)
@@ -446,6 +459,8 @@ class MClassifier(AbstractClassifier):
         
         num_classes, num_features, le, X_set, y_set = self.xy(train, test, tid_col, class_col, geo_precision, validate)
 
+        print(num_classes, num_features)
+        
         self.add_config(num_classes=num_classes,
                         num_features=num_features)
         self.le = le
@@ -465,7 +480,7 @@ class MClassifier(AbstractClassifier):
             self.y_test = y_set[2]
             self.validate = True
             
-        return X, y, num_features, num_classes
+        return X_set, y_set, num_features, num_classes
     
 #    def predict(self,                 
 #                X_test,
@@ -507,51 +522,53 @@ class MClassifier(AbstractClassifier):
         
         return self._summary, y_pred 
     
-    ## Overwrite train method to do Hiperparameter Optimization:
-    def train(self, dir_validation='.'):
-        
-        # This implementation, trains only one model 
-        # (but, you may overwrite the method following this structure or HPSClassifier.train())
-        
-        X_train = self.X_train
-        y_train = self.y_train
-        
-        if self.validate:
-            X_val = self.X_val
-            y_val = self.y_val
-        else:
-            X_val = self.X_test
-            y_val = self.y_test            
-        
-        if self.isverbose:
-            print('['+self.name+':] Training model')
-                
-        data = []
-        ## This part you may want to run for each configuration (as a progress bar):
-        #for config in pbar:
-        filename = os.path.join(dir_validation, 'val_'+self.name.lower()+'.csv')
-            
-        if os.path.exists(filename):
-            print('Skip ---> {}'.format(filename)) #TODO LOAD results
-        else:
-            self.model = self.create()
-            self.fit(X_train, y_train, X_val, y_val)
-
-            validation_report, y_pred = self.predict(X_val, y_val)
-
-            if self.save_results:
-                validation_report.to_csv(filename, index=False)
-
-            data.append( validation_report )
-
-#                self.model.free()
-        
-        self.report = pd.concat(data)
-        self.report.reset_index(drop=True, inplace=True)
-
-        self.report.sort_values('acc', ascending=False, inplace=True)
-        
-        return self.report
+#    ## Overwrite train method to do Hiperparameter Optimization:
+#    def train(self, dir_validation='.'):
+#        
+#        # This implementation, trains only one model 
+#        # (but, you may overwrite the method following this structure or HPSClassifier.train())
+#        
+#        self.start_time = datetime.now()
+#        
+#        X_train = self.X_train
+#        y_train = self.y_train
+#        
+#        if self.validate:
+#            X_val = self.X_val
+#            y_val = self.y_val
+#        else:
+#            X_val = self.X_test
+#            y_val = self.y_test            
+#        
+#        if self.isverbose:
+#            print('['+self.name+':] Training model')
+#                
+#        data = []
+#        ## This part you may want to run for each configuration (as a progress bar):
+#        #for config in pbar:
+#        filename = os.path.join(dir_validation, 'val_'+self.name.lower()+'.csv')
+#            
+#        if os.path.exists(filename):
+#            print('Skip ---> {}'.format(filename)) #TODO LOAD results
+#        else:
+#            self.model = self.create()
+#            self.fit(X_train, y_train, X_val, y_val)
+#
+#            validation_report, y_pred = self.predict(X_val, y_val)
+#
+#            if self.save_results:
+#                validation_report.to_csv(filename, index=False)
+#
+#            data.append( validation_report )
+#
+##                self.model.free()
+#        
+#        self.report = pd.concat(data)
+#        self.report.reset_index(drop=True, inplace=True)
+#
+#        self.report.sort_values('acc', ascending=False, inplace=True)
+#        
+#        return self.report
     
     # TODO test method
         
@@ -608,6 +625,8 @@ class MHPOClassifier(MClassifier):
         # This implementation, trains only one model 
         # (but, you may overwrite the method following this structure or HPSClassifier.train())
         
+        self.start_time = datetime.now()
+        
         X_train = self.X_train
         y_train = self.y_train
         
@@ -623,6 +642,7 @@ class MHPOClassifier(MClassifier):
         
         data = []
         
+        # TODO: Hiperparam config training...
         ## This part you may want to run for each configuration (as a progress bar):
         #for config in pbar:
         filename = os.path.join(dir_validation, 'val_'+self.name.lower()+'.csv')
@@ -633,7 +653,8 @@ class MHPOClassifier(MClassifier):
             self.model = self.create() # pass the config dict()
             self.fit(X_train, y_train, X_val, y_val) #, config)
 
-            validation_report, y_pred = self.model.predict(X_val, y_val)
+#            validation_report, y_pred = self.model.predict(X_val, y_val)
+            validation_report, y_pred = self.predict(X_val, y_val)
 
             if self.save_results:
                 validation_report.to_csv(filename, index=False)
@@ -782,6 +803,7 @@ class HPOClassifier(AbstractClassifier):
         return self._summary, y_pred 
         
     def train(self, dir_validation='.'):
+        self.start_time = datetime.now()
         
         X_train = self.X_train
         y_train = self.y_train

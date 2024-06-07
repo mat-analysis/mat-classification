@@ -16,10 +16,10 @@ from numpy import argmax
 from sklearn import svm #as SVC 
 
 from matclassification.methods._lib.metrics import *
-from matclassification.methods.core import MClassifier
+from matclassification.methods.core import MHPOClassifier
 # --------------------------------------------------------------------------------
 
-class MSVC(MClassifier):
+class MSVC(MHPOClassifier):
     
     def __init__(self, 
                  kernel="linear", 

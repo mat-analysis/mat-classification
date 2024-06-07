@@ -2,7 +2,7 @@
    "input": {
           "train": ["train"],
           "test": ["test"],
-          "format": "CSV",
+          "format": "PARQUET",
           "loader": "interning"
    },
    "idFeature": {
