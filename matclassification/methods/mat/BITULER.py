@@ -28,14 +28,25 @@ from tqdm.auto import tqdm
 
 import itertools
 # --------------------------------------------------------------------------------
+from tensorflow.keras.layers import Dense, LSTM, GRU, Bidirectional, Concatenate, Add, Average, Embedding, Dropout, Input
+from tensorflow.keras.initializers import he_normal, he_uniform
+from tensorflow.keras.models import Model, load_model
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
+from tensorflow.keras.optimizers import RMSprop, Adam
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras import backend as K
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from tensorflow.keras.regularizers import l1
+
+#from matclassification.methods._lib.pymove.models.classification import Tuler as tul
+# --------------------------------------------------------------------------------
+#from matclassification.methods._lib.pymove.models import metrics
+
 from matclassification.methods._lib.datahandler import prepareTrajectories
 
-from matclassification.methods._lib.pymove.models.classification import Tuler as tul
-# --------------------------------------------------------------------------------
+from matclassification.methods.core import THSClassifier
 
-from matclassification.methods.core import HPOClassifier
-
-class BITULER(HPOClassifier):
+class Bituler(THSClassifier):
     
     def __init__(self, 
 #                 num_classes = -1,
@@ -164,25 +175,26 @@ class BITULER(HPOClassifier):
         
     def create(self, config):
 
-#        nn=config[0]
-        un=config[1]
-        st=config[2]
-        dp=config[3]
-        es=config[4]
-#        bs=config[5]
-#        epoch=config[6]
-#        pat=config[7]
-#        mon=config[8]
-#        lr=config[9]
+        max_lenght=self.config['max_lenght']   
+        num_classes=self.config['num_classes']
+        vocab_size=self.config['vocab_size']
+        rnn_units=config[1]
+        stack=config[2]
+        dropout=config[3]
+        embedding_size=config[4]
         
         #Initializing Neural Network
-        return tul.BiTulerLSTM(max_lenght=self.config['max_lenght'],    
-                               num_classes=self.config['num_classes'],
-                               vocab_size=self.config['vocab_size'],
-                               rnn_units=un,
-                               dropout=dp,
-                               embedding_size=es,
-                               stack=st)
+        input_model= Input(shape=(max_lenght,), name='spatial_poi') 
+        embedding_layer = Embedding(input_dim = vocab_size, output_dim = embedding_size, 
+                              name='embedding_poi', input_length=max_lenght)(input_model)
+
+        rnn_cell = Bidirectional(LSTM(units=rnn_units))(embedding_layer)
+                            
+        hidden_dropout = Dropout(dropout)(rnn_cell)
+        output_model = Dense(num_classes, activation='softmax')(hidden_dropout)
+        
+        return Model(inputs=input_model, outputs=output_model)
+    
     def fit(self, 
             X_train, 
             y_train, 
@@ -195,15 +207,56 @@ class BITULER(HPOClassifier):
         if not self.model:
             self.model = self.create(config)
         
-        bs=bs=config[5]
-        epoch=config[6]
-        lr=config[9]
+        batch_size=config[5]
+        epochs=config[6]
+        learning_rate=config[9]
         
-        return self.model.fit(X_train, y_train,
-                              X_val, y_val,
-                              batch_size=bs,
-                              epochs=epoch,
-                              learning_rate=lr,
-                              save_model=False,
-                              save_best_only=False,
-                              save_weights_only=False)
+        ## seting parameters
+        optimizer = Adam(lr=learning_rate)
+        loss = ['sparse_categorical_crossentropy']
+        metric = ['acc']  
+        monitor='val_acc'
+        
+        self.model.compile(optimizer=optimizer, loss=loss, metrics=metric)
+        
+        early_stop = EarlyStopping(monitor='val_acc',
+                                   min_delta=0, 
+                                   patience=50, 
+                                   verbose=0, # without print 
+                                   mode='auto',
+                                   restore_best_weights=True)
+        
+        my_callbacks= [early_stop]   
+
+        return self.model.fit(X_train, 
+                                    y_train,
+                                    epochs=epochs,
+                                    callbacks=my_callbacks,
+                                    validation_data=(X_val, y_val),
+                                    verbose=1,
+                                    shuffle=True,
+                                    use_multiprocessing=True,          
+                                    batch_size=batch_size)
+    
+#    def predict(self,                 
+#                X_test,
+#                y_test):
+#        
+#        y_pred = self.model.predict(X_test)
+#        y_pred_true = y_pred.argmax(axis=1)
+##        self._summary = metrics.compute_acc_acc5_f1_prec_rec(y_test, y_pred_true)
+##        self._summary = compute_acc_acc5_f1_prec_rec(y_test, y_pred)
+#        self._summary = self.score(y_test, y_pred)
+#        
+#        self.y_test_true = y_test
+#        self.y_test_pred = y_pred_true
+#        
+#        if self.le:
+#            self.y_test_true = self.le.inverse_transform(self.y_test_true)
+#            self.y_test_pred = self.le.inverse_transform(self.y_test_pred)
+#            
+#        return self._summary, y_pred 
+    
+    def clear(self):
+        super().clear()
+        K.clear_session()

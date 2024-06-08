@@ -26,14 +26,14 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras import regularizers
 from tensorflow.keras.utils import to_categorical
 from matclassification.methods._lib.metrics import f1
-from matclassification.methods._lib.pymove.models import metrics
+#from matclassification.methods._lib.pymove.models import metrics
 from sklearn.metrics import classification_report
 from matclassification.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
 
-from matclassification.methods.core import MHPOClassifier
+from matclassification.methods.core import MHSClassifier
 
 # Approach 2
-class MMLP(MHPOClassifier):
+class MMLP(MHSClassifier):
     
     def __init__(self, 
                  num_features=-1,
@@ -144,28 +144,25 @@ class MMLP(MHPOClassifier):
                 X_test,
                 y_test):
         
-#        y_test = self.le.transform(y_test)
-#        y_test1 = to_categorical(y_test)
-        
         y_pred = self.model.predict(X_test) 
         
         y_test_true = argmax(y_test, axis = 1)
         y_test_pred = argmax(y_pred , axis = 1)
         
+        self._summary = self.score(y_test_true, y_pred)
+        
         if self.le:
             self.y_test_true = self.le.inverse_transform(y_test_true)
             self.y_test_pred =  self.le.inverse_transform(y_test_pred) 
     
-        self.report = metrics.compute_acc_acc5_f1_prec_rec(y_test_true, y_test_pred)
+#        self.report = metrics.compute_acc_acc5_f1_prec_rec(y_test_true, y_test_pred)
 
-        self._summary = self.score(X_test, y_test, y_pred)
-            
         return self._summary, y_pred
 
     
 # --------------------------------------------------------------------------------
 #Approach 1
-class MMLP1(MHPOClassifier):
+class MMLP1(MHSClassifier):
     
     def __init__(self, 
                  num_features=-1,
@@ -278,23 +275,20 @@ class MMLP1(MHPOClassifier):
         
         self.report = pd.DataFrame(history.history)
         return self.report
-        
+
     def predict(self,                 
                 X_test,
                 y_test):
         
-#        y_test = self.le.transform(y_test)
-#        self.y_text = y_test1 = to_categorical(y_test)
-        
         y_pred = self.model.predict(X_test) 
         
-        self.y_test_true = self.le.inverse_transform(argmax(y_test, axis = 1))
-        self.y_test_pred =  self.le.inverse_transform(argmax(y_pred , axis = 1)) 
-    
-#        self._summary = metrics.compute_acc_acc5_f1_prec_rec(self.y_test_true, self.y_test_pred)
-        self._summary = self.score(X_test, y_test, y_pred)
+        y_test_true = argmax(y_test, axis = 1)
+        y_test_pred = argmax(y_pred , axis = 1)
         
-        if self.config['verbose']:
-            print('['+self.name+':] Processing time: {} milliseconds. Done.'.format(self.duration()))
+        self._summary = self.score(y_test_true, y_pred)
+        
+        if self.le:
+            self.y_test_true = self.le.inverse_transform(y_test_true)
+            self.y_test_pred =  self.le.inverse_transform(y_test_pred) 
             
-        return self._summary, self.y_test_pred
+        return self._summary, y_pred

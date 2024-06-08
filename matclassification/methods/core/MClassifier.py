@@ -105,8 +105,6 @@ class MClassifier(AbstractClassifier):
                       validate = False):
         
         num_classes, num_features, le, X_set, y_set = self.xy(train, test, tid_col, class_col, geo_precision, validate)
-
-        print(num_classes, num_features)
         
         self.add_config(num_classes=num_classes,
                         num_features=num_features)
@@ -128,21 +126,3 @@ class MClassifier(AbstractClassifier):
             self.validate = True
             
         return X_set, y_set, num_features, num_classes
-    
-    def predict(self,                 
-                X_test,
-                y_test):
-        
-#        y_pred = self.model.predict_proba(X_test)
-        y_pred = self.model.predict(X_test)
-        
-        self.y_test_true = argmax(y_test, axis = 1) #y_test
-        self.y_test_pred = argmax(y_pred , axis = 1)
-        
-        if self.le:
-            self.y_test_true = self.le.inverse_transform(self.y_test_true)
-            self.y_test_pred = self.le.inverse_transform(self.y_test_pred)
-            
-        self._summary = self.score(X_test, y_test, y_pred) #self.y_test_pred)
-        
-        return self._summary, y_pred 

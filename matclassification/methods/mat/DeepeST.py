@@ -28,14 +28,23 @@ from tqdm.auto import tqdm
 
 import itertools
 # --------------------------------------------------------------------------------
-from matclassification.methods._lib.datahandler import prepareTrajectories
-
-from matclassification.methods._lib.pymove.models.classification import DeepestST as DST
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from tensorflow.keras.layers import Dense, LSTM, GRU, Bidirectional, Concatenate, Add, Average, Embedding, Dropout, Input
+from tensorflow.keras.initializers import he_normal, he_uniform
+from tensorflow.keras.models import Model, load_model
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
+from tensorflow.keras.optimizers import RMSprop, Adam
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.regularizers import l1
+from tensorflow.keras import backend as K
+#from matclassification.methods._lib.pymove.models.classification import DeepestST as DST
 # --------------------------------------------------------------------------------
+#from matclassification.methods._lib.pymove.models import metrics
 
-from matclassification.methods.core import HPOClassifier
+from matclassification.methods._lib.datahandler import prepareTrajectories
+from matclassification.methods.core import THSClassifier
 
-class DeepeST(HPOClassifier):
+class DeepeST(THSClassifier):
     
     def __init__(self, 
                  ## GRID SEARCH PARAMETERS
@@ -176,33 +185,75 @@ class DeepeST(HPOClassifier):
         
         return X, y, features, num_classes, space, dic_parameters
         
-    def create(self, config):
-
-        nn=config[0]
-        un=config[1]
-        mt=config[2]
-        dp_bf=config[3]
-        dp_af=config[4]
-        em_s=config[5]
-#        bs=config[6]
-#        epoch=config[7] 
-#        pat=config[8] 
-#        mon=config[9] 
-#        opt=config[10] 
-#        lr=config[11]
-#        ls=config[12]
-#        ls_p=config[13]
+    def create(self, config):  
         
-        #Initializing Neural Network
-        return DST.DeepeST(max_lenght=self.config['max_lenght'],
-                           num_classes=self.config['num_classes'],
-                           vocab_size=self.config['vocab_size'],
-                           rnn=nn,
-                           rnn_units=un,
-                           merge_type = mt,
-                           dropout_before_rnn=dp_bf,
-                           dropout_after_rnn=dp_af,
-                           embedding_size=em_s)
+        vocab_size=self.config['vocab_size']
+        max_lenght=self.config['max_lenght']
+        num_classes=self.config['num_classes'] # Tarlis
+        col_name = list(vocab_size.keys())
+        
+        rnn=config[0]
+        rnn_units=config[1]
+        merge_type=config[2]
+        dropout_before_rnn=config[3]
+        dropout_after_rnn=config[4]
+        embedding_size=config[5]
+        
+        input_model = []
+        embedding_layers = []
+        hidden_input = []
+        hidden_dropout  = []
+        
+        if not isinstance(embedding_size, dict):
+            embbeding_default = embedding_size
+            embedding_size = dict(zip(col_name, np.full(len(col_name), embbeding_default)))
+        
+        assert set(vocab_size) == set(embedding_size), "ERR: embedding size is different from vocab_size"
+        assert len(embedding_size) > 0, "embedding size was not defined"
+        
+        # Initializing Neural Network
+        # Building Input and Embedding Layers
+        for c in tqdm(col_name):
+            i_model= Input(shape=(max_lenght,), 
+                            name='Input_{}'.format(c)) 
+            e_output_ = Embedding(input_dim = vocab_size[c], 
+                                output_dim = embedding_size[c], 
+                                name='Embedding_{}'.format(c), 
+                                input_length=max_lenght)(i_model)
+
+            input_model.append(i_model)  
+            embedding_layers.append(e_output_)             
+
+        # MERGE Layer
+        if len(embedding_layers) == 1:
+            hidden_input = embedding_layers[0]
+        elif merge_type == 'add':
+            hidden_input = Add()(embedding_layers)
+        elif merge_type == 'avg':
+            hidden_input = Average()(embedding_layers)
+        else:
+            hidden_input = Concatenate(axis=2)(embedding_layers)
+
+        # DROPOUT before RNN
+        hidden_dropout = Dropout(dropout_before_rnn)(hidden_input)
+    
+        # Recurrent Neural Network Layer
+        # https://www.quora.com/What-is-the-meaning-of-%E2%80%9CThe-number-of-units-in-the-LSTM-cell
+        if rnn == 'bilstm':
+            rnn_cell = Bidirectional(LSTM(units=rnn_units, recurrent_regularizer=l1(0.02)))(hidden_dropout)
+        else:
+            rnn_cell = LSTM(units=rnn_units, recurrent_regularizer=l1(0.02))(hidden_dropout)
+
+        rnn_dropout = Dropout(dropout_after_rnn)(rnn_cell)
+        
+        #https://keras.io/initializers/#randomnormal
+        output_model = Dense(num_classes, 
+                            kernel_initializer=he_uniform(),
+                            activation='softmax')(rnn_dropout)
+
+        # Encoding the labels as integers and using the sparse_categorical_crossentropy asloss function
+        return Model(inputs=input_model, outputs=output_model)
+    
     def fit(self, 
             X_train, 
             y_train, 
@@ -215,48 +266,111 @@ class DeepeST(HPOClassifier):
         if not self.model:
             self.model = self.create(config)
         
-        bs=config[6]
-        epoch=config[7] 
-        pat=config[8] 
-        mon=config[9] 
-        opt=config[10] 
-        lr=config[11]
-        ls=config[12]
-        ls_p=config[13]
+        batch_size=config[6]
+        epochs=config[7]
+        monitor=config[9]
+        min_delta=0 
+        patience=config[8] 
+        verbose=0
+        baseline=None # By Tarlis
+        optimizer=config[10]
+        learning_rate=config[11]
+        mode='auto'
+        new_metrics=None
+        modelname=''
+        log_dir=None
+        loss=config[12]
+        loss_parameters=config[13]
         
+        assert (y_train.ndim == 1) |  (y_train.ndim == 2), "ERR: y_train dimension is incorrect"            
+        assert (y_val.ndim == 1) |  (y_val.ndim == 2), "ERR: y_test dimension is incorrect"
+        assert (y_train.ndim == y_val.ndim), "ERR: y_train and y_test have different dimensions"
+
+        if y_train.ndim == 1:
+            y_one_hot_encodding = False
+        elif y_train.ndim == 2:
+            y_one_hot_encodding = True
+
+        if y_one_hot_encodding == True:
+            loss = ['categorical_crossentropy'] #categorical_crossentropy
+            my_metrics = ['acc', 'top_k_categorical_accuracy'] 
+        else:
+            loss = ['sparse_categorical_crossentropy'] #sparse_categorical_crossentropy
+            my_metrics = ['acc', 'sparse_top_k_categorical_accuracy']  
+
+        # Tarlis: removed the top_k metric in cases of less than 5 classes
+        if self.config['num_classes'] < 5:
+            my_metrics = ['acc']
+
+        if new_metrics is not None:
+            my_metrics = new_metrics + my_metrics
+
+        if optimizer == 'ada':
+            # Optimizer was setting as Adam
+            optimizer = Adam(lr=learning_rate)
+        else:
+            # Optimizer was setting as RMSProps
+            optimizer = RMSprop(lr=learning_rate)
+
+        # Compiling DeepeST Model
+        self.model.compile(optimizer=optimizer, loss=loss, metrics=my_metrics)
+
+        early_stop = EarlyStopping(monitor=monitor,
+                                    min_delta=min_delta, 
+                                    patience=patience, 
+                                    verbose=verbose, # without print 
+                                    mode=mode,
+                                    baseline=baseline,
+                                    restore_best_weights=True)
+
+
+        # Defining checkpoint
+        my_callbacks= [early_stop]    
+
+        # Starting training
         return self.model.fit(X_train, y_train,
-                              X_val, y_val,
-                              batch_size=bs,
-                              epochs=epoch,
-                              monitor=mon,
-                              min_delta=0,
-                              patience=pat,
-                              verbose=0,
-    #                          baseline=0.5,
-                              baseline=None, # By Tarlis
-                              optimizer=opt,
-                              learning_rate=lr,
-                              mode='auto',
-                              new_metrics=None,
-                              save_model=False,
-                              modelname='',
-                              save_best_only=True,
-                              save_weights_only=False,
-                              log_dir=None,
-                              loss=ls,
-                              loss_parameters=ls_p)
+                            epochs=epochs,
+                            callbacks=my_callbacks,
+                            validation_data=(X_val, y_val),
+                            verbose=1,
+                            shuffle=True,
+                            use_multiprocessing=True,          
+                            batch_size=batch_size)
     
     def predict(self,                 
                 X_test,
                 y_test):
         
-        self._summary, y_pred = self.model.predict(X_test, y_test)
+        assert (y_test.ndim == 1) |  (y_test.ndim == 2), "ERR: y_train dimension is incorrect"       
+
+        if y_test.ndim == 1:
+            y_one_hot_encodding = False
+        elif y_test.ndim == 2:
+            y_one_hot_encodding = True
+
+        y_pred_prob = np.array(self.model.predict(X_test))
+        
+        if y_one_hot_encodding == True:
+            argmax = np.argmax(y_pred_prob, axis=1)
+            y_pred_true = np.zeros(y_pred_prob.shape)
+            for row, col in enumerate(argmax):
+                y_pred_true[row][col] = 1
+        else:
+            y_pred_true = y_pred_prob.argmax(axis=1)
+
+#        self._summary = metrics.compute_acc_acc5_f1_prec_rec(y_test, y_pred_true)
+#        self._summary = compute_acc_acc5_f1_prec_rec(y_test, y_pred)
+        self._summary = self.score(np.argmax(y_test, axis=1), y_pred_prob)
         
         self.y_test_true = y_test
-        self.y_test_pred = y_pred
+        self.y_test_pred = y_pred_true
         
         if self.le:
             self.y_test_true = self.le.inverse_transform(self.y_test_true).reshape(1, -1)[0]
             self.y_test_pred = self.le.inverse_transform(self.y_test_pred).reshape(1, -1)[0]
             
-        return self._summary, y_pred 
+        return self._summary, y_pred_prob
+    
+    def clear(self):
+        super().clear()
+        K.clear_session()

@@ -16,10 +16,10 @@ from numpy import argmax
 from sklearn import svm #as SVC 
 
 from matclassification.methods._lib.metrics import *
-from matclassification.methods.core import MHPOClassifier
+from matclassification.methods.core import MHSClassifier
 # --------------------------------------------------------------------------------
 
-class MSVC(MHPOClassifier):
+class MSVC(MHSClassifier):
     
     def __init__(self, 
                  kernel="linear", 
@@ -56,8 +56,9 @@ class MSVC(MHPOClassifier):
         self.model.fit(X_train, y_train1)
         
         y_pred = self.model.predict_proba(X_val)
-        
-        self.report = self.score(X_val, y_val, y_pred)
+
+        y_val1 = argmax(y_val, axis = 1)
+        self.report = self.score(y_val1, y_pred)
         
         return self.report
     
@@ -71,11 +72,12 @@ class MSVC(MHPOClassifier):
         self.y_test_true = argmax(y_test, axis = 1) #y_test
         self.y_test_pred = argmax(y_pred , axis = 1)
         
+        self._summary = self.score(self.y_test_true, y_pred) #self.y_test_pred)
+        
         if self.le:
             self.y_test_true = self.le.inverse_transform(self.y_test_true)
             self.y_test_pred = self.le.inverse_transform(self.y_test_pred)
         
-        self._summary = self.score(X_test, y_test, y_pred) #self.y_test_pred)
         
         return self._summary, y_pred 
 # --------------------------------------------------------------------------------

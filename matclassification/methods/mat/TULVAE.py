@@ -28,14 +28,25 @@ from tqdm.auto import tqdm
 
 import itertools
 # --------------------------------------------------------------------------------
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from tensorflow.keras.layers import Dense, Lambda, LSTM, GRU, Bidirectional, Concatenate, Add, Average, Embedding, Dropout, Input
+from tensorflow.keras.initializers import he_normal, he_uniform
+from tensorflow.keras.models import Model, load_model
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
+from tensorflow.keras.optimizers import RMSprop, Adam
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.layers import Input, ConvLSTM2D, BatchNormalization, RepeatVector, Conv2D
+from tensorflow.keras.regularizers import l1
+from tensorflow.keras import backend as K
+#from matclassification.methods._lib.pymove.models.classification import Tulvae as tva
+# --------------------------------------------------------------------------------
 from matclassification.methods._lib.datahandler import prepareTrajectories
 
-from matclassification.methods._lib.pymove.models.classification import Tulvae as tva
-# --------------------------------------------------------------------------------
+#from matclassification.methods._lib.pymove.models import metrics
 
-from matclassification.methods.core import HPOClassifier
+from matclassification.methods.core import THSClassifier
 
-class TULVAE(HPOClassifier):
+class Tulvae(THSClassifier):
     
     def __init__(self, 
 #                 max_lenght = -1,
@@ -140,8 +151,8 @@ class TULVAE(HPOClassifier):
             self.y_test = y[2]
             self.validate = True
         
-        max_lenght = self.config['max_lenght'] = dic_parameters['max_lenght']
-        vocab_size = self.config['vocab_size'] = dic_parameters['vocab_size'][features[0]] #['poi']
+        self.config['max_lenght'] = dic_parameters['max_lenght']
+        self.config['vocab_size'] = dic_parameters['vocab_size'][features[0]] #['poi']
         rnn = self.config['rnn']
         units = self.config['units']
         stack = self.config['stack']
@@ -161,28 +172,49 @@ class TULVAE(HPOClassifier):
         return X, y, features, num_classes, space, dic_parameters
         
     def create(self, config):
-
-#        nn=config[0]
-        un=config[1]
-        st=config[2]
-        dp=config[3]
-        es=config[4]
-        zv=config[5]
-#        bs=config[6]
-#        epoch=config[7]
-#        pat=config[8]
-        mon=config[9]
-#        lr=config[10]
+    
+        max_lenght=self.config['max_lenght']
+        num_classes=self.config['num_classes']
+        vocab_size=self.config['vocab_size']
+        rnn_units=config[1]
+        stack=config[2]
+        dropout=config[3]
+        embedding_size=config[4]
+        z_values=config[5]
         
         #Initializing Neural Network
-        return tva.TulvaeClassier(max_lenght=self.config['max_lenght'],    
-                                  num_classes=self.config['num_classes'],
-                                  vocab_size=self.config['vocab_size'],
-                                  rnn_units=un,
-                                  dropout=dp,
-                                  embedding_size=es,
-                                  z_values=zv,
-                                  stack=st)
+        #### variables locals ##
+        input_model = []
+        embedding_layers = []
+        hidden_input = []
+        hidden_dropout  = []
+        
+        #Input
+        input_model= Input(shape=(max_lenght,), name='spatial_poi')
+        aux = RepeatVector(1)(input_model)
+
+        # Embedding
+        embedding_layer = Embedding(input_dim = vocab_size, output_dim = embedding_size,name='embedding_poi', input_length=max_lenght)(input_model)
+        
+        # Encoding
+        encoder_lstm = Bidirectional(LSTM(rnn_units))(embedding_layer)
+        encoder_lstm_dropout = Dropout(dropout)(encoder_lstm)
+
+        # Latent
+        z_mean = Dense(z_values)(encoder_lstm_dropout)
+        z_log_sigma = Dense(z_values)(encoder_lstm_dropout)
+        z = Lambda(sampling, output_shape=(z_values,))([z_mean, z_log_sigma,aux])
+
+        # Decoding
+        decoder_lstm = Bidirectional(LSTM(rnn_units))(RepeatVector(2)(z))
+        decoder_lstm_dropout = Dropout(dropout)(decoder_lstm)
+
+        #Output       
+        output_model = Dense(num_classes, activation='softmax')(decoder_lstm_dropout)
+    
+        return Model(inputs=input_model, outputs=output_model)
+
+
     def fit(self, 
             X_train, 
             y_train, 
@@ -192,18 +224,78 @@ class TULVAE(HPOClassifier):
         
         if not config:
             config = self.best_config            
-        if not self.model:
+        if self.model == None:
             self.model = self.create(config)
-        
-        bs=config[6]
-        epoch=config[7]
-        lr=config[10]
-        
-        return self.model.fit(X_train, y_train,
-                              X_val, y_val,
-                              batch_size=bs,
-                              epochs=epoch,
-                              learning_rate=lr,
-                              save_model=False,
-                              save_best_only=False,
-                              save_weights_only=False)
+            
+        batch_size    = config[6]
+        epochs        = config[7]
+        learning_rate = config[10]
+            
+        ## seting parameters
+        optimizer = Adam(lr=learning_rate)
+        loss = ['sparse_categorical_crossentropy']
+        metric = ['acc']  
+        monitor='val_acc'
+
+        self.model.compile(optimizer=optimizer, loss=loss, metrics=metric)
+
+        early_stop = EarlyStopping(monitor='val_acc',
+                                min_delta=0, 
+                                patience=50, 
+                                verbose=0, # without print 
+                                mode='auto',
+                                restore_best_weights=True)
+
+       
+        my_callbacks= [early_stop]   
+        return self.model.fit(X_train, 
+                            y_train,
+                            epochs=epochs,
+                            callbacks=my_callbacks,
+                            validation_data=(X_val, y_val),
+                            verbose=1,
+                            shuffle=True,
+                            use_multiprocessing=True,          
+                            batch_size=batch_size)
+    
+#    def predict(self,                 
+#                X_test,
+#                y_test):
+#        
+#        y_pred = self.model.predict(X_test)
+#        y_pred_true = y_pred.argmax(axis=1)
+##        self._summary = metrics.compute_acc_acc5_f1_prec_rec(y_test, y_pred_true)
+#        self._summary = compute_acc_acc5_f1_prec_rec(y_test, y_pred)
+#        
+#        self.y_test_true = y_test
+#        self.y_test_pred = y_pred_true
+#        
+#        if self.le:
+#            self.y_test_true = self.le.inverse_transform(self.y_test_true)
+#            self.y_test_pred = self.le.inverse_transform(self.y_test_pred)
+#            
+#        return self._summary, y_pred 
+    
+    def clear(self):
+        super().clear()
+        K.clear_session()
+
+def sampling_error(args):
+    z_mean, z_log_sigma,aux = args
+    bs = aux.shape[0]
+    if(bs == None):
+        epsilon = K.random_normal(shape=(1, 100),mean=0., stddev=1)
+        return z_mean + z_log_sigma * epsilon
+    else:
+        epsilon = K.random_normal(shape=(bs, 100),mean=0., stddev=1)
+        return z_mean + z_log_sigma * epsilon
+
+def sampling(args):
+    z_mean, z_log_sigma,aux = args
+    bs = aux.shape[0]
+    if(bs == None):
+        epsilon = K.random_normal(shape=(1, z_mean.shape[1]),mean=0., stddev=1)
+        return z_mean + z_log_sigma * epsilon
+    else:
+        epsilon = K.random_normal(shape=(bs, z_mean.shape[1]),mean=0., stddev=1)
+        return z_mean + z_log_sigma * epsilon

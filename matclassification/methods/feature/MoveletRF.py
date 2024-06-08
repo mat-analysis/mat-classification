@@ -26,9 +26,9 @@ from sklearn.ensemble import RandomForestClassifier
 from matclassification.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
 from matclassification.methods._lib.metrics import *
 
-from matclassification.methods.core import MHPOClassifier
+from matclassification.methods.core import MHSClassifier
 
-class MRF(MHPOClassifier):
+class MRF(MHSClassifier):
     
     def __init__(self, 
                  n_estimators = [300],
@@ -75,7 +75,7 @@ class MRF(MHPOClassifier):
             
             y_pred = self.model.predict(X_val)
             
-            line = self.score(X_val, y_val, y_pred)
+            line = self.score(y_val.argmax(axis = 1), y_pred)
             line['n_tree'] = [n_tree]
             
             lines.append(line)

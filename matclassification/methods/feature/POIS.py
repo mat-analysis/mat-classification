@@ -37,11 +37,11 @@ from matclassification.methods._lib.logger import Logger
 from matclassification.methods._lib.metrics import MetricsLogger
 from matclassification.methods.mat.MARC import EpochLogger
 # --------------------------------------------------------------------------------
-from matclassification.methods.core import MHPOClassifier
+from matclassification.methods.core import HSClassifier
 
 from matclassification.methods.feature.feature_extraction.pois import pois
 
-class POIS(MHPOClassifier):
+class POIS(HSClassifier):
     
     def __init__(self, 
                  method='npoi',
@@ -252,17 +252,15 @@ class POIS(MHPOClassifier):
                 X_test,
                 y_test):
         
-        
         y_pred = self.model.predict(X_test)#, y_test)
+        self._summary = self.score(argmax(y_test, axis = 1), y_pred)
         
-        self.y_test_true = y_test #argmax(y_test, axis = 1)
-        self.y_test_pred = y_pred #argmax(y_pred , axis = 1)
+        self.y_test_true = y_test
+        self.y_test_pred = y_pred
         
         if self.le:
-            self.y_test_true = self.le.inverse_transform(self.y_test_true)#.reshape(1, -1)[0]
-            self.y_test_pred = self.le.inverse_transform(self.y_test_pred)#.reshape(1, -1)[0]
-            
-        self._summary = self.score(X_test, y_test, y_pred)
+            self.y_test_true = self.le.inverse_transform(self.y_test_true).reshape(1, -1)[0]
+            self.y_test_pred = self.le.inverse_transform(self.y_test_pred).reshape(1, -1)[0]
         
         return self._summary, y_pred
     

@@ -26,9 +26,9 @@ from sklearn.model_selection import RandomizedSearchCV
 from matclassification.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
 from matclassification.methods._lib.metrics import *
 
-from matclassification.methods.core import MHPOClassifier
+from matclassification.methods.core import MHSClassifier
 
-class MRFHP(MHPOClassifier):
+class MRFHP(MHSClassifier):
     
     def __init__(self, 
                  # Number of trees in random forest

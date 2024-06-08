@@ -11,8 +11,6 @@ from .mat.MARC import MARC
 
 from .mat.TRF import TRF
 from .mat.TXGB import TXGB
-from .mat.TULVAE import TULVAE
-from .mat.BITULER import BITULER
+from .mat.Tulvae import Tulvae
+from .mat.Bituler import Bituler
 from .mat.DeepeST import DeepeST
-
-from .ensemble.TEC import TEC

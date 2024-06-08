@@ -10,6 +10,7 @@
  - Document comments on all public interface funcions and modules, remove comment lines of code
  - Require dependency https://github.com/InsightLab/PyMove instead of hard coded.
  - Hyperparam config training for movelet-based methods
+ - Movelets split train in train/val
 
 # *TODO* Known Issues:
  - Issue: TXGB low acc?

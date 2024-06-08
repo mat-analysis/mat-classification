@@ -28,15 +28,16 @@ from sklearn.tree import DecisionTreeClassifier
 from matclassification.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
 from matclassification.methods._lib.metrics import *
 
-from matclassification.methods.core import MHPOClassifier
+from matclassification.methods.core import MHSClassifier
 
-class MDT(MHPOClassifier):
+class MDT(MHSClassifier):
     
     def __init__(self, 
                  n_jobs=-1,
                  verbose=2,
                  random_state=42,
                  filterwarnings='ignore'):
+        
         super().__init__('MDT', n_jobs=n_jobs, verbose=verbose, random_state=random_state, filterwarnings=filterwarnings)
     
     def prepare_input(self,
@@ -58,6 +59,22 @@ class MDT(MHPOClassifier):
         
     def create(self):
         return DecisionTreeClassifier()
+    
+    def fit(self, 
+            X_train, 
+            y_train, 
+            X_val,
+            y_val):
+        
+        self.model = self.create()
+        self.model.fit(X_train, y_train)
+        
+        y_pred = self.model.predict(X_val)
+        
+        y_val1 = argmax(y_val, axis = 1)
+        self.report = self.score(y_val1, y_pred)
+        
+        return self.report
     
 #    def score(self, X_test, y_test, y_pred):
 #        acc, acc_top5, _f1_macro, _prec_macro, _rec_macro, bal_acc = compute_acc_acc5_f1_prec_rec(y_test, np.array(y_pred))
@@ -141,21 +158,6 @@ class MDT(MHPOClassifier):
         # Draw graph
         graph = graphviz.Source(dot_data, format="png") 
         return graph
-    
-#    def fit(self, 
-#            X_train, 
-#            y_train, 
-#            X_val,
-#            y_val):
-#        
-#        self.model = self.create()
-#        self.model.fit(X_train, y_train)
-#        
-#        y_pred = self.model.predict(X_val)
-#        
-#        self.report = self.score(X_val, y_val, y_pred)
-#        
-#        return self.report
     
 #    def predict(self,                 
 #                X_test,

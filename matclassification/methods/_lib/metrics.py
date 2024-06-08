@@ -35,60 +35,71 @@ def _process_pred(y_pred):
 
     return y_pred
 
+#def expand_y(y_pred):
+#    nlabels = len(set(y_pred))
+#    proc_y_pred = np.zeros((len(y_pred), nlabels))
+#
+#    for row, col in enumerate(y_pred):
+#        proc_y_pred[row][col] = 1
+#
+#    return proc_y_pred
 
-def f1_tensorflow_macro(y_true, y_pred):
-#    from keras import backend as K
-    print(K.eval(y_pred))
-    print(y_pred.shape)
-    y_pred = np.zeros(y_pred.shape)
-    for row, col in enumerate(argmax):
-        y_pred[row][col] = 1
-    
-    # proc_y_pred = _process_pred(y_pred)
+#def f1_tensorflow_macro(y_true, y_pred):
+#    y_pred = np.zeros(y_pred.shape)
+#    for row, col in enumerate(argmax):
+#        y_pred[row][col] = 1
+#    
+#    return f1_score(y_true, y_pred, average='macro')
+
+#def precision_macro(y_true, y_pred):
+#    proc_y_pred = _process_pred(y_pred)
+#    return precision_score(y_true, proc_y_pred, average='macro', zero_division=1)
+def precision_macro(y_true, y_pred):
+    return precision_score(y_true, y_pred, average='macro', zero_division=1)
+
+#def recall_macro(y_true, y_pred):
+#    proc_y_pred = _process_pred(y_pred)
+#    return recall_score(y_true, proc_y_pred, average='macro')
+def recall_macro(y_true, y_pred):
+    return recall_score(y_true, y_pred, average='macro')
+
+#def f1_macro(y_true, y_pred):
+#    proc_y_pred = _process_pred(y_pred)
+#    return f1_score(y_true, proc_y_pred, average='macro')
+def f1_macro(y_true, y_pred):
     return f1_score(y_true, y_pred, average='macro')
 
-
-def precision_macro(y_true, y_pred):
-    proc_y_pred = _process_pred(y_pred)
-    return precision_score(y_true, proc_y_pred, average='macro', zero_division=1)
-
-
-def recall_macro(y_true, y_pred):
-    proc_y_pred = _process_pred(y_pred)
-    return recall_score(y_true, proc_y_pred, average='macro')
-
-
-def f1_macro(y_true, y_pred):
-    proc_y_pred = _process_pred(y_pred)
-    return f1_score(y_true, proc_y_pred, average='macro')
-
-
+#def accuracy(y_true, y_pred):
+#    proc_y_pred = _process_pred(y_pred)
+#    return accuracy_score(y_true, proc_y_pred, normalize=True)
 def accuracy(y_true, y_pred):
-    proc_y_pred = _process_pred(y_pred)
-    return accuracy_score(y_true, proc_y_pred, normalize=True)
+    return accuracy_score(y_true, y_pred, normalize=True)
 
-
+# TODO: should be replaced for a standard function
 def accuracy_top_k(y_true, y_pred, K=5):
-    order = np.argsort(y_pred, axis=1)
-    correct = 0
+    if y_pred.ndim == 1: # Not possible to calculate acc top K
+        return 0
+    else:
+        order = np.argsort(y_pred, axis=1)
+        correct = 0
+        
+#        for i, sample in enumerate(np.argmax(y_true, axis=1)):
+        for i, sample in enumerate(y_true):
+            if sample in order[i, -K:]:
+                correct += 1
 
-    for i, sample in enumerate(np.argmax(y_true, axis=1)):
-        if sample in order[i, -K:]:
-            correct += 1
+        return correct / len(y_true)
 
-    return correct / len(y_true)
-
-# by Tarlis --
-def acc_top_k(y_true, y_pred, n_y_pred, K ):
-    order = np.argsort(n_y_pred, axis=1)
-    correct = 0
-
-    for i, sample in enumerate(np.argmax(y_true, axis=1)):
-        if sample in order[i, -K:]:
-            correct += 1
-
-    return correct / len(y_true)
-
+## by Tarlis --
+#def acc_top_k(y_true, y_pred, n_y_pred, K ):
+#    order = np.argsort(n_y_pred, axis=1)
+#    correct = 0
+#
+#    for i, sample in enumerate(np.argmax(y_true, axis=1)):
+#        if sample in order[i, -K:]:
+#            correct += 1
+#
+#    return correct / len(y_true)
 
 def balanced_accuracy(y_true, y_pred):
     if y_pred.ndim == 1:
@@ -96,47 +107,26 @@ def balanced_accuracy(y_true, y_pred):
     else:
         return balanced_accuracy_score(y_true.argmax(axis=1), y_pred.argmax(axis=1))
 
-def compute_acc_acc5_f1_prec_rec(y_true, y_pred, print_metrics=True, print_pfx=''):
-    acc = accuracy(y_true, y_pred)
-    acc_top5 = accuracy_top_k(y_true, y_pred, K=5)
-    bal_acc = balanced_accuracy(y_true, y_pred)
-    _f1_macro = f1_macro(y_true, y_pred)
-    _prec_macro = precision_macro(y_true, y_pred)
-    _rec_macro = recall_macro(y_true, y_pred)
-
-#    dic_model = {
-#        'acc': acc,
-#        'acc_top_K5': acc_top5,
-#        'balanced_accuracy': bal_acc,
-#        'precision_macro': _f1_macro,
-#        'recall_macro': _prec_macro,
-#        'f1_macro': _rec_macro,
-#    } 
+# ATT: y_true must be the true indexes for y_pred 2D matrix
+def compute_acc_acc5_f1_prec_rec(y_true, y_pred, print_metrics=False, print_pfx=''):
+    if y_pred.ndim == 1:
+        proc_y_pred = y_pred
+    else:
+        proc_y_pred = y_pred.argmax(axis=1)
     
+    acc = accuracy(y_true, proc_y_pred)
+    acc_top5 = accuracy_top_k(y_true, y_pred, K=5)
+    bal_acc = balanced_accuracy(y_true, proc_y_pred)
+    _f1_macro = f1_macro(y_true, proc_y_pred)
+    _prec_macro = precision_macro(y_true, proc_y_pred)
+    _rec_macro = recall_macro(y_true, proc_y_pred)
+
     if print_metrics:
         pfx = '' if print_pfx == '' else print_pfx + '\t\t'
         print(pfx + 'acc: %.6f\tacc_top5: %.6f\tf1_macro: %.6f\tprec_macro: %.6f\trec_macro: %.6f'
               % (acc, acc_top5, _f1_macro, _prec_macro, _rec_macro))
     
-#    result = pd.DataFrame(dic_model, index=[0])
-
     return acc, acc_top5, _f1_macro, _prec_macro, _rec_macro, bal_acc
-
-#def compute_acc_acc5_f1_prec_rec(y_true, y_pred, print_metrics=True,
-#                                 print_pfx=''):
-#    acc = accuracy(y_true, y_pred)
-#    acc_top5 = accuracy_top_k(y_true, y_pred, K=5)
-##    acc_top5 = top_k_accuracy_score(y_true, np.array(y_pred), k=5)
-#    _f1_macro = f1_macro(y_true, y_pred)
-#    _prec_macro = precision_macro(y_true, y_pred)
-#    _rec_macro = recall_macro(y_true, y_pred)
-#
-#    if print_metrics:
-#        pfx = '' if print_pfx == '' else print_pfx + '\t\t'
-#        print(pfx + 'acc: %.6f\tacc_top5: %.6f\tf1_macro: %.6f\tprec_macro: %.6f\trec_macro: %.6f'
-#              % (acc, acc_top5, _f1_macro, _prec_macro, _rec_macro))
-#
-#    return acc, acc_top5, _f1_macro, _prec_macro, _rec_macro
 
 # ------------------------------------------------------------------------------
 # From Movelets ML
@@ -329,3 +319,33 @@ class MetricsLogger:
             print("WARNING: File '" + file + "' not found!")
 
         return self
+
+    
+############################
+# other evaluation metrics #
+############################
+def mape(true, pred, sample_weight=None):
+    """
+    it is very, very slow when the shapes are different and the dataset is very large (e.g. > 1,000,000 rows).
+    """
+    if true.shape != pred.shape:
+        true = true.reshape(pred.shape)
+    return np.average( np.abs( (true - pred) / true ), weights=sample_weight)
+
+def mape_xgb(true, pred, sample_weight=None):
+    return 'error', mape(true, pred.get_label(), sample_weight)
+
+def mse(true, pred, sample_weight=None):
+    if true.shape[0] == 0:
+        return None
+    return mean_squared_error(true, pred, sample_weight)
+
+def mse_xgb(true, pred, sample_weight=None):
+    return 'error', mse(true, pred.get_label(), sample_weight)
+
+def regularity(sequence):
+    return len(sequence) / len(set(sequence))    
+
+def stationarity(sequence):
+    rle = [(value, sum(1 for i in g)) for value, g in groupby(sequence)]
+    return np.mean([length for _, length in rle])

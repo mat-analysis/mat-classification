@@ -39,9 +39,9 @@ from sklearn.metrics import classification_report
 from matclassification.methods._lib.logger import Logger
 from matclassification.methods._lib.metrics import MetricsLogger
 # --------------------------------------------------------------------------------
-from matclassification.methods.core import AbstractClassifier
+from matclassification.methods.core import HSClassifier
 
-class MARC(AbstractClassifier):
+class MARC(HSClassifier):
     
     def __init__(self, 
                  embedder_size=100, # [100, 200, 300] ?
@@ -277,30 +277,31 @@ class MARC(AbstractClassifier):
         
         y_pred = self.model.predict(X_test)
         
+        # Because of one_hot_encoding:
         self.y_test_true = argmax(y_test, axis = 1)
         self.y_test_pred = argmax(y_pred , axis = 1)
+        
+        self._summary = self.score(self.y_test_true, y_pred)
         
         if self.le:
             self.y_test_true = self.le.inverse_transform(self.y_test_true)
             self.y_test_pred = self.le.inverse_transform(self.y_test_pred)
 
-        self._summary = self.score(X_test, y_test, y_pred)
-            
         return self._summary, y_pred
     
-    def train(self):
-        
-        X_train = self.X_train
-        y_train = self.y_train
-        
-        if self.validate:
-            X_val = self.X_val
-            y_val = self.y_val
-        else:
-            X_val = self.X_test
-            y_val = self.y_test   
-            
-        return self.fit(X_train, y_train, X_val, y_val)
+#    def train(self):
+#        
+#        X_train = self.X_train
+#        y_train = self.y_train
+#        
+#        if self.validate:
+#            X_val = self.X_val
+#            y_val = self.y_val
+#        else:
+#            X_val = self.X_test
+#            y_val = self.y_test   
+#            
+#        return self.fit(X_train, y_train, X_val, y_val)
     
 #    def test(self):            
 #        X_test = self.X_test
@@ -357,9 +358,9 @@ class EpochLogger(EarlyStopping):
         
         self.dataset = dataset
         self.X_train = X_train
-        self.y_train = y_train
+        self.y_train = y_train.argmax(axis=1)
         self.X_test = X_test
-        self.y_test = y_test
+        self.y_test = y_test.argmax(axis=1)
         
         self._file = metrics_file
         
@@ -374,6 +375,7 @@ class EpochLogger(EarlyStopping):
 
     def on_epoch_end(self, epoch, logs={}):
         pred_y_train = np.array(self.model.predict(self.X_train))
+        
         (train_acc,
          train_acc5,
          train_f1_macro,
@@ -384,6 +386,7 @@ class EpochLogger(EarlyStopping):
                                                          print_pfx='TRAIN')
 
         pred_y_test = np.array(self.model.predict(self.X_test))
+        
         (test_acc,
          test_acc5,
          test_f1_macro,

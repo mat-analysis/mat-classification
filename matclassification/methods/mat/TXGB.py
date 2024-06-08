@@ -28,12 +28,15 @@ from tqdm.auto import tqdm
 
 import itertools
 # --------------------------------------------------------------------------------
-from matclassification.methods._lib.pymove.models.classification import XGBoost as xg
+#from matclassification.methods._lib.pymove.models.classification import XGBoost as xg
+import xgboost as xgb
+#from matclassification.methods._lib.pymove.core import video as vi
+import subprocess
 # --------------------------------------------------------------------------------
 
-from matclassification.methods.core import HPOClassifier
+from matclassification.methods.core import THSClassifier
 
-class TXGB(HPOClassifier):
+class TXGB(THSClassifier):
     
     def __init__(self, 
                  n_estimators = [2000], 
@@ -54,6 +57,11 @@ class TXGB(HPOClassifier):
                  filterwarnings='ignore'):
         
         super().__init__('TXGB', save_results=save_results, n_jobs=n_jobs, verbose=verbose, random_state=random_state, filterwarnings=filterwarnings)
+        
+        if tree_method == 'auto':
+            tree_method = 'hist' if nvidia_gpu_count() == 0 else 'gpu_hist'
+        else:
+            tree_method = 'gpu_hist'
         
         self.add_config(n_estimators=n_estimators, 
                         max_depth=max_depth, 
@@ -86,17 +94,43 @@ class TXGB(HPOClassifier):
         epch=config[9] 
         
         #Initializing Neural Network
-        return xg.XGBoostClassifier(n_estimators=ne,
-                                           max_depth=md,
-                                           lr=lr,
-                                           gamma=gm,
-                                           colsample_bytree=cst,
-                                           subsample=ss,
-                                           l1=l1,
-                                           l2=l2,
-                                           random_state=self.config['random_state'],
-                                           tree_method=self.config['tree_method'],
-                                           eval_metric=loss,
-                                           early_stopping_rounds=epch,
-                                           num_classes=self.config['num_classes'])
+        model = xgb.XGBClassifier(max_depth=md, 
+                                  learning_rate=lr,
+                                  n_estimators=ne, 
+                                  tree_method=self.config['tree_method'],
+                                  subsample=ss, 
+                                  gamma=gm,
+                                  reg_alpha_l1=l1, 
+                                  reg_lambda_l2=l2,
+                                  n_jobs=-1, 
+                                  early_stopping_rounds=epch,
+                                  random_state=self.config['random_state'],
+                                  eval_metric=loss,
+                                  objective='multi:softmax',
+                                  num_class=self.config['num_classes']) # Added by Tarlis
+        
+        return model
     
+    def fit(self, 
+            X_train, 
+            y_train, 
+            X_val,
+            y_val,
+            config=None):
+                  
+        if not config:
+            config = self.best_config            
+        if not self.model:
+            self.model = self.create(config)
+            
+        eval_set = [(X_train, y_train), (X_val, y_val)]
+        return self.model.fit(X_train, y_train, 
+                              eval_set=eval_set, 
+                              verbose=self.config['verbose'])
+
+
+def nvidia_gpu_count():
+    try:
+        return str(subprocess.check_output(["nvidia-smi", "-L"])).count('UUID')
+    except:
+        return 0
