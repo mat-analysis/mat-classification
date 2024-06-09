@@ -79,45 +79,11 @@ class MMLP(MHSClassifier):
         
         return model
         
-#    def prepare_input(self,
-#                      train, test,
-#                      validate = True):
-#        
-#        #Preparing the input of movelets:
-#        X, y, nattr, num_classes = super().prepare_input(train, test, validate=validate)
-#        
-##        self.add_config(nattr=nattr, num_classes=num_classes)
-#        
-##        # Scaling y and transforming to keras format
-##        self.le = preprocessing.LabelEncoder()
-##        self.le.fit(self.y_train)
-##        
-##        if not self.validate:
-##            self.y_train = self.le.transform(self.y_train) 
-##            self.y_test = self.le.transform(self.y_test)
-##            
-##            self.y_train = to_categorical(self.y_train)
-##            self.y_test = to_categorical(self.y_test)
-##        else:
-##            self.y_train = self.le.transform(self.y_train)
-##            self.y_val = self.le.transform(self.y_val)
-##            self.y_test = self.le.transform(self.y_test)
-##            
-##            self.y_train = to_categorical(self.y_train)
-##            self.y_val = to_categorical(self.y_val)
-##            self.y_test = to_categorical(self.y_test)
-#            
-#        return X, y, nattr, num_classes
-
-        
     def fit(self, 
             X_train, 
             y_train, 
             X_val,
             y_val):
-
-#        self.config['num_features'] = len(X_train[1,:])  
-#        self.config['num_classes'] = len(self.le.classes_)
 
         if self.model == None:
             self.model = self.create()
@@ -155,8 +121,6 @@ class MMLP(MHSClassifier):
             self.y_test_true = self.le.inverse_transform(y_test_true)
             self.y_test_pred =  self.le.inverse_transform(y_test_pred) 
     
-#        self.report = metrics.compute_acc_acc5_f1_prec_rec(y_test_true, y_test_pred)
-
         return self._summary, y_pred
 
     
@@ -189,36 +153,6 @@ class MMLP1(MHSClassifier):
                         num_features=num_features, 
                         num_classes=num_classes)
         
-#    def prepare_input(self,
-#                      train, test,
-#                      validate = True):
-#        
-#        #Preparing the input of movelets:
-#        X, y, nattr, num_classes = super().prepare_input(train, test, validate=validate)
-#        
-#        self.add_config(nattr=nattr, num_classes=num_classes)
-#        
-#        # Scaling y and transforming to keras format
-#        self.le = preprocessing.LabelEncoder()
-#        self.le.fit(self.y_train)
-#        
-#        if not self.validate:
-#            self.y_train = self.le.transform(self.y_train) 
-#            self.y_test = self.le.transform(self.y_test)
-#            
-#            self.y_train = to_categorical(self.y_train)
-#            self.y_test = to_categorical(self.y_test)
-#        else:
-#            self.y_train = self.le.transform(self.y_train)
-#            self.y_val = self.le.transform(self.y_val)
-#            self.y_test = self.le.transform(self.y_test)
-#            
-#            self.y_train = to_categorical(self.y_train)
-#            self.y_val = to_categorical(self.y_val)
-#            self.y_test = to_categorical(self.y_test)
-#            
-#        return X, y, nattr, num_classes
-        
     def create(self):
         
         nattr = self.config['num_features']
@@ -227,24 +161,20 @@ class MMLP1(MHSClassifier):
         par_lr = self.config['par_lr']
         
         #Initializing Neural Network
-        self.model = Sequential()
+        model = Sequential()
         # Adding the input layer and the first hidden layer
-        self.model.add(Dense(units = 100, kernel_initializer = 'uniform', kernel_regularizer= regularizers.l2(0.02), activation = 'relu', input_dim = (nattr)))
+        model.add(Dense(units = 100, kernel_initializer = 'uniform', kernel_regularizer= regularizers.l2(0.02), activation = 'relu', input_dim = (nattr)))
         #model.add(BatchNormalization())
-        self.model.add(Dropout( par_dropout )) 
+        model.add(Dropout( par_dropout )) 
         # Adding the output layer       
-        self.model.add(Dense(units = nclasses, kernel_initializer = 'uniform', activation = 'softmax'))
+        model.add(Dense(units = nclasses, kernel_initializer = 'uniform', activation = 'softmax'))
         # Compiling Neural Network
     #     adam = Adam(lr=par_lr) # TODO: check for old versions...
         adam = Adam(learning_rate=par_lr)
-        self.model.compile(optimizer = adam, loss = 'categorical_crossentropy', metrics = ['accuracy','top_k_categorical_accuracy',f1])
+        model.compile(optimizer = adam, loss = 'categorical_crossentropy', metrics = ['accuracy','top_k_categorical_accuracy',f1])
         
-        
-        
-        #assert (eval_metric == 'merror') | (eval_metric == 'mlogloss'), "ERR: invalid loss, set loss as mlogloss or merror" 
-
-        #print('[MODEL:] Starting model training, {} iterations'.format(total))
-        
+        return model
+    
     def fit(self, 
             X_train, 
             y_train, 
@@ -252,20 +182,10 @@ class MMLP1(MHSClassifier):
             y_val):
 
         self.config['num_features'] = len(X_train[1,:])  
-        
-#        # Scaling y and transforming to keras format
-#        self.le = preprocessing.LabelEncoder()
-#        self.le.fit(y_train)
-#
-#        y_train = self.le.transform(y_train) 
-#        y_val = self.le.transform(y_val)
-#
-#        self.y_train = y_train1 = to_categorical(y_train)
-#        self.y_val = y_val1 = to_categorical(y_val)
         self.config['num_classes'] = len(self.le.classes_)
         
         if not self.model:
-            self.create()
+            self.model = self.create()
 
         par_batch_size = self.config['par_batch_size']
         par_epochs = self.config['par_epochs']

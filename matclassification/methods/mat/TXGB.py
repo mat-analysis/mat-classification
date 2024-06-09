@@ -28,12 +28,9 @@ from tqdm.auto import tqdm
 
 import itertools
 # --------------------------------------------------------------------------------
-#from matclassification.methods._lib.pymove.models.classification import XGBoost as xg
 import xgboost as xgb
-#from matclassification.methods._lib.pymove.core import video as vi
 import subprocess
 # --------------------------------------------------------------------------------
-
 from matclassification.methods.core import THSClassifier
 
 class TXGB(THSClassifier):

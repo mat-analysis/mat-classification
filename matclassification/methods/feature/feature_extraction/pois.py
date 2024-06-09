@@ -29,23 +29,10 @@ def pois_read(sequences, features, method='npoi', dataset='specific', folder='./
     
     df_train, df_test = loadTrainTest(features, folder, dataset)
     
-    return pois(df_train, df_test, sequences, dataset, features, method, result_dir, save_all, tid_col, class_col)
+    return pois(df_train, df_test, sequences, features, method, result_dir, save_all, tid_col, class_col)
 
-def pois(df_train, df_test, sequences, features, method='npoi', dataset='specific', result_dir='.', save_all=False, tid_col='tid', class_col='label', verbose=True):
-#    from ..main import importer
-#    importer(['S', 'datetime'], globals(), {'preprocessing': ['dfVariance']})
-#     print('Dataset: {}, Feature: {}, Sequence: {}'.format(dataset, feature, sequence))
-#     from datetime import datetime
-#     if dataset is '':
-#         df_train = pd.read_csv(os.path.join(folder, 'train.csv'))
-#         df_test = pd.read_csv(os.path.join(folder, 'test.csv'))
-#     else:
-#         df_train = pd.read_csv(os.path.join(folder, dataset+'_train.csv'))
-#         df_test = pd.read_csv(os.path.join(folder, dataset+'_test.csv'))
+def pois(df_train, df_test, sequences, features, method='npoi', result_dir='.', save_all=False, tid_col='tid', class_col='label', verbose=True):
     
-#    df_train, df_test = loadTrainTest(features, folder, dataset)
-    
-
     if verbose:
         print("[POIS:] Starting feature extractor ... ")
     time = datetime.now()
@@ -55,8 +42,8 @@ def pois(df_train, df_test, sequences, features, method='npoi', dataset='specifi
         stats = dfVariance(df_[[x for x in df_.columns if x not in [tid_col, class_col]]])
         features = [stats.index[0]]
     
-    if save_all:
-        save_all = result_dir
+#    if save_all:
+#        save_all = result_dir
         
     agg_x_train = None
     agg_x_test  = None
@@ -66,7 +53,7 @@ def pois(df_train, df_test, sequences, features, method='npoi', dataset='specifi
         aux_x_test  = None
         for feature in features:
             if verbose:
-                print('Dataset: {}, Feature: {}, Sequence: {}'.format(dataset, feature, sequence))
+                print('- Feature: {}, Sequence: {}'.format(feature, sequence))
             unique_features = df_train[feature].unique().tolist()
 
             points = df_train[feature].values
@@ -86,25 +73,25 @@ def pois(df_train, df_test, sequences, features, method='npoi', dataset='specifi
                     os.makedirs(result_dir)
 
                 pd.DataFrame(possible_sequences).to_csv(os.path.join(result_dir, \
-                   feature+'_'+str(sequence)+'_'+dataset+'-sequences.csv'), index=False, header=None)
+                   feature+'_'+str(sequence)+'-sequences.csv'), index=False, header=None)
             
             if method == 'poi':
                 if verbose:
                     print('Starting POI...')
                 x_train, x_test, y_train, y_test = poi(df_train, df_test, possible_sequences, \
-                                                       seq2idx, sequence, dataset, feature, result_dir=save_all, 
+                                                       seq2idx, sequence, feature, result_dir=None, 
                                                        tid_col=tid_col, class_col=class_col)
             elif method == 'npoi':
                 if verbose:
                     print('Starting NPOI...')
                 x_train, x_test, y_train, y_test = npoi(df_train, df_test, possible_sequences, \
-                                                       seq2idx, sequence, dataset, feature, result_dir=save_all, 
+                                                       seq2idx, sequence, feature, result_dir=None, 
                                                        tid_col=tid_col, class_col=class_col)
             else:
                 if verbose:
                     print('Starting WNPOI...')
                 x_train, x_test, y_train, y_test = wnpoi(df_train, df_test, possible_sequences, \
-                                                       seq2idx, sequence, dataset, feature, result_dir=save_all, 
+                                                       seq2idx, sequence, feature, result_dir=None, 
                                                        tid_col=tid_col, class_col=class_col)
 
             # Concat columns:
@@ -148,30 +135,11 @@ def pois(df_train, df_test, sequences, features, method='npoi', dataset='specifi
         print('[POIS:] Processing time: {} milliseconds. Done.'.format(time_ext))
         print('------------------------------------------------------------------------------------------------')
     
-#    del agg_x_train
-#    del agg_x_test 
-#    del y_train
-#    del y_test 
-    
-#    if doclass:
-#        time = datetime.now()
-#        
-#        importer(['TEC.POIS'], locals())
-#        model, x_test = model_poifreq(core_name)
-#        model = model.predict(x_test)
-#        time_cls = (datetime.now()-time).total_seconds() * 1000
-#        
-#        f=open(os.path.join(result_dir, 'results_summary.txt'), "a+")
-#        f.write("Processing time: %d milliseconds\r\n" % (time_ext))
-#        f.write("Classification time: %d milliseconds\r\n" % (time_cls))
-#        f.write("Total time: %d milliseconds\r\n" % (time_ext+time_cls))
-#        f.close()
-        
     return agg_x_train, agg_x_test, y_train, y_test, core_name
     
 ## --------------------------------------------------------------------------------------------
 ## POI-F: POI Frequency
-def poi(df_train, df_test, possible_sequences, seq2idx, sequence, dataset, feature, result_dir=None, tid_col='tid', class_col='label'):
+def poi(df_train, df_test, possible_sequences, seq2idx, sequence, feature, result_dir=None, tid_col='tid', class_col='label'):
 #     from ..main import importer
 #     importer(['S'], locals())
 
@@ -214,14 +182,14 @@ def poi(df_train, df_test, possible_sequences, seq2idx, sequence, dataset, featu
             if aux in possible_sequences:
                 x_test[i][seq2idx[aux]] += 1
     
-    if result_dir is not False:
-        core_name = os.path.join(result_dir, method+'_'+feature+'_'+str(sequence)+'_'+dataset)
+    if result_dir:
+        core_name = os.path.join(result_dir, method+'_'+feature+'_'+str(sequence))
         to_file(core_name, x_train, x_test, y_train, y_test)
         
     return x_train, x_test, y_train, y_test
     
 ### NPOI-F: Normalized POI Frequency
-def npoi(df_train, df_test, possible_sequences, seq2idx, sequence, dataset, feature, result_dir=None, tid_col='tid', class_col='label'):
+def npoi(df_train, df_test, possible_sequences, seq2idx, sequence, feature, result_dir=None, tid_col='tid', class_col='label'):
 #     from ..main import importer
 #     importer(['S'], locals())
     
@@ -266,14 +234,14 @@ def npoi(df_train, df_test, possible_sequences, seq2idx, sequence, dataset, feat
                 x_test[i][seq2idx[aux]] += 1
         x_test[i] = x_test[i]/len(traj_pois)
         
-    if result_dir is not False:
-        core_name = os.path.join(result_dir, method+'_'+feature+'_'+str(sequence)+'_'+dataset)
+    if result_dir:
+        core_name = os.path.join(result_dir, method+'_'+feature+'_'+str(sequence))
         to_file(core_name, x_train, x_test, y_train, y_test)
         
     return x_train, x_test, y_train, y_test
     
 ### WNPOI-F: Weighted Normalized POI Frequency.
-def wnpoi(df_train, df_test, possible_sequences, seq2idx, sequence, dataset, feature, result_dir=None, tid_col='tid', class_col='label'):
+def wnpoi(df_train, df_test, possible_sequences, seq2idx, sequence, feature, result_dir=None, tid_col='tid', class_col='label'):
 #     from ..main import importer
 #     importer(['S'], locals())
     
@@ -337,8 +305,8 @@ def wnpoi(df_train, df_test, possible_sequences, seq2idx, sequence, dataset, fea
         for w in range(0, len(possible_sequences)):
             x_test[i][w] *= weights[w]
             
-    if result_dir is not False:
-        core_name = os.path.join(result_dir, method+'_'+feature+'_'+str(sequence)+'_'+dataset)
+    if result_dir:
+        core_name = os.path.join(result_dir, method+'_'+feature+'_'+str(sequence))
         to_file(core_name, x_train, x_test, y_train, y_test)
         
     return x_train, x_test, y_train, y_test
@@ -370,11 +338,11 @@ def poifreq_all(sequence, dataset, feature, folder, result_dir, tid_col='tid', c
     if not os.path.exists(result_dir):
         os.makedirs(result_dir)
         
-    pd.DataFrame(possible_sequences).to_csv(os.path.join(result_dir, feature+'_'+str(sequence)+'_'+dataset+'-sequences.csv'), index=False, header=None)
+    pd.DataFrame(possible_sequences).to_csv(os.path.join(result_dir, feature+'_'+str(sequence)+'-sequences.csv'), index=False, header=None)
     
-    poi(df_train, df_test, possible_sequences, seq2idx, sequence, dataset, feature, result_dir, tid_col, class_col)
-    npoi(df_train, df_test, possible_sequences, seq2idx, sequence, dataset, feature, result_dir, tid_col, class_col)
-    wnpoi(df_train, df_test, possible_sequences, seq2idx, sequence, dataset, feature, result_dir, tid_col, class_col)
+    poi(df_train, df_test, possible_sequences, seq2idx, sequence, feature, result_dir, tid_col, class_col)
+    npoi(df_train, df_test, possible_sequences, seq2idx, sequence, feature, result_dir, tid_col, class_col)
+    wnpoi(df_train, df_test, possible_sequences, seq2idx, sequence, feature, result_dir, tid_col, class_col)
    
     
 ## --------------------------------------------------------------------------------------------

@@ -40,7 +40,7 @@ class HSClassifier(AbstractClassifier):
     def train(self, dir_validation='.'):
         
         # This implementation, trains only one model 
-        # (but, you may overwrite the method following this structure or HPSClassifier.train())
+        # (but, you may overwrite the method following this method)
         
         self.start_time = datetime.now()
         
@@ -70,8 +70,8 @@ class HSClassifier(AbstractClassifier):
             self.model = self.create() # pass the config dict()
             self.fit(X_train, y_train, X_val, y_val) #, config)
 
-#            validation_report, y_pred = self.model.predict(X_val, y_val)
             validation_report, y_pred = self.predict(X_val, y_val)
+            validation_report['cls_time'] = self.duration()
 
             if self.save_results:
                 validation_report.to_csv(filename, index=False)
@@ -83,7 +83,8 @@ class HSClassifier(AbstractClassifier):
         self.report = pd.concat(data)
         self.report.reset_index(drop=True, inplace=True)
 
-        self.report.sort_values('acc', ascending=False, inplace=True)
+        # Use sorting if each train is a different model for hiperparam search, and you are loonig for the best model acc.
+        #self.report.sort_values('acc', ascending=False, inplace=True)
         
         return self.report
     
@@ -133,6 +134,8 @@ class HSClassifier(AbstractClassifier):
                 self.fit(X_train, y_train, X_val, y_val)
                 
                 eval_report, y_pred = self.predict(X_test, y_test)
+                eval_report['cls_time'] = self.duration()
+                
                 evaluate_report.append(eval_report)
                         
             self.config['random_state'] = random_state

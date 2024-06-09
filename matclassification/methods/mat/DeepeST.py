@@ -37,10 +37,7 @@ from tensorflow.keras.optimizers import RMSprop, Adam
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.regularizers import l1
 from tensorflow.keras import backend as K
-#from matclassification.methods._lib.pymove.models.classification import DeepestST as DST
 # --------------------------------------------------------------------------------
-#from matclassification.methods._lib.pymove.models import metrics
-
 from matclassification.methods._lib.datahandler import prepareTrajectories
 from matclassification.methods.core import THSClassifier
 
@@ -358,8 +355,6 @@ class DeepeST(THSClassifier):
         else:
             y_pred_true = y_pred_prob.argmax(axis=1)
 
-#        self._summary = metrics.compute_acc_acc5_f1_prec_rec(y_test, y_pred_true)
-#        self._summary = compute_acc_acc5_f1_prec_rec(y_test, y_pred)
         self._summary = self.score(np.argmax(y_test, axis=1), y_pred_prob)
         
         self.y_test_true = y_test

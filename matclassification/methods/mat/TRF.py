@@ -29,8 +29,6 @@ from tqdm.auto import tqdm
 
 import itertools
 # --------------------------------------------------------------------------------
-#from matclassification.methods._lib.pymove.models.classification import RandomForest as rf
-#from matclassification.methods._lib.pymove.models import metrics
 from sklearn.ensemble import RandomForestClassifier
 # --------------------------------------------------------------------------------
 
@@ -111,15 +109,11 @@ class TRF(THSClassifier):
 
         self.y_test_true = y_test
         self.y_test_pred = y_pred
-#        self.y_test_prob = y_pred_prob
         
         if self.le:
             self.y_test_true = self.le.inverse_transform(self.y_test_true)
             self.y_test_pred = self.le.inverse_transform(self.y_test_pred)
-            
-#        from sklearn.metrics import confusion_matrix
         
-#        self._summary = compute_acc_acc5_f1_prec_rec(y_test, y_pred)
         self._summary = self.score(y_test, y_pred_prob)
             
         return self._summary, y_pred_prob 

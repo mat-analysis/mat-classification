@@ -76,55 +76,18 @@ class MDT(MHSClassifier):
         
         return self.report
     
-#    def score(self, X_test, y_test, y_pred):
-#        acc, acc_top5, _f1_macro, _prec_macro, _rec_macro, bal_acc = compute_acc_acc5_f1_prec_rec(y_test, np.array(y_pred))
-#        
-#        dic_model = {
-#            'acc': acc,
-#            'acc_top_K5': acc_top5,
-#            'balanced_accuracy': bal_acc,
-#            'precision_macro': _f1_macro,
-#            'recall_macro': _prec_macro,
-#            'f1_macro': _rec_macro,
-#        } 
-#        
-#        return pd.DataFrame(dic_model, index=[0])
-    
-#    def score(self, X_test, y_test, y_pred):
-#        acc = self.model.score(X_test,y_test)
-#        acc_top5 = calculateAccTop5(self.model, X_test, y_test, self.config['topK'])
-#        bal_acc = balanced_accuracy(y_test, y_pred)
-#        _f1_macro = f1_score(y_test, y_pred, average='macro')
-#        _prec_macro = precision_score(y_test, y_pred, average='macro', zero_division=1)
-#        _rec_macro = recall_score(y_test, y_pred, average='macro')
-#        
-#        dic_model = {
-#            'acc': acc,
-#            'acc_top_K5': acc_top5,
-#            'balanced_accuracy': bal_acc,
-#            'precision_macro': _f1_macro,
-#            'recall_macro': _prec_macro,
-#            'f1_macro': _rec_macro,
-#        } 
-#        
-#        return pd.DataFrame(dic_model, index=[0])
+    def training_report(self):
+        return None # Disables saving model history file
     
     def plot_tree(self, figsize=(20, 10)):
         import matplotlib.pyplot as plt
         features = self.config['features']
-        
-#        classes = argmax(self.y_train, axis = 1)
-#        if self.le:
-#            classes = self.le.inverse_transform(classes)
-##        classes  = list(map(lambda l: str(l), set(self.y_train)))
         
         X_train = self.X_train
         y_train = self.le.inverse_transform( argmax(self.y_train, axis = 1) )
         
         model = self.create()
         model.fit(X_train, y_train)
-        
-#        model.predict(X_val)
 
         fig = plt.figure(figsize=figsize)
         tree.plot_tree(model,
@@ -137,12 +100,7 @@ class MDT(MHSClassifier):
     def graph_tree(self):
         import graphviz
         features = self.config['features']
-        
-#        classes = argmax(self.y_train, axis = 1)
-#        if self.le:
-#            classes = self.le.inverse_transform(classes)
-##        classes  = list(map(lambda l: str(l), set(self.y_train)))
-
+    
         X_train = self.X_train
         y_train = self.le.inverse_transform( argmax(self.y_train, axis = 1) )
         
@@ -158,26 +116,7 @@ class MDT(MHSClassifier):
         # Draw graph
         graph = graphviz.Source(dot_data, format="png") 
         return graph
-    
-#    def predict(self,                 
-#                X_test,
-#                y_test):
-#        
-#        y_pred = self.model.predict_proba(X_test)
-#        
-#        self.y_test_true = y_test #argmax(y_test, axis = 1)
-#        self.y_test_pred = argmax(y_pred , axis = 1)
-#        
-#        if self.le:
-#            self.y_test_true = self.le.inverse_transform(self.y_test_true)
-#            self.y_test_pred = self.le.inverse_transform(self.y_test_pred)
-#            
-#        self._summary = self.score(X_test, y_test, self.y_test_pred) #y_pred)
-#        
-#        self.tree = self.model.tree_
-#        
-#        return self._summary, y_pred
-    
+
 # For Future implementation
 #    def dtreeviz_tree(self):
 #        import dtreeviz

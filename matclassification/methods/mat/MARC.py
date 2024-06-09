@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Classification: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
@@ -34,7 +34,6 @@ from tensorflow.keras.callbacks import EarlyStopping
 
 from matclassification.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
 from sklearn.metrics import classification_report
-#from matclassification.methods._lib.pymove.models import metrics
 # --------------------------------------------------------------------------------
 from matclassification.methods._lib.logger import Logger
 from matclassification.methods._lib.metrics import MetricsLogger
@@ -97,13 +96,6 @@ class MARC(HSClassifier):
            geo_precision=8,
            validate=False): # validate - unused, for future implementation (TODO)
 
-#        return (keys, vocab_size,
-#         num_classes,
-#         max_length,
-#         le,
-#         x_train, x_test,
-#         y_train, y_test)
-    
         (keys, vocab_size,
          num_classes,
          max_length,
@@ -288,50 +280,6 @@ class MARC(HSClassifier):
             self.y_test_pred = self.le.inverse_transform(self.y_test_pred)
 
         return self._summary, y_pred
-    
-#    def train(self):
-#        
-#        X_train = self.X_train
-#        y_train = self.y_train
-#        
-#        if self.validate:
-#            X_val = self.X_val
-#            y_val = self.y_val
-#        else:
-#            X_val = self.X_test
-#            y_val = self.y_test   
-#            
-#        return self.fit(X_train, y_train, X_val, y_val)
-    
-#    def test(self):            
-#        X_test = self.X_test
-#        y_test = self.y_test
-#        
-#        summ, y_test_pred = self.predict(X_test,y_test)
-#            
-#        if self.isverbose:
-#            print('['+self.name+':] Processing time: {} milliseconds. Done.'.format(self.duration()))
-#            
-#        return summ, y_test_pred
-        
-#    def summary(self):
-#        classification_report(self.y_test_true, self.y_test_pred, output_dict=True)  
-#        tail = self.report.tail(1)
-#        
-#        classification_report = metrics.compute_acc_acc5_f1_prec_rec(self.y_test_true, np.array(self.y_test_pred))
-#        tail2 = classification_report.tail(1)
-#        summ = {
-#            'acc':               tail['val_acc'].values,
-#            'acc_top_K5':        tail['val_top_k_categorical_accuracy'].values, 
-#            'balanced_accuracy': tail2['balanced_accuracy'].values,
-#            'precision_macro':   tail2['precision_macro'].values,
-#            'recall_macro':      tail2['recall_macro'].values,
-#            'f1_macro':          tail2['f1-macro'].values,
-#            'loss':              tail['val_loss'].values,
-#        }
-#            
-#        
-#        return pd.DataFrame(summ)
 
     
 # --------------------------------------------------------------------------------

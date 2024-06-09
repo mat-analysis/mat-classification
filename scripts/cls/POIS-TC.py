@@ -12,28 +12,37 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 '''
 import sys, os 
 sys.path.insert(0, os.path.abspath('.'))
-from automatize.methods.pois.model_poifreq import model_poifreq
 
 import argparse
+from datetime import datetime
+
+from matdata.dataset import readDataset
+from matclassification.methods import POIS
 
 def parse_args():
-    """[This is a function used to parse command line arguments]
-
-    Returns:
-        args ([object]): [Parse parameter object to get parse object]
-    """
-    parse = argparse.ArgumentParser(description='POIS Trajectory Classification')
-    parse.add_argument('path', type=str, help='path for the POIS result files')
+    parse = argparse.ArgumentParser(
+        description="""POIS Trajectory Classification:
+    This script runs feature extraction and the classifier for POI-S method.
+    
+    Example Usage:
+        POIS-TC.py 'sample/data/FoursquareNYC' 'sample/results'
+    """, formatter_class=argparse.RawTextHelpFormatter)
+    parse.add_argument('data-path', type=str, help='path for the dataset folder')
+    parse.add_argument('results-path', type=str, help='path for saving the POIS result files')
     parse.add_argument('-m', '--method', type=str, default='npoi', help='POIF method name (poi, [npoi], wnpoi)')
-    parse.add_argument('-p', '--prefix', type=str, default='npoi_1_2_3_specific', help='files prefix name')
-    parse.add_argument('-d', '--dataset', type=str, default='specific', help='the dataset prefix name')
-    parse.add_argument('-f', '--result-folder', type=str, default='NPOI_1_2_3_specific', help='folder where to find the POIS processed files')
+    parse.add_argument('-s', '--sequences', type=str, default='1,2,3', help='sequences sizes to concatenate')
+    parse.add_argument('-f', '--features', type=str, default='poi', help='feature names to concatenate (attributes)')
     
-    parse.add_argument('-r', '--seed', type=int, default=1, help='random seed')
+    parse.add_argument('-pf', '--prefix', type=str, default=None, help='dataset name prefix')
+    parse.add_argument('-ff', '--file-format', type=str, default='parquet', help='dataset file ext')
     
-    #parse.add_argument('--gpu', action=argparse.BooleanOptionalAction, default=True, help='Use GPU devices, or False for CPU')    
-    #parse.add_argument('-M', '--ram', type=int, default=-1, help='Limit RAM memory GB (not implemented)')
-    #parse.add_argument('-T', '--njobs', type=int, default=-1, help='Limit number of threads, and no GPU (not implemented)')
+    parse.add_argument('-r', '--random', type=int, default=1, help='random seed')
+    
+    parse.add_argument('--geohash', action='store_true', default=False, 
+                       help='use GeoHash encoding for spatial aspects (not implemented)')   
+    parse.add_argument('-g', '--geo-precision', type=int, default=30, help='Space precision for GeoHash/GridIndex encoding') 
+    
+    parse.add_argument('--save-extraction', action='store_true', default=False, help='Save feature extraction files')
 
     args = parse.parse_args()
     config = vars(args)
@@ -42,22 +51,51 @@ def parse_args():
 config = parse_args()
 #print(config)
 
-path      = config["path"]
-METHOD    = config["method"]
-DATASET   = config["dataset"]
-PREFIX    = config["prefix"]
 
-folder    = config["result_folder"]
+data_path = config["data-path"]
+res_path  = config["results-path"]
+prefix    = config["prefix"]
+fformat   = config["file_format"]
 
-random_seed   = config["seed"]
+method      = config["method"]
+sequences   = [int(x) for x in config["sequences"].split(',')]
+features    = config["features"].split(',')
 
-path_name = os.path.join(path, METHOD+'_'+PREFIX) #METHOD+'_'+PREFIX)
+random_seed = config["random"]
+save        = config["save_extraction"]
 
-RESULTS_FILE = os.path.join(path, folder, 'poifreq_results.txt')
-METRICS_FILE = os.path.join(path, folder, METHOD+'_'+PREFIX+'.csv')
+# TODO:
+geohash       = config["geohash"]
+geo_precision = config["geo_precision"]
 
-model_poifreq(path_name, METHOD=METHOD, METRICS_FILE=METRICS_FILE, RESULTS_FILE=RESULTS_FILE, random_seed=random_seed)
 
-# -----------------------------------------------------------------------------------
-from datetime import datetime
-print(datetime.now().isoformat())
+core_name = '_'.join(features) + '_' + '_'.join([str(s) for s in sequences])
+folder = method.upper()+'-'+core_name
+
+# Starting:
+# ---------------------------------------------------------------------------------
+time = datetime.now()
+# Input:
+train = 'train.'+fformat
+test = 'test.'+fformat
+if prefix and prefix != '':
+    train = prefix + '_' + train
+    test = prefix + '_' + test
+
+train = readDataset(os.path.join(data_path, train))
+test = readDataset(os.path.join(data_path,  test))
+
+# Classification:
+model = POIS(method, sequences, features)
+model.prepare_input(train, test, res_path=os.path.join(res_path, folder) if save else None)
+model.train()
+model.test()
+    
+print(model.summary())
+
+model.save(os.path.join(res_path, folder), core_name)
+# ---------------------------------------------------------------------------------
+time_ext = (datetime.now()-time).total_seconds() * 1000
+
+print("Done. Processing time: " + str(time_ext) + " milliseconds")
+print("# ---------------------------------------------------------------------------------")

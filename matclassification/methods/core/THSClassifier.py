@@ -183,7 +183,6 @@ class THSClassifier(HSClassifier):
                 self.model = self.create(config)
                 self.fit(X_train, y_train, X_val, y_val, config)
 
-#                validation_report, y_pred = self.model.predict(X_val, y_val)
                 validation_report, y_pred = self.predict(X_val, y_val)
 
                 if self.save_results:
@@ -194,6 +193,7 @@ class THSClassifier(HSClassifier):
 
                 data.append( validation_report )
                 
+            # Choose the best model based on higher acc:
             acc = validation_report.iloc[0]['acc']
             if acc > self.best_config[0]:
                 self.best_config = [acc, config]
@@ -202,7 +202,7 @@ class THSClassifier(HSClassifier):
             self.clear()
             # ------------------------------------------->
             break 
-            # -------------------------------------------># -------------------------------------------> **************************
+            # TODO -----------------------------------------># -------------------------------------------> **************************
 
         self.best_config = self.best_config[1]
         
@@ -261,8 +261,9 @@ class THSClassifier(HSClassifier):
                 
                 self.fit(X_train, y_train, X_val, y_val, self.best_config)
                 
-#                eval_report, y_pred = self.model.predict(X_test, y_test)
                 eval_report, y_pred = self.predict(X_test, y_test)
+                eval_report['cls_time'] = self.duration()
+                
                 evaluate_report.append(eval_report)
             
                         
@@ -270,8 +271,6 @@ class THSClassifier(HSClassifier):
             
             self.test_report = pd.concat(evaluate_report)
             self.test_report.reset_index(drop=True, inplace=True)
-
-#            self.test_report.sort_values('acc', ascending=False, inplace=True)
             
             if self.isverbose:
                 print('['+self.name+':] Processing time: {} milliseconds. Done.'.format(self.duration()))
@@ -289,6 +288,7 @@ class THSClassifier(HSClassifier):
             'recall_macro':      tail['recall_macro'],
             'f1_macro':          tail['f1_macro'],
 #            'loss':              None, # TODO New metrics
+            'cls_time':          self.test_report['cls_time'].max()
         }
         
         self._summary = pd.DataFrame(summ, index=[0])

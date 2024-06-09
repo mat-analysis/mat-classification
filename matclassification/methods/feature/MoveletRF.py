@@ -83,20 +83,7 @@ class MRF(MHSClassifier):
         self.report = pd.concat(lines)
         return self.report
     
-#    def predict(self,                 
-#                X_test,
-#                y_test):
-#        
-#        y_pred = self.model.predict_proba(X_test)
-#        
-#        self.y_test_true = y_test #argmax(y_test, axis = 1)
-#        self.y_test_pred = argmax(y_pred , axis = 1)
-#        
-#        if self.le:
-#            self.y_test_true = self.le.inverse_transform(self.y_test_true)
-#            self.y_test_pred = self.le.inverse_transform(self.y_test_pred)
-#            
-#        self._summary = self.score(X_test, y_test, self.y_test_pred) #y_pred)
-#        
-#        return self._summary, y_pred
+    def training_report(self):
+        return None # Disables saving model history file
+    
 # --------------------------------------------------------------------------------

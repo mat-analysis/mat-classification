@@ -13,26 +13,40 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 import sys, os 
 sys.path.insert(0, os.path.abspath('.'))
 
-from automatize.main import importer #, display
-importer(['S', 'datetime','poifreq'], globals())
-
+from datetime import datetime
 import argparse
 
+from matdata.dataset import readDataset
+
+from matclassification.methods.feature.feature_extraction.pois import pois
+from matclassification.methods.feature.POIS import POIS, prepareData, loadData
+
 def parse_args():
+    parse = argparse.ArgumentParser(
+        description="""POIS Feature Extraction:
+    This script runs feature extraction for POI-S method.
+    (Also can run the classifier)
+    
+    Example Usage:
+        POIS.py 'sample/data/FoursquareNYC' 'sample/results'
+        POIS.py 'sample/data/FoursquareNYC' 'sample/results' --classify
+    """, formatter_class=argparse.RawTextHelpFormatter)
     """[This is a function used to parse command line arguments]
 
     Returns:
         args ([object]): [Parse parameter object to get parse object]
     """
-    parse = argparse.ArgumentParser(description='POIS Trajectory Classification')
-    parse.add_argument('path', type=str, help='path for saving the POIS result files')
+    parse.add_argument('data-path', type=str, help='path for the dataset folder')
+    parse.add_argument('results-path', type=str, help='path for saving the POIS result files')
     parse.add_argument('-m', '--method', type=str, default='npoi', help='POIF method name (poi, [npoi], wnpoi)')
     parse.add_argument('-s', '--sequences', type=str, default='1,2,3', help='sequences sizes to concatenate')
-    parse.add_argument('-a', '--attributes', type=str, default='poi,hour', help='attribute names to concatenate')
-    parse.add_argument('-d', '--dataset', type=str, default='specific', help='the dataset prefix name')
-    parse.add_argument('-f', '--result-folder', type=str, default='NPOI_1_2_3_specific', help='folder where to find the POIS processed files')
+    parse.add_argument('-f', '--features', type=str, default='poi', help='feature names to concatenate (attributes)')
     
-    parse.add_argument('-r', '--seed', type=int, default=1, help='random seed')
+    parse.add_argument('-pf', '--prefix', type=str, default=None, help='dataset name prefix')
+    parse.add_argument('-ff', '--file-format', type=str, default='parquet', help='dataset file ext')
+    
+#    parse.add_argument('-f', '--result-folder', type=str, default='npoi-poi-1_2_3', help='folder where to find the POIS processed files')    
+    parse.add_argument('-r', '--random', type=int, default=1, help='random seed')
     
     parse.add_argument('--geohash', action='store_true', default=False, 
                        help='use GeoHash encoding for spatial aspects (not implemented)')   
@@ -47,31 +61,89 @@ def parse_args():
 config = parse_args()
 #print(config)
 
-#if len(sys.argv) < 6:
-#    print('Please run as:')
-#    print('\tPOIS.py', 'METHOD', 'SEQUENCES', 'FEATURES', 'DATASET', 'PATH TO DATASET', 'PATH TO RESULTS_DIR')
-#    print('Example:')
-#    print('\tPOIS.py', 'npoi', '"1,2,3"', '"poi,hour"', 'specific', '"./data"', '"./results"')
-#    exit()
+data_path = config["data-path"]
+res_path  = config["results-path"]
+prefix    = config["prefix"]
+fformat   = config["file_format"]
 
-path_name   = config["path"]
+method      = config["method"]
+sequences   = [int(x) for x in config["sequences"].split(',')]
+features    = config["features"].split(',')
 
-METHOD      = config["method"]
-SEQUENCES   = [int(x) for x in config["sequences"].split(',')]
-FEATURES    = config["attributes"].split(',')
-DATASET     = config["dataset"]
-RESULTS_DIR = config["result_folder"]
-
-random_seed   = config["seed"]
+random_seed   = config["random"]
 classify      = config["classify"]
 
 # TODO:
 geohash       = config["geohash"]
 geo_precision = config["geo_precision"]
 
+# Starting:
+# ---------------------------------------------------------------------------------
 time = datetime.now()
-poifreq(SEQUENCES, DATASET, FEATURES, path_name, RESULTS_DIR, method=METHOD, save_all=True, doclass=classify)
-time_ext = (datetime.now()-time).total_seconds() * 1000
 
+#sequences = [1,2,3]
+#features = ['poi']
+#method='npoi' # default: 'npoi', or, 'poi' and 'wnpoi'
+
+# Input:
+train = 'train.'+fformat
+test = 'test.'+fformat
+if prefix and prefix != '':
+    train = prefix + '_' + train
+    test = prefix + '_' + test
+
+import pandas as pd
+train = readDataset(os.path.join(data_path, train))
+test = readDataset(os.path.join(data_path,  test))
+
+# Feature extraction:
+core_name = '_'.join(features) + '_' + '_'.join([str(s) for s in sequences])
+folder = method.upper()+'-'+core_name
+res_dir = os.path.join(res_path, folder)
+x_train, x_test, y_train, y_test, _ = pois(train, test, sequences, features, method, result_dir=res_dir, save_all=True)
+# ---------------------------------------------------------------------------------
+def callmodel(res_dir, core_name):
+    time_cls = datetime.now()
+    
+    # POIS method have a method for reading and data transformation:
+    x_train, x_test, y_train, y_test = loadData(os.path.join(res_dir, core_name))
+    num_features, num_classes, labels, X, y, one_hot_y = prepareData(x_train, x_test, y_train, y_test)
+    x_train, x_test = X
+    y_train, y_test = y
+
+    # Create the classifier:
+    model = POIS(method, sequences, features)
+
+    # Model Label Encoder:
+    model.le = one_hot_y
+    
+    # You can add method variables with this:
+    model.add_config(num_features=num_features,
+                    num_classes=num_classes, 
+                    labels=labels)
+
+    # Run the classifier:
+    model.fit(x_train, y_train, x_test, y_test)
+
+    summary, _ = model.predict(x_test, y_test)
+    summary['cls_time'] = (datetime.now()-time_cls).total_seconds() * 1000
+    print(summary)   
+    
+    model.test_report = summary
+    
+    # Saving results
+    model.save(res_dir, core_name)
+    del model
+# ---------------------------------------------------------------------------------
+if classify:
+    callmodel(res_dir, method.lower()+'_'+core_name)
+    
+    # For other sequence sizes:
+    core_name = method.lower()+'_'+ '_'.join(features) + '_'
+    for s in sequences:
+        callmodel(res_dir, core_name+str(s))
+# ---------------------------------------------------------------------------------
+
+time_ext = (datetime.now()-time).total_seconds() * 1000
 print("Done. Processing time: " + str(time_ext) + " milliseconds")
 print("# ---------------------------------------------------------------------------------")

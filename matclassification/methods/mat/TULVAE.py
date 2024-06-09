@@ -38,12 +38,8 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.layers import Input, ConvLSTM2D, BatchNormalization, RepeatVector, Conv2D
 from tensorflow.keras.regularizers import l1
 from tensorflow.keras import backend as K
-#from matclassification.methods._lib.pymove.models.classification import Tulvae as tva
 # --------------------------------------------------------------------------------
 from matclassification.methods._lib.datahandler import prepareTrajectories
-
-#from matclassification.methods._lib.pymove.models import metrics
-
 from matclassification.methods.core import THSClassifier
 
 class Tulvae(THSClassifier):
@@ -84,9 +80,6 @@ class Tulvae(THSClassifier):
                         monitor=monitor, 
                         optimizer=optimizer, 
                         learning_rate=learning_rate)
-
-        # Moved to prepare_input:
-#        self.grid = list(itertools.product())
         
         self.model = None
     
@@ -257,25 +250,7 @@ class Tulvae(THSClassifier):
                             shuffle=True,
                             use_multiprocessing=True,          
                             batch_size=batch_size)
-    
-#    def predict(self,                 
-#                X_test,
-#                y_test):
-#        
-#        y_pred = self.model.predict(X_test)
-#        y_pred_true = y_pred.argmax(axis=1)
-##        self._summary = metrics.compute_acc_acc5_f1_prec_rec(y_test, y_pred_true)
-#        self._summary = compute_acc_acc5_f1_prec_rec(y_test, y_pred)
-#        
-#        self.y_test_true = y_test
-#        self.y_test_pred = y_pred_true
-#        
-#        if self.le:
-#            self.y_test_true = self.le.inverse_transform(self.y_test_true)
-#            self.y_test_pred = self.le.inverse_transform(self.y_test_pred)
-#            
-#        return self._summary, y_pred 
-    
+
     def clear(self):
         super().clear()
         K.clear_session()

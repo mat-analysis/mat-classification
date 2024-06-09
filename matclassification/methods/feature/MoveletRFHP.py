@@ -94,38 +94,4 @@ class MRFHP(MHSClassifier):
         self.model = self.model.best_estimator_
         
         return self.report
-    
-#    def predict(self,                 
-#                X_test,
-#                y_test):
-#        
-#        y_pred = self.model.predict(X_test)
-#        
-#        self.y_test_true = y_test
-#        self.y_test_pred = y_pred
-#            
-##        acc = self.model.score(X_test,y_test)
-##        acc_top5 = calculateAccTop5(self.model, X_test, y_test, 5)
-##        bal_acc = balanced_accuracy(y_test, y_pred)
-##        _f1_macro = f1_score(y_test, y_pred, average='macro')
-##        _prec_macro = precision_score(y_test, y_pred, average='macro', zero_division=1)
-##        _rec_macro = recall_score(y_test, y_pred, average='macro')
-##        
-###        acc, acc_top5, _f1_macro, _prec_macro, _rec_macro, bal_acc = compute_acc_acc5_f1_prec_rec(y_test, np.array(y_pred))
-##        
-##        dic_model = {
-##            'acc': acc,
-##            'acc_top_K5': acc_top5,
-##            'balanced_accuracy': bal_acc,
-##            'precision_macro': _f1_macro,
-##            'recall_macro': _prec_macro,
-##            'f1_macro': _rec_macro,
-##        } 
-#        
-#        self._summary = self.score(X_test, y_test, y_pred)
-#        
-##        if self.isverbose:
-##            print('['+self.name+':] Processing time: {} milliseconds. Done.'.format(self.duration()))
-#            
-#        return self._summary, y_pred
 # --------------------------------------------------------------------------------

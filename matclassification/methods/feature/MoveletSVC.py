@@ -80,4 +80,7 @@ class MSVC(MHSClassifier):
         
         
         return self._summary, y_pred 
+    
+    def training_report(self):
+        return None # Disables saving model history file
 # --------------------------------------------------------------------------------

@@ -34,6 +34,13 @@ import warnings
 from abc import ABC, abstractmethod
 # TODO implement rounds
 
+from enum import Enum, auto
+class Approach(Enum):
+    NN   = auto()
+    RF   = auto()
+    DT   = auto()
+    SVC  = auto()
+
 # Simple Abstract Classifier Model
 class AbstractClassifier(ABC):
     
@@ -49,6 +56,9 @@ class AbstractClassifier(ABC):
         self.y_test_pred = None
         self.model = None
         self.le = None
+        
+        # When creating new methods, choose an approach category
+        self.approach = Approach.NN
         
         self.isverbose = verbose >= 0
         
@@ -150,18 +160,6 @@ class AbstractClassifier(ABC):
 
     def summary(self):
         return pd.DataFrame(self.test_report.mean()).T
-        
-    def save(self, dir_path='.', modelfolder='model'):
-        if not os.path.exists(os.path.join(dir_path, modelfolder)):
-            os.makedirs(os.path.join(dir_path, modelfolder))
-        self.model.save(os.path.join(dir_path, modelfolder, 'model_'+self.name.lower()+'.h5'))
-
-        prediction = self.prediction()
-        prediction.to_csv(os.path.join(dir_path, modelfolder, 'model_'+self.name.lower()+'_prediction.csv'), header = True) 
-        
-        report = self.report()
-        classification_report_dict2csv(report, os.path.join(dir_path, modelfolder, 'model_'+self.name.lower()+'_report.csv'), self.approach)
-        self.report.to_csv(os.path.join(dir_path, modelfolder, 'model_'+self.name.lower()+'_history.csv'))
     
     def cm(self): # Confusion Matrix Plot
         from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
@@ -171,3 +169,41 @@ class AbstractClassifier(ABC):
             display_labels = self.labels
         )
         return cfm.plot()
+        
+    def save_model(self, dir_path='.', modelfolder='model', model_name=''):
+        if not os.path.exists(os.path.join(dir_path, modelfolder)):
+            os.makedirs(os.path.join(dir_path, modelfolder))
+        
+        self.model.save(os.path.join(dir_path, modelfolder, 'model_'+self.name.lower()+'_'+str(model_name)+'.h5'))
+        
+    def save(self, dir_path='.', modelfolder='model'):
+        if not os.path.exists(os.path.join(dir_path, modelfolder)):
+            os.makedirs(os.path.join(dir_path, modelfolder))
+
+        prediction = self.prediction_report() 
+        if prediction is not None:
+            prediction.to_csv(os.path.join(dir_path, modelfolder, 'model_'+self.name.lower()+'_prediction.csv')) 
+        
+        report = self.classification_report()
+        if report is not None:
+            report.to_csv(os.path.join(dir_path, modelfolder, 'model_'+self.name.lower()+'_report.csv'), index = False)
+            
+        train_report = self.training_report()
+        if train_report is not None:
+            train_report.to_csv(os.path.join(dir_path, modelfolder, 'model_'+self.name.lower()+'_history.csv'))
+            
+        test_report = self.testing_report()
+        if test_report is not None:
+            test_report.to_csv(os.path.join(dir_path, modelfolder, 'model_'+self.name.lower()+'_summary.csv'))
+    
+    def prediction_report(self):
+        df = pd.DataFrame(self.y_test_true, self.y_test_pred, columns=['true_label'])
+        df.rename_axis(index='prediction', inplace=True)
+        return df
+    def classification_report(self):
+        report = classification_report(self.y_test_true, self.y_test_pred, output_dict=True, zero_division=False)
+        return classification_report_dict2df(report, self.approach.name.upper())
+    def training_report(self):
+        return self.report
+    def testing_report(self):
+        return self.test_report

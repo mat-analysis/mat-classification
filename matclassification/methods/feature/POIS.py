@@ -47,7 +47,7 @@ class POIS(HSClassifier):
                  method='npoi',
                  sequences=[1,2,3], 
                  features=None, 
-                 dataset='specific', 
+#                 dataset='specific', #DEPRECATED
                  
                  n_jobs=-1,
                  verbose=True,
@@ -58,8 +58,8 @@ class POIS(HSClassifier):
         
         self.add_config(method=method,
                         sequences=sequences, 
-                        features=features, 
-                        dataset=dataset)
+                        features=features) 
+#                        dataset=dataset)
         
         np.random.seed(seed=random_state)
         random.set_seed(random_state)
@@ -70,7 +70,8 @@ class POIS(HSClassifier):
            class_col='label',
 #          space_geohash=False, # For future implementation
            geo_precision=8,
-           validate=False): # For future implementation
+           validate=False, # For future implementation
+           res_path=None): 
         
         def check_label_sort(df):
             labels = list(df[class_col])
@@ -81,18 +82,20 @@ class POIS(HSClassifier):
         
         assert check_label_sort(train) and check_label_sort(test), "This method requires input data to be ordered by labels."
         
-        res_path=''
-        save_results=False
+        if res_path:
+            save_results=True
+        else:
+            save_results=False
         
         sequences = self.config['sequences']
         features = self.config['features']
         method = self.config['method']
-        dataset = self.config['dataset']
+#        dataset = self.config['dataset'] # DEPRECATED
         
         random_num = self.config['random_state']
         
         X_train, X_test, y_train, y_test, _ = pois(train, test, 
-                                                   sequences, features, method, dataset, 
+                                                   sequences, features, method, 
                                                    res_path, save_results, tid_col, class_col, 
                                                    verbose=self.isverbose)
         
@@ -106,47 +109,16 @@ class POIS(HSClassifier):
                       class_col='label',
 #                      space_geohash=False, # For future implementation
                       geo_precision=8,
-                      validate=False): # For future implementation
+                      validate=False, # For future implementation
+                      res_path=None): 
         
-#        def check_label_sort(df):
-#            labels = list(df[class_col])
-#            indexes = [index for index, _ in enumerate(labels) if labels[index] != labels[index-1]]
-#            final = list(map(lambda i: labels[i], indexes))
-#            print(len(final), len(set(final)), len(final) != len(set(final)))
-#            return len(final) == len(set(final))
-#        
-#        assert check_label_sort(train) and check_label_sort(test), "This method requires input data to be ordered by labels."
-#        
-#        res_path=''
-#        save_results=False
-#        
-#        sequences = self.config['sequences']
-#        features = self.config['features']
-#        method = self.config['method']
-#        dataset = self.config['dataset']
-#        
-#        X_train, X_test, y_train, y_test, _ = pois(train, test, 
-#                                                   sequences, features, method, dataset, 
-#                                                   res_path, save_results, tid_col, class_col, verbose=self.isverbose)
-#        
-#        (num_features, num_classes, labels, X, y, one_hot_y) = prepareData(X_train, X_test, y_train, y_test, 
-#                                                                           validate=validate,random_state=self.config['random_state'])
-        (num_features, num_classes, labels, X, y, one_hot_y) = self.xy(train, test, tid_col, class_col, geo_precision, validate)
+        (num_features, num_classes, labels, X, y, one_hot_y) = self.xy(train, test, tid_col, class_col, geo_precision, validate, res_path)
     
         self.add_config(num_features=num_features,
                         num_classes=num_classes, 
                         labels=labels)
-        
-        
-#        self.config['num_features'] = num_features
-#        self.config['num_classes'] = num_classes
-        
+
         self.le = one_hot_y
-              
-#        self.X_train = X_train
-#        self.X_test = X_test
-#        self.y_train = y_train
-#        self.y_test = y_test
         
         if len(X) == 2:
             self.X_train = X[0] 
@@ -254,6 +226,8 @@ class POIS(HSClassifier):
         
         y_pred = self.model.predict(X_test)#, y_test)
         self._summary = self.score(argmax(y_test, axis = 1), y_pred)
+        
+        print('NOW:', y_test.ndim, y_pred.ndim)
         
         self.y_test_true = y_test
         self.y_test_pred = y_pred
@@ -377,18 +351,11 @@ def prepareData(x_train, x_test, y_train, y_test, validate=False, random_state=4
 
 # --------------------------------------------------------------------------------------------------------  
 def loadData(dir_path):
-#     from ..main import importer
-#    importer(['S', 'PP', 'OneHotEncoder'], globals())
-#     from sklearn.preprocessing import OneHotEncoder
-#     from sklearn import preprocessing
-
     x_train = pd.read_csv(dir_path+'-x_train.csv')#, header=None)
-    # x_train = x_train[x_train.columns[:-1]]
-    y_train = pd.read_csv(dir_path+'-y_train.csv')
+    y_train = pd.read_csv(dir_path+'-y_train.csv').iloc[:,-1].values#[:,-1].values
 
     x_test = pd.read_csv(dir_path+'-x_test.csv')#, header=None)
-    # x_test = x_test[x_test.columns[:-1]]
-    y_test = pd.read_csv(dir_path+'-y_test.csv')
+    y_test = pd.read_csv(dir_path+'-y_test.csv').iloc[:,-1].values
     
     return x_train, x_test, y_train, y_test
 

@@ -31,30 +31,3 @@ class MHSClassifier(HSClassifier, MClassifier):
         
         np.random.seed(seed=random_state)
         random.set_seed(random_state)
-    
-#    def score(self, X_test, y_test, y_pred):
-#        acc, acc_top5, _f1_macro, _prec_macro, _rec_macro, bal_acc = compute_acc_acc5_f1_prec_rec(y_test, np.array(y_pred), print_metrics=False)
-#        
-#        dic_model = {
-#            'acc': acc,
-#            'acc_top_K5': acc_top5,
-#            'balanced_accuracy': bal_acc,
-#            'precision_macro': _f1_macro,
-#            'recall_macro': _prec_macro,
-#            'f1_macro': _rec_macro,
-#        } 
-#        
-#        return pd.DataFrame(dic_model, index=[0])
-    
-#    def create(self, config=None):
-#        
-#        # **** Method to overrite ****
-#        print('\n['+self.name+':] Warning! you must overwrite the create() method.')
-#
-#        # Example structure:
-#        if hasattr(self, 'best_config'):
-#            self.model = None
-#        else:
-#            self.model = None
-#        
-#        return self.model

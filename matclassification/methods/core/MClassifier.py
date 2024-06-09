@@ -31,7 +31,6 @@ class MClassifier(AbstractClassifier):
            
            tid_col='tid', 
            class_col='label',
-           geo_precision=30, # TODO for future implementation
            validate = False,
            encode_labels=True):
         
@@ -101,10 +100,9 @@ class MClassifier(AbstractClassifier):
                       
                       tid_col='tid', 
                       class_col='label',
-                      geo_precision=30, # TODO for future implementation
                       validate = False):
         
-        num_classes, num_features, le, X_set, y_set = self.xy(train, test, tid_col, class_col, geo_precision, validate)
+        num_classes, num_features, le, X_set, y_set = self.xy(train, test, tid_col, class_col, validate)
         
         self.add_config(num_classes=num_classes,
                         num_features=num_features)

@@ -165,10 +165,6 @@ def f1(y_true, y_pred):
 
 # by Tarlis --
 def calculateAccTop5(classifier, X_test, y_test, K ):
-#     import numpy as np
-#     from ..main import importer
-#     importer(['np'], locals())
-    
     K = K if len(y_test) > K else len(y_test)
     
     y_test_pred = classifier.predict_proba(X_test)
@@ -184,9 +180,6 @@ def calculateAccTop5(classifier, X_test, y_test, K ):
 
 # by Tarlis --
 def classification_report_csv(report, reportfile, classifier):
-#     from ..main import importer
-#     importer(['pd'], locals())
-    
     report_data = []
     lines = report.split('\n')   
     for line in lines[2:(len(lines)-3)]:
