@@ -55,7 +55,6 @@ random_seed  = config["random"] # TODO
 
 classifiers  = config["classifiers"].split(',')
 
-
 # ------------------------------------------------------------------------------------
 def callmodel(method, train, test):    
     model = eval(method)(random_state=random_seed)
@@ -69,7 +68,6 @@ def callmodel(method, train, test):
     # Saving results
     model.save(res_path, modelfolder)
 # ------------------------------------------------------------------------------------
-
 import pandas as pd
 train = pd.read_csv(os.path.join(res_path, 'train.csv'))
 test = pd.read_csv(os.path.join(res_path, 'test.csv'))

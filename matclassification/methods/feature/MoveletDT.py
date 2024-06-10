@@ -50,7 +50,7 @@ class MDT(MHSClassifier):
         
         X, y, nattr, num_classes = super().prepare_input(train, test,
                                                          tid_col=tid_col, class_col=class_col, 
-                                                         geo_precision=geo_precision,
+#                                                         geo_precision=geo_precision,
                                                          validate=validate)
         
         self.config['features'] = list(filter(lambda c: c not in [tid_col, class_col, 'class'], train.columns))
