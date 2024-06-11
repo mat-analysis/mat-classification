@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 [project]
 name = "mat-classification"
-version = "0.1b0"
+version = "0.1b2"
 description = "MAT-classification: Analysis and Classification methods for Multiple Aspect Trajectory Data Mining"
 authors = [
     {name = "Tarlis Tortelli Portela", email = "tarlis@tarlis.com.br"},

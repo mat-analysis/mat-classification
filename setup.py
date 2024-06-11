@@ -37,18 +37,12 @@ setuptools.setup(
     packages=setuptools.find_packages(),
 #    include_package_data=True,
     scripts=[
-        'scripts/helpers/MAT-Summary.py',
-        'scripts/helpers/MAT-ResultsTo.py',
-        'scripts/helpers/MAT-ExportResults.py',
         'scripts/helpers/MAT-MergeDatasets.py',
-        'scripts/helpers/MAT-PrintResults.py',
-        'scripts/helpers/MAT-ResultsTo.py',
         
         'scripts/cls/MARC.py',
         'scripts/cls/POIS-TC.py',
         'scripts/cls/MAT-MC.py',
         'scripts/cls/MAT-TC.py',
-        'scripts/cls/MAT-TEC.py', # Under Dev.
         
         'scripts/features/POIS.py',
     ],
