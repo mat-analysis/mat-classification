@@ -9,6 +9,8 @@ The present package offers a tool, to support the user in the task of classifica
 Created on Dec, 2023
 Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
 
+![MAT-Classification Diagram](MAT-Classification.png) 
+
 
 ### Installation
 
