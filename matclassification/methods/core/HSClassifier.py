@@ -71,7 +71,7 @@ class HSClassifier(AbstractClassifier):
             self.fit(X_train, y_train, X_val, y_val) #, config)
 
             validation_report, y_pred = self.predict(X_val, y_val)
-            validation_report['cls_time'] = self.duration()
+            validation_report['clstime'] = self.duration()
 
             if self.save_results:
                 validation_report.to_csv(filename, index=False)
@@ -134,7 +134,7 @@ class HSClassifier(AbstractClassifier):
                 self.fit(X_train, y_train, X_val, y_val)
                 
                 eval_report, y_pred = self.predict(X_test, y_test)
-                eval_report['cls_time'] = self.duration()
+                eval_report['clstime'] = self.duration()
                 
                 evaluate_report.append(eval_report)
                         

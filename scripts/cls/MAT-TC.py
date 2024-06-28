@@ -10,8 +10,9 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
 @author: Tarlis Portela
 '''
-import sys, os 
-sys.path.insert(0, os.path.abspath('.'))
+import os
+#import sys, os  # TODO TEMP FOR TESTING
+#sys.path.insert(0, os.path.abspath('.'))
 
 import argparse
 
@@ -38,8 +39,11 @@ def parse_args():
     """, formatter_class=argparse.RawTextHelpFormatter)
     parse.add_argument('data-path', type=str, help='path for the dataset folder')
     parse.add_argument('results-path', type=str, help='path for the results folder')
+    
     parse.add_argument('-pf', '--prefix', type=str, default='', help='dataset name prefix')
     parse.add_argument('-ff', '--file-format', type=str, default='parquet', help='dataset file ext')
+    parse.add_argument('-mf', '--modelfolder', type=str, default='', help='folder for saving results (optional)')
+    
     parse.add_argument('-c', '--classifiers', type=str, default='MARC,TRF,TXGB,DeepeST', help='classifiers methods')
     
     parse.add_argument('-r', '--random', type=int, default=1, help='random seed')
@@ -61,6 +65,7 @@ data_path = config["data-path"]
 res_path  = config["results-path"]
 prefix    = config["prefix"]
 fformat   = config["file_format"]
+modelfolder = config["modelfolder"]
 
 random_seed   = config["random"]
 geohash       = config["geohash"]
@@ -93,9 +98,9 @@ def callmodel(method, train, test):
     ## We can visualize the training report (the same on most models):
     print(model.summary())
     
-    modelfolder = method
-    if prefix and prefix != '':
-        modelfolder = method+'-'+prefix
+#    modelfolder = method
+#    if prefix and prefix != '':
+#        modelfolder = method+'-'+prefix
     
     # Saving results
     model.save(res_path, modelfolder)

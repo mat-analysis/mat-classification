@@ -11,11 +11,14 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 @author: Tarlis Portela
 @author: Lucas May Petry
 '''
-import sys, os  # TODO TEMP FOR TESTING
-sys.path.insert(0, os.path.abspath('.'))
+import os
+#import sys, os  # TODO TEMP FOR TESTING
+#sys.path.insert(0, os.path.abspath('.'))
 
 import os 
 import argparse
+from datetime import datetime
+print(datetime.now())
 
 from matdata.dataset import readDataset
 from matclassification.methods import MARC
@@ -33,7 +36,8 @@ def parse_args():
     parse.add_argument('train-file', type=str, help='path for the train dataset file')
     parse.add_argument('test-file', type=str, help='path for the train dataset file')
     parse.add_argument('result-path', type=str, help='path for the result files')
-    parse.add_argument('-m', '--modelfolder', type=str, default='MARC', help='model folder')
+    parse.add_argument('-mf', '--modelfolder', type=str, default='MARC', help='model folder')
+    
 #    parse.add_argument('-d', '--dataset', type=str, default='specific', help='dataset name (for output purposes)')
     parse.add_argument('-e', '--embedding-size', type=int, default=100, help='the embedding size (default 100)')
     parse.add_argument('-m', '--merge-tipe', type=str, default='concatenate', help='the merge type (add, average, [concatenate])')

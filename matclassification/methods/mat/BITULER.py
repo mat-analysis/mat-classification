@@ -66,7 +66,7 @@ class Bituler(THSClassifier):
                  random_state=42,
                  filterwarnings='ignore'):
         
-        super().__init__('TXGB', save_results=save_results, n_jobs=n_jobs, verbose=verbose, random_state=random_state, filterwarnings=filterwarnings)
+        super().__init__('Bituler', save_results=save_results, n_jobs=n_jobs, verbose=verbose, random_state=random_state, filterwarnings=filterwarnings)
         
         self.add_config(rnn=rnn, 
                         units=units, 

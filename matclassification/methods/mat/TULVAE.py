@@ -66,7 +66,7 @@ class Tulvae(THSClassifier):
                  random_state=42,
                  filterwarnings='ignore'):
         
-        super().__init__('TULVAE', save_results=save_results, n_jobs=n_jobs, verbose=verbose, random_state=random_state, filterwarnings=filterwarnings)
+        super().__init__('Tulvae', save_results=save_results, n_jobs=n_jobs, verbose=verbose, random_state=random_state, filterwarnings=filterwarnings)
         
         self.add_config(rnn=rnn, 
                         units=units, 

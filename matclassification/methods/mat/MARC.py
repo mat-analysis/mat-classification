@@ -18,6 +18,7 @@ import pandas as pd
 from numpy import argmax
 #sys.path.insert(0, os.path.abspath('.')) # TODO fix imports
 
+import itertools
 # --------------------------------------------------------------------------------
 from tensorflow import random
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
@@ -38,14 +39,14 @@ from sklearn.metrics import classification_report
 from matclassification.methods._lib.logger import Logger
 from matclassification.methods._lib.metrics import MetricsLogger
 # --------------------------------------------------------------------------------
-from matclassification.methods.core import HSClassifier
+from matclassification.methods.core import THSClassifier
 
-class MARC(HSClassifier):
+class MARC(THSClassifier):
     
     def __init__(self, 
-                 embedder_size=100, # [100, 200, 300] ?
-                 merge_type='concatenate', # ['add', 'average', 'concatenate']
-                 rnn_cell='lstm', # ['gru', 'lstm']
+                 embedder_size=[100, 200, 300], # 100
+                 merge_type=['add', 'average', 'concatenate'], # 'concatenate'
+                 rnn_cell=['gru', 'lstm'], # 'lstm'
                  
                  # This are Default:
                  class_dropout = 0.5,
@@ -64,16 +65,18 @@ class MARC(HSClassifier):
         
         super().__init__('MARC', n_jobs=n_jobs, verbose=verbose, random_state=random_state, filterwarnings=filterwarnings)
         
-        VALID_MERGES = ['add', 'average', 'concatenate']
-        VALID_CELLS = ['lstm', 'gru']
-        
-        assert merge_type in VALID_MERGES, "["+self.name+":] Merge type '" + merge_type + "' is not valid! Please choose 'add', 'average', or 'concatenate'."
-        assert rnn_cell in VALID_CELLS, "["+self.name+":] RNN cell type '" + rnn_cell + "' is not valid! Please choose 'lstm' or 'gru'."
-        
         np.random.seed(seed=random_state)
         random.set_seed(random_state)
         
         self.validate = False # TODO: Future impl
+        
+        embedder_size = embedder_size if isinstance(embedder_size, list) else [embedder_size]
+        merge_type    = merge_type if isinstance(merge_type, list) else [merge_type]
+        rnn_cell      = rnn_cell if isinstance(rnn_cell, list) else [rnn_cell]
+        
+        self.grid = list(itertools.product(embedder_size, merge_type, rnn_cell))
+        
+        self.best_config = (100, 'concatenate', 'lstm')
         
         self.add_config(embedder_size=embedder_size,
                         merge_type=merge_type,
@@ -143,16 +146,27 @@ class MARC(HSClassifier):
         return self.X_train, self.y_train, self.X_test, self.y_test
         
     
-    def create(self):
+    def create(self, config):
+        
+        if config:
+            embedder_size = config[0]
+            merge_type = config[1]
+            rnn_cell = config[2]
+
+        VALID_MERGES = ['add', 'average', 'concatenate']
+        VALID_CELLS = ['lstm', 'gru']
+        
+        assert merge_type in VALID_MERGES, "["+self.name+":] Merge type '" + merge_type + "' is not valid! Please choose 'add', 'average', or 'concatenate'."
+        assert rnn_cell in VALID_CELLS, "["+self.name+":] RNN cell type '" + rnn_cell + "' is not valid! Please choose 'lstm' or 'gru'."
         
         keys = self.config['keys']
         vocab_size = self.config['vocab_size']
         num_classes = self.config['num_classes']
         max_length = self.config['max_length']
         
-        embedder_size = self.config['embedder_size']
-        merge_type = self.config['merge_type']
-        rnn_cell = self.config['rnn_cell']
+#        embedder_size = self.config['embedder_size']
+#        merge_type = self.config['merge_type']
+#        rnn_cell = self.config['rnn_cell']
         
         class_dropout = self.config['class_dropout']
         class_hidden_units = self.config['class_hidden_units']
@@ -229,7 +243,8 @@ class MARC(HSClassifier):
             X_train, 
             y_train, 
             X_val,
-            y_val, 
+            y_val,
+            config=None,
             save_results=False,
             res_path='.'):
         
@@ -243,8 +258,11 @@ class MARC(HSClassifier):
         if save_results:
             METRICS_FILE = self.name+'-'+prefix+'_results.csv'
             METRICS_FILE = os.path.join(res_path, METRICS_FILE)
+            
+        if not config:
+            config = self.best_config
         
-        self.model = self.create()
+        self.model = self.create(config)
         
         history = self.model.fit(x=X_train,
                    y=y_train,
@@ -260,8 +278,9 @@ class MARC(HSClassifier):
                                           verbose=1 if self.isverbose else 0,
                                           metrics_file=METRICS_FILE)])
         
-        self.report = pd.DataFrame(history.history)
-        return self.report
+#        self.report = pd.DataFrame(history.history)
+#        return self.report
+        return pd.DataFrame(history.history)
     
     def predict(self,                 
                 X_test,

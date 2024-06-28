@@ -126,9 +126,9 @@ def pois(df_train, df_test, sequences, features, method='npoi', result_dir='.', 
     del x_train
     del x_test   
    
-    core_name = os.path.join(result_dir, method+'_'+('_'.join(features))+'_'+('_'.join([str(n) for n in sequences])) ) #+'_'+dataset)
+    core_name = method+'_'+('_'.join(features))+'_'+('_'.join([str(n) for n in sequences]))  #+'_'+dataset)
     if save_all:
-        to_file(core_name, agg_x_train, agg_x_test, y_train, y_test)
+        to_file(os.path.join(result_dir, core_name), agg_x_train, agg_x_test, y_train, y_test)
 
     time_ext = (datetime.now()-time).total_seconds() * 1000
     if verbose:

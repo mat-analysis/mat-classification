@@ -194,14 +194,15 @@ class THSClassifier(HSClassifier):
                 data.append( validation_report )
                 
             # Choose the best model based on higher acc:
-            acc = validation_report.iloc[0]['acc']
+            acc = validation_report.iloc[0]['accuracy']#['acc']
             if acc > self.best_config[0]:
                 self.best_config = [acc, config]
                 self.best_model = self.model
             
+            # TODO Save model results ??
             self.clear()
             # ------------------------------------------->
-            break 
+            #break 
             # TODO -----------------------------------------># -------------------------------------------> **************************
 
         self.best_config = self.best_config[1]
@@ -209,7 +210,8 @@ class THSClassifier(HSClassifier):
         self.report = pd.concat(data)
         self.report.reset_index(drop=True, inplace=True)
 
-        self.report.sort_values('acc', ascending=False, inplace=True)
+#        self.report.sort_values('acc', ascending=False, inplace=True)
+        self.report.sort_values('accuracy', ascending=False, inplace=True)
         
         self.model = self.best_model
         
@@ -262,7 +264,7 @@ class THSClassifier(HSClassifier):
                 self.fit(X_train, y_train, X_val, y_val, self.best_config)
                 
                 eval_report, y_pred = self.predict(X_test, y_test)
-                eval_report['cls_time'] = self.duration()
+                eval_report['clstime'] = self.duration()
                 
                 evaluate_report.append(eval_report)
             
@@ -277,19 +279,19 @@ class THSClassifier(HSClassifier):
 
             return self.test_report, y_pred
 
-    def summary(self):
-#        tail = self.report.tail(1)
-        tail = self.test_report.mean()
-        summ = {
-            'acc':               tail['acc'],
-            'acc_top_K5':        tail['acc_top_K5'],
-            'balanced_accuracy': tail['balanced_accuracy'],
-            'precision_macro':   tail['precision_macro'],
-            'recall_macro':      tail['recall_macro'],
-            'f1_macro':          tail['f1_macro'],
-#            'loss':              None, # TODO New metrics
-            'cls_time':          self.test_report['cls_time'].max()
-        }
-        
-        self._summary = pd.DataFrame(summ, index=[0])
-        return self._summary
+#    def summary(self):
+##        tail = self.report.tail(1)
+#        tail = self.test_report.mean()
+#        summ = {
+#            'accuracy':               tail['acc'],
+#            'accuracyTopK5':          tail['acc_top_K5'],
+#            'balanced_accuracy':      tail['balanced_accuracy'],
+#            'precision_macro':        tail['precision_macro'],
+#            'recall_macro':           tail['recall_macro'],
+#            'f1_macro':               tail['f1_macro'],
+##            'loss':              None, # TODO New metrics
+#            'clstime':    self.test_report['clstime'].max()
+#        }
+#        
+#        self._summary = pd.DataFrame(summ, index=[0])
+#        return self._summary

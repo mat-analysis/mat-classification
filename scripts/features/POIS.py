@@ -10,8 +10,9 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
 @author: Tarlis Portela
 '''
-import sys, os 
-sys.path.insert(0, os.path.abspath('.'))
+import os
+#import sys, os  # TODO TEMP FOR TESTING
+#sys.path.insert(0, os.path.abspath('.'))
 
 from datetime import datetime
 import argparse
@@ -98,15 +99,16 @@ test = readDataset(os.path.join(data_path,  test))
 
 # Feature extraction:
 core_name = '_'.join(features) + '_' + '_'.join([str(s) for s in sequences])
-folder = method.upper()+'-'+core_name
-res_dir = os.path.join(res_path, folder)
-x_train, x_test, y_train, y_test, _ = pois(train, test, sequences, features, method, result_dir=res_dir, save_all=True)
+#folder = method.upper()+'-'+core_name
+#res_dir = os.path.join(res_path, folder)
+x_train, x_test, y_train, y_test, _ = pois(train, test, sequences, features, method, result_dir=res_path, save_all=True)
 # ---------------------------------------------------------------------------------
 def callmodel(res_dir, core_name):
     time_cls = datetime.now()
     
     # POIS method have a method for reading and data transformation:
-    x_train, x_test, y_train, y_test = loadData(os.path.join(res_dir, core_name))
+    x_train, x_test, y_train, y_test = loadData(os.path.join(res_dir, method.lower()+'_'+core_name))
+#    x_train, x_test, y_train, y_test = loadData(res_dir)
     num_features, num_classes, labels, X, y, one_hot_y = prepareData(x_train, x_test, y_train, y_test)
     x_train, x_test = X
     y_train, y_test = y
@@ -119,8 +121,8 @@ def callmodel(res_dir, core_name):
     
     # You can add method variables with this:
     model.add_config(num_features=num_features,
-                    num_classes=num_classes, 
-                    labels=labels)
+                     num_classes=num_classes, 
+                     labels=labels)
 
     # Run the classifier:
     model.fit(x_train, y_train, x_test, y_test)
@@ -136,12 +138,14 @@ def callmodel(res_dir, core_name):
     del model
 # ---------------------------------------------------------------------------------
 if classify:
-    callmodel(res_dir, method.lower()+'_'+core_name)
+#    callmodel(res_dir, method.lower()+'-'+core_name)
+    callmodel(res_path, core_name)
     
     # For other sequence sizes:
-    core_name = method.lower()+'_'+ '_'.join(features) + '_'
+#    core_name = method.lower()+'_'+ '_'.join(features) + '_'
+    core_name = '_'.join(features) + '_'
     for s in sequences:
-        callmodel(res_dir, core_name+str(s))
+        callmodel(res_path, core_name+str(s))
 # ---------------------------------------------------------------------------------
 
 time_ext = (datetime.now()-time).total_seconds() * 1000

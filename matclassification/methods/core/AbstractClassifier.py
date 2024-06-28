@@ -34,12 +34,14 @@ import warnings
 from abc import ABC, abstractmethod
 # TODO implement rounds
 
+# Replicated in matview.result:
 from enum import Enum, auto
 class Approach(Enum):
     NN   = auto()
     RF   = auto()
     DT   = auto()
-    SVC  = auto()
+    SVM  = auto()
+    XGB  = auto()
 
 # Simple Abstract Classifier Model
 class AbstractClassifier(ABC):
@@ -77,6 +79,7 @@ class AbstractClassifier(ABC):
             warnings.filterwarnings(filterwarnings)
         
         if self.isverbose:
+            print(datetime.now())
             print('\n['+self.name+':] Building model')
     
     def add_config(self, **kwargs):
@@ -148,8 +151,8 @@ class AbstractClassifier(ABC):
         acc, acc_top5, _f1_macro, _prec_macro, _rec_macro, bal_acc = compute_acc_acc5_f1_prec_rec(np.array(y_test), np.array(y_pred), print_metrics=False)
         
         dic_model = {
-            'acc': acc,
-            'acc_top_K5': acc_top5,
+            'accuracy': acc,
+            'accuracyTopK5': acc_top5,
             'balanced_accuracy': bal_acc,
             'precision_macro': _f1_macro,
             'recall_macro': _prec_macro,

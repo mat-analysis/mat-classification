@@ -10,8 +10,9 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
 @author: Tarlis Portela
 '''
-import sys, os  # TODO TEMP FOR TESTING
-sys.path.insert(0, os.path.abspath('.'))
+import os
+#import sys, os  # TODO TEMP FOR TESTING
+#sys.path.insert(0, os.path.abspath('.'))
 
 import os
 import argparse
@@ -36,7 +37,7 @@ def parse_args():
     parse.add_argument('results-path', type=str, help='path for the results folder')
 #    parse.add_argument('folder', type=str, help='dataset name')
     parse.add_argument('-c', '--classifiers', type=str, default='MMLP,MRF,MSVC', help='classifiers methods')
-    parse.add_argument('-m', '--modelfolder', type=str, default='model', help='model folder')
+    parse.add_argument('-mf', '--modelfolder', type=str, default='.', help='model folder')
     
     parse.add_argument('-r', '--random', type=int, default=1, help='random seed')
 

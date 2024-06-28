@@ -10,8 +10,9 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
 @author: Tarlis Portela
 '''
-import sys, os 
-sys.path.insert(0, os.path.abspath('.'))
+import os
+#import sys, os  # TODO TEMP FOR TESTING
+#sys.path.insert(0, os.path.abspath('.'))
 
 import argparse
 from datetime import datetime
