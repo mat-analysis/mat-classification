@@ -1,0 +1,279 @@
+space,time,day,poi,type,root_type,rating,weather,tid,label
+40.5870239319328 -73.9542103553703,437,Monday,MTA Subway - Sheepshead Bay (B/Q),Metro Station,Travel & Transport,-1.0,Clear,5062,181
+40.5952339959066 -73.9551973342896,437,Monday,MTA Subway - B Train,Train,Travel & Transport,-1.0,Clear,5062,181
+40.6090656243329 -73.9577722549438,439,Monday,MTA Subway - Kings Highway (B/Q),Metro Station,Travel & Transport,-1.0,Clear,5062,181
+40.6719746521451 -73.9643901498069,260,Tuesday,MTA Subway - Eastern Parkway/Brooklyn Museum (2/3),Metro Station,Travel & Transport,-1.0,Clear,5062,181
+40.6719746521451 -73.9643901498069,96,Wednesday,MTA Subway - Eastern Parkway/Brooklyn Museum (2/3),Metro Station,Travel & Transport,-1.0,Clear,5062,181
+40.6783761057844 -73.9033985137939,164,Wednesday,MTA Subway - Broadway Junction (A/C/J/L/Z),Metro Station,Travel & Transport,-1.0,Clouds,5062,181
+40.6880585097395 -73.9804905425158,184,Wednesday,MTA Subway - Nevins St (2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,5062,181
+40.6975382566452 -73.9925520000000,230,Wednesday,Penny Bridge,Deli / Bodega,Food,7.1,Clouds,5062,181
+40.5774555812085 -73.9812469482422,417,Wednesday,MTA Subway - Coney Island/Stillwell Ave (D/F/N/Q),Metro Station,Travel & Transport,-1.0,Clouds,5062,181
+40.7058882004734 -73.9900016784668,1317,Wednesday,Manhattan Bridge,Bridge,Outdoors & Recreation,9.0,Clouds,5062,181
+40.8845210000000 -73.9008770000000,1043,Friday,MTA Subway - 238th St (1),Metro Station,Travel & Transport,-1.0,Clear,5062,181
+40.8846830000000 -73.8997180000000,1049,Friday,Bronx Alehouse,Bar,Nightlife Spot,9.4,Clear,5062,181
+40.6362594491798 -73.9947902168192,1339,Saturday,MTA Subway - 50th St (D),Metro Station,Travel & Transport,-1.0,Clouds,5062,181
+40.6314259952945 -73.9954921603203,1340,Saturday,MTA Subway - 55th St (D),Metro Station,Travel & Transport,-1.0,Clouds,5062,181
+40.5774555812085 -73.9812469482422,1413,Saturday,MTA Subway - Coney Island/Stillwell Ave (D/F/N/Q),Metro Station,Travel & Transport,-1.0,Clouds,5062,181
+40.7332686014083 -73.9999584922170,273,Monday,99¢ Fresh Pizza,Pizza Place,Food,6.1,Clear,5069,181
+40.7009593110380 -73.8077187538147,1186,Monday,MTA Subway - Sutphin Blvd/Archer Ave/JFK (E/J/Z),Metro Station,Travel & Transport,-1.0,Clear,5069,181
+40.7546043825857 -73.8455486297607,1283,Monday,MTA Subway - Mets/Willets Point (7),Metro Station,Travel & Transport,-1.0,Clear,5069,181
+40.7468342989195 -73.8915538787842,74,Tuesday,MTA Subway - 74th St/Roosevelt Ave/Jackson Hts (E/F/M/R/7),Metro Station,Travel & Transport,-1.0,Clear,5069,181
+40.7528732605498 -73.9327579736710,162,Tuesday,MTA Subway - 39th Ave (N/W),Metro Station,Travel & Transport,-1.0,Clear,5069,181
+40.5870239319328 -73.9542103553703,1327,Saturday,MTA Subway - Sheepshead Bay (B/Q),Metro Station,Travel & Transport,-1.0,Clear,5069,181
+40.7202661102641 -73.9940786361694,204,Sunday,MTA Subway - Bowery (J/Z),Metro Station,Travel & Transport,-1.0,Clear,5069,181
+40.7181437748072 -74.0001565217972,262,Sunday,MTA Subway - Canal St (6/J/N/Q/R/W/Z),Metro Station,Travel & Transport,-1.0,Clouds,5069,181
+40.7305922174740 -73.9816331863403,362,Sunday,MTA Subway - 1st Ave (L),Metro Station,Travel & Transport,-1.0,Clear,5069,181
+40.6254167321779 -73.9608608186245,1321,Sunday,MTA Subway - Avenue J (Q),Metro Station,Travel & Transport,-1.0,Clear,5069,181
+40.5733484377664 -73.9803028106689,380,Monday,Coney Island Beach & Boardwalk,Beach,Outdoors & Recreation,9.3,Clouds,5070,181
+40.5778266755975 -73.9607481089862,1345,Monday,MTA Subway - Brighton Beach (B/Q),Metro Station,Travel & Transport,-1.0,Clouds,5070,181
+40.7550895399192 -73.9877348020350,281,Tuesday,Sunrise Delicatessen,Deli / Bodega,Food,-1.0,Clouds,5070,181
+40.7978423487787 -73.9224884951375,151,Thursday,Robert F Kennedy Toll Plaza,Toll Plaza,Travel & Transport,4.7,Clouds,5070,181
+40.8278609004168 -73.9256514608860,174,Thursday,MTA Subway - 161st St/Yankee Stadium (4/B/D),Metro Station,Travel & Transport,-1.0,Clouds,5070,181
+40.8635200000000 -73.8734640000000,250,Thursday,MTA Subway - Mosholu Parkway (4),Metro Station,Travel & Transport,-1.0,Clouds,5070,181
+40.8796783025601 -73.8846445083618,263,Thursday,MTA Subway - Mosholu Parkway (4),Metro Station,Travel & Transport,-1.0,Clouds,5070,181
+40.8835719091248 -73.8626718521118,306,Thursday,MTA Subway - 219th St (2/5),Metro Station,Travel & Transport,-1.0,Clouds,5070,181
+40.5733484377664 -73.9803028106689,450,Thursday,Coney Island Beach & Boardwalk,Beach,Outdoors & Recreation,9.3,Clear,5070,181
+40.6400094280926 -73.9483737945557,664,Thursday,MTA Subway - Newkirk Ave (2/5),Metro Station,Travel & Transport,-1.0,Clear,5070,181
+40.5870239319328 -73.9542103553703,1012,Thursday,MTA Subway - Sheepshead Bay (B/Q),Metro Station,Travel & Transport,-1.0,Clouds,5070,181
+40.5870239319328 -73.9542103553703,1356,Friday,MTA Subway - Sheepshead Bay (B/Q),Metro Station,Travel & Transport,-1.0,Clear,5070,181
+40.7267735581515 -73.9313752726206,33,Saturday,Waste Management,Building,Professional & Other Places,-1.0,Clear,5070,181
+40.7841677650438 -73.9798090732241,255,Saturday,MTA Subway - 79th St (1),Metro Station,Travel & Transport,-1.0,Clouds,5070,181
+40.7946757855249 -73.9717626571655,256,Saturday,MTA Subway - 96th St (1/2/3),Metro Station,Travel & Transport,-1.0,Clouds,5070,181
+40.7497034836652 -73.9878129959106,273,Saturday,MTA Subway - 34th St/Herald Sq (B/D/F/M/N/Q/R/W),Metro Station,Travel & Transport,-1.0,Clear,5070,181
+40.6018976465138 -73.9935207366943,1347,Saturday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clouds,5070,181
+40.6843073787307 -73.9775978028774,48,Sunday,MTA Subway - Atlantic Ave/Barclays Center (B/D/N/Q/R/2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,5070,181
+40.6804674018923 -73.9607710682224,262,Sunday,White Castle,Burger Joint,Food,-1.0,Clouds,5070,181
+40.5774555812085 -73.9812469482422,1344,Sunday,MTA Subway - Coney Island/Stillwell Ave (D/F/N/Q),Metro Station,Travel & Transport,-1.0,Clouds,5070,181
+40.6843073787307 -73.9775978028774,137,Monday,MTA Subway - Atlantic Ave/Barclays Center (B/D/N/Q/R/2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,5075,181
+40.6803850775639 -73.9748790017291,138,Monday,MTA Subway -  Bergen St (2/3),Metro Station,Travel & Transport,-1.0,Clouds,5075,181
+40.6719746521451 -73.9643901498069,221,Monday,MTA Subway - Eastern Parkway/Brooklyn Museum (2/3),Metro Station,Travel & Transport,-1.0,Clouds,5075,181
+40.6717354143037 -73.9637959236918,221,Monday,Brooklyn Museum - Plaza,Plaza,Outdoors & Recreation,8.3,Clouds,5075,181
+40.6090656243329 -73.9577722549438,1344,Tuesday,MTA Subway - Kings Highway (B/Q),Metro Station,Travel & Transport,-1.0,Clouds,5075,181
+40.5778266755975 -73.9607481089862,1353,Tuesday,MTA Subway - Brighton Beach (B/Q),Metro Station,Travel & Transport,-1.0,Clouds,5075,181
+40.5774555812085 -73.9812469482422,16,Wednesday,MTA Subway - Coney Island/Stillwell Ave (D/F/N/Q),Metro Station,Travel & Transport,-1.0,Clear,5075,181
+40.7301300773037 -73.9924062948741,88,Wednesday,MTA Subway - 8th St/NYU (R/W),Metro Station,Travel & Transport,-1.0,Clouds,5075,181
+40.7103775644912 -74.0075540542603,293,Wednesday,MTA Subway - Fulton St (A/C/J/Z/2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,5075,181
+40.7097256948573 -74.0089679429322,294,Wednesday,Roxy's Coffee Shop,Diner,Food,-1.0,Clouds,5075,181
+40.6831200000000 -73.9759790000000,457,Wednesday,Barclays Center,Basketball Stadium,Arts & Entertainment,9.0,Clouds,5075,181
+40.6843073787307 -73.9775978028774,457,Wednesday,MTA Subway - Atlantic Ave/Barclays Center (B/D/N/Q/R/2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,5075,181
+40.5870239319328 -73.9542103553703,1350,Wednesday,MTA Subway - Sheepshead Bay (B/Q),Metro Station,Travel & Transport,-1.0,Clear,5075,181
+40.5774555812085 -73.9812469482422,470,Thursday,MTA Subway - Coney Island/Stillwell Ave (D/F/N/Q),Metro Station,Travel & Transport,-1.0,Clouds,5075,181
+40.5761191574433 -73.9760541915894,471,Thursday,MTA Subway - W 8th St/NY Aquarium (F/Q),Metro Station,Travel & Transport,-1.0,Clouds,5075,181
+40.7106378081967 -73.7943720817566,935,Friday,MTA Subway - 169th St (F),Metro Station,Travel & Transport,-1.0,Clear,5075,181
+40.7024071084752 -73.7999725341797,936,Friday,MTA Subway - Jamaica Center/Parsons/Archer (E/J/Z),Metro Station,Travel & Transport,-1.0,Clear,5075,181
+40.8643936830103 -73.9189767837524,1027,Friday,MTA Subway - 207th St (1),Metro Station,Travel & Transport,-1.0,Clear,5075,181
+40.8846871094783 -73.8997013555916,1041,Friday,Bronx Alehouse,Bar,Nightlife Spot,9.4,Clear,5075,181
+40.7546043825857 -73.8455486297607,1250,Sunday,MTA Subway - Mets/Willets Point (7),Metro Station,Travel & Transport,-1.0,Rain,5075,181
+40.8330995119797 -74.0102148056030,690,Monday,Ridgefield Circle,Bus Station,Travel & Transport,-1.0,Clear,21370,768
+40.9558986652535 -74.0681844400908,709,Monday,Paramus Park Parking Lot,Parking,Professional & Other Places,-1.0,Clear,21370,768
+40.9563425162631 -74.0690277157403,710,Monday,Paramus Park Mall,Shopping Mall,Shop & Service,7.3,Clear,21370,768
+40.9584791863044 -74.0693950653076,714,Monday,Macy's,Department Store,Shop & Service,7.1,Clear,21370,768
+40.9565346166931 -74.0690946578979,714,Monday,Buddy's Sports Corner,Sporting Goods Shop,Shop & Service,-1.0,Clear,21370,768
+40.9564715166667 -74.0688600000000,718,Monday,Dunkin Donuts,Donut Shop,Food,6.3,Clear,21370,768
+40.9562048333709 -74.0686032101010,720,Monday,Disney Store,Toy / Game Store,Shop & Service,-1.0,Clear,21370,768
+40.9564312268171 -74.0688728286580,952,Monday,Paramus Park Food Court,Food Court,Food,6.7,Clear,21370,768
+40.9564296604857 -74.0688556189744,965,Monday,Taco Bell,Fast Food Restaurant,Food,5.8,Clear,21370,768
+40.9572832378693 -74.0692342316527,991,Monday,Quails,Men's Store,Shop & Service,-1.0,Clear,21370,768
+40.9561456958968 -74.0684509277344,991,Monday,Auntie Anne's,Snack Place,Food,6.7,Clear,21370,768
+40.9544350000000 -74.0667240000000,1001,Monday,Sears,Department Store,Shop & Service,6.0,Clear,21370,768
+40.9562048333709 -74.0686032101010,1001,Monday,Disney Store,Toy / Game Store,Shop & Service,-1.0,Clear,21370,768
+40.7618798850444 -74.0441474318504,1013,Tuesday,John F. Kennedy Elementary School,Elementary School,Professional & Other Places,-1.0,Clear,21370,768
+40.7724867975155 -74.0292749493683,1029,Tuesday,Margie's Barber Shop,Salon / Barbershop,Shop & Service,-1.0,Clear,21370,768
+40.8052868037173 -74.0109648847478,1049,Tuesday,Our Lady of Fatima R.C. Church,Church,Professional & Other Places,-1.0,Clear,21370,768
+40.8081967290294 -74.0180400882129,1139,Tuesday,Cugino's Pizzeria and Ristorante,Italian Restaurant,Food,-1.0,Clear,21370,768
+40.7618798850444 -74.0441474318504,1318,Tuesday,John F. Kennedy Elementary School,Elementary School,Professional & Other Places,-1.0,Clear,21370,768
+40.8022778485458 -73.9994859695435,1369,Tuesday,Hudson County Park Lake,Lake,Outdoors & Recreation,-1.0,Clear,21370,768
+40.8033446470058 -74.0063340136428,1369,Tuesday,The Camizzi Grapevine,Vineyard,Outdoors & Recreation,-1.0,Clear,21370,768
+40.8022778485458 -73.9994859695435,795,Wednesday,Hudson County Park Lake,Lake,Outdoors & Recreation,-1.0,Clear,21370,768
+40.8039649766588 -74.0051346743456,901,Wednesday,Mark's Homemade Ice Cream,Ice Cream Shop,Food,7.6,Clouds,21370,768
+40.8045877491008 -74.0049223503374,931,Wednesday,North Bergen Public Library,Library,Professional & Other Places,-1.0,Clouds,21370,768
+40.8022919295848 -74.0064659978909,931,Wednesday,North Bergen Post Office,Post Office,Professional & Other Places,-1.0,Clouds,21370,768
+40.8020420837973 -74.0006327810760,962,Wednesday,Camizzi's Place,Home (private),Residence,-1.0,Clouds,21370,768
+40.8132895494315 -74.0113735198975,1093,Wednesday,Applebee's Neighborhood Grill & Bar,American Restaurant,Food,5.7,Clouds,21370,768
+40.8134291126369 -74.0135420858860,42,Thursday,Walmart Supercenter,Big Box Store,Shop & Service,6.5,Clouds,21370,768
+40.8121981333333 -74.0131270000000,43,Thursday,Wendy's,Fast Food Restaurant,Food,6.3,Clouds,21370,768
+40.8136110000000 -74.0103210500000,62,Thursday,7-Eleven,Convenience Store,Shop & Service,6.6,Clouds,21370,768
+40.8033802007548 -74.0064946901067,71,Thursday,Town Beverage,Liquor Store,Shop & Service,-1.0,Clouds,21370,768
+40.8049381728163 -74.0013070675608,128,Thursday,Bruins Stadium,Stadium,Arts & Entertainment,6.7,Rain,21370,768
+40.8020420837973 -74.0006327810760,129,Thursday,Camizzi's Place,Home (private),Residence,-1.0,Rain,21370,768
+40.8012272147775 -74.0003028102289,633,Thursday,James J Braddock North Hudson County Park,Park,Outdoors & Recreation,8.7,Clear,21370,768
+40.8039649766588 -74.0051346743456,941,Thursday,Mark's Homemade Ice Cream,Ice Cream Shop,Food,7.6,Clear,21370,768
+40.8132895494315 -74.0113735198975,1065,Thursday,Applebee's Neighborhood Grill & Bar,American Restaurant,Food,5.7,Clear,21370,768
+40.8121981333333 -74.0131270000000,19,Friday,Wendy's,Fast Food Restaurant,Food,6.3,Clear,21370,768
+40.8134291126369 -74.0135420858860,22,Friday,Walmart Supercenter,Big Box Store,Shop & Service,6.5,Clear,21370,768
+40.8136110000000 -74.0103210500000,55,Friday,7-Eleven,Convenience Store,Shop & Service,6.6,Clear,21370,768
+40.8020420837973 -74.0006327810760,102,Friday,Camizzi's Place,Home (private),Residence,-1.0,Clear,21370,768
+40.7587626851628 -74.0442843322801,616,Friday,Dunkin' Donuts,Donut Shop,Food,7.0,Clear,21370,768
+40.8069977352103 -74.0161726623774,689,Friday,BP,Gas Station,Shop & Service,6.2,Clouds,21370,768
+40.8094453811646 -74.0077310800552,704,Friday,Town Service Center,Gas Station,Shop & Service,-1.0,Clouds,21370,768
+40.8160178299938 -73.9981555938721,728,Friday,Our Lady of Grace R.C. Church,Church,Professional & Other Places,-1.0,Clouds,21370,768
+40.8087962865829 -74.0023076534271,750,Friday,QuickChek,Miscellaneous Shop,Shop & Service,7.8,Clouds,21370,768
+40.7860510000000 -74.0456251833333,982,Friday,Burger King,Fast Food Restaurant,Food,-1.0,Clouds,21370,768
+40.7861215333333 -74.0464621782303,987,Friday,Bank Of America,Bank,Shop & Service,6.0,Clouds,21370,768
+40.8043427110207 -74.0056511371656,9,Saturday,The Camizzi Grapevine,Vineyard,Outdoors & Recreation,-1.0,Clouds,21370,768
+40.8020420837973 -74.0006327810760,301,Saturday,Camizzi's Place,Home (private),Residence,-1.0,Clouds,21370,768
+40.8012272147775 -74.0003028102289,700,Saturday,James J Braddock North Hudson County Park,Park,Outdoors & Recreation,8.7,Clear,21370,768
+40.8039649766588 -74.0051346743456,882,Saturday,Mark's Homemade Ice Cream,Ice Cream Shop,Food,7.6,Clouds,21370,768
+40.8043427110207 -74.0056511371656,882,Saturday,The Camizzi Grapevine,Vineyard,Outdoors & Recreation,-1.0,Clouds,21370,768
+40.9564888763106 -74.0687753070967,1352,Saturday,Paramus Park Fountain,Garden,Outdoors & Recreation,-1.0,Clouds,21370,768
+40.7694623998084 -74.0438138726682,122,Sunday,Taco Bell,Fast Food Restaurant,Food,7.4,Clouds,21370,768
+40.8170282957992 -74.0017718934570,144,Sunday,The Point Diner Fairview,Diner,Food,7.3,Clouds,21370,768
+40.7702455318193 -74.0184933972607,206,Sunday,Weehawken Dueling Grounds,Park,Outdoors & Recreation,7.1,Clouds,21370,768
+40.7701418259051 -74.0169149637222,207,Sunday,Weehawken Dueling Grounds,Park,Outdoors & Recreation,7.1,Clouds,21370,768
+40.7710608020235 -74.0181376358204,209,Sunday,"Blvd East ""The Block"" NYC View",Scenic Lookout,Outdoors & Recreation,-1.0,Clouds,21370,768
+40.8049381728163 -74.0013070675608,226,Sunday,Bruins Stadium,Stadium,Arts & Entertainment,6.7,Clouds,21370,768
+40.8022778485458 -73.9994859695435,227,Sunday,Hudson County Park Lake,Lake,Outdoors & Recreation,-1.0,Clouds,21370,768
+40.8020420837973 -74.0006327810760,230,Sunday,Camizzi's Place,Home (private),Residence,-1.0,Clouds,21370,768
+40.9045609909559 -74.0326595306396,785,Sunday,Coach House Diner & Restaurant,Diner,Food,6.7,Rain,21370,768
+40.8218072969796 -73.9907879281672,1118,Sunday,A.K. Macagna Funeral Home,Funeral Home,Professional & Other Places,-1.0,Rain,21370,768
+40.8160178299938 -73.9981555938721,1179,Sunday,Our Lady of Grace R.C. Church,Church,Professional & Other Places,-1.0,Rain,21370,768
+40.8039649766588 -74.0051346743456,1293,Sunday,Mark's Homemade Ice Cream,Ice Cream Shop,Food,7.6,Rain,21370,768
+40.8012272147775 -74.0003028102289,1437,Sunday,James J Braddock North Hudson County Park,Park,Outdoors & Recreation,8.7,Rain,21370,768
+40.8043427110207 -74.0056511371656,1437,Sunday,The Camizzi Grapevine,Vineyard,Outdoors & Recreation,-1.0,Rain,21370,768
+40.8033819497664 -74.0065291207600,737,Tuesday,Carol Ann Cleaners,Laundry Service,Shop & Service,-1.0,Clouds,21372,768
+40.8022919295848 -74.0064659978909,782,Tuesday,North Bergen Post Office,Post Office,Professional & Other Places,-1.0,Clouds,21372,768
+40.8043427110207 -74.0056511371656,1050,Tuesday,The Camizzi Grapevine,Vineyard,Outdoors & Recreation,-1.0,Clouds,21372,768
+40.8030584446864 -74.0057773834207,1118,Tuesday,Fine Fare,Supermarket,Shop & Service,-1.0,Clear,21372,768
+40.8020420837973 -74.0006327810760,1155,Tuesday,Camizzi's Place,Home (private),Residence,-1.0,Clear,21372,768
+40.8059749333333 -74.0098700166667,825,Thursday,Deluxe Barber Shop,Salon / Barbershop,Shop & Service,-1.0,Clouds,21372,768
+40.8062952895524 -74.0098057429006,862,Thursday,Rose Delicatessen,Deli / Bodega,Food,-1.0,Clouds,21372,768
+40.8020420837973 -74.0006327810760,906,Thursday,Camizzi's Place,Home (private),Residence,-1.0,Clouds,21372,768
+40.8132895494315 -74.0113735198975,953,Thursday,Applebee's Neighborhood Grill & Bar,American Restaurant,Food,5.7,Clouds,21372,768
+40.8020420837973 -74.0006327810760,132,Friday,Camizzi's Place,Home (private),Residence,-1.0,Clouds,21372,768
+40.8607586045227 -74.1988277435303,615,Friday,Montclair State University,University,College & University,-1.0,Clouds,21372,768
+40.8610831732134 -74.1989135742188,622,Friday,Dickson Hall,College Academic Building,College & University,-1.0,Clouds,21372,768
+40.8625422658968 -74.1977978848959,631,Friday,Montclair State University Bookstore,College Bookstore,College & University,-1.0,Clouds,21372,768
+40.7918857074864 -74.0495038032532,674,Friday,Panera Bread,Bakery,Food,8.7,Clouds,21372,768
+40.8151896138260 -74.0094637870789,806,Friday,Fairview Courts,Basketball Court,Outdoors & Recreation,-1.0,Clouds,21372,768
+40.8059968376642 -73.9977318874645,1066,Friday,BP,Gas Station,Shop & Service,6.2,Clear,21372,768
+40.8043427110207 -74.0056511371656,1138,Friday,The Camizzi Grapevine,Vineyard,Outdoors & Recreation,-1.0,Clear,21372,768
+40.8020420837973 -74.0006327810760,1268,Friday,Camizzi's Place,Home (private),Residence,-1.0,Clear,21372,768
+40.8037553044850 -74.0068504732251,1435,Friday,Town Beverage,Liquor Store,Shop & Service,-1.0,Clear,21372,768
+40.8020420837973 -74.0006327810760,125,Saturday,Camizzi's Place,Home (private),Residence,-1.0,Clouds,21372,768
+40.9563425162631 -74.0690277157403,641,Saturday,Paramus Park Mall,Shopping Mall,Shop & Service,7.3,Clouds,21372,768
+40.9564465183561 -74.0688613555358,646,Saturday,Dunkin Donuts,Donut Shop,Food,6.3,Clouds,21372,768
+40.9559639575860 -74.0683622740440,660,Saturday,Disney Store,Toy / Game Store,Shop & Service,-1.0,Clouds,21372,768
+40.9564312268171 -74.0688728286580,893,Saturday,Paramus Park Food Court,Food Court,Food,6.7,Fog,21372,768
+40.9564087500000 -74.0688591666667,903,Saturday,Nathan's Famous,Hot Dog Joint,Food,7.1,Fog,21372,768
+40.9564296604857 -74.0688556189744,919,Saturday,Taco Bell,Fast Food Restaurant,Food,5.8,Fog,21372,768
+40.9561456958968 -74.0684509277344,931,Saturday,Auntie Anne's,Snack Place,Food,6.7,Fog,21372,768
+40.9557521370096 -74.0681614937620,1057,Saturday,Paramus Park Parking Lot,Parking,Professional & Other Places,-1.0,Clouds,21372,768
+40.7377410000000 -74.0330780000000,1201,Saturday,Village Pourhouse,Sports Bar,Nightlife Spot,-1.0,Clouds,21372,768
+40.7860863528562 -74.0461604218268,1244,Saturday,Harmon Meadow,Shopping Mall,Shop & Service,7.0,Clouds,21372,768
+40.8006860356192 -74.0148496627808,902,Sunday,NBHS Field of Dreams,Baseball Field,Outdoors & Recreation,-1.0,Clouds,21372,768
+40.8018392916515 -74.0141201019287,1140,Sunday,NBHS Courts,Basketball Court,Outdoors & Recreation,-1.0,Clear,21372,768
+40.8023541739406 -74.0123994565080,1153,Sunday,Exxon,Gas Station,Shop & Service,5.9,Clear,21372,768
+40.8043427110207 -74.0056511371656,1240,Sunday,The Camizzi Grapevine,Vineyard,Outdoors & Recreation,-1.0,Clear,21372,768
+40.8039649766588 -74.0051346743456,1332,Sunday,Mark's Homemade Ice Cream,Ice Cream Shop,Food,7.6,Clear,21372,768
+40.8132895494315 -74.0113735198975,1369,Sunday,Applebee's Neighborhood Grill & Bar,American Restaurant,Food,5.7,Clear,21372,768
+40.8121981333333 -74.0131270000000,1413,Sunday,Wendy's,Fast Food Restaurant,Food,6.3,Clear,21372,768
+40.8186999325416 -74.0013988851112,126,Monday,McDonald's,Fast Food Restaurant,Food,6.1,Clear,21376,768
+40.8020420837973 -74.0006327810760,288,Monday,Camizzi's Place,Home (private),Residence,-1.0,Clear,21376,768
+40.8012272147775 -74.0003028102289,794,Monday,James J Braddock North Hudson County Park,Park,Outdoors & Recreation,8.7,Clear,21376,768
+40.8022778485458 -73.9994859695435,807,Monday,Hudson County Park Lake,Lake,Outdoors & Recreation,-1.0,Clear,21376,768
+40.8049381728163 -74.0013070675608,825,Monday,Bruins Stadium,Stadium,Arts & Entertainment,6.7,Clear,21376,768
+40.8023541739406 -74.0123994565080,843,Monday,Exxon,Gas Station,Shop & Service,5.9,Clear,21376,768
+40.8043427110207 -74.0056511371656,1187,Monday,The Camizzi Grapevine,Vineyard,Outdoors & Recreation,-1.0,Clear,21376,768
+40.8128348250965 -73.9840793609619,1399,Monday,Edgewater Commons,Shopping Mall,Shop & Service,8.1,Clear,21376,768
+40.8020420837973 -74.0006327810760,152,Tuesday,Camizzi's Place,Home (private),Residence,-1.0,Clear,21376,768
+40.8012272147775 -74.0003028102289,726,Tuesday,James J Braddock North Hudson County Park,Park,Outdoors & Recreation,8.7,Clear,21376,768
+40.8022778485458 -73.9994859695435,768,Tuesday,Hudson County Park Lake,Lake,Outdoors & Recreation,-1.0,Clear,21376,768
+40.8023541739406 -74.0123994565080,820,Tuesday,Exxon,Gas Station,Shop & Service,5.9,Clear,21376,768
+40.8043427110207 -74.0056511371656,850,Tuesday,The Camizzi Grapevine,Vineyard,Outdoors & Recreation,-1.0,Clear,21376,768
+40.8059968376642 -73.9977318874645,949,Tuesday,BP,Gas Station,Shop & Service,6.2,Clear,21376,768
+40.8208035198366 -74.0085433031903,961,Tuesday,Wine & Liquor Depot,Liquor Store,Shop & Service,-1.0,Clear,21376,768
+40.8017905629288 -74.0215015411377,994,Tuesday,Target,Big Box Store,Shop & Service,7.8,Clear,21376,768
+40.7925477016768 -74.0505337715149,1015,Tuesday,Mill Creek Mall,Shopping Mall,Shop & Service,7.5,Clear,21376,768
+40.7860863528562 -74.0461604218268,1018,Tuesday,Harmon Meadow,Shopping Mall,Shop & Service,7.0,Clear,21376,768
+40.7913293023563 -74.0514993667603,1026,Tuesday,Kohl's Secaucus,Department Store,Shop & Service,7.3,Clear,21376,768
+40.8132895494315 -74.0113735198975,1138,Tuesday,Applebee's Neighborhood Grill & Bar,American Restaurant,Food,5.7,Clear,21376,768
+40.8039649766588 -74.0051346743456,1190,Tuesday,Mark's Homemade Ice Cream,Ice Cream Shop,Food,7.6,Clouds,21376,768
+40.8020420837973 -74.0006327810760,1200,Tuesday,Camizzi's Place,Home (private),Residence,-1.0,Clouds,21376,768
+40.8128348250965 -73.9840793609619,1246,Tuesday,Edgewater Commons,Shopping Mall,Shop & Service,8.1,Clouds,21376,768
+40.8130987279918 -73.9846855401993,1253,Tuesday,Starbucks,Coffee Shop,Food,8.1,Clouds,21376,768
+40.7710201739254 -74.0181433739134,1316,Tuesday,"Blvd East ""The Block"" NYC View",Scenic Lookout,Outdoors & Recreation,-1.0,Rain,21376,768
+40.8134291126369 -74.0135420858860,1369,Tuesday,Walmart Supercenter,Big Box Store,Shop & Service,6.5,Clear,21376,768
+40.7694623998084 -74.0438138726682,7,Wednesday,Taco Bell,Fast Food Restaurant,Food,7.4,Clouds,21376,768
+40.7929817655447 -73.9980589933925,45,Wednesday,Bank of America,Bank,Shop & Service,6.7,Clouds,21376,768
+40.7680901488985 -74.0450727939606,71,Wednesday,Shell,Gas Station,Shop & Service,6.1,Clouds,21376,768
+40.8020420837973 -74.0006327810760,100,Wednesday,Camizzi's Place,Home (private),Residence,-1.0,Clouds,21376,768
+40.8043427110207 -74.0056511371656,787,Thursday,The Camizzi Grapevine,Vineyard,Outdoors & Recreation,-1.0,Clear,21376,768
+40.8094453811646 -74.0077310800552,609,Friday,Town Service Center,Gas Station,Shop & Service,-1.0,Clear,21376,768
+40.8081094966135 -74.0026039863789,620,Friday,New Jersey Motor Vehicle Commission,Government Building,Professional & Other Places,-1.0,Clear,21376,768
+40.7999557833333 -74.0083512500000,838,Friday,Hudson City Savings Bank,Bank,Shop & Service,-1.0,Clouds,21376,768
+40.8027526799018 -74.0131110001054,481,Monday,NBHS Parking Lot,Parking,Professional & Other Places,-1.0,Clear,21381,768
+40.8004447422329 -74.0140463316094,489,Monday,North Bergen Board of Education,Office,Professional & Other Places,-1.0,Clear,21381,768
+40.8011246001335 -74.0142488479614,493,Monday,North Bergen High School,High School,Professional & Other Places,-1.0,Clear,21381,768
+40.8015306758037 -74.0143132209778,619,Monday,NBHS Band Room 108,Concert Hall,Arts & Entertainment,-1.0,Clear,21381,768
+40.8048106090861 -74.0154292366686,638,Monday,Boco-Loco Deli Restaurant,Breakfast Spot,Food,-1.0,Clear,21381,768
+40.8014169748664 -74.0143775939941,751,Monday,NBHS Auditorium,Concert Hall,Arts & Entertainment,-1.0,Clouds,21381,768
+40.8023541739406 -74.0123994565080,932,Monday,Exxon,Gas Station,Shop & Service,5.9,Clear,21381,768
+40.8011733293450 -74.0148282051086,959,Monday,NBHS Back Field,Field,Outdoors & Recreation,-1.0,Clear,21381,768
+40.8018392916515 -74.0141201019287,986,Monday,NBHS Courts,Basketball Court,Outdoors & Recreation,-1.0,Clouds,21381,768
+40.8039649766588 -74.0051346743456,1028,Monday,Mark's Homemade Ice Cream,Ice Cream Shop,Food,7.6,Clouds,21381,768
+40.8012272147775 -74.0003028102289,1053,Monday,James J Braddock North Hudson County Park,Park,Outdoors & Recreation,8.7,Clouds,21381,768
+40.8022778485458 -73.9994859695435,1083,Monday,Hudson County Park Lake,Lake,Outdoors & Recreation,-1.0,Clouds,21381,768
+40.8029275571367 -74.0001296997070,1083,Monday,Woodcliff Lake,Lake,Outdoors & Recreation,-1.0,Clouds,21381,768
+40.8121295003539 -74.0054502906790,1122,Monday,The Camizzi Grapevine,Vineyard,Outdoors & Recreation,-1.0,Clear,21381,768
+40.8020420837973 -74.0006327810760,51,Tuesday,Camizzi's Place,Home (private),Residence,-1.0,Clear,21381,768
+40.8027526799018 -74.0131110001054,491,Tuesday,NBHS Parking Lot,Parking,Professional & Other Places,-1.0,Clear,21381,768
+40.8004447422329 -74.0140463316094,494,Tuesday,North Bergen Board of Education,Office,Professional & Other Places,-1.0,Clear,21381,768
+40.8011246001335 -74.0142488479614,565,Tuesday,North Bergen High School,High School,Professional & Other Places,-1.0,Clear,21381,768
+40.8048106090861 -74.0154292366686,617,Tuesday,Boco-Loco Deli Restaurant,Breakfast Spot,Food,-1.0,Clear,21381,768
+40.8018392916515 -74.0141201019287,632,Tuesday,NBHS Courts,Basketball Court,Outdoors & Recreation,-1.0,Clear,21381,768
+40.8015306758037 -74.0143132209778,633,Tuesday,NBHS Band Room 108,Concert Hall,Arts & Entertainment,-1.0,Clear,21381,768
+40.8011733293450 -74.0148282051086,661,Tuesday,NBHS Back Field,Field,Outdoors & Recreation,-1.0,Clear,21381,768
+40.8006860356192 -74.0148496627808,661,Tuesday,NBHS Field of Dreams,Baseball Field,Outdoors & Recreation,-1.0,Clear,21381,768
+40.8019308571520 -74.0134839856099,662,Tuesday,North Bergen High School,High School,Professional & Other Places,-1.0,Clear,21381,768
+40.8014169748664 -74.0143775939941,723,Tuesday,NBHS Auditorium,Concert Hall,Arts & Entertainment,-1.0,Clouds,21381,768
+40.8023541739406 -74.0123994565080,792,Tuesday,Exxon,Gas Station,Shop & Service,5.9,Clouds,21381,768
+40.8012272147775 -74.0003028102289,951,Tuesday,James J Braddock North Hudson County Park,Park,Outdoors & Recreation,8.7,Clouds,21381,768
+40.8033058174890 -74.0065348592017,996,Tuesday,Hudson County Park Courts,Basketball Court,Outdoors & Recreation,-1.0,Clouds,21381,768
+40.8022778485458 -73.9994859695435,1005,Tuesday,Hudson County Park Lake,Lake,Outdoors & Recreation,-1.0,Clouds,21381,768
+40.8029275571367 -74.0001296997070,1006,Tuesday,Woodcliff Lake,Lake,Outdoors & Recreation,-1.0,Clouds,21381,768
+40.8087962865829 -74.0023076534271,1049,Tuesday,QuickChek,Miscellaneous Shop,Shop & Service,7.8,Clear,21381,768
+40.8132895494315 -74.0113735198975,1089,Tuesday,Applebee's Neighborhood Grill & Bar,American Restaurant,Food,5.7,Clear,21381,768
+40.8020420837973 -74.0006327810760,314,Wednesday,Camizzi's Place,Home (private),Residence,-1.0,Clouds,21381,768
+40.8023541739406 -74.0123994565080,680,Wednesday,Exxon,Gas Station,Shop & Service,5.9,Clear,21381,768
+40.8012272147775 -74.0003028102289,747,Wednesday,James J Braddock North Hudson County Park,Park,Outdoors & Recreation,8.7,Clear,21381,768
+40.8022778485458 -73.9994859695435,747,Wednesday,Hudson County Park Lake,Lake,Outdoors & Recreation,-1.0,Clear,21381,768
+40.8029275571367 -74.0001296997070,748,Wednesday,Woodcliff Lake,Lake,Outdoors & Recreation,-1.0,Clear,21381,768
+40.8132895494315 -74.0113735198975,786,Wednesday,Applebee's Neighborhood Grill & Bar,American Restaurant,Food,5.7,Clear,21381,768
+40.8087962865829 -74.0023076534271,297,Thursday,QuickChek,Miscellaneous Shop,Shop & Service,7.8,Clear,21381,768
+40.8020420837973 -74.0006327810760,326,Thursday,Camizzi's Place,Home (private),Residence,-1.0,Clear,21381,768
+40.8023541739406 -74.0123994565080,886,Thursday,Exxon,Gas Station,Shop & Service,5.9,Clear,21381,768
+40.8012272147775 -74.0003028102289,905,Thursday,James J Braddock North Hudson County Park,Park,Outdoors & Recreation,8.7,Clear,21381,768
+40.8022778485458 -73.9994859695435,993,Thursday,Hudson County Park Lake,Lake,Outdoors & Recreation,-1.0,Clear,21381,768
+40.8029275571367 -74.0001296997070,993,Thursday,Woodcliff Lake,Lake,Outdoors & Recreation,-1.0,Clear,21381,768
+40.8033058174890 -74.0065348592017,1012,Thursday,Hudson County Park Courts,Basketball Court,Outdoors & Recreation,-1.0,Clear,21381,768
+40.8132895494315 -74.0113735198975,1400,Thursday,Applebee's Neighborhood Grill & Bar,American Restaurant,Food,5.7,Clear,21381,768
+40.8133125305176 -74.0114898681641,157,Friday,Applebee's Neighborhood Grill & Bar,American Restaurant,Food,5.7,Clear,21381,768
+40.8069977352103 -74.0161726623774,256,Friday,BP,Gas Station,Shop & Service,6.2,Clear,21381,768
+40.8020420837973 -74.0006327810760,279,Friday,Camizzi's Place,Home (private),Residence,-1.0,Clear,21381,768
+40.8033058174890 -74.0065348592017,789,Friday,Hudson County Park Courts,Basketball Court,Outdoors & Recreation,-1.0,Clear,21381,768
+40.8012272147775 -74.0003028102289,907,Friday,James J Braddock North Hudson County Park,Park,Outdoors & Recreation,8.7,Clear,21381,768
+40.7986704865686 -74.0088302220382,991,Friday,Garita Vision Center,Optical Shop,Shop & Service,-1.0,Clear,21381,768
+40.8029275571367 -74.0001296997070,1050,Friday,Woodcliff Lake,Lake,Outdoors & Recreation,-1.0,Clear,21381,768
+40.8121295003539 -74.0054502906790,223,Saturday,The Camizzi Grapevine,Vineyard,Outdoors & Recreation,-1.0,Clear,21381,768
+40.8020420837973 -74.0006327810760,223,Saturday,Camizzi's Place,Home (private),Residence,-1.0,Clear,21381,768
+40.8012272147775 -74.0003028102289,1112,Saturday,James J Braddock North Hudson County Park,Park,Outdoors & Recreation,8.7,Clear,21381,768
+40.8186999325416 -74.0013988851112,226,Sunday,McDonald's,Fast Food Restaurant,Food,6.1,Clouds,21381,768
+40.8121295003539 -74.0054502906790,308,Sunday,The Camizzi Grapevine,Vineyard,Outdoors & Recreation,-1.0,Clouds,21381,768
+40.8020420837973 -74.0006327810760,314,Sunday,Camizzi's Place,Home (private),Residence,-1.0,Clouds,21381,768
+40.8030584446864 -74.0057773834207,709,Sunday,Fine Fare,Supermarket,Shop & Service,-1.0,Clouds,21381,768
+40.8022778485458 -73.9994859695435,1025,Sunday,Hudson County Park Lake,Lake,Outdoors & Recreation,-1.0,Clouds,21381,768
+40.8029275571367 -74.0001296997070,1025,Sunday,Woodcliff Lake,Lake,Outdoors & Recreation,-1.0,Clouds,21381,768
+40.8049381728163 -74.0013070675608,1036,Sunday,Bruins Stadium,Stadium,Arts & Entertainment,6.7,Clouds,21381,768
+40.8023541739406 -74.0123994565080,1068,Sunday,Exxon,Gas Station,Shop & Service,5.9,Clouds,21381,768
+40.7618798850444 -74.0441474318504,555,Monday,John F. Kennedy Elementary School,Elementary School,Professional & Other Places,-1.0,Clouds,21396,768
+40.7662633547367 -74.0464358095582,835,Monday,Wendy's,Fast Food Restaurant,Food,6.5,Clouds,21396,768
+40.7618798850444 -74.0441474318504,545,Tuesday,John F. Kennedy Elementary School,Elementary School,Professional & Other Places,-1.0,Clear,21396,768
+40.8250658266172 -73.9839412825576,911,Wednesday,Emergimed,Medical Center,Professional & Other Places,-1.0,Clear,21396,768
+40.8402810000000 -73.9982420000000,38,Thursday,Legends,Bar,Nightlife Spot,7.0,Clear,21396,768
+40.7601313390887 -74.0441523742139,172,Thursday,Coach House,Diner,Food,8.5,Clear,21396,768
+40.8020420837973 -74.0006327810760,836,Thursday,Camizzi's Place,Home (private),Residence,-1.0,Clear,21396,768
+40.8018059687100 -74.0131052618612,1028,Thursday,Quick Chek,Deli / Bodega,Food,6.5,Clear,21396,768
+40.7593134449328 -74.0476377575846,1166,Thursday,Home on the Range,Home (private),Residence,-1.0,Clear,21396,768
+40.8132895494315 -74.0113735198975,1378,Saturday,Applebee's Neighborhood Grill & Bar,American Restaurant,Food,5.7,Clear,21396,768
+40.8020420837973 -74.0006327810760,1037,Sunday,Camizzi's Place,Home (private),Residence,-1.0,Clouds,21396,768
+40.7926289275032 -74.0418863296509,1218,Sunday,Walmart Supercenter,Big Box Store,Shop & Service,6.8,Clouds,21396,768

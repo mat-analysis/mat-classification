@@ -176,9 +176,12 @@ class DeepeST(THSClassifier):
         
         y_one_hot_encodding = self.config['y_one_hot_encodding']
         
-        self.grid = list(itertools.product(rnn, units, merge_type, dropout_before_rnn, dropout_after_rnn, 
-                                           embedding_size, batch_size, epochs, patience, monitor, optimizer, 
-                                           learning_rate, loss, loss_parameters))
+        self.grid_search(rnn, units, merge_type, dropout_before_rnn, dropout_after_rnn, 
+                         embedding_size, batch_size, epochs, patience, monitor, optimizer, 
+                         learning_rate, loss, loss_parameters)
+#        self.grid = list(itertools.product(rnn, units, merge_type, dropout_before_rnn, dropout_after_rnn, 
+#                                           embedding_size, batch_size, epochs, patience, monitor, optimizer, 
+#                                           learning_rate, loss, loss_parameters))
         
         return X, y, features, num_classes, space, dic_parameters
         

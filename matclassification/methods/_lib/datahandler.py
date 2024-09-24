@@ -18,6 +18,7 @@ import numpy as np
 from tqdm.auto import tqdm
 
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+#from keras.preprocessing.sequence import pad_sequences
 
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, MinMaxScaler
 

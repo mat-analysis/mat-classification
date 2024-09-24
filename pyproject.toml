@@ -43,13 +43,14 @@ dependencies = [
     "pandas",
     "scikit-learn",
     "python-dateutil",
+    "geohash",
+    "tensorflow",
     "mat-data",
+    "mat-model",
  ]
 
 [project.optional-dependencies]
 all_extras = [
-    "geohash",
-    "tensorflow",
  ]
 
 dev = [

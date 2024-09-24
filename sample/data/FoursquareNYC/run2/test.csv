@@ -1,0 +1,302 @@
+space,time,day,poi,type,root_type,rating,weather,tid,label
+40.7946757855249 -73.9717626571655,929,Saturday,MTA Subway - 96th St (1/2/3),Metro Station,Travel & Transport,-1.0,Clear,2182,81
+40.7857731180303 -73.9509916305542,949,Saturday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2182,81
+40.7857731180303 -73.9509916305542,1109,Saturday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2182,81
+40.7570794908188 -73.9680719666871,1148,Saturday,Jukai New York,Japanese Restaurant,Food,7.8,Clear,2182,81
+40.7857731180303 -73.9509916305542,1344,Saturday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clouds,2182,81
+40.7881970000000 -73.9533470000000,793,Sunday,Falafel Express,Falafel Restaurant,Food,-1.0,Clouds,2182,81
+40.7946432962079 -73.9661407470703,851,Sunday,T.J. Maxx,Department Store,Shop & Service,7.0,Clouds,2182,81
+40.7940900000000 -73.9671700000000,854,Sunday,Whole Foods Market,Grocery Store,Shop & Service,8.9,Clouds,2182,81
+40.7785040000000 -73.9820920000000,928,Sunday,Trader Joe's,Grocery Store,Shop & Service,8.6,Clouds,2182,81
+40.7845860855497 -73.9793499333697,964,Sunday,Zabar's,Food & Drink Shop,Shop & Service,9.2,Clouds,2182,81
+40.7527188390236 -73.9832156896591,515,Monday,Zeytinz,Deli / Bodega,Food,6.2,Clear,2185,81
+40.7857731180303 -73.9509916305542,515,Monday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2185,81
+40.7857731180303 -73.9509916305542,60,Tuesday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2185,81
+40.7857731180303 -73.9509916305542,453,Tuesday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2185,81
+40.7537279726321 -73.9836883576709,482,Tuesday,Bryant Park,Park,Outdoors & Recreation,9.7,Clear,2185,81
+40.7537279726321 -73.9836883576709,1167,Tuesday,Bryant Park,Park,Outdoors & Recreation,9.7,Clear,2185,81
+40.7857731180303 -73.9509916305542,124,Wednesday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clouds,2185,81
+40.7527130000000 -73.9806780000000,854,Wednesday,Sunrise Mart,Gourmet Shop,Shop & Service,8.6,Clear,2185,81
+40.7857731180303 -73.9509916305542,475,Thursday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2185,81
+40.7527188390236 -73.9832156896591,499,Thursday,Zeytinz,Deli / Bodega,Food,6.2,Clear,2185,81
+40.7537279726321 -73.9836883576709,613,Thursday,Bryant Park,Park,Outdoors & Recreation,9.7,Clear,2185,81
+40.7857731180303 -73.9509916305542,453,Friday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2185,81
+40.7527188390236 -73.9832156896591,480,Friday,Zeytinz,Deli / Bodega,Food,6.2,Clear,2185,81
+40.7776319957493 -73.9520004412782,1132,Friday,Two Little Red Hens,Bakery,Food,9.5,Clear,2185,81
+40.7783736214385 -73.9525572272106,1138,Friday,Fairway Market,Grocery Store,Shop & Service,8.4,Clear,2185,81
+40.7795008576189 -73.9558461945179,1142,Friday,MTA Subway - 86th St (4/5/6),Metro Station,Travel & Transport,-1.0,Clear,2185,81
+40.7814650425047 -73.9520578419639,1146,Friday,Chase Bank,Bank,Shop & Service,6.6,Clear,2185,81
+40.7857731180303 -73.9509916305542,765,Saturday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2185,81
+40.7845860855497 -73.9793499333697,808,Saturday,Zabar's,Food & Drink Shop,Shop & Service,9.2,Clouds,2185,81
+40.7785040000000 -73.9820920000000,860,Saturday,Trader Joe's,Grocery Store,Shop & Service,8.6,Clouds,2185,81
+40.7946896405441 -73.9663902590824,1118,Saturday,HomeGoods,Furniture / Home Store,Shop & Service,7.8,Clear,2185,81
+40.7940777197241 -73.9666026256988,1189,Saturday,Whole Foods Market,Grocery Store,Shop & Service,9.0,Clouds,2185,81
+40.7212662678833 -73.9935690164566,756,Sunday,Congee Bowery 粥之家,Chinese Restaurant,Food,-1.0,Clear,2185,81
+40.7187945840035 -73.9916258076704,846,Sunday,Panade Cafe,Bakery,Food,-1.0,Clear,2185,81
+40.7830570000000 -73.9528626800000,973,Sunday,Dunkin Donuts,Donut Shop,Food,5.9,Clouds,2185,81
+40.7792740669963 -73.9687585830688,1192,Sunday,Belvedere Castle,Castle,Outdoors & Recreation,9.1,Clouds,2185,81
+40.7794365510225 -73.9679002761841,1193,Sunday,Central Park – Turtle Pond,Lake,Outdoors & Recreation,-1.0,Clouds,2185,81
+40.7527188390236 -73.9832156896591,578,Thursday,Zeytinz,Deli / Bodega,Food,6.2,Clear,2194,81
+40.7857731180303 -73.9509916305542,497,Friday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2194,81
+40.7527188390236 -73.9832156896591,524,Friday,Zeytinz,Deli / Bodega,Food,6.2,Clear,2194,81
+40.7527130000000 -73.9806780000000,1014,Friday,Sunrise Mart,Gourmet Shop,Shop & Service,8.6,Clear,2194,81
+40.7524925527254 -73.9802911688911,1016,Friday,Café Zaiya,Japanese Restaurant,Food,8.8,Clear,2194,81
+40.7523522908966 -73.9799410757293,1017,Friday,Yagura Japanese Grocery,Grocery Store,Shop & Service,-1.0,Clear,2194,81
+40.7506346575832 -73.9810200493297,1022,Friday,Chase Bank,Bank,Shop & Service,6.4,Clear,2194,81
+40.7411161511398 -73.9854097366333,1039,Friday,Wahoo's Tacos & More,Taco Place,Food,-1.0,Clear,2194,81
+40.7421960533746 -73.9813529229413,1064,Friday,Momokawa,Japanese Restaurant,Food,9.0,Clear,2194,81
+40.7857731180303 -73.9509916305542,242,Saturday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2194,81
+40.6492572131751 -73.7826776504517,284,Saturday,Terminal 7,Airport Terminal,Travel & Transport,-1.0,Clouds,2194,81
+40.6494688552288 -73.7827634811401,286,Saturday,Starbucks,Coffee Shop,Food,-1.0,Clouds,2194,81
+40.7857731180303 -73.9509916305542,405,Saturday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clouds,2194,81
+40.7858056116877 -73.9509487152100,406,Saturday,Starbucks,Coffee Shop,Food,6.7,Clouds,2194,81
+40.7857731180303 -73.9509916305542,745,Saturday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2194,81
+40.7565784572878 -73.9664706140459,841,Saturday,Hazuki Hair KM Corp,Salon / Barbershop,Shop & Service,-1.0,Clear,2194,81
+40.7628031863509 -73.9733695366488,856,Saturday,Niketown,Sporting Goods Shop,Shop & Service,8.7,Clear,2194,81
+40.7639207696814 -73.9731227408518,859,Saturday,Apple Fifth Avenue,Electronics Store,Shop & Service,9.3,Clear,2194,81
+40.7679235743216 -73.9819443225861,882,Saturday,The Shops at Columbus Circle,Shopping Mall,Shop & Service,8.3,Clouds,2194,81
+40.7747305011693 -73.9820932776999,919,Saturday,Apple Upper West Side,Electronics Store,Shop & Service,8.7,Clouds,2194,81
+40.7785040000000 -73.9820920000000,944,Saturday,Trader Joe's,Grocery Store,Shop & Service,8.6,Clouds,2194,81
+40.7842970000000 -73.9796110000000,958,Saturday,Canine Styles,Pet Store,Shop & Service,7.4,Clouds,2194,81
+40.7857731180303 -73.9509916305542,1235,Saturday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2194,81
+40.7864229881573 -73.9507234096527,1235,Saturday,CVS/pharmacy,Pharmacy,Shop & Service,5.8,Clear,2194,81
+40.7857731180303 -73.9509916305542,26,Monday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2199,81
+40.7794365510225 -73.9679002761841,627,Monday,Central Park – Turtle Pond,Lake,Outdoors & Recreation,-1.0,Fog,2199,81
+40.7741009156693 -73.9769394311471,628,Monday,Central Park - W 69th St Entrance Garden,Garden,Outdoors & Recreation,8.8,Fog,2199,81
+40.7733730000000 -73.9792450000000,631,Monday,The New York Otolaryngology Group,Doctor's Office,Professional & Other Places,-1.0,Fog,2199,81
+40.7802660000000 -73.9593230000000,884,Monday,Dean & DeLuca,Coffee,Food,8.3,Clear,2199,81
+40.7645917149006 -73.9712129772860,908,Monday,Barneys New York,Department Store,Shop & Service,9.1,Clear,2199,81
+40.7637468850355 -73.9714890718460,930,Monday,Crate & Barrel,Furniture / Home Store,Shop & Service,-1.0,Clouds,2199,81
+40.7857731180303 -73.9509916305542,501,Tuesday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clouds,2199,81
+40.7529731982157 -73.9748101290555,1167,Friday,US Post Office,Post Office,Professional & Other Places,-1.0,Clear,2199,81
+40.7857731180303 -73.9509916305542,1189,Friday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2199,81
+40.7858642300057 -73.9509442656174,1190,Friday,Food Universe,Grocery Store,Shop & Service,5.2,Clear,2199,81
+40.7864229881573 -73.9507234096527,1197,Friday,CVS/pharmacy,Pharmacy,Shop & Service,5.8,Clear,2199,81
+40.7861413499201 -73.9506170795950,650,Saturday,Eastmore cleaners 3,Laundry Service,Shop & Service,-1.0,Clear,2199,81
+40.7551857264815 -73.9740238309510,688,Saturday,Dainobu,Grocery Store,Shop & Service,8.9,Clear,2199,81
+40.6597245502788 -73.8035345077515,754,Saturday,JFK AirTrain - Federal Circle Station,Airport Tram,Travel & Transport,-1.0,Clear,2199,81
+40.6439822251556 -73.7823772430420,787,Saturday,JFK AirTrain - Terminal 4,Airport Tram,Travel & Transport,-1.0,Clear,2199,81
+40.6617632922650 -73.8245710730553,823,Saturday,JFK AirTrain - Lefferts Boulevard,Airport Tram,Travel & Transport,-1.0,Clear,2199,81
+40.6604738351670 -73.8302910891864,827,Saturday,MTA Subway - Howard Beach/JFK Airport (A),Metro Station,Travel & Transport,-1.0,Clear,2199,81
+40.7857731180303 -73.9509916305542,929,Saturday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2199,81
+40.7746287852088 -73.9812496173994,986,Saturday,"Thomas Drugs, Inc.",Pharmacy,Shop & Service,-1.0,Clear,2199,81
+40.7735676428260 -73.9820473643095,993,Saturday,Tucker Square Greenmarket,Farmers Market,Shop & Service,7.6,Clear,2199,81
+40.7745065919950 -73.9813701405262,998,Saturday,Equinox Sports Club New York,Gym / Fitness Center,Outdoors & Recreation,9.1,Clear,2199,81
+40.7842970000000 -73.9796110000000,1066,Saturday,Canine Styles,Pet Store,Shop & Service,7.4,Clear,2199,81
+40.7857731180303 -73.9509916305542,1254,Monday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2201,81
+40.6450893559763 -73.7845230102539,1433,Wednesday,John F. Kennedy International Airport (JFK) (John F. Kennedy International Airport),Airport,Travel & Transport,7.0,Clear,2201,81
+40.7545571554988 -73.9734097126788,1124,Friday,Dainobu,Grocery Store,Shop & Service,8.9,Clouds,2201,81
+40.7570841049318 -73.9679456956360,1172,Friday,Tomiya Japanese Grocery Store,Grocery Store,Shop & Service,-1.0,Clouds,2201,81
+40.7565784572878 -73.9664706140459,1173,Friday,Hazuki Hair KM Corp,Salon / Barbershop,Shop & Service,-1.0,Clouds,2201,81
+40.7861413499201 -73.9506170795950,812,Saturday,Eastmore cleaners 3,Laundry Service,Shop & Service,-1.0,Clouds,2201,81
+40.7857731180303 -73.9509916305542,1148,Saturday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clouds,2201,81
+40.7338790000000 -73.9881850000000,1164,Saturday,Trader Joe's Wine Shop,Wine Shop,Shop & Service,9.4,Clouds,2201,81
+40.7336502495823 -73.9877520190479,1165,Saturday,Trader Joe's,Grocery Store,Shop & Service,8.3,Clouds,2201,81
+40.7858642300057 -73.9509442656174,1216,Saturday,Food Universe,Grocery Store,Shop & Service,5.2,Clouds,2201,81
+40.7858642300057 -73.9509442656174,726,Sunday,Food Universe,Grocery Store,Shop & Service,5.2,Fog,2201,81
+40.7857731180303 -73.9509916305542,726,Sunday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Fog,2201,81
+40.7527188390236 -73.9832156896591,540,Wednesday,Zeytinz,Deli / Bodega,Food,6.2,Clouds,2203,81
+40.7537279726321 -73.9836883576709,880,Wednesday,Bryant Park,Park,Outdoors & Recreation,9.7,Clear,2203,81
+40.7527130000000 -73.9806780000000,891,Wednesday,Sunrise Mart,Gourmet Shop,Shop & Service,8.6,Clear,2203,81
+40.7524925527254 -73.9802911688911,909,Wednesday,Café Zaiya,Japanese Restaurant,Food,8.8,Clear,2203,81
+40.7535965987135 -73.9835643768311,910,Wednesday,Bank of America Winter Village at Bryant Park,Skating Rink,Outdoors & Recreation,-1.0,Clear,2203,81
+40.7857731180303 -73.9509916305542,1362,Wednesday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2203,81
+40.7858642300057 -73.9509442656174,1362,Wednesday,Food Universe,Grocery Store,Shop & Service,5.2,Clear,2203,81
+40.7857731180303 -73.9509916305542,572,Friday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Rain,2203,81
+40.7630240000000 -73.9595320000000,1140,Friday,Tori Shin,Japanese Restaurant,Food,8.7,Clouds,2203,81
+40.7857731180303 -73.9509916305542,8,Saturday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clouds,2203,81
+40.7818113841758 -73.9514493938274,959,Saturday,US Post Office - Yorkville Station,Post Office,Professional & Other Places,-1.0,Clouds,2203,81
+40.7761919400000 -73.9622180000000,979,Monday,Chase Bank,Bank,Shop & Service,6.4,Clouds,2208,81
+40.7845860855497 -73.9793499333697,1022,Monday,Zabar's,Food & Drink Shop,Shop & Service,9.2,Clouds,2208,81
+40.7795383174803 -73.9818407539167,1022,Monday,The North Face,Sporting Goods Shop,Shop & Service,7.8,Clouds,2208,81
+40.7504953242945 -73.9808478730975,792,Friday,WeWork Madison,Coworking Space,Professional & Other Places,-1.0,Clear,2208,81
+40.7506346575832 -73.9810200493297,793,Friday,Chase Bank,Bank,Shop & Service,6.4,Clear,2208,81
+40.7533609189802 -73.9740697462571,1332,Friday,Restaurant Riki,Japanese Restaurant,Food,8.1,Snow,2208,81
+40.7532670000000 -73.9740730000000,240,Saturday,J's Bar,Karaoke Bar,Nightlife Spot,-1.0,Clear,2208,81
+40.7510283062301 -73.9942502975464,902,Saturday,US Post Office - James A Farley Station,Post Office,Professional & Other Places,6.3,Clear,2208,81
+40.7479300000000 -73.9872020000000,936,Saturday,Tous Les Jours,Bakery,Food,8.2,Clear,2208,81
+40.7506346575832 -73.9810200493297,973,Saturday,Chase Bank,Bank,Shop & Service,6.4,Clear,2208,81
+40.7524925527254 -73.9802911688911,985,Saturday,Café Zaiya,Japanese Restaurant,Food,8.8,Clear,2208,81
+40.7857731180303 -73.9509916305542,742,Sunday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2208,81
+40.7860346820233 -73.9508409437754,753,Sunday,Vinyl Wine,Wine Shop,Shop & Service,8.8,Clear,2208,81
+40.7857731180303 -73.9509916305542,965,Sunday,MTA Subway - 96th St (6),Metro Station,Travel & Transport,-1.0,Clear,2208,81
+40.6372284858735 -73.9568335192807,493,Monday,MTA Bus - B8/B49/B49LTD - Foster Av & Bedford Av,Bus Station,Travel & Transport,-1.0,Clear,3287,120
+40.6255658258755 -73.9565063432325,507,Monday,MTA Bus - B6/B6LTD/B11 - Avenue J & Ocean Ave,Bus Line,Travel & Transport,-1.0,Clear,3287,120
+40.6021746053884 -73.9937245845795,532,Monday,MTA Bus - Bay Parkway & 86th Street (B6/B6LTD/B82/B82LTD),Bus Stop,Travel & Transport,5.3,Clear,3287,120
+40.6025904864599 -73.9888797300267,535,Monday,Parent's House,Home (private),Residence,-1.0,Clear,3287,120
+40.6018976465138 -73.9935207366943,892,Monday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clouds,3287,120
+40.6880585097395 -73.9804905425158,934,Monday,MTA Subway - Nevins St (2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3287,120
+40.6881967279197 -73.9804748240652,936,Monday,Subway,Sandwich Place,Food,-1.0,Clouds,3287,120
+40.6880737365931 -73.9810430061490,939,Monday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3287,120
+40.6866771440928 -73.9794532399326,940,Monday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3287,120
+40.6024320914766 -73.9945009690938,1105,Tuesday,GameStop,Video Game Store,Shop & Service,6.0,Clouds,3287,120
+40.6018976465138 -73.9935207366943,1161,Tuesday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clouds,3287,120
+40.6019930000000 -73.9936460000000,1162,Tuesday,MTA - B1 Bus (Bay Parkway & 86th),Bus Station,Travel & Transport,-1.0,Clouds,3287,120
+40.6182340000000 -74.0300416946411,1269,Tuesday,Uno Pizzeria & Grill - Brooklyn,American Restaurant,Food,6.6,Clear,3287,120
+40.6021746053884 -73.9937245845795,38,Wednesday,MTA Bus - Bay Parkway & 86th Street (B6/B6LTD/B82/B82LTD),Bus Stop,Travel & Transport,5.3,Clear,3287,120
+40.6322017044696 -73.9528040493272,59,Wednesday,MTA- B6/B6 LTD/B11 Bedford Ave,Bus Line,Travel & Transport,-1.0,Clear,3287,120
+40.6371941461511 -73.9536162640663,131,Wednesday,Fabians House,Home (private),Residence,-1.0,Clear,3287,120
+40.6372284858735 -73.9568335192807,885,Wednesday,MTA Bus - B8/B49/B49LTD - Foster Av & Bedford Av,Bus Station,Travel & Transport,-1.0,Clouds,3287,120
+40.6255658258755 -73.9565063432325,900,Wednesday,MTA Bus - B6/B6LTD/B11 - Avenue J & Ocean Ave,Bus Line,Travel & Transport,-1.0,Clouds,3287,120
+40.7567109630590 -74.0010019801203,1015,Wednesday,Jacob K. Javits Convention Center,Convention Center,Professional & Other Places,-1.0,Clouds,3287,120
+40.7567824439293 -74.0015029907227,1017,Wednesday,New York International Auto Show,Convention,Event,-1.0,Clouds,3287,120
+40.6017330000000 -73.9939860000000,1398,Wednesday,Istanbul Turkish Fast Food & Restaurant,Turkish Restaurant,Food,7.5,Clouds,3287,120
+40.6008600077518 -73.9916831965435,140,Thursday,Vucciria,Gourmet Shop,Shop & Service,6.4,Clouds,3287,120
+40.6025904864599 -73.9888797300267,229,Thursday,Parent's House,Home (private),Residence,-1.0,Clouds,3287,120
+40.6018976465138 -73.9935207366943,921,Thursday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clouds,3287,120
+40.6880585097395 -73.9804905425158,953,Thursday,MTA Subway - Nevins St (2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3287,120
+40.6882022339546 -73.9802854296641,954,Thursday,Dunkin Donuts,Donut Shop,Food,-1.0,Clouds,3287,120
+40.6880737365931 -73.9810430061490,955,Thursday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3287,120
+40.6866771440928 -73.9794532399326,956,Thursday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3287,120
+40.6008600077518 -73.9916831965435,1389,Thursday,Vucciria,Gourmet Shop,Shop & Service,6.4,Clouds,3287,120
+40.6025904864599 -73.9888797300267,1395,Thursday,Parent's House,Home (private),Residence,-1.0,Clouds,3287,120
+40.6024549424253 -73.9940303867415,905,Friday,CVS 86st Street,Pharmacy,Shop & Service,6.5,Clear,3287,120
+40.6018976465138 -73.9935207366943,905,Friday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clear,3287,120
+40.6880585097395 -73.9804905425158,947,Friday,MTA Subway - Nevins St (2/3/4/5),Metro Station,Travel & Transport,-1.0,Clear,3287,120
+40.6880737365931 -73.9810430061490,948,Friday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clear,3287,120
+40.6866771440928 -73.9794532399326,949,Friday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clear,3287,120
+40.6844407289116 -73.9777601531534,1263,Friday,Buffalo Wild Wings,Wings Joint,Food,7.3,Clear,3287,120
+40.6041100000000 -74.0067429500000,1435,Friday,Tanjia,Lounge,Nightlife Spot,-1.0,Clear,3287,120
+40.6021746053884 -73.9937245845795,99,Saturday,MTA Bus - Bay Parkway & 86th Street (B6/B6LTD/B82/B82LTD),Bus Stop,Travel & Transport,5.3,Clear,3287,120
+40.6371941461511 -73.9536162640663,721,Saturday,Fabians House,Home (private),Residence,-1.0,Clear,3287,120
+40.6353434332462 -73.9627570318110,840,Saturday,Newkirk Plaza,Plaza,Outdoors & Recreation,6.4,Clear,3287,120
+40.6354723102367 -73.9626594560430,841,Saturday,Fisherman's Cove,Caribbean Restaurant,Food,6.2,Clear,3287,120
+40.6352385027802 -73.9628791809082,858,Saturday,MTA Subway - Newkirk Plaza (B/Q),Metro Station,Travel & Transport,-1.0,Clear,3287,120
+40.6899127194574 -73.9815044403076,881,Saturday,MTA Subway - DeKalb Ave (B/Q/R),Metro Station,Travel & Transport,-1.0,Clear,3287,120
+40.6866771440928 -73.9794532399326,894,Saturday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clear,3287,120
+40.6018976465138 -73.9935207366943,1433,Saturday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clouds,3287,120
+40.6025904864599 -73.9888797300267,1436,Saturday,Parent's House,Home (private),Residence,-1.0,Clouds,3287,120
+40.6086095887999 -74.0035680619310,862,Sunday,Russian Orthodox Church Of The New Martyrs And Confessors Of Russia,Church,Professional & Other Places,-1.0,Clouds,3287,120
+40.5837044521436 -73.9497388406914,986,Sunday,Sheepshead Bay Piers,Pier,Travel & Transport,-1.0,Clouds,3287,120
+40.5838510000000 -73.9442315000000,995,Sunday,Dessert Palace,Dessert Shop,Food,6.9,Clouds,3287,120
+40.5827042528110 -73.9855711851308,1049,Sunday,Stop & Shop,Supermarket,Shop & Service,5.7,Clear,3287,120
+40.5970703447417 -73.9850776245441,1090,Sunday,Petco,Pet Store,Shop & Service,7.1,Clear,3287,120
+40.5970703447417 -73.9850776245441,831,Monday,Petco,Pet Store,Shop & Service,7.1,Clouds,3289,120
+40.6025904864599 -73.9888797300267,910,Monday,Parent's House,Home (private),Residence,-1.0,Clouds,3289,120
+40.6021746053884 -73.9937245845795,912,Monday,MTA Bus - Bay Parkway & 86th Street (B6/B6LTD/B82/B82LTD),Bus Stop,Travel & Transport,5.3,Clouds,3289,120
+40.6018976465138 -73.9935207366943,912,Monday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clouds,3289,120
+40.6880585097395 -73.9804905425158,951,Monday,MTA Subway - Nevins St (2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3289,120
+40.6881740000000 -73.9803020000000,953,Monday,XPL Halal Cart,Food Truck,Food,-1.0,Clouds,3289,120
+40.6866771440928 -73.9794532399326,999,Monday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3289,120
+40.6463999797528 -73.9943200349808,1415,Monday,MTA Subway - 9th Ave (D),Metro Station,Travel & Transport,-1.0,Clouds,3289,120
+40.6025904864599 -73.9888797300267,66,Tuesday,Parent's House,Home (private),Residence,-1.0,Clouds,3289,120
+40.6018976465138 -73.9935207366943,923,Tuesday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clouds,3289,120
+40.6880585097395 -73.9804905425158,958,Tuesday,MTA Subway - Nevins St (2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3289,120
+40.6866771440928 -73.9794532399326,961,Tuesday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3289,120
+40.6025904864599 -73.9888797300267,873,Wednesday,Parent's House,Home (private),Residence,-1.0,Clouds,3289,120
+40.6018976465138 -73.9935207366943,898,Wednesday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clouds,3289,120
+40.6880737365931 -73.9810430061490,988,Wednesday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3289,120
+40.6866771440928 -73.9794532399326,989,Wednesday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3289,120
+40.6899127194574 -73.9815044403076,1388,Wednesday,MTA Subway - DeKalb Ave (B/Q/R),Metro Station,Travel & Transport,-1.0,Clear,3289,120
+40.6463999797528 -73.9943200349808,1409,Wednesday,MTA Subway - 9th Ave (D),Metro Station,Travel & Transport,-1.0,Clear,3289,120
+40.6025904864599 -73.9888797300267,57,Thursday,Parent's House,Home (private),Residence,-1.0,Clear,3289,120
+40.6018976465138 -73.9935207366943,487,Thursday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clear,3289,120
+40.6843073787307 -73.9775978028774,531,Thursday,MTA Subway - Atlantic Ave/Barclays Center (B/D/N/Q/R/2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3289,120
+40.6880585097395 -73.9804905425158,532,Thursday,MTA Subway - Nevins St (2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3289,120
+40.6882022339546 -73.9802854296641,582,Thursday,Dunkin Donuts,Donut Shop,Food,-1.0,Clouds,3289,120
+40.6880737365931 -73.9810430061490,597,Thursday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3289,120
+40.6866771440928 -73.9794532399326,603,Thursday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3289,120
+40.6025904864599 -73.9888797300267,486,Friday,Parent's House,Home (private),Residence,-1.0,Clouds,3289,120
+40.6018976465138 -73.9935207366943,491,Friday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clouds,3289,120
+40.6880737365931 -73.9810430061490,907,Friday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3289,120
+40.6880585097395 -73.9804905425158,909,Friday,MTA Subway - Nevins St (2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3289,120
+40.6843073787307 -73.9775978028774,910,Friday,MTA Subway - Atlantic Ave/Barclays Center (B/D/N/Q/R/2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3289,120
+40.6079081943041 -74.0017604162880,911,Friday,MTA Subway - 18th Ave (D),Metro Station,Travel & Transport,-1.0,Clouds,3289,120
+40.6353434332462 -73.9627570318110,155,Saturday,Newkirk Plaza,Plaza,Outdoors & Recreation,6.4,Clear,3289,120
+40.6364736673418 -73.9582225763287,155,Saturday,MTA Bus - B8/B49 - Foster Ave & Ocean Ave,Bus Station,Travel & Transport,-1.0,Clear,3289,120
+40.6371941461511 -73.9536162640663,155,Saturday,Fabians House,Home (private),Residence,-1.0,Clear,3289,120
+40.6353434332462 -73.9627570318110,999,Saturday,Newkirk Plaza,Plaza,Outdoors & Recreation,6.4,Clear,3289,120
+40.6352385027802 -73.9628791809082,999,Saturday,MTA Subway - Newkirk Plaza (B/Q),Metro Station,Travel & Transport,-1.0,Clear,3289,120
+40.6021746053884 -73.9937245845795,106,Sunday,MTA Bus - Bay Parkway & 86th Street (B6/B6LTD/B82/B82LTD),Bus Stop,Travel & Transport,5.3,Clear,3289,120
+40.6025904864599 -73.9888797300267,106,Sunday,Parent's House,Home (private),Residence,-1.0,Clear,3289,120
+40.6025904864599 -73.9888797300267,101,Monday,Parent's House,Home (private),Residence,-1.0,Clouds,3292,120
+40.5997863401826 -73.9902714252805,790,Monday,Pho Tay Ho,Vietnamese Restaurant,Food,7.7,Clouds,3292,120
+40.6843073787307 -73.9775978028774,985,Monday,MTA Subway - Atlantic Ave/Barclays Center (B/D/N/Q/R/2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3292,120
+40.6838252757116 -73.9764228910259,987,Monday,Burlington Coat Factory,Clothing Store,Shop & Service,5.5,Clouds,3292,120
+40.6842810320077 -73.9764630664184,989,Monday,Target,Big Box Store,Shop & Service,6.0,Clouds,3292,120
+40.6883954212239 -73.9804576064001,991,Monday,Chase Bank,Bank,Shop & Service,7.1,Clouds,3292,120
+40.6880737365931 -73.9810430061490,1065,Monday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3292,120
+40.6866771440928 -73.9794532399326,1108,Monday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3292,120
+40.6899127194574 -73.9815044403076,1412,Monday,MTA Subway - DeKalb Ave (B/Q/R),Metro Station,Travel & Transport,-1.0,Clouds,3292,120
+40.6463999797528 -73.9943200349808,1412,Monday,MTA Subway - 9th Ave (D),Metro Station,Travel & Transport,-1.0,Clouds,3292,120
+40.6259562037030 -73.9970183372498,1418,Monday,MTA Subway - 62nd St/New Utrecht Ave (D/N),Metro Station,Travel & Transport,-1.0,Clouds,3292,120
+40.6079081943041 -74.0017604162880,1426,Monday,MTA Subway - 18th Ave (D),Metro Station,Travel & Transport,-1.0,Clouds,3292,120
+40.6018976465138 -73.9935207366943,1426,Monday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clouds,3292,120
+40.6021746053884 -73.9937245845795,1428,Monday,MTA Bus - Bay Parkway & 86th Street (B6/B6LTD/B82/B82LTD),Bus Stop,Travel & Transport,5.3,Clouds,3292,120
+40.6025904864599 -73.9888797300267,104,Tuesday,Parent's House,Home (private),Residence,-1.0,Rain,3292,120
+40.6021746053884 -73.9937245845795,581,Tuesday,MTA Bus - Bay Parkway & 86th Street (B6/B6LTD/B82/B82LTD),Bus Stop,Travel & Transport,5.3,Clouds,3292,120
+40.5987564250000 -73.9978344200000,692,Tuesday,Pier 17 Professional Medical Mgmt,Office,Professional & Other Places,-1.0,Rain,3292,120
+40.5982623149852 -73.9978409228359,811,Tuesday,Johny's Place,Pizza Place,Food,-1.0,Rain,3292,120
+40.6018976465138 -73.9935207366943,913,Tuesday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Rain,3292,120
+40.6843073787307 -73.9775978028774,957,Tuesday,MTA Subway - Atlantic Ave/Barclays Center (B/D/N/Q/R/2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3292,120
+40.6880585097395 -73.9804905425158,1005,Tuesday,MTA Subway - Nevins St (2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3292,120
+40.6882022339546 -73.9802854296641,1012,Tuesday,Dunkin Donuts,Donut Shop,Food,-1.0,Clouds,3292,120
+40.6866771440928 -73.9794532399326,1028,Tuesday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3292,120
+40.6899127194574 -73.9815044403076,1387,Tuesday,MTA Subway - DeKalb Ave (B/Q/R),Metro Station,Travel & Transport,-1.0,Rain,3292,120
+40.6025904864599 -73.9888797300267,62,Wednesday,Parent's House,Home (private),Residence,-1.0,Clouds,3292,120
+40.6021746053884 -73.9937245845795,615,Wednesday,MTA Bus - Bay Parkway & 86th Street (B6/B6LTD/B82/B82LTD),Bus Stop,Travel & Transport,5.3,Clouds,3292,120
+40.5987564250000 -73.9978344200000,912,Wednesday,Pier 17 Professional Medical Mgmt,Office,Professional & Other Places,-1.0,Clear,3292,120
+40.6845400647569 -73.9777371959421,943,Wednesday,Starbucks,Coffee Shop,Food,6.3,Clouds,3292,120
+40.6866771440928 -73.9794532399326,1171,Wednesday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clear,3292,120
+40.6899127194574 -73.9815044403076,1411,Wednesday,MTA Subway - DeKalb Ave (B/Q/R),Metro Station,Travel & Transport,-1.0,Clouds,3292,120
+40.6463999797528 -73.9943200349808,1412,Wednesday,MTA Subway - 9th Ave (D),Metro Station,Travel & Transport,-1.0,Clouds,3292,120
+40.6020292565932 -73.9937434457159,492,Thursday,TD Bank,Bank,Shop & Service,5.7,Clear,3292,120
+40.6018976465138 -73.9935207366943,495,Thursday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clear,3292,120
+40.6880585097395 -73.9804905425158,527,Thursday,MTA Subway - Nevins St (2/3/4/5),Metro Station,Travel & Transport,-1.0,Clear,3292,120
+40.6880737365931 -73.9810430061490,581,Thursday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clear,3292,120
+40.6866771440928 -73.9794532399326,582,Thursday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clear,3292,120
+40.7071490000000 -73.9905700000000,877,Thursday,MTA Subway - Manhattan Bridge (B/D/N/Q),Train,Travel & Transport,-1.0,Clear,3292,120
+40.7497034836652 -73.9878129959106,894,Thursday,MTA Subway - 34th St/Herald Sq (B/D/F/M/N/Q/R/W),Metro Station,Travel & Transport,-1.0,Clear,3292,120
+40.6117288500000 -74.0094470000000,1068,Thursday,Outback Steakhouse,Steakhouse,Food,7.3,Clear,3292,120
+40.6018976465138 -73.9935207366943,498,Friday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clear,3292,120
+40.6880585097395 -73.9804905425158,534,Friday,MTA Subway - Nevins St (2/3/4/5),Metro Station,Travel & Transport,-1.0,Clear,3292,120
+40.6866771440928 -73.9794532399326,535,Friday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clear,3292,120
+40.6880737365931 -73.9810430061490,538,Friday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clear,3292,120
+40.6025904864599 -73.9888797300267,974,Friday,Parent's House,Home (private),Residence,-1.0,Clear,3292,120
+40.6025904864599 -73.9888797300267,655,Saturday,Parent's House,Home (private),Residence,-1.0,Clear,3292,120
+40.6843073787307 -73.9775978028774,760,Saturday,MTA Subway - Atlantic Ave/Barclays Center (B/D/N/Q/R/2/3/4/5),Metro Station,Travel & Transport,-1.0,Clear,3292,120
+40.6883954212239 -73.9804576064001,768,Saturday,Chase Bank,Bank,Shop & Service,7.1,Clear,3292,120
+40.6899127194574 -73.9815044403076,1386,Monday,MTA Subway - DeKalb Ave (B/Q/R),Metro Station,Travel & Transport,-1.0,Clouds,3295,120
+40.6843073787307 -73.9775978028774,1386,Monday,MTA Subway - Atlantic Ave/Barclays Center (B/D/N/Q/R/2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3295,120
+40.5987564250000 -73.9978344200000,642,Tuesday,Pier 17 Professional Medical Mgmt,Office,Professional & Other Places,-1.0,Clouds,3295,120
+40.5981973414711 -73.9973301776659,913,Wednesday,MTA B6/B82 (Bay Pky & Bath Av),Bus Line,Travel & Transport,-1.0,Clouds,3295,120
+40.6843073787307 -73.9775978028774,952,Wednesday,MTA Subway - Atlantic Ave/Barclays Center (B/D/N/Q/R/2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3295,120
+40.6880585097395 -73.9804905425158,962,Wednesday,MTA Subway - Nevins St (2/3/4/5),Metro Station,Travel & Transport,-1.0,Clouds,3295,120
+40.6880737365931 -73.9810430061490,964,Wednesday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3295,120
+40.6899127194574 -73.9815044403076,1387,Wednesday,MTA Subway - DeKalb Ave (B/Q/R),Metro Station,Travel & Transport,-1.0,Clouds,3295,120
+40.6100061801137 -74.0067357045496,742,Thursday,Vegas Diner,Diner,Food,-1.0,Clouds,3295,120
+40.6084532741726 -74.0018005863766,807,Thursday,MTA B8 (18th Avenue/86th Street),Bus Station,Travel & Transport,-1.0,Clear,3295,120
+40.6018976465138 -73.9935207366943,499,Friday,MTA Subway - Bay Parkway (D),Metro Station,Travel & Transport,-1.0,Clear,3295,120
+40.6880585097395 -73.9804905425158,594,Friday,MTA Subway - Nevins St (2/3/4/5),Metro Station,Travel & Transport,-1.0,Clear,3295,120
+40.6882022339546 -73.9802854296641,594,Friday,Dunkin Donuts,Donut Shop,Food,-1.0,Clear,3295,120
+40.6880737365931 -73.9810430061490,630,Friday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clear,3295,120
+40.6866771440928 -73.9794532399326,632,Friday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clear,3295,120
+40.6025904864599 -73.9888797300267,1251,Friday,Parent's House,Home (private),Residence,-1.0,Clear,3295,120
+40.6880737365931 -73.9810430061490,785,Saturday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3295,120
+40.6866771440928 -73.9794532399326,785,Saturday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3295,120
+40.6866771440928 -73.9794532399326,1064,Saturday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Rain,3295,120
+40.6025904864599 -73.9888797300267,1325,Saturday,Parent's House,Home (private),Residence,-1.0,Clear,3295,120
+40.7293197500000 -73.9892400000000,38,Sunday,Udon West,Udon Restaurant,Food,8.4,Clouds,3295,120
+40.7295797468647 -73.9869141226312,86,Sunday,16 Handles,Ice Cream Shop,Food,8.1,Clouds,3295,120
+40.6025904864599 -73.9888797300267,755,Sunday,Parent's House,Home (private),Residence,-1.0,Clear,3295,120
+40.6004438321830 -73.9963029444940,961,Tuesday,"Sergey Bogdan, M.D.",Doctor's Office,Professional & Other Places,-1.0,Clouds,3314,120
+40.6202095141048 -73.9902197749153,746,Wednesday,MTA Subway - 18th Ave (N),Metro Station,Travel & Transport,-1.0,Clear,3314,120
+40.7364456768448 -73.9903020858765,798,Wednesday,MTA Subway - 14th St/Union Square (4/5/6/L/N/Q/R/W),Metro Station,Travel & Transport,-1.0,Clear,3314,120
+40.7595340000000 -73.9917650000000,1197,Wednesday,Chipotle Mexican Grill,Mexican Restaurant,Food,7.9,Clear,3314,120
+40.7569937445909 -73.9890789985657,1249,Wednesday,Regal Cinemas E-Walk 13 & RPX,Movie Theater,Arts & Entertainment,7.7,Clear,3314,120
+40.6223990852551 -73.9888797300267,178,Thursday,Home SWEET Home,Home (private),Residence,-1.0,Clear,3314,120
+40.6371941461511 -73.9536162640663,1390,Friday,Fabians House,Home (private),Residence,-1.0,Clouds,3314,120
+40.6343916537272 -73.9676644552702,1398,Saturday,MTA Bus - 18 Av & 64 St (B8),Bus Stop,Travel & Transport,-1.0,Clouds,3314,120
+40.6899127194574 -73.9815044403076,949,Sunday,MTA Subway - DeKalb Ave (B/Q/R),Metro Station,Travel & Transport,-1.0,Fog,3314,120
+40.6880737365931 -73.9810430061490,958,Sunday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Fog,3314,120
+40.6203994800000 -73.9890500000000,780,Monday,Jin Jin Hong Kong Cafe 津津香港茶餐廳,Asian Restaurant,Food,7.4,Clear,3320,120
+40.7085883614824 -73.9910316467285,1275,Monday,MTA Subway - Manhattan Bridge (B/D/N/Q),Train,Travel & Transport,-1.0,Clear,3320,120
+40.7336120000000 -73.9931070000000,1300,Monday,El Cantinero,Mexican Restaurant,Food,6.6,Clear,3320,120
+40.6223990852551 -73.9888797300267,200,Wednesday,Home SWEET Home,Home (private),Residence,-1.0,Clear,3320,120
+40.7364456768448 -73.9903020858765,944,Wednesday,MTA Subway - 14th St/Union Square (4/5/6/L/N/Q/R/W),Metro Station,Travel & Transport,-1.0,Clouds,3320,120
+40.7085883614824 -73.9910316467285,750,Thursday,MTA Subway - Manhattan Bridge (B/D/N/Q),Train,Travel & Transport,-1.0,Clear,3320,120
+40.7285070818648 -74.0055248908272,790,Thursday,Federal Building,Storage Facility,Shop & Service,-1.0,Clear,3320,120
+40.7250146924008 -73.9970397949219,898,Thursday,Victoria's Secret,Lingerie Store,Shop & Service,8.0,Clear,3320,120
+40.6311000000000 -74.0277560000000,60,Saturday,Salty Dog Bar and Restaurant,Bar,Nightlife Spot,7.2,Rain,3320,120
+40.6223990852551 -73.9888797300267,228,Saturday,Home SWEET Home,Home (private),Residence,-1.0,Clouds,3320,120
+40.6880737365931 -73.9810430061490,679,Saturday,Con Edison,Coworking Space,Professional & Other Places,-1.0,Clouds,3320,120

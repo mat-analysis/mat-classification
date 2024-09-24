@@ -35,7 +35,7 @@ class Logger(object):
 
     def log_dyn(self, type, message):
         line = str(type) + " " + self.cur_date_time() + " :: " + message
-        sys.stdout.write("\r\x1b[" + line.__str__())
+        sys.stdout.write("\r\x1b[[" + line.__str__())
         sys.stdout.flush()
         Logger.LOG_LINE = line
 

@@ -161,8 +161,10 @@ class Bituler(THSClassifier):
         optimizer = self.config['optimizer']
         learning_rate = self.config['learning_rate']
         
-        self.grid = list(itertools.product(rnn, units, stack, dropout, embedding_size, 
-                                           batch_size, epochs, patience, monitor, learning_rate))
+        
+        self.grid_search(rnn, units, stack, dropout, embedding_size, batch_size, epochs, patience, monitor, learning_rate)
+#        self.grid = list(itertools.product(rnn, units, stack, dropout, embedding_size, 
+#                                           batch_size, epochs, patience, monitor, learning_rate))
         
         return X, y, features, num_classes, space, dic_parameters
         

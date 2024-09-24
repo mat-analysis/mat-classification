@@ -72,8 +72,10 @@ class TXGB(THSClassifier):
                         tree_method=tree_method, 
                         esr=esr)
         
-        self.grid = list(itertools.product(n_estimators, max_depth, learning_rate, gamma, subsample, 
-                                           colsample_bytree, reg_alpha_l1, reg_lambda_l2, eval_metric, esr))
+        self.grid_search(n_estimators, max_depth, learning_rate, gamma, subsample, 
+                         colsample_bytree, reg_alpha_l1, reg_lambda_l2, eval_metric, esr)
+#        self.grid = list(itertools.product(n_estimators, max_depth, learning_rate, gamma, subsample, 
+#                                           colsample_bytree, reg_alpha_l1, reg_lambda_l2, eval_metric, esr))
         
         self.model = None
         

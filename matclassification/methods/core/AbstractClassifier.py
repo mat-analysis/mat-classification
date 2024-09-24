@@ -14,6 +14,7 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 import os 
 import numpy as np
 import pandas as pd
+import itertools
 from numpy import argmax
 from datetime import datetime
 
@@ -85,18 +86,29 @@ class AbstractClassifier(ABC):
     def add_config(self, **kwargs):
         self.config.update(kwargs)
     
+    def grid_search(self, *args):
+        params = []
+        for arg in args:
+            if not isinstance(arg, list):
+                arg = [arg]
+            params.append(arg)
+        
+        self.grid = list(itertools.product(*params))
+        
     def duration(self):
         return (datetime.now()-self.start_time).total_seconds() * 1000
     
     def message(self, pbar, text):
         if isinstance(pbar, list):
-            print(text)
+            if self.isverbose:
+                print(text)
         else:
             pbar.set_postfix_str(text)
     
     @property
     def labels(self):
-        return set(self.y_test_true)
+        return dict.fromkeys(self.y_test_true).keys()
+#        return set(self.y_test_true)
 
     @abstractmethod
     def create(self):

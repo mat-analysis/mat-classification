@@ -1,0 +1,230 @@
+space,time,day,poi,type,root_type,rating,weather,tid,label
+40.8099115228134 -74.0678501129150,540,Monday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10371,365
+40.7704034237248 -73.9827819772402,716,Monday,New York Sports Clubs,Gym,Outdoors & Recreation,6.8,Clear,10371,365
+40.7722274447236 -73.9830287606413,886,Monday,Josie Robertson Plaza (Lincoln Center Plaza),Plaza,Outdoors & Recreation,9.3,Clouds,10371,365
+40.7742150000000 -73.9811760000000,958,Monday,Starbucks,Coffee Shop,Food,-1.0,Clouds,10371,365
+40.7344877193562 -73.9903919427451,1149,Monday,Yogo Truck,Food Truck,Food,5.9,Clouds,10371,365
+40.7623774453713 -73.9746207290759,1323,Monday,Instagrampocalypse,Dive Bar,Nightlife Spot,-1.0,Clouds,10371,365
+40.8099115228134 -74.0678501129150,443,Tuesday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clouds,10371,365
+40.7743825794295 -73.9828623253591,768,Tuesday,Gourmet Garage,Gourmet Shop,Shop & Service,7.4,Clouds,10371,365
+40.7692250000000 -73.9861540000000,1151,Tuesday,Bijou Nails,Nail Salon,Shop & Service,6.4,Clouds,10371,365
+40.7700737995874 -73.9845266716932,601,Wednesday,Fordham University - Lincoln Center,University,College & University,-1.0,Clouds,10371,365
+40.7729603860463 -73.9815480554801,923,Wednesday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10371,365
+40.7779346959133 -73.9818464930973,1156,Wednesday,Tasty Cafe,Coffee,Food,6.9,Clouds,10371,365
+40.7722274447236 -73.9830287606413,1422,Wednesday,Josie Robertson Plaza (Lincoln Center Plaza),Plaza,Outdoors & Recreation,9.3,Clouds,10371,365
+40.7729603860463 -73.9815480554801,1069,Thursday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10371,365
+40.8099115228134 -74.0678501129150,653,Friday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10371,365
+40.7722274447236 -73.9830287606413,885,Friday,Josie Robertson Plaza (Lincoln Center Plaza),Plaza,Outdoors & Recreation,9.3,Clear,10371,365
+40.7729603860463 -73.9815480554801,921,Friday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clear,10371,365
+40.7681940000000 -73.9853010000000,1143,Friday,Burrito Box,Burrito Place,Food,8.9,Clear,10371,365
+40.7722274447236 -73.9830287606413,1222,Saturday,Josie Robertson Plaza (Lincoln Center Plaza),Plaza,Outdoors & Recreation,9.3,Clouds,10371,365
+40.7751640000000 -73.9806240000000,1246,Saturday,Bomboloni,Donut Shop,Food,-1.0,Clouds,10371,365
+40.8099115228134 -74.0678501129150,702,Sunday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clouds,10371,365
+40.8099115228134 -74.0678501129150,722,Monday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Rain,10377,365
+40.7729603860463 -73.9815480554801,919,Monday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10377,365
+40.7769300000000 -73.9774990000000,1172,Monday,Dallas BBQ,BBQ Joint,Food,-1.0,Clouds,10377,365
+40.7725519708919 -73.9814217932717,923,Wednesday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10377,365
+40.7681940000000 -73.9853010000000,1157,Wednesday,Burrito Box,Burrito Place,Food,8.9,Clear,10377,365
+40.7722274447236 -73.9830287606413,31,Thursday,Josie Robertson Plaza (Lincoln Center Plaza),Plaza,Outdoors & Recreation,9.3,Clouds,10377,365
+40.8099115228134 -74.0678501129150,690,Friday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clouds,10377,365
+40.7722274447236 -73.9830287606413,1405,Friday,Josie Robertson Plaza (Lincoln Center Plaza),Plaza,Outdoors & Recreation,9.3,Clear,10377,365
+40.7798980033668 -73.9815021419594,1253,Saturday,Loehmann's,Department Store,Shop & Service,-1.0,Clear,10377,365
+40.7722819044156 -73.9831148477997,1316,Saturday,L'Arte Del Gelato,Ice Cream Shop,Food,7.1,Clear,10377,365
+40.8099115228134 -74.0678501129150,711,Sunday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10377,365
+40.7682811603301 -73.9853588394525,777,Sunday,Whym,New American Restaurant,Food,-1.0,Clear,10377,365
+40.7725519708919 -73.9814217932717,925,Sunday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10377,365
+40.7778441904277 -73.9801740646362,1201,Sunday,Rigoletto Pizza,Pizza Place,Food,-1.0,Clouds,10377,365
+40.8099115228134 -74.0678501129150,662,Monday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10384,365
+40.7725519708919 -73.9814217932717,924,Monday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10384,365
+40.7744550988244 -73.9831091086570,1184,Tuesday,Gourmet Garage,Gourmet Shop,Shop & Service,7.4,Clear,10384,365
+40.8099115228134 -74.0678501129150,721,Wednesday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clouds,10384,365
+40.7765627405039 -73.9794073259115,831,Friday,Lansky's Deli,Diner,Food,-1.0,Clear,10384,365
+40.7798980033668 -73.9815021419594,929,Friday,Loehmann's,Department Store,Shop & Service,-1.0,Clear,10384,365
+40.7778441904277 -73.9801740646362,1230,Friday,Rigoletto Pizza,Pizza Place,Food,-1.0,Clear,10384,365
+40.7725519708919 -73.9814217932717,1261,Friday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clear,10384,365
+40.8099115228134 -74.0678501129150,662,Sunday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10384,365
+40.7725519708919 -73.9814217932717,921,Sunday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10384,365
+40.7744550988244 -73.9831091086570,1176,Sunday,Gourmet Garage,Gourmet Shop,Shop & Service,7.4,Clouds,10384,365
+40.8099115228134 -74.0678501129150,667,Monday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10385,365
+40.7704180542112 -73.9827245857061,727,Monday,New York Sports Clubs,Gym,Outdoors & Recreation,6.8,Clear,10385,365
+40.7725519708919 -73.9814217932717,924,Monday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10385,365
+40.8099115228134 -74.0678501129150,712,Tuesday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10385,365
+40.7725519708919 -73.9814217932717,924,Tuesday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clear,10385,365
+40.7681940000000 -73.9853010000000,1212,Tuesday,Burrito Box,Burrito Place,Food,8.9,Clear,10385,365
+40.8099115228134 -74.0678501129150,546,Wednesday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10385,365
+40.7725519708919 -73.9814217932717,926,Wednesday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10385,365
+40.7770174741745 -73.9790380000000,1201,Wednesday,China Fun,Chinese Restaurant,Food,-1.0,Clear,10385,365
+40.8099115228134 -74.0678501129150,552,Friday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Rain,10385,365
+40.7751875989557 -73.9806470006316,1275,Friday,Vive La Crêpe,French Restaurant,Food,8.0,Clouds,10385,365
+40.7585662656810 -73.9991091718079,486,Monday,Villa Fresh Italian Kitchen,Pizza Place,Food,-1.0,Clear,22814,820
+40.7589851689152 -73.9995280938318,486,Monday,NYPD Impound Lot Pier 76,Building,Professional & Other Places,-1.0,Clear,22814,820
+40.7576674163538 -74.0000388331418,487,Monday,Photo Plus Expo//WPPI NYC 2011,Convention Center,Professional & Other Places,-1.0,Clear,22814,820
+40.7569233786569 -73.9915167687641,487,Monday,Casa Java,Coffee Shop,Food,5.5,Clear,22814,820
+40.7568962212921 -73.9918899536133,487,Monday,Au Bon Pain,Bakery,Food,6.4,Clear,22814,820
+40.7512134236282 -74.0253388067539,825,Monday,Kidville,School,Professional & Other Places,-1.0,Clear,22814,820
+40.7513300000000 -74.0254200000000,825,Monday,The Room,Lounge,Nightlife Spot,-1.0,Clear,22814,820
+40.7520612491943 -74.0252527385874,825,Monday,Hoboken Historical Museum,History Museum,Arts & Entertainment,8.2,Clear,22814,820
+40.7515809851416 -74.0266513824463,825,Monday,Kings Food Markets,Supermarket,Shop & Service,5.9,Clear,22814,820
+40.7509988731958 -74.0254765157396,826,Monday,Starbucks,Coffee Shop,Food,7.4,Clear,22814,820
+40.7569233786569 -73.9915167687641,491,Tuesday,Casa Java,Coffee Shop,Food,5.5,Clear,22814,820
+40.7572212983984 -73.9915466308594,492,Tuesday,Port Authority Bus Terminal,Bus Station,Travel & Transport,5.5,Clear,22814,820
+40.7509988731958 -74.0254765157396,594,Tuesday,Starbucks,Coffee Shop,Food,7.4,Clear,22814,820
+40.7509988731958 -74.0254765157396,865,Tuesday,Starbucks,Coffee Shop,Food,7.4,Clear,22814,820
+40.7438669894196 -73.8816119623484,1216,Wednesday,Emeenemz Studio,Event Space,Professional & Other Places,-1.0,Clouds,22814,820
+40.7439599676015 -73.8814881024086,454,Thursday,T-Mobile,Electronics Store,Shop & Service,6.7,Fog,22814,820
+40.7431954565653 -73.8823149703235,455,Thursday,Yi Mei Fung Bakery Corp,Bakery,Food,5.9,Fog,22814,820
+40.7435249801454 -73.8818039204271,455,Thursday,Paradise Deli & Convenience,Deli / Bodega,Food,-1.0,Fog,22814,820
+40.7429692382286 -73.8827669620514,455,Thursday,Top Line Supermarket,Supermarket,Shop & Service,6.1,Fog,22814,820
+40.7430598252401 -73.8823494230775,455,Thursday,Dunkin' Donuts,Donut Shop,Food,5.9,Fog,22814,820
+40.7569233786569 -73.9915167687641,483,Thursday,Casa Java,Coffee Shop,Food,5.5,Fog,22814,820
+40.7568962212921 -73.9918899536133,483,Thursday,Au Bon Pain,Bakery,Food,6.4,Fog,22814,820
+40.7576926573789 -73.9915037155151,483,Thursday,7-Eleven,Convenience Store,Shop & Service,6.3,Fog,22814,820
+40.7561647919909 -73.9906024932861,484,Thursday,Duane Reade,Pharmacy,Shop & Service,5.3,Fog,22814,820
+40.7565110479940 -73.9902484695644,484,Thursday,Heartland Brewery,Brewery,Nightlife Spot,7.0,Fog,22814,820
+40.7509988731958 -74.0254765157396,1087,Thursday,Starbucks,Coffee Shop,Food,7.4,Clear,22814,820
+40.7431954565653 -73.8823149703235,455,Friday,Yi Mei Fung Bakery Corp,Bakery,Food,5.9,Clear,22814,820
+40.7429692382286 -73.8827669620514,455,Friday,Top Line Supermarket,Supermarket,Shop & Service,6.1,Clear,22814,820
+40.7427576226745 -73.8823149703235,455,Friday,Broadway Park (Elmhurst),Park,Outdoors & Recreation,6.6,Clear,22814,820
+40.7429501250559 -73.8822862596905,455,Friday,Dr. Chhabra Dental Office,Dentist's Office,Professional & Other Places,-1.0,Clear,22814,820
+40.7430598252401 -73.8823494230775,456,Friday,Dunkin' Donuts,Donut Shop,Food,5.9,Clear,22814,820
+40.7561269575872 -73.9908740118465,479,Friday,Chase Bank,Bank,Shop & Service,6.2,Clear,22814,820
+40.7569233786569 -73.9915167687641,479,Friday,Casa Java,Coffee Shop,Food,5.5,Clear,22814,820
+40.7568962212921 -73.9918899536133,480,Friday,Au Bon Pain,Bakery,Food,6.4,Clear,22814,820
+40.7561647919909 -73.9906024932861,480,Friday,Duane Reade,Pharmacy,Shop & Service,5.3,Clear,22814,820
+40.7557711018268 -73.9911437404581,480,Friday,Port Authority Food Court,Coffee,Food,5.3,Clear,22814,820
+40.7509988731958 -74.0254765157396,873,Friday,Starbucks,Coffee Shop,Food,7.4,Clouds,22814,820
+40.7600870000000 -74.0275510000000,1049,Friday,Hi-So Thai,Thai Restaurant,Food,8.2,Clouds,22814,820
+40.7431954565653 -73.8823149703235,542,Sunday,Yi Mei Fung Bakery Corp,Bakery,Food,5.9,Clouds,22814,820
+40.7434308397878 -73.8833657765936,543,Sunday,Dunkin' Donuts,Donut Shop,Food,5.9,Clouds,22814,820
+40.7438669894196 -73.8816119623484,1342,Sunday,Emeenemz Studio,Event Space,Professional & Other Places,-1.0,Rain,22814,820
+40.7432216124197 -73.8830384768847,447,Monday,Yi Mei Fung Bakery Corp,Bakery,Food,5.9,Clouds,22815,820
+40.7429692382286 -73.8827669620514,447,Monday,Top Line Supermarket,Supermarket,Shop & Service,6.1,Clouds,22815,820
+40.7434308397878 -73.8833657765936,447,Monday,Dunkin' Donuts,Donut Shop,Food,5.9,Clouds,22815,820
+40.7585662656810 -73.9991091718079,482,Monday,Villa Fresh Italian Kitchen,Pizza Place,Food,-1.0,Clouds,22815,820
+40.7576674163538 -74.0000388331418,482,Monday,Photo Plus Expo//WPPI NYC 2011,Convention Center,Professional & Other Places,-1.0,Clouds,22815,820
+40.7607246666667 -73.9990930000000,483,Monday,Silver Platter Café,Coffee Shop,Food,-1.0,Clouds,22815,820
+40.7568962212921 -73.9918899536133,597,Monday,Au Bon Pain,Bakery,Food,6.4,Clouds,22815,820
+40.7445260000000 -74.0287840000000,794,Monday,No. 1 Fine Chinese Cuisine,Asian Restaurant,Food,-1.0,Clouds,22815,820
+40.7427576226745 -73.8823149703235,449,Tuesday,Broadway Park (Elmhurst),Park,Outdoors & Recreation,6.6,Clouds,22815,820
+40.7429692382286 -73.8827669620514,449,Tuesday,Top Line Supermarket,Supermarket,Shop & Service,6.1,Clouds,22815,820
+40.7434308397878 -73.8833657765936,450,Tuesday,Dunkin' Donuts,Donut Shop,Food,5.9,Clouds,22815,820
+40.7563305728609 -73.9910117456530,478,Tuesday,Casa Java,Coffee Shop,Food,5.5,Clouds,22815,820
+40.7568962212921 -73.9918899536133,478,Tuesday,Au Bon Pain,Bakery,Food,6.4,Clouds,22815,820
+40.7568962212921 -73.9918899536133,654,Tuesday,Au Bon Pain,Bakery,Food,6.4,Clear,22815,820
+40.7439599676015 -73.8814881024086,451,Wednesday,T-Mobile,Electronics Store,Shop & Service,6.7,Clear,22815,820
+40.7432216124197 -73.8830384768847,451,Wednesday,Yi Mei Fung Bakery Corp,Bakery,Food,5.9,Clear,22815,820
+40.7427576226745 -73.8823149703235,451,Wednesday,Broadway Park (Elmhurst),Park,Outdoors & Recreation,6.6,Clear,22815,820
+40.7434308397878 -73.8833657765936,451,Wednesday,Dunkin' Donuts,Donut Shop,Food,5.9,Clear,22815,820
+40.7432287487911 -73.8812182211528,451,Wednesday,Ming City Hair Studio,Salon / Barbershop,Shop & Service,-1.0,Clear,22815,820
+40.7563305728609 -73.9910117456530,481,Wednesday,Casa Java,Coffee Shop,Food,5.5,Clear,22815,820
+40.7568962212921 -73.9918899536133,482,Wednesday,Au Bon Pain,Bakery,Food,6.4,Clear,22815,820
+40.7432216124197 -73.8830384768847,445,Thursday,Yi Mei Fung Bakery Corp,Bakery,Food,5.9,Clear,22815,820
+40.7429501250559 -73.8822862596905,445,Thursday,Dr. Chhabra Dental Office,Dentist's Office,Professional & Other Places,-1.0,Clear,22815,820
+40.7429692382286 -73.8827669620514,445,Thursday,Top Line Supermarket,Supermarket,Shop & Service,6.1,Clear,22815,820
+40.7563305728609 -73.9910117456530,486,Thursday,Casa Java,Coffee Shop,Food,5.5,Clear,22815,820
+40.7568962212921 -73.9918899536133,486,Thursday,Au Bon Pain,Bakery,Food,6.4,Clear,22815,820
+40.7561647919909 -73.9906024932861,486,Thursday,Duane Reade,Pharmacy,Shop & Service,5.3,Clear,22815,820
+40.7557711018268 -73.9911437404581,486,Thursday,Port Authority Food Court,Coffee,Food,5.3,Clear,22815,820
+40.7563801581211 -73.9902216196060,486,Thursday,Schnipper's Quality Kitchen,Burger Joint,Food,8.0,Clear,22815,820
+40.7439599676015 -73.8814881024086,448,Friday,T-Mobile,Electronics Store,Shop & Service,6.7,Clouds,22815,820
+40.7432216124197 -73.8830384768847,448,Friday,Yi Mei Fung Bakery Corp,Bakery,Food,5.9,Clouds,22815,820
+40.7427576226745 -73.8823149703235,448,Friday,Broadway Park (Elmhurst),Park,Outdoors & Recreation,6.6,Clouds,22815,820
+40.7434308397878 -73.8833657765936,449,Friday,Dunkin' Donuts,Donut Shop,Food,5.9,Clouds,22815,820
+40.7432287487911 -73.8812182211528,449,Friday,Ming City Hair Studio,Salon / Barbershop,Shop & Service,-1.0,Clouds,22815,820
+40.7563305728609 -73.9910117456530,488,Friday,Casa Java,Coffee Shop,Food,5.5,Clouds,22815,820
+40.7568962212921 -73.9918899536133,488,Friday,Au Bon Pain,Bakery,Food,6.4,Clouds,22815,820
+40.7576926573789 -73.9915037155151,488,Friday,7-Eleven,Convenience Store,Shop & Service,6.3,Clouds,22815,820
+40.7572212983984 -73.9915466308594,489,Friday,Port Authority Bus Terminal,Bus Station,Travel & Transport,5.5,Clouds,22815,820
+40.7512134236282 -74.0253388067539,798,Friday,Kidville,School,Professional & Other Places,-1.0,Clouds,22815,820
+40.7321206704314 -74.0632796287537,509,Saturday,Journal Square Sculpture Plaza,Plaza,Outdoors & Recreation,5.7,Clear,22815,820
+40.7482696634836 -73.9881939218494,504,Sunday,Kum Gang San,Korean Restaurant,Food,-1.0,Clear,22815,820
+40.7426062120484 -74.1471089924219,616,Sunday,Horizons Hallmark,Candy Store,Shop & Service,-1.0,Clear,22815,820
+40.7563604862368 -73.9913273852533,490,Monday,Casa Java,Coffee Shop,Food,5.5,Clouds,22818,820
+40.7568962212921 -73.9918899536133,490,Monday,Au Bon Pain,Bakery,Food,6.4,Clouds,22818,820
+40.7576926573789 -73.9915037155151,490,Monday,7-Eleven,Convenience Store,Shop & Service,6.3,Clouds,22818,820
+40.7559348804415 -73.9909543565790,490,Monday,Chase Bank,Bank,Shop & Service,6.2,Clouds,22818,820
+40.7563801581211 -73.9902216196060,490,Monday,Schnipper's Quality Kitchen,Burger Joint,Food,8.0,Clouds,22818,820
+40.7515809851416 -74.0266513824463,506,Monday,Kings Food Markets,Supermarket,Shop & Service,5.9,Clouds,22818,820
+40.7509988731958 -74.0254765157396,506,Monday,Starbucks,Coffee Shop,Food,7.4,Clouds,22818,820
+40.7563458146582 -73.9910691347099,497,Tuesday,Casa Java,Coffee Shop,Food,5.5,Rain,22818,820
+40.7568962212921 -73.9918899536133,505,Tuesday,Au Bon Pain,Bakery,Food,6.4,Rain,22818,820
+40.7568001155879 -73.9909658343952,505,Tuesday,Gate 204,Bus Line,Travel & Transport,-1.0,Rain,22818,820
+40.7576926573789 -73.9915037155151,507,Tuesday,7-Eleven,Convenience Store,Shop & Service,6.3,Rain,22818,820
+40.7562208921636 -73.9908338394677,507,Tuesday,Transbridge Bus Line,Bus Line,Travel & Transport,-1.0,Rain,22818,820
+40.7557711018268 -73.9911437404581,507,Tuesday,Port Authority Food Court,Coffee,Food,5.3,Rain,22818,820
+40.7512134236282 -74.0253388067539,747,Tuesday,Kidville,School,Professional & Other Places,-1.0,Rain,22818,820
+40.7509988731958 -74.0254765157396,747,Tuesday,Starbucks,Coffee Shop,Food,7.4,Rain,22818,820
+40.7520612491943 -74.0252527385874,975,Tuesday,Hoboken Historical Museum,History Museum,Arts & Entertainment,8.2,Clouds,22818,820
+40.7431624889693 -73.8822747754362,460,Wednesday,Yi Mei Fung Bakery Corp,Bakery,Food,5.9,Clouds,22818,820
+40.7434308397878 -73.8833657765936,460,Wednesday,Dunkin' Donuts,Donut Shop,Food,5.9,Clouds,22818,820
+40.7430905807101 -73.8822001277664,460,Wednesday,Broadway Park (Elmhurst),Park,Outdoors & Recreation,6.6,Clouds,22818,820
+40.7429692382286 -73.8827669620514,460,Wednesday,Top Line Supermarket,Supermarket,Shop & Service,6.1,Clouds,22818,820
+40.7418465138618 -73.8835035868336,460,Wednesday,Esparks Coffee,Coffee Shop,Food,-1.0,Clouds,22818,820
+40.7568962212921 -73.9918899536133,489,Wednesday,Au Bon Pain,Bakery,Food,6.4,Clouds,22818,820
+40.7562208921636 -73.9908338394677,489,Wednesday,Transbridge Bus Line,Bus Line,Travel & Transport,-1.0,Clouds,22818,820
+40.7563478400721 -73.9905296768977,489,Wednesday,Heartland Brewery,Brewery,Nightlife Spot,7.0,Clouds,22818,820
+40.7563458146582 -73.9910691347099,490,Wednesday,Casa Java,Coffee Shop,Food,5.5,Clouds,22818,820
+40.7576926573789 -73.9915037155151,490,Wednesday,7-Eleven,Convenience Store,Shop & Service,6.3,Clouds,22818,820
+40.7568962212921 -73.9918899536133,480,Thursday,Au Bon Pain,Bakery,Food,6.4,Clear,22818,820
+40.7563458146582 -73.9910691347099,481,Thursday,Casa Java,Coffee Shop,Food,5.5,Clear,22818,820
+40.7580177305906 -73.9920830726624,481,Thursday,The Orion,Building,Professional & Other Places,-1.0,Clear,22818,820
+40.7576231629510 -73.9954765629739,481,Thursday,Port Authority Bus Terminal,Bus Station,Travel & Transport,5.5,Clear,22818,820
+40.7581165679535 -73.9928998366137,481,Thursday,Empire Coffee & Tea,Coffee Shop,Food,8.0,Clear,22818,820
+40.7509988731958 -74.0254765157396,500,Thursday,Starbucks,Coffee Shop,Food,7.4,Clear,22818,820
+40.7433346924179 -73.8832222241571,1158,Thursday,New Broadway Laundromat,Laundry Service,Shop & Service,-1.0,Clear,22818,820
+40.7430905807101 -73.8822001277664,453,Friday,Broadway Park (Elmhurst),Park,Outdoors & Recreation,6.6,Clear,22818,820
+40.7421497191821 -73.8821197379363,453,Friday,Moore Homestead Playground,Playground,Outdoors & Recreation,-1.0,Clear,22818,820
+40.7418465138618 -73.8835035868336,453,Friday,Esparks Coffee,Coffee Shop,Food,-1.0,Clear,22818,820
+40.7437028801630 -73.8844108351586,454,Friday,US Post Office - Elmhurst Station,Post Office,Professional & Other Places,-1.0,Clear,22818,820
+40.7562208921636 -73.9908338394677,486,Friday,Transbridge Bus Line,Bus Line,Travel & Transport,-1.0,Clear,22818,820
+40.7563458146582 -73.9910691347099,486,Friday,Casa Java,Coffee Shop,Food,5.5,Clear,22818,820
+40.7568962212921 -73.9918899536133,486,Friday,Au Bon Pain,Bakery,Food,6.4,Clear,22818,820
+40.7576926573789 -73.9915037155151,487,Friday,7-Eleven,Convenience Store,Shop & Service,6.3,Clear,22818,820
+40.7563801581211 -73.9902216196060,487,Friday,Schnipper's Quality Kitchen,Burger Joint,Food,8.0,Clear,22818,820
+40.7431624889693 -73.8822747754362,748,Saturday,Yi Mei Fung Bakery Corp,Bakery,Food,5.9,Clear,22818,820
+40.7631861810814 -74.0006875991821,1026,Saturday,Pier 84,Pier,Travel & Transport,9.0,Clear,22818,820
+40.7563458146582 -73.9910691347099,470,Monday,Casa Java,Coffee Shop,Food,5.5,Clouds,22823,820
+40.7568962212921 -73.9918899536133,470,Monday,Au Bon Pain,Bakery,Food,6.4,Clouds,22823,820
+40.7562208921636 -73.9908338394677,470,Monday,Transbridge Bus Line,Bus Line,Travel & Transport,-1.0,Clouds,22823,820
+40.7557711018268 -73.9911437404581,471,Monday,Port Authority Food Court,Coffee,Food,5.3,Clouds,22823,820
+40.7571401131869 -73.9935081537544,471,Monday,Cupcake Cafe,Cupcake Shop,Food,7.3,Clouds,22823,820
+40.7509988731958 -74.0254765157396,502,Monday,Starbucks,Coffee Shop,Food,7.4,Clouds,22823,820
+40.7511463444000 -74.0249142034218,502,Monday,Shipyard,Park,Outdoors & Recreation,-1.0,Clouds,22823,820
+40.7511380000000 -74.0253780305149,502,Monday,Heaven,Resort,Travel & Transport,-1.0,Clouds,22823,820
+40.7510900000000 -74.0252744000000,502,Monday,Little Man Parking - Independence Garage,Parking,Professional & Other Places,-1.0,Clouds,22823,820
+40.7512134236282 -74.0253388067539,502,Monday,Kidville,School,Professional & Other Places,-1.0,Clouds,22823,820
+40.7563458146582 -73.9910691347099,481,Thursday,Casa Java,Coffee Shop,Food,5.5,Clear,22823,820
+40.7576926573789 -73.9915037155151,481,Thursday,7-Eleven,Convenience Store,Shop & Service,6.3,Clear,22823,820
+40.7581165679535 -73.9928998366137,481,Thursday,Empire Coffee & Tea,Coffee Shop,Food,8.0,Clear,22823,820
+40.7568962212921 -73.9918899536133,481,Thursday,Au Bon Pain,Bakery,Food,6.4,Clear,22823,820
+40.7571401131869 -73.9935081537544,481,Thursday,Cupcake Cafe,Cupcake Shop,Food,7.3,Clear,22823,820
+40.7511380000000 -74.0253780305149,521,Thursday,Heaven,Resort,Travel & Transport,-1.0,Clear,22823,820
+40.7512134236282 -74.0253388067539,521,Thursday,Kidville,School,Professional & Other Places,-1.0,Clear,22823,820
+40.7510900000000 -74.0252744000000,521,Thursday,Little Man Parking - Independence Garage,Parking,Professional & Other Places,-1.0,Clear,22823,820
+40.7520612491943 -74.0252527385874,521,Thursday,Hoboken Historical Museum,History Museum,Arts & Entertainment,8.2,Clear,22823,820
+40.7509988731958 -74.0254765157396,521,Thursday,Starbucks,Coffee Shop,Food,7.4,Clear,22823,820
+40.7576926573789 -73.9915037155151,492,Monday,7-Eleven,Convenience Store,Shop & Service,6.3,Clouds,22826,820
+40.7557711018268 -73.9911437404581,493,Monday,Port Authority Food Court,Coffee,Food,5.3,Clouds,22826,820
+40.7563458146582 -73.9910691347099,493,Monday,Casa Java,Coffee Shop,Food,5.5,Clouds,22826,820
+40.7563801581211 -73.9902216196060,493,Monday,Schnipper's Quality Kitchen,Burger Joint,Food,8.0,Clouds,22826,820
+40.7433346924179 -73.8832222241571,1129,Monday,New Broadway Laundromat,Laundry Service,Shop & Service,-1.0,Clouds,22826,820
+40.7561647919909 -73.9906024932861,480,Wednesday,Duane Reade,Pharmacy,Shop & Service,5.3,Clouds,22826,820
+40.7554423602829 -73.9912470406770,481,Wednesday,Starbucks,Coffee Shop,Food,6.6,Clouds,22826,820
+40.7509988731958 -74.0254765157396,611,Wednesday,Starbucks,Coffee Shop,Food,7.4,Clouds,22826,820
+40.7563458146582 -73.9910691347099,480,Thursday,Casa Java,Coffee Shop,Food,5.5,Clouds,22826,820
+40.7568962212921 -73.9918899536133,481,Thursday,Au Bon Pain,Bakery,Food,6.4,Clouds,22826,820
+40.7565050745426 -73.9909658343952,481,Thursday,Gate 204,Bus Line,Travel & Transport,-1.0,Clouds,22826,820
+40.7576926573789 -73.9915037155151,481,Thursday,7-Eleven,Convenience Store,Shop & Service,6.3,Clouds,22826,820
+40.7557711018268 -73.9911437404581,481,Thursday,Port Authority Food Court,Coffee,Food,5.3,Clouds,22826,820
+40.7607246666667 -73.9990930000000,514,Thursday,Silver Platter Café,Coffee Shop,Food,-1.0,Clouds,22826,820
+40.7435249801454 -73.8818039204271,454,Friday,Paradise Deli & Convenience,Deli / Bodega,Food,-1.0,Clear,22826,820
+40.7431624889693 -73.8822747754362,455,Friday,Yi Mei Fung Bakery Corp,Bakery,Food,5.9,Clear,22826,820
+40.7433346924179 -73.8832222241571,455,Friday,New Broadway Laundromat,Laundry Service,Shop & Service,-1.0,Clear,22826,820
+40.7438149393999 -73.8813790015202,455,Friday,Mini Market,Deli / Bodega,Food,-1.0,Clear,22826,820
+40.7563458146582 -73.9910691347099,486,Friday,Casa Java,Coffee Shop,Food,5.5,Clear,22826,820
+40.7557711018268 -73.9911437404581,486,Friday,Port Authority Food Court,Coffee,Food,5.3,Clear,22826,820
+40.7568962212921 -73.9918899536133,486,Friday,Au Bon Pain,Bakery,Food,6.4,Clear,22826,820
+40.7563801581211 -73.9902216196060,486,Friday,Schnipper's Quality Kitchen,Burger Joint,Food,8.0,Clear,22826,820
+40.7561647919909 -73.9906024932861,487,Friday,Duane Reade,Pharmacy,Shop & Service,5.3,Clear,22826,820
+40.7509988731958 -74.0254765157396,507,Friday,Starbucks,Coffee Shop,Food,7.4,Clear,22826,820
+40.7511380000000 -74.0253780305149,642,Friday,Heaven,Resort,Travel & Transport,-1.0,Clear,22826,820

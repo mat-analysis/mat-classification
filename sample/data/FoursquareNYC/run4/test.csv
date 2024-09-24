@@ -1,0 +1,169 @@
+space,time,day,poi,type,root_type,rating,weather,tid,label
+40.7744550988244 -73.9831091086570,1146,Monday,Gourmet Garage,Gourmet Shop,Shop & Service,7.4,Clouds,10379,365
+40.7750827819138 -73.9808019594095,1155,Monday,Jalapeño,Mexican Restaurant,Food,-1.0,Clouds,10379,365
+40.7722274447236 -73.9830287606413,27,Tuesday,Josie Robertson Plaza (Lincoln Center Plaza),Plaza,Outdoors & Recreation,9.3,Clouds,10379,365
+40.8099115228134 -74.0678501129150,718,Wednesday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10379,365
+40.7725519708919 -73.9814217932717,923,Wednesday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10379,365
+40.7774590000000 -73.9788340000000,1172,Wednesday,Columbus Gourmet Food,Deli / Bodega,Food,5.6,Rain,10379,365
+40.7722274447236 -73.9830287606413,20,Thursday,Josie Robertson Plaza (Lincoln Center Plaza),Plaza,Outdoors & Recreation,9.3,Clouds,10379,365
+40.7725519708919 -73.9814217932717,926,Thursday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10379,365
+40.7778441904277 -73.9801740646362,1160,Thursday,Rigoletto Pizza,Pizza Place,Food,-1.0,Clouds,10379,365
+40.7725519708919 -73.9814217932717,927,Friday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10379,365
+40.7744550988244 -73.9831091086570,1169,Friday,Gourmet Garage,Gourmet Shop,Shop & Service,7.4,Clouds,10379,365
+40.7722274447236 -73.9830287606413,35,Saturday,Josie Robertson Plaza (Lincoln Center Plaza),Plaza,Outdoors & Recreation,9.3,Clear,10379,365
+40.8099115228134 -74.0678501129150,699,Saturday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clouds,10379,365
+40.7685400154365 -73.9818809281772,769,Saturday,Landmarc,American Restaurant,Food,8.3,Clouds,10379,365
+40.7818750000000 -73.9808940000000,1052,Saturday,SEPHORA,Cosmetics Shop,Shop & Service,8.1,Rain,10379,365
+40.7652638487491 -73.9875454147917,787,Sunday,Eatery,New American Restaurant,Food,-1.0,Clear,10379,365
+40.7764397333333 -73.9795420000000,1152,Sunday,Pomodoro Rosso,Italian Restaurant,Food,8.0,Clouds,10379,365
+40.8099115228134 -74.0678501129150,651,Monday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10383,365
+40.7704180542112 -73.9827245857061,727,Monday,New York Sports Clubs,Gym,Outdoors & Recreation,6.8,Clouds,10383,365
+40.7742150000000 -73.9811760000000,815,Monday,Starbucks,Coffee Shop,Food,-1.0,Clouds,10383,365
+40.7692250000000 -73.9861540000000,912,Monday,Bijou Nails,Nail Salon,Shop & Service,6.4,Unknown,10383,365
+40.7798980033668 -73.9815021419594,1234,Monday,Loehmann's,Department Store,Shop & Service,-1.0,Clear,10383,365
+40.8099115228134 -74.0678501129150,547,Tuesday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10383,365
+40.8099115228134 -74.0678501129150,556,Wednesday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clouds,10383,365
+40.8099115228134 -74.0678501129150,728,Thursday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10383,365
+40.7725519708919 -73.9814217932717,919,Thursday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clear,10383,365
+40.7744550988244 -73.9831091086570,1182,Thursday,Gourmet Garage,Gourmet Shop,Shop & Service,7.4,Clear,10383,365
+40.7722274447236 -73.9830287606413,25,Friday,Josie Robertson Plaza (Lincoln Center Plaza),Plaza,Outdoors & Recreation,9.3,Clear,10383,365
+40.8099115228134 -74.0678501129150,549,Friday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10383,365
+40.7725519708919 -73.9814217932717,926,Friday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clear,10383,365
+40.7778441904277 -73.9801740646362,1178,Friday,Rigoletto Pizza,Pizza Place,Food,-1.0,Clear,10383,365
+40.7764397333333 -73.9795420000000,805,Saturday,Pomodoro Rosso,Italian Restaurant,Food,8.0,Clouds,10383,365
+40.7818560000000 -73.9792270000000,1150,Saturday,Chirping Chicken,Comfort Food Restaurant,Food,7.8,Clear,10383,365
+40.8099115228134 -74.0678501129150,745,Sunday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10383,365
+40.7682811603301 -73.9853588394525,789,Sunday,Whym,New American Restaurant,Food,-1.0,Clear,10383,365
+40.7725519708919 -73.9814217932717,925,Sunday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10383,365
+40.7744550988244 -73.9831091086570,1167,Sunday,Gourmet Garage,Gourmet Shop,Shop & Service,7.4,Clouds,10383,365
+40.8099115228134 -74.0678501129150,662,Monday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10384,365
+40.7725519708919 -73.9814217932717,924,Monday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10384,365
+40.7744550988244 -73.9831091086570,1184,Tuesday,Gourmet Garage,Gourmet Shop,Shop & Service,7.4,Clear,10384,365
+40.8099115228134 -74.0678501129150,721,Wednesday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clouds,10384,365
+40.7765627405039 -73.9794073259115,831,Friday,Lansky's Deli,Diner,Food,-1.0,Clear,10384,365
+40.7798980033668 -73.9815021419594,929,Friday,Loehmann's,Department Store,Shop & Service,-1.0,Clear,10384,365
+40.7778441904277 -73.9801740646362,1230,Friday,Rigoletto Pizza,Pizza Place,Food,-1.0,Clear,10384,365
+40.7725519708919 -73.9814217932717,1261,Friday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clear,10384,365
+40.8099115228134 -74.0678501129150,662,Sunday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10384,365
+40.7725519708919 -73.9814217932717,921,Sunday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10384,365
+40.7744550988244 -73.9831091086570,1176,Sunday,Gourmet Garage,Gourmet Shop,Shop & Service,7.4,Clouds,10384,365
+40.8099115228134 -74.0678501129150,667,Monday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10385,365
+40.7704180542112 -73.9827245857061,727,Monday,New York Sports Clubs,Gym,Outdoors & Recreation,6.8,Clear,10385,365
+40.7725519708919 -73.9814217932717,924,Monday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10385,365
+40.8099115228134 -74.0678501129150,712,Tuesday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10385,365
+40.7725519708919 -73.9814217932717,924,Tuesday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clear,10385,365
+40.7681940000000 -73.9853010000000,1212,Tuesday,Burrito Box,Burrito Place,Food,8.9,Clear,10385,365
+40.8099115228134 -74.0678501129150,546,Wednesday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Clear,10385,365
+40.7725519708919 -73.9814217932717,926,Wednesday,WABC-TV,TV Station,Professional & Other Places,-1.0,Clouds,10385,365
+40.7770174741745 -73.9790380000000,1201,Wednesday,China Fun,Chinese Restaurant,Food,-1.0,Clear,10385,365
+40.8099115228134 -74.0678501129150,552,Friday,American Dream | Meadowlands,Shopping Mall,Shop & Service,5.3,Rain,10385,365
+40.7751875989557 -73.9806470006316,1275,Friday,Vive La Crêpe,French Restaurant,Food,8.0,Clouds,10385,365
+40.7813151542147 -74.0213394649073,496,Monday,CVS/Pharmacy,Pharmacy,Shop & Service,6.5,Clouds,12660,448
+40.7819157609522 -74.0213566788970,497,Monday,Pse&g,Building,Professional & Other Places,-1.0,Clouds,12660,448
+40.7581955774393 -73.9941623794690,537,Monday,NJT Bus 156,Bus Line,Travel & Transport,-1.0,Clouds,12660,448
+40.7576340089401 -73.9949830278669,537,Monday,Port Authority Bus Terminal,Bus Station,Travel & Transport,5.5,Clouds,12660,448
+40.7448228008499 -73.9364557086827,774,Monday,LaGuardia Community College,Community College,College & University,-1.0,Clouds,12660,448
+40.7449688750558 -73.9366623676706,775,Monday,LaGuardia Community College - B Building,College Academic Building,College & University,-1.0,Clouds,12660,448
+40.7654941998765 -73.9738401696171,789,Monday,The Pond,Lake,Outdoors & Recreation,-1.0,Clouds,12660,448
+40.7653700556837 -73.9760568737984,794,Monday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Clouds,12660,448
+40.7813151542147 -74.0213394649073,492,Tuesday,CVS/Pharmacy,Pharmacy,Shop & Service,6.5,Rain,12660,448
+40.7740829972902 -74.0123851108437,492,Tuesday,48th Street,Home (private),Residence,-1.0,Rain,12660,448
+40.7446715192372 -73.9342685542213,543,Tuesday,"LaGuardia Community College, E Building",College & University,College & University,-1.0,Clouds,12660,448
+40.7448228008499 -73.9364557086827,544,Tuesday,LaGuardia Community College,Community College,College & University,-1.0,Clouds,12660,448
+40.7611708582504 -74.0112876892090,650,Tuesday,Lincoln Tunnel,Tunnel,Travel & Transport,5.3,Clouds,12660,448
+40.7611708582504 -74.0112876892090,833,Tuesday,Lincoln Tunnel,Tunnel,Travel & Transport,5.3,Rain,12660,448
+40.7658108931722 -73.9797861162575,852,Tuesday,Petrossian Boutique & Cafe,French Restaurant,Food,8.4,Rain,12660,448
+40.7653700556837 -73.9760568737984,948,Tuesday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Clouds,12660,448
+40.7568620979867 -73.9900074343792,1419,Tuesday,Gate 305,Bus Station,Travel & Transport,-1.0,Clouds,12660,448
+40.7571237754334 -73.9894826710224,1419,Tuesday,Chevys Fresh Mex,Mexican Restaurant,Food,6.1,Clouds,12660,448
+40.7827051478195 -74.0211902769318,1434,Tuesday,Chase Bank,Bank,Shop & Service,6.3,Clouds,12660,448
+40.7809350000000 -74.0224220000000,11,Wednesday,Sleepy's Union City,Mattress Store,Shop & Service,6.3,Clouds,12660,448
+40.7740829972902 -74.0123851108437,14,Wednesday,48th Street,Home (private),Residence,-1.0,Clouds,12660,448
+40.7813151542147 -74.0213394649073,501,Wednesday,CVS/Pharmacy,Pharmacy,Shop & Service,6.5,Clouds,12660,448
+40.7576231629510 -73.9954765629739,535,Wednesday,Port Authority Bus Terminal,Bus Station,Travel & Transport,5.5,Clouds,12660,448
+40.7653700556837 -73.9760568737984,803,Wednesday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Clouds,12660,448
+40.7568620979867 -73.9900074343792,1419,Wednesday,Gate 305,Bus Station,Travel & Transport,-1.0,Clouds,12660,448
+40.7574798232461 -73.9903345534857,1420,Wednesday,Bus 156,Bus Line,Travel & Transport,-1.0,Clouds,12660,448
+40.7813151542147 -74.0213394649073,511,Thursday,CVS/Pharmacy,Pharmacy,Shop & Service,6.5,Clear,12660,448
+40.7740829972902 -74.0123851108437,512,Thursday,48th Street,Home (private),Residence,-1.0,Clear,12660,448
+40.7576231629510 -73.9954765629739,548,Thursday,Port Authority Bus Terminal,Bus Station,Travel & Transport,5.5,Clear,12660,448
+40.7653700556837 -73.9760568737984,794,Thursday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Clear,12660,448
+40.7827051478195 -74.0211902769318,433,Friday,Chase Bank,Bank,Shop & Service,6.3,Clear,12660,448
+40.7813752335407 -74.0203123607127,434,Friday,US Post Office,Post Office,Professional & Other Places,-1.0,Clear,12660,448
+40.7813151542147 -74.0213394649073,559,Friday,CVS/Pharmacy,Pharmacy,Shop & Service,6.5,Clear,12660,448
+40.7850500333333 -74.0194160000000,640,Friday,Popeyes Louisiana Kitchen,Fried Chicken Joint,Food,6.5,Clear,12660,448
+40.7444227077976 -73.8512131497978,1203,Friday,Terrace On The Park,Event Space,Professional & Other Places,-1.0,Clear,12660,448
+40.7516084293307 -73.8554055211949,1406,Friday,MTA Subway - 111th St (7),Metro Station,Travel & Transport,-1.0,Clear,12660,448
+40.7568620979867 -73.9900074343792,19,Saturday,Gate 305,Bus Station,Travel & Transport,-1.0,Clear,12660,448
+40.7813151542147 -74.0213394649073,544,Saturday,CVS/Pharmacy,Pharmacy,Shop & Service,6.5,Clear,12660,448
+40.7720423272435 -74.0305315142155,550,Saturday,NJT - Bus Stop,Bus Stop,Travel & Transport,-1.0,Clear,12660,448
+40.7715992086732 -74.0294757707909,552,Saturday,Pietro di Donato Square,Plaza,Outdoors & Recreation,-1.0,Clear,12660,448
+40.7572212983984 -73.9915466308594,568,Saturday,Port Authority Bus Terminal,Bus Station,Travel & Transport,5.5,Clear,12660,448
+40.7740829972902 -74.0123851108437,500,Monday,48th Street,Home (private),Residence,-1.0,Rain,12661,448
+40.7791603046148 -74.0165883443982,500,Monday,CableVision,Electronics Store,Shop & Service,-1.0,Rain,12661,448
+40.7581955774393 -73.9941623794690,525,Monday,NJT Bus 156,Bus Line,Travel & Transport,-1.0,Rain,12661,448
+40.7448228008499 -73.9364557086827,548,Monday,LaGuardia Community College,Community College,College & University,-1.0,Rain,12661,448
+40.7446715192372 -73.9342685542213,548,Monday,"LaGuardia Community College, E Building",College & University,College & University,-1.0,Rain,12661,448
+40.7653700556837 -73.9760568737984,798,Monday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Rain,12661,448
+40.7653700556837 -73.9760568737984,372,Tuesday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Rain,12661,448
+40.7673061975676 -73.9822195394671,441,Tuesday,Chase Bank,Bank,Shop & Service,5.7,Rain,12661,448
+40.7561647919909 -73.9906024932861,450,Tuesday,Duane Reade,Pharmacy,Shop & Service,5.3,Rain,12661,448
+40.7574122160477 -73.9929514862572,451,Tuesday,Gate 200,Bus Line,Travel & Transport,-1.0,Rain,12661,448
+40.7813151542147 -74.0213394649073,497,Tuesday,CVS/Pharmacy,Pharmacy,Shop & Service,6.5,Rain,12661,448
+40.7813752335407 -74.0203123607127,498,Tuesday,US Post Office,Post Office,Professional & Other Places,-1.0,Rain,12661,448
+40.7653700556837 -73.9760568737984,904,Wednesday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Clouds,12661,448
+40.7740829972902 -74.0123851108437,1436,Wednesday,48th Street,Home (private),Residence,-1.0,Clouds,12661,448
+40.7738793716884 -73.8723707199097,951,Friday,Terminal B (Central Terminal),Airport Terminal,Travel & Transport,-1.0,Clouds,12661,448
+40.7738390000000 -73.8712200000000,987,Friday,LaGuardia Airport (LGA) (LaGuardia Airport),Airport,Travel & Transport,5.3,Clouds,12661,448
+40.7813151542147 -74.0218501459402,829,Monday,CVS/Pharmacy,Pharmacy,Shop & Service,6.5,Clear,12667,448
+40.7740829972902 -74.0123851108437,829,Monday,48th Street,Home (private),Residence,-1.0,Clear,12667,448
+40.7658108931722 -73.9797861162575,863,Monday,Petrossian Boutique & Cafe,French Restaurant,Food,8.4,Clouds,12667,448
+40.7655284166496 -73.9775937133093,864,Monday,Subway,Sandwich Place,Food,5.8,Clouds,12667,448
+40.7677159934875 -73.9818005796479,863,Wednesday,LensCrafters,Optical Shop,Shop & Service,-1.0,Clouds,12667,448
+40.7658108931722 -73.9797861162575,864,Wednesday,Petrossian Boutique & Cafe,French Restaurant,Food,8.4,Clouds,12667,448
+40.7653700556837 -73.9760568737984,867,Wednesday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Clouds,12667,448
+40.7333726748857 -74.0336894989014,4,Thursday,Pedestrian Walkway to Jersey City,Scenic Lookout,Outdoors & Recreation,-1.0,Clear,12667,448
+40.7740829972902 -74.0123851108437,793,Thursday,48th Street,Home (private),Residence,-1.0,Clear,12667,448
+40.7507553754594 -74.0353511380946,816,Thursday,Hoboken Is Awesome,Other Nightlife,Nightlife Spot,-1.0,Clear,12667,448
+40.7653700556837 -73.9760568737984,958,Thursday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Clear,12667,448
+40.7813151542147 -74.0218501459402,518,Friday,CVS/Pharmacy,Pharmacy,Shop & Service,6.5,Clear,12667,448
+40.7813151542147 -74.0218501459402,388,Sunday,CVS/Pharmacy,Pharmacy,Shop & Service,6.5,Clouds,12667,448
+40.7740829972902 -74.0123851108437,389,Sunday,48th Street,Home (private),Residence,-1.0,Clouds,12667,448
+40.7658108931722 -73.9797861162575,423,Sunday,Petrossian Boutique & Cafe,French Restaurant,Food,8.4,Clouds,12667,448
+40.7653700556837 -73.9760568737984,425,Sunday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Clouds,12667,448
+40.7731643791929 -73.9799165725708,985,Sunday,ABC News Headquarters,TV Station,Professional & Other Places,-1.0,Clouds,12667,448
+40.7746972915072 -73.9819497983184,1035,Sunday,AMC Loews Lincoln Square 13,Movie Theater,Arts & Entertainment,8.9,Clouds,12667,448
+40.7406593470064 -73.9982655863226,1245,Sunday,Cafeteria,New American Restaurant,Food,8.5,Rain,12667,448
+40.7677159934875 -73.9818005796479,1296,Sunday,LensCrafters,Optical Shop,Shop & Service,-1.0,Rain,12667,448
+40.7653700556837 -73.9760568737984,1299,Sunday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Rain,12667,448
+40.7690226811256 -74.0247994456022,137,Monday,NJT - Bus Stop,Bus Stop,Travel & Transport,-1.0,Clear,12668,448
+40.7653700556837 -73.9760568737984,905,Monday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Clouds,12668,448
+40.7561647919909 -73.9906024932861,1,Tuesday,Duane Reade,Pharmacy,Shop & Service,5.3,Clear,12668,448
+40.7568620979867 -73.9900074343792,1,Tuesday,Gate 305,Bus Station,Travel & Transport,-1.0,Clear,12668,448
+40.7813801096312 -74.0203984311088,30,Tuesday,Village Fried Chicken,Fried Chicken Joint,Food,-1.0,Clear,12668,448
+40.7472244502931 -73.9438247680664,541,Tuesday,Citicorp,Office,Professional & Other Places,-1.0,Clear,12668,448
+40.7449688750558 -73.9366623676706,550,Tuesday,LaGuardia Community College - B Building,College Academic Building,College & University,-1.0,Clear,12668,448
+40.7653700556837 -73.9760568737984,917,Tuesday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Clear,12668,448
+40.7813151542147 -74.0218501459402,594,Wednesday,CVS/Pharmacy,Pharmacy,Shop & Service,6.5,Clear,12668,448
+40.7658108931722 -73.9797861162575,635,Wednesday,Petrossian Boutique & Cafe,French Restaurant,Food,8.4,Clear,12668,448
+40.7813151542147 -74.0218501459402,538,Friday,CVS/Pharmacy,Pharmacy,Shop & Service,6.5,Clouds,12668,448
+40.7658108931722 -73.9797861162575,405,Sunday,Petrossian Boutique & Cafe,French Restaurant,Food,8.4,Clear,12668,448
+40.7653700556837 -73.9760568737984,544,Sunday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Clear,12668,448
+40.7827051478195 -74.0211902769318,120,Monday,Chase Bank,Bank,Shop & Service,6.3,Clear,12670,448
+40.7813801096312 -74.0203984311088,121,Monday,Village Fried Chicken,Fried Chicken Joint,Food,-1.0,Clear,12670,448
+40.7819157609522 -74.0213566788970,145,Monday,Pse&g,Building,Professional & Other Places,-1.0,Clouds,12670,448
+40.7813151542147 -74.0218501459402,510,Monday,CVS/Pharmacy,Pharmacy,Shop & Service,6.5,Clouds,12670,448
+40.7740829972902 -74.0123851108437,511,Monday,48th Street,Home (private),Residence,-1.0,Clouds,12670,448
+40.7813476468091 -74.0203835333333,814,Monday,Cart Lady 48&bline (zuly),Food Truck,Food,-1.0,Clouds,12670,448
+40.7781823574828 -74.0240363043444,820,Monday,43rd Bergenline Ave.,Professional & Other Places,Professional & Other Places,-1.0,Clouds,12670,448
+40.7677159934875 -73.9818005796479,852,Monday,LensCrafters,Optical Shop,Shop & Service,-1.0,Clouds,12670,448
+40.7658108931722 -73.9797861162575,854,Monday,Petrossian Boutique & Cafe,French Restaurant,Food,8.4,Clouds,12670,448
+40.7740829972902 -74.0123851108437,376,Sunday,48th Street,Home (private),Residence,-1.0,Clouds,12670,448
+40.7781823574828 -74.0240363043444,380,Sunday,43rd Bergenline Ave.,Professional & Other Places,Professional & Other Places,-1.0,Clouds,12670,448
+40.7611708582504 -74.0112876892090,391,Sunday,Lincoln Tunnel,Tunnel,Travel & Transport,5.3,Clouds,12670,448
+40.7652590000000 -73.9764050000000,414,Sunday,Angela's Sandwich Shop,Sandwich Place,Food,8.1,Clouds,12670,448
+40.7653700556837 -73.9760568737984,459,Sunday,"The Ritz-Carlton New York, Central Park",Resort,Travel & Transport,9.0,Clouds,12670,448
+40.7657060000000 -73.9787190000000,1187,Sunday,Red 58 Restaurant & Wine Bar,New American Restaurant,Food,7.0,Rain,12670,448
+40.7567743169674 -73.9918112753730,1201,Sunday,Gate 201,Bus Station,Travel & Transport,-1.0,Rain,12670,448
+40.7581955774393 -73.9941623794690,1201,Sunday,NJT Bus 156,Bus Line,Travel & Transport,-1.0,Rain,12670,448
+40.7800936286388 -74.0098286962727,1219,Sunday,P.F. Chang's,Chinese Restaurant,Food,7.6,Rain,12670,448

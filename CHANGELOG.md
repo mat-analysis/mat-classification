@@ -8,12 +8,11 @@
 
 # *TODO*:
  - Document comments on all public interface funcions and modules, remove comment lines of code
- - TODO: Movelets split train in train/val
+ - Movelet classifiers to do split of the train in training and validation sets
+ - Implement grid encoding or geohash for all trajectory classifiers + testing
+ - Hyperparam configurations for training movelet-based models. (Not used now since movelets are features)
 
 # *TODO* Known Issues:
  - Issue: TXGB low acc?
 
- - Atualizar scripts para a nova estrutura
  - remover break do train THSCls
- - Hyperparam config training for movelet-based methods ?
- - Grid encoding or geohash + testing

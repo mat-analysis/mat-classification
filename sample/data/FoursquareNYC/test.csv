@@ -1,0 +1,251 @@
+space,time,day,poi,type,root_type,rating,weather,tid,label
+40.7024350000000 -73.9870730000000,1082,Tuesday,reBar,Bar,Nightlife Spot,-1.0,Clouds,11035,390
+40.7509455224884 -74.0056339217607,449,Wednesday,Harry Fox Agency,Office,Professional & Other Places,-1.0,Clouds,11035,390
+40.7509455224884 -74.0056339217607,480,Thursday,Harry Fox Agency,Office,Professional & Other Places,-1.0,Clouds,11035,390
+40.7452086435588 -74.0023612976074,620,Thursday,Billy's Bakery,Cupcake Shop,Food,9.0,Clouds,11035,390
+40.7504159978144 -74.0030630705807,812,Thursday,High Line,Park,Outdoors & Recreation,9.7,Clouds,11035,390
+40.6766368266161 -73.9586301076984,1062,Thursday,480 St Marks Avenue,Residential Building (Apartment / Condo),Residence,-1.0,Fog,11035,390
+40.7509455224884 -74.0056339217607,450,Friday,Harry Fox Agency,Office,Professional & Other Places,-1.0,Clouds,11035,390
+40.7471748924365 -74.0007791157915,776,Friday,Grand Sichuan International,Chinese Restaurant,Food,8.2,Clouds,11035,390
+40.7051605361648 -74.0136044884635,1049,Friday,City College (CWE),University,College & University,-1.0,Clear,11035,390
+40.7092561513163 -74.0043944085391,1351,Friday,Southbridge Towers,Building,Professional & Other Places,-1.0,Clear,11035,390
+40.7252469176649 -73.9833271959588,1413,Friday,Identity,Bar,Nightlife Spot,-1.0,Clear,11035,390
+40.7285633481151 -73.9999584922170,48,Saturday,Le Poisson Rouge,Rock Club,Arts & Entertainment,8.7,Clouds,11035,390
+40.7051605361648 -74.0136044884635,838,Saturday,City College (CWE),University,College & University,-1.0,Clouds,11035,390
+40.6905252262589 -73.9919644017738,1007,Saturday,United Artists Court Street 12 & RPX,Movie Theater,Arts & Entertainment,6.2,Fog,11035,390
+40.6035202833515 -74.0604257583618,930,Sunday,Five Boro Bike Tour 2012,Park,Outdoors & Recreation,-1.0,Clear,11035,390
+40.6766368266161 -73.9586301076984,1103,Sunday,480 St Marks Avenue,Residential Building (Apartment / Condo),Residence,-1.0,Clear,11035,390
+40.7509455224884 -74.0056339217607,498,Monday,Harry Fox Agency,Office,Professional & Other Places,-1.0,Clouds,11037,390
+40.7052691601325 -74.0133692209169,1035,Monday,City College (CWE),University,College & University,-1.0,Clouds,11037,390
+40.6764188612496 -73.9589171011043,1260,Monday,480 St Marks Avenue,Residential Building (Apartment / Condo),Residence,-1.0,Clouds,11037,390
+40.7509455224884 -74.0056339217607,535,Tuesday,Harry Fox Agency,Office,Professional & Other Places,-1.0,Clouds,11037,390
+40.7539867104117 -73.9817404747009,775,Tuesday,Mets Clubhouse Shop,Sporting Goods Shop,Shop & Service,7.9,Rain,11037,390
+40.7532715038832 -73.9822769165039,785,Tuesday,New York Public Library,Library,Professional & Other Places,-1.0,Rain,11037,390
+40.7532877586625 -73.9821481704712,790,Tuesday,Rose Main Reading Room - New York Public Library,Library,Professional & Other Places,-1.0,Rain,11037,390
+40.7509455224884 -74.0056339217607,496,Wednesday,Harry Fox Agency,Office,Professional & Other Places,-1.0,Clouds,11037,390
+40.7532715038832 -73.9822769165039,814,Wednesday,New York Public Library,Library,Professional & Other Places,-1.0,Clouds,11037,390
+40.7532877586625 -73.9821481704712,856,Wednesday,Rose Main Reading Room - New York Public Library,Library,Professional & Other Places,-1.0,Clouds,11037,390
+40.6723072929569 -73.9578437435796,1134,Wednesday,Franklin Park,Bar,Nightlife Spot,8.9,Clear,11037,390
+40.7509455224884 -74.0056339217607,482,Thursday,Harry Fox Agency,Office,Professional & Other Places,-1.0,Clear,11037,390
+40.7068711159023 -74.0098401729577,933,Thursday,Trump Building,Building,Professional & Other Places,-1.0,Clear,11037,390
+40.7082899885396 -74.0135012003080,995,Thursday,Cordato's,Pizza Place,Food,-1.0,Clear,11037,390
+40.7509455224884 -74.0056339217607,469,Friday,Harry Fox Agency,Office,Professional & Other Places,-1.0,Clear,11037,390
+40.6764188612496 -73.9589171011043,1427,Friday,480 St Marks Avenue,Residential Building (Apartment / Condo),Residence,-1.0,Clear,11037,390
+40.6752760900784 -73.9633252661851,532,Saturday,Elegant Dominican Barbershop,Salon / Barbershop,Shop & Service,-1.0,Clear,11037,390
+40.6765585109594 -73.9592270535034,764,Saturday,Neptune Diner II,Diner,Food,5.8,Clear,11037,390
+40.7068711159023 -74.0098401729577,524,Monday,Trump Building,Building,Professional & Other Places,-1.0,Clear,11044,390
+40.7067914193743 -74.0098860796909,524,Monday,"The Harry Fox Agency, Inc.",Office,Professional & Other Places,-1.0,Clear,11044,390
+40.7067914193743 -74.0098860796909,563,Tuesday,"The Harry Fox Agency, Inc.",Office,Professional & Other Places,-1.0,Clear,11044,390
+40.6764188612496 -73.9589171011043,870,Tuesday,480 St Marks Avenue,Residential Building (Apartment / Condo),Residence,-1.0,Clear,11044,390
+40.6764188612496 -73.9589171011043,1422,Tuesday,480 St Marks Avenue,Residential Building (Apartment / Condo),Residence,-1.0,Clouds,11044,390
+40.7148694149892 -74.0153890694429,909,Wednesday,Regal Cinemas Battery Park 11,Movie Theater,Arts & Entertainment,9.0,Clear,11044,390
+40.7341673602953 -73.9904871582985,831,Thursday,Regal Cinemas Union Square 14,Movie Theater,Arts & Entertainment,7.2,Clear,11044,390
+40.7082260000000 -74.0049740000000,1098,Thursday,Ryan Maguire's Ale House,Bar,Nightlife Spot,7.4,Clear,11044,390
+40.6716389935202 -73.9638120218084,715,Friday,Brooklyn Museum,Art Museum,Arts & Entertainment,9.5,Clear,11044,390
+40.6715227345161 -73.9639279371764,719,Friday,Keith Haring Exhibit Brooklyn Museum,Art Museum,Arts & Entertainment,-1.0,Clear,11044,390
+40.7985977306459 -73.7089187198231,749,Friday,national fried chicken day,General Entertainment,Arts & Entertainment,-1.0,Clear,11044,390
+40.7067914193743 -74.0098860796909,537,Monday,"The Harry Fox Agency, Inc.",Office,Professional & Other Places,-1.0,Clear,11056,390
+40.7068711159023 -74.0098401729577,541,Wednesday,Trump Building,Building,Professional & Other Places,-1.0,Clouds,11056,390
+40.7067914193743 -74.0098860796909,541,Wednesday,"The Harry Fox Agency, Inc.",Office,Professional & Other Places,-1.0,Clouds,11056,390
+40.7052691601325 -74.0133692209169,1224,Wednesday,City College (CWE),University,College & University,-1.0,Clouds,11056,390
+40.7067914193743 -74.0098860796909,526,Friday,"The Harry Fox Agency, Inc.",Office,Professional & Other Places,-1.0,Clouds,11056,390
+40.7079214909619 -74.0060757833288,762,Friday,BonChon Chicken,Fried Chicken Joint,Food,7.6,Clouds,11056,390
+40.6752760900784 -73.9633252661851,508,Saturday,Elegant Dominican Barbershop,Salon / Barbershop,Shop & Service,-1.0,Clouds,11056,390
+40.7084991592865 -74.0112001552546,792,Saturday,Ricky's Halloween Pop Up Shop,Boutique,Shop & Service,-1.0,Clouds,11056,390
+40.7075550000000 -74.0070660000000,800,Saturday,Harry's Italian Pizza Bar,Italian Restaurant,Food,8.3,Clouds,11056,390
+40.7082260000000 -74.0049740000000,976,Saturday,Ryan Maguire's Ale House,Bar,Nightlife Spot,7.4,Clouds,11056,390
+40.7068711159023 -74.0098401729577,454,Tuesday,Trump Building,Building,Professional & Other Places,-1.0,Clear,11060,390
+40.7067914193743 -74.0098860796909,456,Tuesday,"The Harry Fox Agency, Inc.",Office,Professional & Other Places,-1.0,Clear,11060,390
+40.7084798762621 -74.0033614747215,799,Tuesday,Southbridge Towers - Building 6,Building,Professional & Other Places,-1.0,Clear,11060,390
+40.6752760900784 -73.9633252661851,973,Tuesday,Elegant Dominican Barbershop,Salon / Barbershop,Shop & Service,-1.0,Clear,11060,390
+40.7354863951756 -73.9989066123962,1235,Tuesday,P.S. 41,Elementary School,Professional & Other Places,-1.0,Clear,11060,390
+40.6764870000000 -73.9589060000000,1348,Tuesday,The Fighting Zamirs,Residential Building (Apartment / Condo),Residence,-1.0,Clear,11060,390
+40.7068711159023 -74.0098401729577,498,Wednesday,Trump Building,Building,Professional & Other Places,-1.0,Clear,11060,390
+40.6904832791969 -73.9920103127926,958,Wednesday,United Artists Court Street 12 & RPX,Movie Theater,Arts & Entertainment,6.2,Clear,11060,390
+40.7082260000000 -74.0049740000000,1313,Thursday,Ryan Maguire's Ale House,Bar,Nightlife Spot,7.4,Clear,11060,390
+40.6764870000000 -73.9589060000000,705,Friday,The Fighting Zamirs,Residential Building (Apartment / Condo),Residence,-1.0,Clear,11060,390
+40.6789890000000 -73.9682880000000,819,Sunday,The Sunburnt Calf,Australian Restaurant,Food,-1.0,Clouds,11060,390
+40.7068711159023 -74.0098401729577,519,Monday,Trump Building,Building,Professional & Other Places,-1.0,Clouds,11064,390
+40.7067914193743 -74.0098860796909,521,Monday,"The Harry Fox Agency, Inc.",Office,Professional & Other Places,-1.0,Clouds,11064,390
+40.7383992544894 -73.9918381464153,812,Monday,Barnes & Noble,Bookstore,Shop & Service,-1.0,Clouds,11064,390
+40.7067914193743 -74.0098860796909,547,Tuesday,"The Harry Fox Agency, Inc.",Office,Professional & Other Places,-1.0,Clouds,11064,390
+40.7067914193743 -74.0098860796909,504,Wednesday,"The Harry Fox Agency, Inc.",Office,Professional & Other Places,-1.0,Clouds,11064,390
+40.7052691601325 -74.0133692209169,1101,Wednesday,City College (CWE),University,College & University,-1.0,Clear,11064,390
+40.6764188612496 -73.9589171011043,1303,Wednesday,480 St Marks Avenue,Residential Building (Apartment / Condo),Residence,-1.0,Clear,11064,390
+40.7084798762621 -74.0033614747215,1065,Thursday,Southbridge Towers - Building 6,Building,Professional & Other Places,-1.0,Clouds,11064,390
+40.7052691601325 -74.0133692209169,1211,Thursday,City College (CWE),University,College & University,-1.0,Clouds,11064,390
+40.7067914193743 -74.0098860796909,478,Friday,"The Harry Fox Agency, Inc.",Office,Professional & Other Places,-1.0,Rain,11064,390
+40.7443870000000 -73.9536910000000,1182,Friday,Laughing Devil Comedy Club,Comedy Club,Arts & Entertainment,-1.0,Clouds,11064,390
+40.7342690000000 -73.9900840000000,777,Saturday,Best Buy,Electronics Store,Shop & Service,6.6,Clouds,11064,390
+40.7355839498755 -73.9909243583679,787,Saturday,Union Square Holiday Market,Christmas Market,Event,-1.0,Clouds,11064,390
+40.7067914193743 -74.0098860796909,546,Monday,"The Harry Fox Agency, Inc.",Office,Professional & Other Places,-1.0,Clear,11071,390
+40.7069204329008 -74.0102820248073,738,Monday,New York Sports Clubs,Gym,Outdoors & Recreation,6.8,Clouds,11071,390
+40.7068711159023 -74.0098401729577,785,Monday,Trump Building,Building,Professional & Other Places,-1.0,Clouds,11071,390
+40.7067914193743 -74.0098860796909,786,Monday,"The Harry Fox Agency, Inc.",Office,Professional & Other Places,-1.0,Clouds,11071,390
+40.7052691601325 -74.0133692209169,1089,Monday,City College (CWE),University,College & University,-1.0,Clear,11071,390
+40.7066464357686 -74.0102016881833,783,Wednesday,New York Sports Clubs,Gym,Outdoors & Recreation,6.8,Clouds,11071,390
+40.7068711159023 -74.0098401729577,859,Wednesday,Trump Building,Building,Professional & Other Places,-1.0,Clouds,11071,390
+40.7068711159023 -74.0098401729577,511,Thursday,Trump Building,Building,Professional & Other Places,-1.0,Clear,11071,390
+40.6764870000000 -73.9589060000000,1333,Thursday,The Fighting Zamirs,Residential Building (Apartment / Condo),Residence,-1.0,Clouds,11071,390
+40.7068711159023 -74.0098401729577,461,Friday,Trump Building,Building,Professional & Other Places,-1.0,Snow,11071,390
+40.7988408757891 -73.9630612383003,94,Monday,Ding Dong Lounge,Bar,Nightlife Spot,-1.0,Clear,24432,881
+40.8331652006224 -73.9418603427692,475,Monday,The Grinnell,Home (private),Residence,-1.0,Clouds,24432,881
+40.8498192120828 -73.9346359519707,1076,Tuesday,J's Big Gym,Gym,Outdoors & Recreation,5.6,Clouds,24432,881
+40.8093918111461 -73.9517426490784,1276,Tuesday,AMC Magic Johnson Harlem 9,Movie Theater,Arts & Entertainment,6.3,Rain,24432,881
+40.7988408757891 -73.9630612383003,89,Wednesday,Ding Dong Lounge,Bar,Nightlife Spot,-1.0,Rain,24432,881
+40.7686098599664 -73.9110349752167,1334,Thursday,Dunkin' Donuts,Donut Shop,Food,5.9,Clear,24432,881
+40.7696190000000 -73.9100560000000,29,Friday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clear,24432,881
+40.7686098599664 -73.9110349752167,186,Friday,Dunkin' Donuts,Donut Shop,Food,5.9,Clear,24432,881
+40.7696190000000 -73.9100560000000,198,Friday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clear,24432,881
+40.8154837319527 -73.9580503797168,299,Friday,Bank Of America ATM Center,Bank,Shop & Service,-1.0,Clear,24432,881
+40.8343150000000 -73.9448610000000,327,Friday,Hubs L'Shish Deli,Deli / Bodega,Food,-1.0,Clear,24432,881
+40.8331652006224 -73.9418603427692,337,Friday,The Grinnell,Home (private),Residence,-1.0,Clear,24432,881
+40.7696190000000 -73.9100560000000,1410,Friday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clear,24432,881
+40.7502155347798 -73.9985847473145,321,Saturday,Billymark's West,Dive Bar,Nightlife Spot,7.4,Clear,24432,881
+40.8343150000000 -73.9448610000000,423,Saturday,Hubs L'Shish Deli,Deli / Bodega,Food,-1.0,Clear,24432,881
+40.8331652006224 -73.9418603427692,1235,Saturday,The Grinnell,Home (private),Residence,-1.0,Clear,24432,881
+40.7696190000000 -73.9100560000000,1383,Saturday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clear,24432,881
+40.8331652006224 -73.9418603427692,351,Sunday,The Grinnell,Home (private),Residence,-1.0,Clear,24432,881
+40.8341610206876 -73.9450376116797,462,Sunday,Twin Donut,Donut Shop,Food,-1.0,Clear,24432,881
+40.8343150000000 -73.9448610000000,523,Sunday,Hubs L'Shish Deli,Deli / Bodega,Food,-1.0,Clear,24432,881
+40.8331652006224 -73.9418603427692,524,Sunday,The Grinnell,Home (private),Residence,-1.0,Clear,24432,881
+40.7988408757891 -73.9630612383003,66,Monday,Ding Dong Lounge,Bar,Nightlife Spot,-1.0,Clouds,24433,881
+40.8343150000000 -73.9448610000000,390,Monday,Hubs L'Shish Deli,Deli / Bodega,Food,-1.0,Clouds,24433,881
+40.8498192120828 -73.9346359519707,632,Monday,J's Big Gym,Gym,Outdoors & Recreation,5.6,Clouds,24433,881
+40.7988408757891 -73.9630612383003,105,Wednesday,Ding Dong Lounge,Bar,Nightlife Spot,-1.0,Clouds,24433,881
+40.8345766569390 -73.9443889593914,339,Wednesday,Bank of America,Bank,Shop & Service,5.8,Rain,24433,881
+40.8343150000000 -73.9448610000000,343,Wednesday,Hubs L'Shish Deli,Deli / Bodega,Food,-1.0,Rain,24433,881
+40.8331652006224 -73.9418603427692,381,Wednesday,The Grinnell,Home (private),Residence,-1.0,Rain,24433,881
+40.7696190000000 -73.9100560000000,1395,Wednesday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clear,24433,881
+40.8345766569390 -73.9443889593914,338,Thursday,Bank of America,Bank,Shop & Service,5.8,Clear,24433,881
+40.8331652006224 -73.9418603427692,363,Thursday,The Grinnell,Home (private),Residence,-1.0,Clear,24433,881
+40.8343380000000 -73.9409220000000,835,Thursday,Mario's Hamburger and Pizza,Burger Joint,Food,-1.0,Clear,24433,881
+40.8331652006224 -73.9418603427692,946,Thursday,The Grinnell,Home (private),Residence,-1.0,Clear,24433,881
+40.8498192120828 -73.9346359519707,1074,Friday,J's Big Gym,Gym,Outdoors & Recreation,5.6,Clear,24433,881
+40.8331652006224 -73.9418603427692,1200,Friday,The Grinnell,Home (private),Residence,-1.0,Clear,24433,881
+40.7686098599664 -73.9110349752167,1404,Friday,Dunkin' Donuts,Donut Shop,Food,5.9,Clear,24433,881
+40.7698434364248 -73.9100015417695,1428,Friday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clear,24433,881
+40.8155406846180 -73.9584234721819,306,Saturday,MTA Subway - 125th St (1),Metro Station,Travel & Transport,-1.0,Clear,24433,881
+40.7988408757891 -73.9630612383003,116,Tuesday,Ding Dong Lounge,Bar,Nightlife Spot,-1.0,Clear,24440,881
+40.8346711370204 -73.9441937892508,463,Tuesday,Broadway Laundromat,Laundry Service,Shop & Service,-1.0,Clear,24440,881
+40.8345766569390 -73.9443889593914,464,Tuesday,Bank of America,Bank,Shop & Service,5.8,Clear,24440,881
+40.8331652006224 -73.9418603427692,479,Tuesday,The Grinnell,Home (private),Residence,-1.0,Clear,24440,881
+40.8345766569390 -73.9443889593914,900,Tuesday,Bank of America,Bank,Shop & Service,5.8,Clear,24440,881
+40.8343150000000 -73.9448610000000,906,Tuesday,Hubs L'Shish Deli,Deli / Bodega,Food,-1.0,Clear,24440,881
+40.8331652006224 -73.9418603427692,1293,Tuesday,The Grinnell,Home (private),Residence,-1.0,Clear,24440,881
+40.8346711370204 -73.9441937892508,1317,Tuesday,Broadway Laundromat,Laundry Service,Shop & Service,-1.0,Clear,24440,881
+40.7988408757891 -73.9630612383003,449,Wednesday,Ding Dong Lounge,Bar,Nightlife Spot,-1.0,Rain,24440,881
+40.7991433752877 -73.9630038408862,480,Wednesday,Gourmet Deli,Deli / Bodega,Food,7.6,Rain,24440,881
+40.8331652006224 -73.9418603427692,505,Wednesday,The Grinnell,Home (private),Residence,-1.0,Clouds,24440,881
+40.8498192120828 -73.9346359519707,929,Wednesday,J's Big Gym,Gym,Outdoors & Recreation,5.6,Clear,24440,881
+40.7318230000000 -73.9898000000000,1129,Wednesday,Amsterdam Billiards & Bar,Pool Hall,Arts & Entertainment,7.8,Clear,24440,881
+40.8331652006224 -73.9418603427692,1292,Friday,The Grinnell,Home (private),Residence,-1.0,Clear,24440,881
+40.7692388906608 -73.9105928960243,255,Saturday,MTA Bus - M60-SBS (LaGuardia Airport) - Astoria Blvd/Steinway St,Bus Line,Travel & Transport,-1.0,Clear,24440,881
+40.8331652006224 -73.9418603427692,951,Saturday,The Grinnell,Home (private),Residence,-1.0,Clear,24440,881
+40.8132895494315 -73.9564418792725,1366,Saturday,MTA Bus - W 125 St & Amsterdam Av (Bx15/M11/M100/M101/M104),Bus Stop,Travel & Transport,-1.0,Clouds,24440,881
+40.7698434364248 -73.9100015417695,1421,Saturday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Rain,24440,881
+40.8340978041072 -73.9452672225881,346,Sunday,Galaxy Gourmet Deli,Deli / Bodega,Food,8.2,Clouds,24440,881
+40.8331652006224 -73.9418603427692,788,Monday,The Grinnell,Home (private),Residence,-1.0,Clear,24444,881
+40.8495622591537 -73.9341881858708,1163,Monday,Rainbow Apparel,Clothing Store,Shop & Service,-1.0,Clear,24444,881
+40.8122048395625 -73.9303419473045,51,Tuesday,Sin City Gentlemen's Cabaret,Strip Club,Nightlife Spot,-1.0,Clear,24444,881
+40.8342936185069 -73.9444463623364,229,Tuesday,Kennedy Chicken & Sandwiches,Fast Food Restaurant,Food,-1.0,Clear,24444,881
+40.8342232197455 -73.9448998450038,208,Wednesday,Conlio Deli & grocery,Deli / Bodega,Food,-1.0,Clouds,24444,881
+40.8341610206876 -73.9450376116797,208,Wednesday,Twin Donut,Donut Shop,Food,-1.0,Clouds,24444,881
+40.8331652006224 -73.9418603427692,209,Wednesday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clouds,24444,881
+40.7738390000000 -73.8712200000000,730,Wednesday,LaGuardia Airport (LGA) (LaGuardia Airport),Airport,Travel & Transport,5.3,Clouds,24444,881
+40.8331652006224 -73.9418603427692,961,Wednesday,The Grinnell,Home (private),Residence,-1.0,Clouds,24444,881
+40.8498192120828 -73.9346359519707,1225,Wednesday,J's Big Gym,Gym,Outdoors & Recreation,5.6,Clouds,24444,881
+40.7698434364248 -73.9100015417695,244,Thursday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clouds,24444,881
+40.7694330257794 -73.9104952939895,244,Thursday,MTA Bus - M60-SBS (LaGuardia Airport) - Astoria Blvd/Steinway St,Bus Line,Travel & Transport,-1.0,Clouds,24444,881
+40.8155406846180 -73.9584234721819,288,Thursday,MTA Subway - 125th St (1),Metro Station,Travel & Transport,-1.0,Clouds,24444,881
+40.8331652006224 -73.9418603427692,327,Thursday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clouds,24444,881
+40.7695902210313 -73.9096800280232,32,Friday,Sunoco,Gas Station,Shop & Service,6.2,Clouds,24444,881
+40.7698434364248 -73.9100015417695,85,Friday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clouds,24444,881
+40.8154837319527 -73.9580503797168,294,Friday,Bank Of America ATM Center,Bank,Shop & Service,-1.0,Clouds,24444,881
+40.8340978041072 -73.9452672225881,319,Friday,Galaxy Gourmet Deli,Deli / Bodega,Food,8.2,Clouds,24444,881
+40.8341610206876 -73.9450376116797,321,Friday,Twin Donut,Donut Shop,Food,-1.0,Clouds,24444,881
+40.8343150000000 -73.9448610000000,330,Friday,Hubs L'Shish Deli,Deli / Bodega,Food,-1.0,Clouds,24444,881
+40.8331652006224 -73.9418603427692,340,Friday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clouds,24444,881
+40.8331652006224 -73.9418603427692,1037,Friday,The Grinnell,Home (private),Residence,-1.0,Clouds,24444,881
+40.8345766569390 -73.9443889593914,1141,Friday,Bank of America,Bank,Shop & Service,5.8,Clouds,24444,881
+40.8340778433911 -73.9452155601575,1147,Friday,T-Mobile,Electronics Store,Shop & Service,6.9,Clouds,24444,881
+40.8331652006224 -73.9418603427692,1215,Friday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clouds,24444,881
+40.7702270000000 -73.9095030000000,103,Saturday,Olympia Cafe and Billiards,Pool Hall,Arts & Entertainment,5.9,Clouds,24444,881
+40.7698434364248 -73.9100015417695,165,Saturday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clouds,24444,881
+40.7510070707095 -73.9455714566221,318,Saturday,Show Palace,Strip Club,Nightlife Spot,6.3,Clouds,24444,881
+40.8331652006224 -73.9418603427692,559,Saturday,The Grinnell,Home (private),Residence,-1.0,Clouds,24444,881
+40.8498192120828 -73.9346359519707,1092,Saturday,J's Big Gym,Gym,Outdoors & Recreation,5.6,Clear,24444,881
+40.7698434364248 -73.9100015417695,55,Sunday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clear,24444,881
+40.8154837319527 -73.9580503797168,370,Sunday,Bank Of America ATM Center,Bank,Shop & Service,-1.0,Clear,24444,881
+40.8342684396165 -73.9448118209839,412,Sunday,Castle Check Cashing,Bank,Shop & Service,-1.0,Clear,24444,881
+40.8340978041072 -73.9452672225881,421,Sunday,Galaxy Gourmet Deli,Deli / Bodega,Food,8.2,Clear,24444,881
+40.8331652006224 -73.9418603427692,442,Sunday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clouds,24444,881
+40.8368520206816 -73.9430285046101,955,Sunday,Associated Supermarket,Grocery Store,Shop & Service,6.5,Clouds,24444,881
+40.8339877431058 -73.9451581574406,997,Sunday,Tropical Spanish Restaurant,Latin American Restaurant,Food,7.6,Clouds,24444,881
+40.8331652006224 -73.9418603427692,1332,Sunday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clouds,24444,881
+40.8345766569390 -73.9443889593914,388,Monday,Bank of America,Bank,Shop & Service,5.8,Clear,24449,881
+40.8343150000000 -73.9448610000000,400,Monday,Hubs L'Shish Deli,Deli / Bodega,Food,-1.0,Clear,24449,881
+40.8331652006224 -73.9418603427692,428,Monday,The Grinnell,Home (private),Residence,-1.0,Clear,24449,881
+40.8331652006224 -73.9418603427692,374,Tuesday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clouds,24449,881
+40.8331652006224 -73.9418603427692,646,Tuesday,The Grinnell,Home (private),Residence,-1.0,Rain,24449,881
+40.8360144162215 -73.9400894304200,833,Wednesday,Rite Aid,Pharmacy,Shop & Service,5.8,Clouds,24449,881
+40.8371032425534 -73.9426590000000,844,Wednesday,Punta Cana Restaurant,Latin American Restaurant,Food,-1.0,Clouds,24449,881
+40.8342936185069 -73.9444463623364,884,Wednesday,Kennedy Chicken & Sandwiches,Fast Food Restaurant,Food,-1.0,Clouds,24449,881
+40.8339877431058 -73.9451581574406,694,Friday,Tropical Spanish Restaurant,Latin American Restaurant,Food,7.6,Clouds,24449,881
+40.8331652006224 -73.9418603427692,700,Friday,The Grinnell,Home (private),Residence,-1.0,Clouds,24449,881
+40.8079950658704 -73.9638555049896,1384,Friday,MTA Bus Stop - 116th & Broadway (M4/M60/M104),Bus Station,Travel & Transport,-1.0,Clouds,24449,881
+40.7698434364248 -73.9100015417695,1432,Friday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clouds,24449,881
+40.7698434364248 -73.9100015417695,1418,Saturday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clouds,24449,881
+40.7694330257794 -73.9104952939895,359,Sunday,MTA Bus - M60-SBS (LaGuardia Airport) - Astoria Blvd/Steinway St,Bus Line,Travel & Transport,-1.0,Clouds,24449,881
+40.8342232197455 -73.9448998450038,398,Sunday,Conlio Deli & grocery,Deli / Bodega,Food,-1.0,Fog,24449,881
+40.8345766569390 -73.9443889593914,609,Sunday,Bank of America,Bank,Shop & Service,5.8,Clouds,24449,881
+40.8340978041072 -73.9452672225881,621,Sunday,Galaxy Gourmet Deli,Deli / Bodega,Food,8.2,Clouds,24449,881
+40.8331652006224 -73.9418603427692,654,Sunday,The Grinnell,Home (private),Residence,-1.0,Clouds,24449,881
+40.8331652006224 -73.9418603427692,873,Sunday,The Grinnell,Home (private),Residence,-1.0,Fog,24449,881
+40.7698434364248 -73.9100015417695,1425,Sunday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clouds,24449,881
+40.7686098599664 -73.9110349752167,344,Thursday,Dunkin' Donuts,Donut Shop,Food,5.9,Rain,24453,881
+40.8331652006224 -73.9418603427692,407,Thursday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clouds,24453,881
+40.8331652006224 -73.9418603427692,1300,Thursday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clouds,24453,881
+40.7686098599664 -73.9110349752167,1408,Thursday,Dunkin' Donuts,Donut Shop,Food,5.9,Clouds,24453,881
+40.7694330257794 -73.9104952939895,226,Friday,MTA Bus - M60-SBS (LaGuardia Airport) - Astoria Blvd/Steinway St,Bus Line,Travel & Transport,-1.0,Clouds,24453,881
+40.8331652006224 -73.9418603427692,999,Friday,The Grinnell,Home (private),Residence,-1.0,Clear,24453,881
+40.8154837319527 -73.9580503797168,366,Saturday,Bank Of America ATM Center,Bank,Shop & Service,-1.0,Clear,24453,881
+40.8331652006224 -73.9418603427692,390,Saturday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clear,24453,881
+40.8331652006224 -73.9418603427692,1020,Saturday,The Grinnell,Home (private),Residence,-1.0,Snow,24453,881
+40.7686098599664 -73.9110349752167,1383,Saturday,Dunkin' Donuts,Donut Shop,Food,5.9,Clouds,24453,881
+40.8155406846180 -73.9584234721819,329,Sunday,MTA Subway - 125th St (1),Metro Station,Travel & Transport,-1.0,Clear,24453,881
+40.8340978041072 -73.9452672225881,344,Sunday,Galaxy Gourmet Deli,Deli / Bodega,Food,8.2,Clear,24453,881
+40.8079950658704 -73.9638555049896,780,Sunday,MTA Bus Stop - 116th & Broadway (M4/M60/M104),Bus Station,Travel & Transport,-1.0,Clear,24453,881
+40.7698434364248 -73.9100015417695,832,Sunday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clear,24453,881
+40.8331652006224 -73.9418603427692,1103,Sunday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clear,24453,881
+40.8079950658704 -73.9638555049896,1362,Sunday,MTA Bus Stop - 116th & Broadway (M4/M60/M104),Bus Station,Travel & Transport,-1.0,Clear,24453,881
+40.8340978041072 -73.9452672225881,343,Monday,Galaxy Gourmet Deli,Deli / Bodega,Food,8.2,Clouds,24454,881
+40.7698434364248 -73.9100015417695,1310,Monday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clouds,24454,881
+40.7776420000000 -73.8973260000000,438,Tuesday,Imsomnia,Nightclub,Nightlife Spot,-1.0,Clouds,24454,881
+40.8340978041072 -73.9452672225881,607,Wednesday,Galaxy Gourmet Deli,Deli / Bodega,Food,8.2,Clear,24454,881
+40.8331652006224 -73.9418603427692,608,Wednesday,The Grinnell,Home (private),Residence,-1.0,Clear,24454,881
+40.8491070000000 -73.9367440000000,1160,Wednesday,SUBWAY,Sandwich Place,Food,6.4,Clear,24454,881
+40.8346711370204 -73.9441937892508,1436,Wednesday,Broadway Laundromat,Laundry Service,Shop & Service,-1.0,Clear,24454,881
+40.7698434364248 -73.9100015417695,128,Thursday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clear,24454,881
+40.8331652006224 -73.9418603427692,425,Thursday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clear,24454,881
+40.8498192120828 -73.9346359519707,1080,Thursday,J's Big Gym,Gym,Outdoors & Recreation,5.6,Clouds,24454,881
+40.7698434364248 -73.9100015417695,31,Friday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clouds,24454,881
+40.7694330257794 -73.9104952939895,214,Friday,MTA Bus - M60-SBS (LaGuardia Airport) - Astoria Blvd/Steinway St,Bus Line,Travel & Transport,-1.0,Clear,24454,881
+40.8331652006224 -73.9418603427692,334,Friday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clouds,24454,881
+40.7698434364248 -73.9100015417695,11,Saturday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clear,24454,881
+40.8340978041072 -73.9452672225881,325,Sunday,Galaxy Gourmet Deli,Deli / Bodega,Food,8.2,Clouds,24454,881
+40.7698434364248 -73.9100015417695,94,Monday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clear,24455,881
+40.7988408757891 -73.9630612383003,177,Tuesday,Ding Dong Lounge,Bar,Nightlife Spot,-1.0,Clear,24455,881
+40.8331652006224 -73.9418603427692,290,Tuesday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clear,24455,881
+40.8340978041072 -73.9452672225881,1099,Tuesday,Galaxy Gourmet Deli,Deli / Bodega,Food,8.2,Clear,24455,881
+40.8867607116699 -73.8268661499023,181,Wednesday,Key Club Cabaret,Strip Club,Nightlife Spot,-1.0,Clear,24455,881
+40.8277821326002 -73.9247618955317,337,Wednesday,Crown Donut Family Restaurant,American Restaurant,Food,6.6,Clouds,24455,881
+40.7698434364248 -73.9100015417695,162,Thursday,Mijana Hookah Lounge & Restaurant,Mediterranean Restaurant,Food,6.2,Clear,24455,881
+40.8155406846180 -73.9584234721819,318,Thursday,MTA Subway - 125th St (1),Metro Station,Travel & Transport,-1.0,Clear,24455,881
+40.8340978041072 -73.9452672225881,338,Thursday,Galaxy Gourmet Deli,Deli / Bodega,Food,8.2,Clear,24455,881
+40.8351480000000 -73.9438858032227,1153,Thursday,Los Magos Barber Shop,Salon / Barbershop,Shop & Service,7.2,Clear,24455,881
+40.7478827722694 -73.9871379446347,297,Friday,Space Billiards,Bar,Nightlife Spot,6.2,Clear,24455,881
+40.8340978041072 -73.9452672225881,466,Friday,Galaxy Gourmet Deli,Deli / Bodega,Food,8.2,Clouds,24455,881
+40.8079950658704 -73.9638555049896,1371,Friday,MTA Bus Stop - 116th & Broadway (M4/M60/M104),Bus Station,Travel & Transport,-1.0,Rain,24455,881
+40.8331652006224 -73.9418603427692,349,Saturday,Wayne Manor ( Bat Cave ),Home (private),Residence,-1.0,Clouds,24455,881
+40.8079950658704 -73.9638555049896,1418,Saturday,MTA Bus Stop - 116th & Broadway (M4/M60/M104),Bus Station,Travel & Transport,-1.0,Clouds,24455,881

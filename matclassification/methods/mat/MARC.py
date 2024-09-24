@@ -32,6 +32,14 @@ from tensorflow.keras.regularizers import l1
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.layers import Input, Add, Average, Concatenate, Embedding
 from tensorflow.keras.callbacks import EarlyStopping
+  
+#from keras.models import Model
+#from keras.layers import Dense, LSTM, GRU, Dropout
+#from keras.initializers import he_uniform
+#from keras.regularizers import l1
+#from keras.optimizers import Adam
+#from keras.layers import Input, Add, Average, Concatenate, Embedding
+#from keras.callbacks import EarlyStopping
 
 from matclassification.methods._lib.metrics import compute_acc_acc5_f1_prec_rec
 from sklearn.metrics import classification_report
@@ -74,7 +82,8 @@ class MARC(THSClassifier):
         merge_type    = merge_type if isinstance(merge_type, list) else [merge_type]
         rnn_cell      = rnn_cell if isinstance(rnn_cell, list) else [rnn_cell]
         
-        self.grid = list(itertools.product(embedder_size, merge_type, rnn_cell))
+        self.grid_search(embedder_size, merge_type, rnn_cell)
+#        self.grid = list(itertools.product(embedder_size, merge_type, rnn_cell))
         
         self.best_config = (100, 'concatenate', 'lstm')
         

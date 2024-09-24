@@ -60,8 +60,9 @@ class TRF(THSClassifier):
                         max_features=max_features, 
                         bootstrap=bootstrap)
 
-        self.grid = list(itertools.product(n_estimators, max_depth, min_samples_split, 
-                                           min_samples_leaf, max_features, bootstrap))
+        self.grid_search(n_estimators, max_depth, min_samples_split, min_samples_leaf, max_features, bootstrap)
+#        self.grid = list(itertools.product(n_estimators, max_depth, min_samples_split, 
+#                                           min_samples_leaf, max_features, bootstrap))
         
         self.model = None
         
