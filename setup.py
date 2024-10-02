@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-classification: Analysis and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
-The present package offers a tool, to support the user in the task of classification of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
 
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)

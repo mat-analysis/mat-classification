@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-classification: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
@@ -8,7 +8,8 @@ Copyright (C) 2022, MIT license (this portion of code is subject to licensing fr
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
-@author: Tarlis Portela
+Authors:
+    - Tarlis Portela
 '''
 import os 
 import pandas as pd
@@ -21,6 +22,64 @@ from matclassification.methods.core import AbstractClassifier
 
 # Hiperparameter Optimization Classifier - For Trajectory input data
 class HSClassifier(AbstractClassifier):
+    """
+    Hyperparameter Optimization Classifier for Trajectory Input Data.
+
+    This class extends `AbstractClassifier` to include functionality for training and testing 
+    machine learning models with hyperparameter optimization. It is designed for trajectory 
+    data inputs and handles multiple configurations to find the best-performing model.
+    
+    Check: help(AbstractClassifier)
+    
+    Parameters:
+    -----------
+    name : str, optional
+        Classifier name (default: 'NN').
+    save_results : bool, optional
+        Flag to enable saving results to disk (default: False).
+    n_jobs : int, optional
+        Number of parallel jobs to run (default: -1 for using all processors).
+    verbose : bool, optional
+        Flag for verbosity (default: False).
+    random_state : int, optional
+        Random seed for reproducibility (default: 42).
+    filterwarnings : str, optional
+        Warning filter level (default: 'ignore').
+
+    Methods:
+    --------
+    train(dir_validation='.'):
+        Trains the model using a single hyperparameter configuration.
+        If validation is enabled, it will evaluate on a validation set; otherwise, 
+        it evaluates on the test set. Results are optionally saved to a CSV file.
+        
+        Parameters:
+        -----------
+        dir_validation : str, optional
+            Directory where validation results will be saved (default: current directory).
+        
+        Returns:
+        --------
+        pd.DataFrame
+            A DataFrame containing the training report with evaluation metrics for the model.
+
+    test(rounds=1, dir_evaluation='.'):
+        Tests the model over a specified number of rounds, each with a different random seed, 
+        to simulate multiple model evaluations.
+        
+        Parameters:
+        -----------
+        rounds : int, optional
+            The number of evaluation rounds (default: 1).
+        dir_evaluation : str, optional
+            Directory where evaluation results will be saved (default: current directory).
+        
+        Returns:
+        --------
+        pd.DataFrame, np.array
+            A DataFrame containing the evaluation report and the predicted labels for the test data.
+        
+    """
     
     def __init__(self, 
                  name='NN',
@@ -38,7 +97,22 @@ class HSClassifier(AbstractClassifier):
     ## Overwrite train and test methods to do enable Hiperparameter Optimizations:
     ## (in this case, trains only one default configuration.
     def train(self, dir_validation='.'):
-        
+        """
+        Trains the model using all hyperparameter configurations.
+
+        If validation is enabled, it will evaluate on a validation set; otherwise, 
+        it evaluates on the test set. Results are optionally saved to a CSV file.
+
+        Parameters:
+        -----------
+        dir_validation : str, optional
+            Directory where validation results will be saved (default: current directory).
+
+        Returns:
+        --------
+        pd.DataFrame
+            A DataFrame containing the training report with evaluation metrics for the model.
+        """
         # This implementation, trains only one model 
         # (but, you may overwrite the method following this method)
         
@@ -91,6 +165,22 @@ class HSClassifier(AbstractClassifier):
     def test(self,
              rounds=1,
              dir_evaluation='.'):
+        """
+        Tests the model in teh simgle best model trained, over a specified number of rounds, 
+        each with a different random seeds, to simulate multiple model evaluations.
+
+        Parameters:
+        -----------
+        rounds : int, optional
+            The number of evaluation rounds (default: 1).
+        dir_evaluation : str, optional
+            Directory where evaluation results will be saved (default: current directory).
+
+        Returns:
+        --------
+        pd.DataFrame, np.array
+            A DataFrame containing the evaluation report and the predicted labels for the test data.
+        """
         
         X_train = self.X_train
         y_train = self.y_train

@@ -1,15 +1,14 @@
 # MAT-classification: Analysis and Classification methods for Multiple Aspect Trajectory Data Mining \[MAT-Tools Framework\]
 ---
 
-\[[Publication](#)\] \[[citation.bib](citation.bib)\] \[[GitHub](https://github.com/mat-analysis/mat-classification)\] \[[PyPi](https://pypi.org/project/mat-classification/)\]
-
+\[[Publication](#)\] \[[Bibtex](https://github.com/mat-analysis/mat-tools/blob/main/references/mat-tools.bib)\] \[[GitHub](https://github.com/mat-analysis/mat-classification)\] \[[PyPi](https://pypi.org/project/mat-classification/)\]
 
 The present package offers a tool, to support the user in the task of classification of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 
 Created on Dec, 2023
 Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
 
-![MAT-Classification Diagram](MAT-Classification.png) 
+![MAT-Classification Diagram](https://github.com/mat-analysis/mat-classification/blob/main/MAT-Classification.png?raw=true) 
 
 
 ### Installation
@@ -44,7 +43,7 @@ On how to use this package, see [MAT-classification-Tutorial.ipynb](https://gith
 * **Tulvae**: Find the optimal set of hyperparameters for each model, applying the grid-search technique: keeps 64 as the batch size and 0.001 as the learning rate and vary the units (un) of the recurrent layer, the embedding size to each attribute (es), the dropout (dp), and latent variable (z). \[[REFERENCE](http://dx.doi.org/10.5220/0010227906640671)\]
 * **DeepeST**: DeepeST employs a Recurrent Neural Network (RNN), both LSTM and Bidirectional LSTM (BLSTM). Find the optimal set of hyperparameters for each model, applying the grid-search technique: keeps 64 as the batch size and 0.001 as the learning rate and vary the units (un) of the recurrent layer, the embedding size to each attribute (es) and the dropout (dp). \[[REFERENCE](http://dx.doi.org/10.5220/0010227906640671)\]
 
-#### Available Scripts (TODO update):
+#### Available Scripts (#TODO update):
 
 By installing the package the following python scripts will be installed for use in system command line tools:
 
@@ -65,12 +64,7 @@ And one script for merging movelet resulting matrices:
 
 If you use `mat-classification` please cite the following paper:
 
-**TODO**
-
-Bibtex:
-```bash
-@inproceedings{...}
-```
+ - Portela, T. T.; Machado, V. L.; Renso, C. Unified Approach to Trajectory Data Mining and Multi-Aspect Trajectory Analysis with MAT-Tools Framework. In: SIMPÓSIO BRASILEIRO DE BANCO DE DADOS (SBBD), 39. , 2024, Florianópolis/SC. \[[Bibtex](https://github.com/mat-analysis/mat-tools/blob/main/references/mat-tools.bib)\]
 
 ### Collaborate with us
 
@@ -86,4 +80,4 @@ This package is part of _MAT-Tools Framework_ for Multiple Aspect Trajectory Dat
 
 ### Change Log
 
-This is a package under construction, see [CHANGELOG.md](./CHANGELOG.md)
+This is a package under construction, see [CHANGELOG.md](https://github.com/mat-analysis/mat-classification/blob/main/CHANGELOG.md)

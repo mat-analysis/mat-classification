@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
@@ -8,7 +8,9 @@ Copyright (C) 2022, MIT license (this portion of code is subject to licensing fr
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
-@author: Tarlis Portela
+Authors:
+    - Tarlis Portela
+    - Carlos Andrés Ferrero (adapted)
 '''
 # --------------------------------------------------------------------------------
 import time
@@ -34,6 +36,52 @@ from matclassification.methods.core import MHSClassifier
 
 # Approach 2
 class MMLP(MHSClassifier):
+    """
+    Movelet Multi-layer Perceptron (MMLP) Classifier, extending MHSClassifier, designed for movelet-based 
+    classification using a neural network with configurable layers, dropout, and learning rates.
+
+    Parameters:
+    -----------
+    num_features : int, optional (default=-1)
+        Number of input features for the neural network.
+
+    num_classes : int, optional (default=-1)
+        Number of output classes for classification.
+
+    par_dropout : float, optional (default=0.5)
+        Dropout rate for regularization in the neural network.
+
+    par_batch_size : int, optional (default=200)
+        Batch size used during training.
+
+    lst_par_epochs_lr : list of tuples, optional (default=[(80, 0.00095), (50, 0.00075), (50, 0.00055), (30, 0.00025), (20, 0.00015)])
+        A list where each element is a tuple containing the number of epochs and the learning rate for each stage of training.
+
+    n_jobs : int, optional (default=-1)
+        The number of parallel jobs to run for computation. -1 means using all processors.
+
+    verbose : int, optional (default=2)
+        Verbosity level. Higher values enable more detailed output during training.
+
+    random_state : int, optional (default=42)
+        Random seed used for reproducibility.
+
+    filterwarnings : str, optional (default='ignore')
+        Controls the filter for output warnings.
+
+    Methods:
+    --------
+    create():
+        Builds and returns a multi-layer perceptron model with specified input features, output classes, and dropout rate.
+
+    fit(X_train, y_train, X_val, y_val):
+        Trains the MLP model on the training data with configurable epochs and learning rates, and evaluates it on the validation data.
+        Returns a report on the training history.
+
+    predict(X_test, y_test):
+        Predicts the output class probabilities for the test set, returning the evaluation summary and predicted probabilities.
+
+    """
     
     def __init__(self, 
                  num_features=-1,

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
@@ -8,15 +8,15 @@ Copyright (C) 2022, MIT license (this portion of code is subject to licensing fr
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (this portion of code is subject to licensing from source project distribution)
 
-@author: Tarlis Portela (adapted)
-
-# Original source:
-# Author: Nicksson C. A. de Freitas, 
-          Ticiana L. Coelho da Silva, 
-          Jose António Fernandes de Macêdo, 
-          Leopoldo Melo Junior, 
-          Matheus Gomes Cordeiro
-# Adapted from: https://github.com/nickssonfreitas/ICAART2021
+Authors:
+    - Tarlis Portela
+    - Original source:
+        - Nicksson C. A. de Freitas, 
+        - Ticiana L. Coelho da Silva, 
+        - Jose António Fernandes de Macêdo, 
+        - Leopoldo Melo Junior, 
+        - Matheus Gomes Cordeiro
+    - Adapted from: https://github.com/nickssonfreitas/ICAART2021
 '''
 # --------------------------------------------------------------------------------
 import time
@@ -43,7 +43,68 @@ from matclassification.methods._lib.datahandler import prepareTrajectories
 from matclassification.methods.core import THSClassifier
 
 class Bituler(THSClassifier):
+    """
+    Gao et al. (2017) proposed BiTULER, a model that uses word embeddings and a Bidirectional Recurrent Neural Network, 
+    but it is limited to the sequence of check-in identifiers, not supporting other dimensions.
     
+    Bituler is a trajectory classification model that extends the THSClassifier. 
+    It is designed for handling multiple aspect trajectory data, utilizing deep learning techniques 
+    such as Recurrent Neural Networks (RNNs) for feature extraction and classification. The model 
+    can be configured with various neural network architectures, embedding sizes, and optimization 
+    settings. 
+
+    Parameters
+    ----------
+    rnn : list, optional
+        List of RNN architectures to use. Currently, only 'bilstm' is supported (default: ['bilstm']).
+    units : list, optional
+        List of integers specifying the number of hidden units in each layer (default: [100, 200, 250, 300]).
+    stack : list, optional
+        List of integers specifying the number of RNN layers to stack (default: [1]).
+    dropout : list, optional
+        List of floats specifying the dropout rate for regularization (default: [0.5]).
+    embedding_size : list, optional
+        List of integers specifying the size of the embedding layer (default: [100, 200, 300, 400]).
+    batch_size : list, optional
+        List of batch sizes for training (default: [64]).
+    epochs : list, optional
+        List of the number of epochs for training (default: [1000]).
+    patience : list, optional
+        List of integers specifying the number of epochs to wait for early stopping (default: [20], currently unused).
+    monitor : list, optional
+        List of metrics to monitor for early stopping (default: ['val_acc']).
+    optimizer : list, optional
+        List of optimizers to use during training (default: ['ada']).
+    learning_rate : list, optional
+        List of learning rates for the optimizer (default: [0.001]).
+    save_results : bool, optional
+        If True, saves the results of the training process (default: False).
+    n_jobs : int, optional
+        Number of parallel jobs to run (default: -1).
+    verbose : int, optional
+        Verbosity level of the training process (default: 0).
+    random_state : int, optional
+        Seed for random number generation (default: 42).
+    filterwarnings : str, optional
+        Configures warning filtering (default: 'ignore').
+
+    Methods
+    -------
+    xy(train, test, tid_col='tid', class_col='label', space_geohash=False, geo_precision=30, features=['poi'], validate=False)
+        Prepares the trajectory data for model training and testing.
+        
+    prepare_input(train, test, tid_col='tid', class_col='label', space_geohash=False, geo_precision=30, features=['poi'], validate=False)
+        Prepares the input data by configuring the model parameters and splitting the data into training and testing sets.
+        
+    create(config)
+        Creates and returns the RNN model architecture based on the provided configuration.
+        
+    fit(X_train, y_train, X_val, y_val, config=None)
+        Trains the model on the provided training data and evaluates it on the validation data.
+        
+    clear()
+        Clears the model session to free memory.
+    """
     def __init__(self, 
 #                 num_classes = -1,
 #                 max_lenght = -1,

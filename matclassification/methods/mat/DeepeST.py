@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
@@ -8,15 +8,15 @@ Copyright (C) 2022, MIT license (this portion of code is subject to licensing fr
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (this portion of code is subject to licensing from source project distribution)
 
-@author: Tarlis Portela (adapted)
-
-# Original source:
-# Author: Nicksson C. A. de Freitas, 
-          Ticiana L. Coelho da Silva, 
-          Jose António Fernandes de Macêdo, 
-          Leopoldo Melo Junior, 
-          Matheus Gomes Cordeiro
-# Adapted from: https://github.com/nickssonfreitas/ICAART2021
+Authors:
+    - Tarlis Portela
+    - Original source:
+        - Nicksson C. A. de Freitas, 
+        - Ticiana L. Coelho da Silva, 
+        - Jose António Fernandes de Macêdo, 
+        - Leopoldo Melo Junior, 
+        - Matheus Gomes Cordeiro
+    - Adapted from: https://github.com/nickssonfreitas/ICAART2021
 '''
 # --------------------------------------------------------------------------------
 import time
@@ -42,7 +42,76 @@ from matclassification.methods._lib.datahandler import prepareTrajectories
 from matclassification.methods.core import THSClassifier
 
 class DeepeST(THSClassifier):
-    
+    """
+    DeepeST: (Deep Learning for Sub-Trajectory classification)
+
+    The `DeepeST` class is a deep learning model for trajectory-based classification, 
+    which extends the `THSClassifier`. It uses RNN-based architectures, such as 
+    LSTM and BiLSTM, to handle spatial-temporal data.
+
+    Parameters
+    ----------
+    rnn : list, default=['bilstm', 'lstm']
+        Types of recurrent neural networks to use ('bilstm' or 'lstm').
+    units : list, default=[100, 200, 300, 400, 500]
+        List of number of units for the recurrent layers.
+    merge_type : list, default=['concat']
+        How to merge embedding layers. Options: 'concat', 'add', 'avg'.
+    dropout_before_rnn : list, default=[0, 0.5]
+        Dropout rates applied before the recurrent layers.
+    dropout_after_rnn : list, default=[0.5]
+        Dropout rates applied after the recurrent layers.
+    embedding_size : list, default=[50, 100, 200, 300, 400]
+        Sizes for the embedding layers.
+    batch_size : list, default=[64]
+        Batch sizes for training the model.
+    epochs : list, default=[1000]
+        Number of epochs to train the model.
+    patience : list, default=[20]
+        Patience for early stopping based on monitored metric.
+    monitor : list, default=['val_acc']
+        Metric to monitor for early stopping.
+    optimizer : list, default=['ada']
+        Optimizer for training ('ada' for Adam, 'rmsprop' for RMSProp).
+    learning_rate : list, default=[0.001]
+        Learning rate for the optimizer.
+    loss : list, default=['CCE']
+        Loss function to use ('CCE' for categorical cross-entropy).
+    loss_parameters : list, default=[{}]
+        Additional parameters for the loss function.
+    y_one_hot_encoding : bool, default=True
+        Whether to one-hot encode the target labels.
+    save_results : bool, default=False
+        Whether to save results after execution.
+    n_jobs : int, default=-1
+        Number of parallel jobs for computations.
+    verbose : int, default=0
+        Verbosity level for output (0: silent, 1: progress).
+    random_state : int, default=42
+        Random seed for reproducibility.
+    filterwarnings : str, default='ignore'
+        Filter warnings during execution.
+
+    Methods
+    -------
+    xy(train, test, tid_col='tid', class_col='label', space_geohash=False, geo_precision=30, validate=False)
+        Prepares the trajectory data for training and testing, returning features and labels.
+
+    prepare_input(train, test, tid_col='tid', class_col='label', space_geohash=False, geo_precision=30, validate=False)
+        Prepares input features and configurations from the data for model training.
+
+    create(config)
+        Constructs the deep learning model using the given configuration.
+
+    fit(X_train, y_train, X_val, y_val, config=None)
+        Trains the model on the training data with validation using the specified configuration.
+
+    predict(X_test, y_test)
+        Generates predictions on the test data and computes performance metrics.
+
+    clear()
+        Resets the model and clears the Keras session to free memory.
+    """
     def __init__(self, 
                  ## GRID SEARCH PARAMETERS
                  rnn = ['bilstm', 'lstm'],

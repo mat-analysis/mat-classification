@@ -1,13 +1,19 @@
 # -*- coding: utf-8 -*-
 '''
-# Original source:
-# Adapted from: https://github.com/nickssonfreitas/ICAART2021
-# Adapted from Authors: 
-          Nicksson C. A. de Freitas, 
-          Ticiana L. Coelho da Silva, 
-          Jose António Fernandes de Macêdo, 
-          Leopoldo Melo Junior, 
-          Matheus Gomes Cordeiro
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
+
+The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
+
+Authors:
+    - Tarlis Portela
+    - Original source:
+        - Nicksson C. A. de Freitas, 
+        - Ticiana L. Coelho da Silva, 
+        - Jose António Fernandes de Macêdo, 
+        - Leopoldo Melo Junior, 
+        - Matheus Gomes Cordeiro
+    - Adapted from: https://github.com/nickssonfreitas/ICAART2021
 '''
 import math
 import numpy as np
@@ -44,6 +50,25 @@ def lat_meters(Lat):
     return meters
 
 def create_virtual_grid(cell_size, bbox, meters_by_degree = lat_meters(-3.8162973555), verbose=True):
+    """
+    Create a spatial grid based on a bounding box and cell size.
+
+    Parameters:
+    -----------
+    cell_size : float
+        Size of the cell in meters.
+    bbox : tuple
+        Bounding box defined as (lat_min, lon_min, lat_max, lon_max).
+    meters_by_degree : float
+        Conversion factor from meters to degrees.
+    verbose : bool
+        Flag to enable verbose output.
+
+    Returns:
+    --------
+    dict
+        A dictionary containing the properties of the virtual grid.
+    """
     if verbose:
         print('\nCreating a virtual grid without polygons')
     

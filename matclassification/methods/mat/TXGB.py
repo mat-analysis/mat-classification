@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
@@ -8,15 +8,15 @@ Copyright (C) 2022, MIT license (this portion of code is subject to licensing fr
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (this portion of code is subject to licensing from source project distribution)
 
-@author: Tarlis Portela (adapted)
-
-# Original source:
-# Author: Nicksson C. A. de Freitas, 
-          Ticiana L. Coelho da Silva, 
-          Jose António Fernandes de Macêdo, 
-          Leopoldo Melo Junior, 
-          Matheus Gomes Cordeiro
-# Adapted from: https://github.com/nickssonfreitas/ICAART2021
+Authors:
+    - Tarlis Portela
+    - Original source:
+        - Nicksson C. A. de Freitas, 
+        - Ticiana L. Coelho da Silva, 
+        - Jose António Fernandes de Macêdo, 
+        - Leopoldo Melo Junior, 
+        - Matheus Gomes Cordeiro
+    - Adapted from: https://github.com/nickssonfreitas/ICAART2021
 '''
 # --------------------------------------------------------------------------------
 import time
@@ -34,6 +34,55 @@ import subprocess
 from matclassification.methods.core import THSClassifier
 
 class TXGB(THSClassifier):
+    """
+    TXGB: Trajectory XGBoost Classifier
+
+    The `TXGB` class is an implementation of the XGBoost classifier, tailored specifically for trajectory classification tasks. It utilizes the efficient gradient boosting algorithm provided by XGBoost and supports a wide range of tunable hyperparameters. 
+    
+    The model selection process is driven by grid search, making it adaptable to various data configurations and problem complexities.
+
+    Parameters
+    ----------
+    n_estimators : list, default=[2000]
+        Number of boosting rounds.
+    max_depth : list, default=[3, 5]
+        Maximum depth of a tree.
+    learning_rate : list, default=[0.01]
+        Step size shrinkage used in update to prevent overfitting.
+    gamma : list, default=[0.0, 1, 5]
+        Minimum loss reduction required to make a further partition on a leaf node.
+    subsample : list, default=[0.1, 0.2, 0.5, 0.8]
+        Subsample ratio of the training instance.
+    colsample_bytree : list, default=[0.5, 0.7]
+        Subsample ratio of columns when constructing each tree.
+    reg_alpha_l1 : list, default=[1.0]
+        L1 regularization term on weights.
+    reg_lambda_l2 : list, default=[100]
+        L2 regularization term on weights.
+    eval_metric : list, default=['merror', 'mlogloss']
+        Evaluation metrics used to monitor performance (merror: classification error, mlogloss: log loss).
+    tree_method : str, default='auto'
+        The tree construction algorithm used by XGBoost (e.g., 'auto', 'gpu_hist').
+    esr : list, default=[20]
+        Early stopping rounds (used to stop training early if no improvement is seen).
+    save_results : bool, default=False
+        Whether to save the results of the classifier.
+    n_jobs : int, default=-1
+        Number of parallel threads used by XGBoost.
+    verbose : int, default=0
+        Verbosity of XGBoost training output.
+    random_state : int, default=42
+        Controls the randomness of the model.
+    filterwarnings : str, default='ignore'
+        Whether to suppress or display warnings during model training and evaluation.
+
+    Methods
+    -------
+    create(config):
+        Initializes the XGBoost classifier with the given configuration.
+    fit(X_train, y_train, X_val, y_val, config=None):
+        Trains the XGBoost classifier on the provided training data, with optional early stopping.
+    """
     
     def __init__(self, 
                  n_estimators = [2000], 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-Classification: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
@@ -8,8 +8,9 @@ Copyright (C) 2022, MIT license (this portion of code is subject to licensing fr
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
-@author: Tarlis Portela
-@author: Lucas May Petry (adapted)
+Authors:
+    - Tarlis Portela
+    - Lucas May Petry (adapted)
 '''
 # --------------------------------------------------------------------------------
 import os 
@@ -50,7 +51,70 @@ from matclassification.methods._lib.metrics import MetricsLogger
 from matclassification.methods.core import THSClassifier
 
 class MARC(THSClassifier):
-    
+    """
+    MARC: a robust method for multiple-aspect trajectory classification via space, time, and semantic embeddings
+
+    The `MARC` class is a deep learning classifier for sequential trajectory data using
+    different recurrent neural network cells and various strategies for embedding and merging.
+
+    Parameters
+    ----------
+    embedder_size : list, default=[100, 200, 300]
+        List of sizes for the embedding layers.
+    merge_type : list, default=['add', 'average', 'concatenate']
+        Merge strategy for combining embedding layers ('add', 'average', 'concatenate').
+    rnn_cell : list, default=['gru', 'lstm']
+        Types of recurrent neural network cells ('gru' or 'lstm').
+    class_dropout : float, default=0.5
+        Dropout rate to apply after the recurrent layer.
+    class_hidden_units : int, default=100
+        Number of hidden units in the recurrent layer.
+    class_lrate : float, default=0.001
+        Learning rate for the optimizer.
+    class_batch_size : int, default=64
+        Batch size for training.
+    class_epochs : int, default=1000
+        Number of epochs for training the model.
+    early_stopping_patience : int, default=30
+        Patience for early stopping based on validation metrics.
+    baseline_metric : str, default='acc'
+        Metric to monitor for early stopping ('acc' for accuracy).
+    baseline_value : float, default=0.5
+        Baseline value for early stopping based on the monitored metric.
+    n_jobs : int, default=-1
+        Number of parallel jobs for computations.
+    verbose : bool, default=True
+        Verbosity level for model training (True for detailed output).
+    random_state : int, default=42
+        Random seed for reproducibility.
+    filterwarnings : str, default='ignore'
+        Filter warnings during execution.
+
+    Methods
+    -------
+    xy(train, test, tid_col='tid', class_col='label', space_geohash=False, geo_precision=30, validate=False)
+        Prepares the trajectory data for training and testing, returning features and labels.
+
+    prepare_input(train, test, tid_col='tid', class_col='label', space_geohash=False, geo_precision=30, validate=False)
+        Prepares input features and configurations from the data for model training.
+
+    create(config)
+        Constructs the deep learning model using the given configuration.
+
+    fit(X_train, y_train, X_val, y_val, config=None)
+        Trains the model on the training data with validation using the specified configuration.
+
+    predict(X_test, y_test)
+        Generates predictions on the test data and computes performance metrics.
+
+    clear()
+        Resets the model and clears the Keras session to free memory.
+
+    Notes
+    -----
+    - This implementation currently sets a default configuration (`best_config`) and initializes grid search with embedding sizes, merge types, and RNN cells.
+    - The model uses early stopping based on accuracy with a baseline of 0.5.
+    """
     def __init__(self, 
                  embedder_size=[100, 200, 300], # 100
                  merge_type=['add', 'average', 'concatenate'], # 'concatenate'

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-classification: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
@@ -8,7 +8,8 @@ Copyright (C) 2022, MIT license (this portion of code is subject to licensing fr
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
-@author: Tarlis Portela
+Authors:
+    - Tarlis Portela
 '''
 # --------------------------------------------------------------------------------
 import os 
@@ -46,6 +47,96 @@ class Approach(Enum):
 
 # Simple Abstract Classifier Model
 class AbstractClassifier(ABC):
+    """
+    Simple Abstract Classifier Model.
+
+    This abstract class defines the core structure for a machine learning classifier model. 
+    It provides common methods such as model creation, and evaluation, 
+    while specific implementations of the model must be defined in derived classes by overriding 
+    the `create()` method.
+
+    Attributes:
+    -----------
+    name : str
+        Name of the classifier implementation (default: 'NN').
+    model : object
+        The actual machine learning model to be defined in the subclass.
+    le : object
+        Label encoder (optional).
+    approach : Enum
+        The category of approach used (default: Approach.NN).
+    isverbose : bool
+        Flag to control verbosity of model's output (default: based on `verbose` parameter).
+    save_results : bool
+        Indicates whether to save results (default: False).
+    validate : bool
+        Indicates whether validation should be performed (default: False).
+    config : dict
+        Dictionary of configuration parameters.
+        
+    y_test_true : array-like
+        True labels for the test dataset (available after call to predict).
+    y_test_pred : array-like
+        Predicted labels for the test dataset (available after call to predict).
+
+    Parameters:
+    -----------
+    name : str, optional
+        Classifier name (default: 'NN').
+    n_jobs : int, optional
+        Number of parallel jobs to run (default: -1 for using all processors).
+    verbose : int, optional
+        Verbosity level (default: 0).
+    random_state : int, optional
+        Random seed for reproducibility (default: 42).
+    filterwarnings : str, optional
+        Warning filter level (default: 'ignore').
+
+    Methods:
+    --------
+    add_config(**kwargs):
+        Updates the configuration with additional parameters.
+    
+    grid_search(*args):
+        Defines the grid of hyperparameters to search over.
+    
+    duration():
+        Returns the duration in milliseconds since the start of model execution.
+    
+    message(pbar, text):
+        Logs a message if verbosity is enabled.
+
+    labels:
+        Returns the unique labels in the test data.
+
+    create():
+        Abstract method to be overridden in subclasses to define the model.
+    
+    clear():
+        Clears the model from memory.
+
+    fit(X_train, y_train, X_val, y_val):
+        Trains the model on the training data and evaluates it on validation data.
+    
+    predict(X_test, y_test):
+        Generates predictions on the test data and returns a performance summary.
+
+    score(y_test, y_pred):
+        Computes various evaluation metrics (accuracy, precision, recall, F1, etc.) from 
+        the true and predicted labels.
+
+    summary():
+        Returns a summary of the test performance.
+
+    cm():
+        Plots the confusion matrix for the test results.
+
+    save_model(dir_path='.', modelfolder='model', model_name=''):
+        Saves the trained model to the specified directory.
+
+    save(dir_path='.', modelfolder='model'):
+        Saves the prediction, classification report, and performance metrics to files.
+    """
     
     def __init__(self, 
                  name='NN',

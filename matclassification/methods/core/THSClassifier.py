@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-classification: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
@@ -8,7 +8,8 @@ Copyright (C) 2022, MIT license (this portion of code is subject to licensing fr
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
-@author: Tarlis Portela
+Authors:
+    - Tarlis Portela
 '''
 # --------------------------------------------------------------------------------
 from matclassification.methods.core import *
@@ -16,6 +17,35 @@ from matclassification.methods.core import *
 
 # Hiperparameter Optimization Classifier - For Trajectory input data
 class THSClassifier(HSClassifier):
+    """
+    A hyperparameter optimization classifier for trajectory data, leveraging similarity measures and 
+    support for geospatial data encoding (Geohash or IndexGrid). 
+    
+    #TODO Geohash and IndexGrid encoding and testing
+    
+    Check: help(AbstractClassifier) and help(HSClassifier)
+
+    Parameters:
+    -----------
+    name : str
+        Name of the classifier model.
+    
+    save_results : bool, optional (default=False)
+        Whether to save the results of the classification.
+    
+    n_jobs : int, optional (default=-1)
+        The number of parallel jobs to run for computation. -1 means using all processors.
+    
+    verbose : bool, optional (default=False)
+        Verbosity mode. If True, enables detailed output.
+    
+    random_state : int, optional (default=42)
+        Random seed used for reproducibility.
+    
+    filterwarnings : str, optional (default='ignore')
+        Warning filter setting to control output warnings.
+
+    """
     
     def __init__(self, 
                  name='NN',

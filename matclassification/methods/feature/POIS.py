@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
@@ -8,8 +8,9 @@ Copyright (C) 2022, MIT license (this portion of code is subject to licensing fr
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
-@author: Tarlis Portela
-@author: Lucas May Petry (adapted)
+Authors:
+    - Tarlis Portela
+    - Francisco Vicenzi (adapted)
 '''
 # --------------------------------------------------------------------------------
 import os 
@@ -42,6 +43,58 @@ from matclassification.methods.core import HSClassifier
 from matclassification.methods.feature.feature_extraction.pois import pois
 
 class POIS(HSClassifier):
+    """
+    POIS: Point of Interest Sequence Feature Exctractor and Classifier.
+
+    This class implements a trajectory classifier based on the POI-F/POIS approach, which considers the frequency of visits to 
+    Points of Interest (POIs). It has been extended to concatenate sequences of POIs, which allows classification based on 
+    patterns in POI sequences. 
+
+    POI Frequency types:
+    (i) poi: POI frequency
+    (ii) npoi: Normalized POI frequency
+    (iii) wnpoi: Weighted Normalized POI frequency
+
+    Parameters:
+    -----------
+    method : str, optional (default='npoi')
+        The method used to compute POI frequencies. Options include 'poi', 'npoi', and 'wnpoi'.
+    
+    sequences : list of int, optional (default=[1, 2, 3])
+        Defines the length of the sequences of POIs used for classification.
+    
+    features : list, optional
+        Specifies which features from the dataset to use. If None, choose the feature with higher variance.
+    
+    n_jobs : int, optional (default=-1)
+        The number of parallel jobs to run for computation.
+    
+    verbose : bool, optional (default=True)
+        Controls verbosity of logging during model training.
+    
+    random_state : int, optional (default=42)
+        Seed used by the random number generator to ensure reproducibility.
+
+    filterwarnings : str, optional (default='ignore')
+        Controls the filter for output warnings.
+
+    Methods:
+    --------
+    xy(train, test, tid_col, class_col, geo_precision, validate, res_path):
+        Prepares the data for training and testing by computing the POI sequences and extracting features for classification.
+    
+    prepare_input(train, test, tid_col, class_col, geo_precision, validate, res_path):
+        Prepares and splits the input data into training, validation, and testing sets. Adds the necessary configuration details.
+    
+    create():
+        Initializes a neural network model with two layers: a hidden layer with 100 units and a softmax output layer for classification.
+
+    fit(X_train, y_train, X_val, y_val, save_results, res_path):
+        Trains the model using the training data. Optionally saves the results.
+
+    predict(X_test, y_test):
+        Predicts the labels for the test data and returns the classification report.
+    """
     
     def __init__(self, 
                  method='npoi',
@@ -237,68 +290,56 @@ class POIS(HSClassifier):
             self.y_test_pred = self.le.inverse_transform(self.y_test_pred).reshape(1, -1)[0]
         
         return self._summary, y_pred
-    
-# --------------------------------------------------------------------------------
-#class EpochLogger(EarlyStopping):
-#
-#    def __init__(self, metric='val_acc', baseline=0):
-#        super(EpochLogger, self).__init__(monitor='val_acc',
-#                                          mode='max',
-#                                          patience=EARLY_STOPPING_PATIENCE)
-#        self._metric = metric
-#        self._baseline = baseline
-#        self._baseline_met = False
-#
-#    def on_epoch_begin(self, epoch, logs={}):
-#        print("===== Training Epoch %d =====" % (epoch + 1))
-#
-#        if self._baseline_met:
-#            super(EpochLogger, self).on_epoch_begin(epoch, logs)
-#
-#    def on_epoch_end(self, epoch, logs={}):
-#        pred_y_train = np.array(self.model.predict(x_train))
-#        (train_acc,
-#         train_acc5,
-#         train_f1_macro,
-#         train_prec_macro,
-#         train_rec_macro) = compute_acc_acc5_f1_prec_rec(y_train,
-#                                                         pred_y_train,
-#                                                         print_metrics=True,
-#                                                         print_pfx='TRAIN')
-#
-#        pred_y_test = np.array(self.model.predict(x_test))
-#        (test_acc,
-#         test_acc5,
-#         test_f1_macro,
-#         test_prec_macro,
-#         test_rec_macro) = compute_acc_acc5_f1_prec_rec(y_test, pred_y_test,
-#                                                        print_metrics=True,
-#                                                        print_pfx='TEST')
-#        metrics.log(method, int(epoch + 1), '',
-#                    logs['loss'], train_acc, train_acc5,
-#                    train_f1_macro, train_prec_macro, train_rec_macro,
-#                    logs['val_loss'], test_acc, test_acc5,
-#                    test_f1_macro, test_prec_macro, test_rec_macro)
-#        if save_results:
-#            metrics.save(metrics_file)
-#
-#        if self._baseline_met:
-#            super(EpochLogger, self).on_epoch_end(epoch, logs)
-#
-#        if not self._baseline_met \
-#           and logs[self._metric] >= self._baseline:
-#            self._baseline_met = True
-#
-#    def on_train_begin(self, logs=None):
-#        super(EpochLogger, self).on_train_begin(logs)
-#
-#    def on_train_end(self, logs=None):
-#        if self._baseline_met:
-#            super(EpochLogger, self).on_train_end(logs)
-            
+
 
 ###############################################################################    
 def prepareData(x_train, x_test, y_train, y_test, validate=False, random_state=42):
+    """
+    Prepares the dataset for training, testing, and optional validation (#TODO) for POIS.
+
+    Parameters:
+    -----------
+    x_train : pandas.DataFrame or numpy.ndarray
+        Feature set for the training data.
+        
+    x_test : pandas.DataFrame or numpy.ndarray
+        Feature set for the test data.
+        
+    y_train : pandas.Series or numpy.ndarray
+        Labels for the training data.
+        
+    y_test : pandas.Series or numpy.ndarray
+        Labels for the test data.
+        
+    validate : bool, optional (default=False)
+        If True, splits the training data into training and validation sets. 
+        Validation handling is currently not implemented.
+        
+    random_state : int, optional (default=42)
+        Random seed used for reproducibility when splitting data.
+        
+    Returns:
+    --------
+    num_features : int
+        The number of features in the dataset.
+        
+    num_classes : int
+        The number of unique classes in the target labels.
+        
+    labels : numpy.ndarray
+        An array of the unique class labels.
+        
+    X : list
+        A list containing feature sets. If `validate` is False, returns 
+        [X_train, X_test]. Otherwise, returns [X_train, X_val, X_test].
+        
+    y : list
+        A list containing one-hot encoded target sets. If `validate` is False, returns 
+        [y_train, y_test]. Otherwise, returns [y_train, y_val, y_test].
+        
+    one_hot_encoder : sklearn.preprocessing.OneHotEncoder
+        The fitted OneHotEncoder object used to encode the target labels.
+    """
     
     if validate:
         raise NotImplementedError('POIS method prepareData(validate=True) is not implemented.')
@@ -351,6 +392,34 @@ def prepareData(x_train, x_test, y_train, y_test, validate=False, random_state=4
 
 # --------------------------------------------------------------------------------------------------------  
 def loadData(dir_path):
+    """
+    Loads training and testing datasets from CSV files.
+
+    Parameters:
+    -----------
+    dir_path : str
+        The directory path (without file extension) from which to load the datasets. 
+        It expects the following CSV files:
+        - '{dir_path}-x_train.csv': Features for training data.
+        - '{dir_path}-y_train.csv': Labels for training data.
+        - '{dir_path}-x_test.csv': Features for testing data.
+        - '{dir_path}-y_test.csv': Labels for testing data.
+
+    Returns:
+    --------
+    x_train : pandas.DataFrame
+        A DataFrame containing the features for the training dataset.
+        
+    x_test : pandas.DataFrame
+        A DataFrame containing the features for the testing dataset.
+        
+    y_train : numpy.ndarray
+        A numpy array containing the labels for the training dataset.
+        
+    y_test : numpy.ndarray
+        A numpy array containing the labels for the testing dataset.
+    """
+    
     x_train = pd.read_csv(dir_path+'-x_train.csv')#, header=None)
     y_train = pd.read_csv(dir_path+'-y_train.csv').iloc[:,-1].values#[:,-1].values
 

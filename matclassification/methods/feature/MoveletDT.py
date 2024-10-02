@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
@@ -8,7 +8,9 @@ Copyright (C) 2022, MIT license (this portion of code is subject to licensing fr
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
-@author: Tarlis Portela
+Authors:
+    - Tarlis Portela
+    - Carlos Andrés Ferrero (adapted)
 '''
 # --------------------------------------------------------------------------------
 import time
@@ -31,6 +33,43 @@ from matclassification.methods._lib.metrics import *
 from matclassification.methods.core import MHSClassifier
 
 class MDT(MHSClassifier):
+    """
+    Movelet Decision Tree (MDT) Classifier, extending MHSClassifier, designed for movelet-based 
+    classification using decision trees. Provides tools for decision tree visualization and manipulation.
+
+    Parameters:
+    -----------
+    n_jobs : int, optional (default=-1)
+        The number of parallel jobs to run for computation. -1 means using all processors.
+
+    verbose : int, optional (default=2)
+        Verbosity level. Higher values enable more detailed output during training and model creation.
+
+    random_state : int, optional (default=42)
+        Random seed used for reproducibility.
+
+    filterwarnings : str, optional (default='ignore')
+        Controls the filter for output warnings.
+    
+    Methods:
+    --------
+    prepare_input(train, test, tid_col='tid', class_col='label', geo_precision=30, validate=False):
+        Prepares the input data by extracting the features and labels, and configures the trajectory classification process.
+
+    create():
+        Initializes and returns a new instance of the decision tree classifier.
+    
+    fit(X_train, y_train, X_val, y_val):
+        Trains the decision tree classifier on the training data and evaluates it on the validation data. 
+        Returns a report on the validation performance.
+
+    plot_tree(figsize=(20, 10)):
+        Visualizes the trained decision tree using matplotlib, showing features and tree structure in a user-defined size.
+
+    graph_tree():
+        Generates a visual graph of the decision tree using Graphviz, returning the tree structure as a graph.
+
+    """
     
     def __init__(self, 
                  n_jobs=-1,

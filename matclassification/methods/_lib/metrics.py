@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
 
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
-@author: Tarlis Portela
-@author: Lucas May Petry (adapted)
-@author: Francisco Vicenzi (adapted)
+Authors:
+    - Tarlis Portela
+    - Lucas May Petry (adapted)
+    - Francisco Vicenzi (adapted)
 '''
 # --------------------------------------------------------------------------------
 import os
@@ -27,6 +29,20 @@ from tensorflow.keras import backend as K
 # --------------------------------------------------------------------------------
 
 def _process_pred(y_pred):
+    """
+    Convert predicted probabilities into a binary format.
+
+    Parameters:
+    -----------
+    y_pred : numpy.ndarray
+        Array of predicted probabilities.
+
+    Returns:
+    --------
+    numpy.ndarray
+        Binary array with the same shape as y_pred, where each row has a 
+        '1' in the position of the highest probability.
+    """
     argmax = np.argmax(y_pred, axis=1)
     y_pred = np.zeros(y_pred.shape)
 
@@ -55,28 +71,111 @@ def _process_pred(y_pred):
 #    proc_y_pred = _process_pred(y_pred)
 #    return precision_score(y_true, proc_y_pred, average='macro', zero_division=1)
 def precision_macro(y_true, y_pred):
+    """
+    Calculate the macro-averaged precision.
+
+    Parameters:
+    -----------
+    y_true : numpy.ndarray
+        True labels.
+
+    y_pred : numpy.ndarray
+        Predicted labels.
+
+    Returns:
+    --------
+    float
+        The macro-averaged precision score.
+    """
     return precision_score(y_true, y_pred, average='macro', zero_division=1)
 
 #def recall_macro(y_true, y_pred):
 #    proc_y_pred = _process_pred(y_pred)
 #    return recall_score(y_true, proc_y_pred, average='macro')
 def recall_macro(y_true, y_pred):
+    """
+    Calculate the macro-averaged recall.
+
+    Parameters:
+    -----------
+    y_true : numpy.ndarray
+        True labels.
+
+    y_pred : numpy.ndarray
+        Predicted labels.
+
+    Returns:
+    --------
+    float
+        The macro-averaged recall score.
+    """
     return recall_score(y_true, y_pred, average='macro')
 
 #def f1_macro(y_true, y_pred):
 #    proc_y_pred = _process_pred(y_pred)
 #    return f1_score(y_true, proc_y_pred, average='macro')
 def f1_macro(y_true, y_pred):
+    """
+    Calculate the macro-averaged F1 score.
+
+    Parameters:
+    -----------
+    y_true : numpy.ndarray
+        True labels.
+
+    y_pred : numpy.ndarray
+        Predicted labels.
+
+    Returns:
+    --------
+    float
+        The macro-averaged F1 score.
+    """
     return f1_score(y_true, y_pred, average='macro')
 
 #def accuracy(y_true, y_pred):
 #    proc_y_pred = _process_pred(y_pred)
 #    return accuracy_score(y_true, proc_y_pred, normalize=True)
 def accuracy(y_true, y_pred):
+    """
+    Calculate the accuracy.
+
+    Parameters:
+    -----------
+    y_true : numpy.ndarray
+        True labels.
+
+    y_pred : numpy.ndarray
+        Predicted labels.
+
+    Returns:
+    --------
+    float
+        The accuracy score.
+    """
     return accuracy_score(y_true, y_pred, normalize=True)
 
 # TODO: should be replaced for a standard function
 def accuracy_top_k(y_true, y_pred, K=5):
+    """
+    Calculate the top-K accuracy.
+
+    Parameters:
+    -----------
+    y_true : numpy.ndarray
+        True labels.
+
+    y_pred : numpy.ndarray
+        Predicted probabilities.
+
+    K : int, optional (default=5)
+        The top K predictions to consider.
+
+    Returns:
+    --------
+    float
+        The top-K accuracy score.
+    """
     if y_pred.ndim == 1: # Not possible to calculate acc top K
         return 0
     else:
@@ -102,6 +201,22 @@ def accuracy_top_k(y_true, y_pred, K=5):
 #    return correct / len(y_true)
 
 def balanced_accuracy(y_true, y_pred):
+    """
+    Calculate the balanced accuracy.
+
+    Parameters:
+    -----------
+    y_true : numpy.ndarray
+        True labels.
+
+    y_pred : numpy.ndarray
+        Predicted labels.
+
+    Returns:
+    --------
+    float
+        The balanced accuracy score.
+    """
     if y_pred.ndim == 1:
         return balanced_accuracy_score(y_true, y_pred)
     else:
@@ -109,6 +224,30 @@ def balanced_accuracy(y_true, y_pred):
 
 # ATT: y_true must be the true indexes for y_pred 2D matrix
 def compute_acc_acc5_f1_prec_rec(y_true, y_pred, print_metrics=False, print_pfx=''):
+    """
+    Computes various classification metrics: accuracy, top-5 accuracy, 
+    balanced accuracy, F1 score, precision, and recall.
+
+    Parameters:
+    -----------
+    y_true : numpy.ndarray
+        True labels.
+
+    y_pred : numpy.ndarray
+        Predicted labels or probabilities.
+
+    print_metrics : bool
+        Whether to print the metrics.
+
+    print_pfx : str
+        Prefix for printed metrics.
+
+    Returns:
+    --------
+    tuple
+        A tuple containing accuracy, top-5 accuracy, F1 score, 
+        precision, recall, and balanced accuracy.
+    """
     if y_pred.ndim == 1:
         proc_y_pred = y_pred
     else:
@@ -229,6 +368,14 @@ def classification_report_dict2df(report, classifier):
 
 # ------------------------------------------------------------------------------
 class MetricsLogger:
+    """
+    Class to log training and testing metrics.
+
+    Attributes:
+    -----------
+    _df : pandas.DataFrame
+        DataFrame to store logged metrics.
+    """
 
     def __init__(self):
         self._df = pd.DataFrame({'method': [],
@@ -319,26 +466,128 @@ class MetricsLogger:
 ############################
 def mape(true, pred, sample_weight=None):
     """
-    it is very, very slow when the shapes are different and the dataset is very large (e.g. > 1,000,000 rows).
+    Calculate Mean Absolute Percentage Error (MAPE).
+    (it is very, very slow when the shapes are different and the dataset is very large (e.g. > 1,000,000 rows).)
+
+    Parameters:
+    -----------
+    true : numpy.ndarray
+        Array of true values.
+
+    pred : numpy.ndarray
+        Array of predicted values.
+
+    sample_weight : numpy.ndarray, optional
+        Array of weights for each sample.
+
+    Returns:
+    --------
+    float
+        The MAPE value. It may be slow for large datasets (> 1,000,000 rows) 
+        if the shapes of true and pred are different.
     """
     if true.shape != pred.shape:
         true = true.reshape(pred.shape)
     return np.average( np.abs( (true - pred) / true ), weights=sample_weight)
 
 def mape_xgb(true, pred, sample_weight=None):
+    """
+    Calculate MAPE for XGBoost predictions.
+
+    Parameters:
+    -----------
+    true : numpy.ndarray
+        Array of true values.
+
+    pred : xgboost.DMatrix
+        The XGBoost predicted values.
+
+    sample_weight : numpy.ndarray, optional
+        Array of weights for each sample.
+
+    Returns:
+    --------
+    tuple
+        A tuple containing 'error' and the calculated MAPE.
+    """
     return 'error', mape(true, pred.get_label(), sample_weight)
 
 def mse(true, pred, sample_weight=None):
+    """
+    Calculate Mean Squared Error (MSE).
+
+    Parameters:
+    -----------
+    true : numpy.ndarray
+        Array of true values.
+
+    pred : numpy.ndarray
+        Array of predicted values.
+
+    sample_weight : numpy.ndarray, optional
+        Array of weights for each sample.
+
+    Returns:
+    --------
+    float
+        The MSE value, or None if the true array is empty.
+    """
     if true.shape[0] == 0:
         return None
     return mean_squared_error(true, pred, sample_weight)
 
 def mse_xgb(true, pred, sample_weight=None):
+    """
+    Calculate MSE for XGBoost predictions.
+
+    Parameters:
+    -----------
+    true : numpy.ndarray
+        Array of true values.
+
+    pred : xgboost.DMatrix
+        The XGBoost predicted values.
+
+    sample_weight : numpy.ndarray, optional
+        Array of weights for each sample.
+
+    Returns:
+    --------
+    tuple
+        A tuple containing 'error' and the calculated MSE.
+    """
     return 'error', mse(true, pred.get_label(), sample_weight)
 
 def regularity(sequence):
+    """
+    Calculate the regularity of a sequence.
+
+    Parameters:
+    -----------
+    sequence : iterable
+        The input sequence to analyze.
+
+    Returns:
+    --------
+    float
+        The regularity score, defined as the length of the sequence 
+        divided by the number of unique elements in the sequence.
+    """
     return len(sequence) / len(set(sequence))    
 
 def stationarity(sequence):
+    """
+    Calculate the stationarity of a sequence.
+
+    Parameters:
+    -----------
+    sequence : iterable
+        The input sequence to analyze.
+
+    Returns:
+    --------
+    float
+        The average length of runs in the sequence, which indicates stationarity.
+    """
     rle = [(value, sum(1 for i in g)) for value, g in groupby(sequence)]
     return np.mean([length for _, length in rle])

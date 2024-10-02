@@ -15,6 +15,7 @@ from .mat.Tulvae import Tulvae
 from .mat.Bituler import Bituler
 from .mat.DeepeST import DeepeST
 
-from .similarity.TKNN import TKNN
-from .similarity.TSVC import TSVC
-from .similarity.TDT import TDT
+# TODO: Classification by Similarity
+#from .similarity.TKNN import TKNN
+#from .similarity.TSVC import TSVC
+#from .similarity.TDT import TDT

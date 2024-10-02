@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 [project]
 name = "mat-classification"
-version = "0.1b3"
+version = "0.1rc1"
 description = "MAT-classification: Analysis and Classification methods for Multiple Aspect Trajectory Data Mining"
 authors = [
     {name = "Tarlis Tortelli Portela", email = "tarlis@tarlis.com.br"},
@@ -77,7 +77,7 @@ dl = [
 [project.urls]
 "Homepage" = "https://github.com/mat-analysis/mat-classification/"
 "Repository" = "https://github.com/mat-analysis/mat-classification"
-"Documentation" = "https://github.com/mat-analysis/mat-classification/blob/main/README.md"
+"Documentation" = "https://mat-analysis.github.io/mat-tools/mat-classification/index.html"
 "Download" = "https://pypi.org/project/mat-classification/#files"
 "Bug Tracker" = "https://github.com/mat-analysis/mat-classification/issues"
 

@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
 
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
-@author: Tarlis Portela
-@author: Lucas May Petry
+Authors:
+    - Tarlis Portela
+    - Lucas May Petry (adapted)
 '''
 # --------------------------------------------------------------------------------
 import geohash2 as gh
@@ -26,7 +28,9 @@ base32toBin = dict(zip(base32, binary))
 
 # Deprecated - for compatibility purposes
 class LatLonHash:
-
+    """
+    Class for encoding latitude and longitude into geohash and binary formats.
+    """
     def __init__(self, lat, lon):
         self._lat = lat
         self._lon = lon
@@ -40,9 +44,43 @@ class LatLonHash:
 
 
 def geohash(lat, lon, precision=15):
+    """
+    Encode latitude and longitude into a geohash.
+
+    Parameters:
+    -----------
+    lat : float
+        Latitude value.
+    lon : float
+        Longitude value.
+    precision : int
+        Precision for the geohash (default is 15).
+
+    Returns:
+    --------
+    str
+        The geohash representation of the coordinates.
+    """
     return gh.encode(lat, lon, precision)
 
 
 def bin_geohash(lat, lon, precision=15):
+    """
+    Encode latitude and longitude into a binary geohash.
+
+    Parameters:
+    -----------
+    lat : float
+        Latitude value.
+    lon : float
+        Longitude value.
+    precision : int
+        Precision for the geohash (default is 15).
+
+    Returns:
+    --------
+    numpy.ndarray
+        The binary representation of the geohash.
+    """
     hashed = geohash(lat, lon, precision)
     return np.concatenate([base32toBin[x] for x in hashed])

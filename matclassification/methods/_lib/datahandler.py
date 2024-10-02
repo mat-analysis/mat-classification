@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
 
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
-@author: Tarlis Portela
+Authors:
+    - Tarlis Portela
 '''
 # --------------------------------------------------------------------------------
 
@@ -41,8 +43,41 @@ def loadTrajectories(dir_path,
                      split_test_validation=True,
                      data_preparation=1,
                      file_suffix='parquet'):
+    """
+    Load trajectory data for classification methods.
 
-#    importer(['S', 'io', 'encoding'], globals(), {'preprocessing': ['trainAndTestSplit']}) #, modules={'preprocessing': ['readDataset', 'organizeFrame']})
+    Parameters:
+    -----------
+    dir_path : str
+        Directory where the data files are located.
+    file_prefix : str
+        Prefix for the data files.
+    tid_col : str
+        Column name for trajectory IDs.
+    class_col : str
+        Column name for class labels.
+    space_geohash : bool
+        Whether to use Geohash or index grid.
+    geo_precision : int
+        Precision for Geohash or meters for index grid.
+    features : list
+        List of features to include.
+    features_encoding : bool
+        Whether to encode features.
+    y_one_hot_encoding : bool
+        Whether to apply one-hot encoding to labels.
+    split_test_validation : bool
+        Whether to split the training data into validation data.
+    data_preparation : int
+        Preparation method (1 for ML, 2 for RNN).
+    file_suffix : str
+        Suffix for the data files.
+
+    Returns:
+    --------
+    tuple
+        Tuple containing training and test DataFrames.
+    """
     
     print('\n###########      DATA LOADING        ###########')
     if file_prefix == '':
@@ -69,7 +104,41 @@ def prepareTrajectories(df_train, df_test,
                      data_preparation=1,
                      verbose=True):
 
-#    importer(['S', 'io', 'encoding'], globals(), {'preprocessing': ['trainAndTestSplit']}) #, modules={'preprocessing': ['readDataset', 'organizeFrame']})
+    """
+    Preprocess trajectory data for classification.
+
+    Parameters:
+    -----------
+    df_train : pd.DataFrame
+        Training data DataFrame.
+    df_test : pd.DataFrame
+        Test data DataFrame.
+    tid_col : str
+        Column name for trajectory IDs.
+    class_col : str
+        Column name for class labels.
+    space_geohash : bool
+        Whether to use Geohash or index grid.
+    geo_precision : int
+        Precision for Geohash or meters for index grid.
+    features : list
+        List of features to include.
+    features_encoding : bool
+        Whether to encode features.
+    y_one_hot_encoding : bool
+        Whether to apply one-hot encoding to labels.
+    split_test_validation : bool
+        Whether to split the training data into validation data.
+    data_preparation : int
+        Preparation method (1 for ML, 2 for RNN).
+    verbose : bool
+        Whether to print detailed logs.
+
+    Returns:
+    --------
+    tuple
+        Tuple containing features, labels, feature names, number of classes, space flag, and parameters dictionary.
+    """
     
     if verbose:
         print('\n###########    DATA PREPARATION      ###########')

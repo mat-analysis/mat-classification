@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-classification: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
@@ -8,7 +8,8 @@ Copyright (C) 2022, MIT license (this portion of code is subject to licensing fr
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
-@author: Tarlis Portela
+Authors:
+    - Tarlis Portela
 '''
 # --------------------------------------------------------------------------------
 from matclassification.methods.core import *
@@ -16,6 +17,27 @@ from matclassification.methods.core import *
 
 # Generic Movelet Classifier
 class MClassifier(AbstractClassifier):
+    """
+    Generic Classifier for Movelet Input.
+
+    This class extends `AbstractClassifier` to handle trajectory data in the form of movelets. 
+    
+    Check: help(AbstractClassifier)
+    
+    Parameters:
+    -----------
+    name : str, optional
+        Name of the classifier model (default: 'NN').
+    n_jobs : int, optional
+        Number of parallel jobs to run (default: -1 for using all processors).
+    verbose : int, optional
+        Level of verbosity (default: 0 for no output).
+    random_state : int, optional
+        Random seed for reproducibility (default: 42).
+    filterwarnings : str, optional
+        Warning filter level (default: 'ignore').
+
+    """
     
     def __init__(self, 
                  name='NN',
@@ -33,7 +55,38 @@ class MClassifier(AbstractClassifier):
            class_col='label',
            validate = False,
            encode_labels=True):
-        
+        """
+        Prepares the feature and label data for the classifier by splitting the training set, 
+        encoding labels, and scaling the features.
+
+        Parameters:
+        -----------
+        train : pd.DataFrame
+            The training dataset.
+        test : pd.DataFrame
+            The test dataset.
+        tid_col : str, optional
+            Column name representing the trajectory ID (default: 'tid').
+        class_col : str, optional
+            Column name representing the class label (default: 'label').
+        validate : bool, optional
+            If True, splits the training data into training and validation sets (default: False) >> #TODO Under Dev.
+        encode_labels : bool, optional
+            If True, encodes the labels using `LabelEncoder` and one-hot encoding (default: True).
+
+        Returns:
+        --------
+        num_classes : int
+            Number of unique class labels.
+        num_features : int
+            Number of features in the dataset excluding the class label.
+        le : LabelEncoder or None
+            LabelEncoder instance used to transform the class labels, if `encode_labels` is True.
+        X_set : list
+            List containing the feature matrices (training, validation, test).
+        y_set : list
+            List containing the encoded labels (training, validation, test).
+        """
         
         assert (len( set(test.columns).symmetric_difference(set(train.columns)) ) == 0), '['+self.name+':] ERROR. Divergence in train and test columns: ' + str(len(train.columns)) + ' train and ' + str(len(test.columns)) + ' test'
         
@@ -101,6 +154,34 @@ class MClassifier(AbstractClassifier):
                       tid_col='tid', 
                       class_col='label',
                       validate = False):
+        """
+        Prepares the input datasets (training, validation, and test) for the classifier by invoking 
+        the `xy()` method, storing the processed data, and setting the classifier configuration.
+
+        Parameters:
+        -----------
+        train : pd.DataFrame
+            The training dataset.
+        test : pd.DataFrame
+            The test dataset.
+        tid_col : str, optional
+            Column name representing the trajectory ID (default: 'tid').
+        class_col : str, optional
+            Column name representing the class label (default: 'label').
+        validate : bool, optional
+            If True, splits the training data into training and validation sets (default: False)>> #TODO Under Dev.
+
+        Returns:
+        --------
+        X_set : list
+            List containing the feature matrices (training, validation, test).
+        y_set : list
+            List containing the label vectors (training, validation, test).
+        num_features : int
+            The number of features in the dataset, excluding the class label.
+        num_classes : int
+            The number of unique classes in the dataset.
+        """
         
         num_classes, num_features, le, X_set, y_set = self.xy(train, test, tid_col, class_col, validate)
         

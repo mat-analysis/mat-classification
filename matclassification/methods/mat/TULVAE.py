@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-MAT-analysis: Analisys and Classification methods for Multiple Aspect Trajectory Data Mining
+MAT-Tools: Python Framework for Multiple Aspect Trajectory Data Mining
 
 The present package offers a tool, to support the user in the task of data analysis of multiple aspect trajectories. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 Copyright (C) 2022, MIT license (this portion of code is subject to licensing from source project distribution)
@@ -8,15 +8,15 @@ Copyright (C) 2022, MIT license (this portion of code is subject to licensing fr
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (this portion of code is subject to licensing from source project distribution)
 
-@author: Tarlis Portela (adapted)
-
-# Original source:
-# Author: Nicksson C. A. de Freitas, 
-          Ticiana L. Coelho da Silva, 
-          Jose António Fernandes de Macêdo, 
-          Leopoldo Melo Junior, 
-          Matheus Gomes Cordeiro
-# Adapted from: https://github.com/nickssonfreitas/ICAART2021
+Authors:
+    - Tarlis Portela
+    - Original source:
+        - Nicksson C. A. de Freitas, 
+        - Ticiana L. Coelho da Silva, 
+        - Jose António Fernandes de Macêdo, 
+        - Leopoldo Melo Junior, 
+        - Matheus Gomes Cordeiro
+    - Adapted from: https://github.com/nickssonfreitas/ICAART2021
 '''
 # --------------------------------------------------------------------------------
 import time
@@ -43,6 +43,51 @@ from matclassification.methods._lib.datahandler import prepareTrajectories
 from matclassification.methods.core import THSClassifier
 
 class Tulvae(THSClassifier):
+    """
+    Tulvae: Trajectory-user linking via variational autoencoder
+
+    The `Tulvae` class is an implementation of a deep learning model based on variable auto-encoders, designed for trajectory classification tasks. It utilizes a variety of tunable hyperparameters and neural network structures to encode spatial trajectories and decode them for predictive modeling.
+
+    Parameters
+    ----------
+    rnn : list, default=['bilstm']
+        Recurrent neural network cell used, e.g., 'bilstm' (Bidirectional LSTM).
+    units : list, default=[100, 200, 300]
+        Number of units in the recurrent layers.
+    stack : list, default=[1]
+        Number of stacked recurrent layers.
+    dropout : list, default=[0.5]
+        Fraction of units to drop for the linear transformation of the inputs.
+    embedding_size : list, default=[100, 200, 300]
+        Size of the embedding vectors used to represent trajectory features.
+    z_values : list, default=[100, 200, 300]
+        Dimensionality of the latent variable space.
+    batch_size : list, default=[64]
+        Number of samples per batch of computation.
+    epochs : list, default=[1000]
+        Number of epochs to train the model.
+    patience : list, default=[20]
+        Number of epochs with no improvement after which training will be stopped.
+    monitor : list, default=['val_acc']
+        Metric used for early stopping and performance evaluation.
+    optimizer : list, default=['ada']
+        Optimizer used to minimize the loss function.
+    learning_rate : list, default=[0.001]
+        Learning rate for the optimizer.
+
+    Methods
+    -------
+    xy(train, test, tid_col='tid', class_col='label', space_geohash=False, geo_precision=30, features=['poi'], validate=False):
+        Prepares trajectory data and transforms it into training and testing datasets.
+    prepare_input(train, test, tid_col='tid', class_col='label', space_geohash=False, geo_precision=30, features=['poi'], validate=False):
+        Prepares the input data, generates configuration, and initializes grid search.
+    create(config):
+        Builds the neural network model based on the configuration.
+    fit(X_train, y_train, X_val, y_val, config=None):
+        Trains the model on the provided training data, using early stopping and validation data.
+    clear():
+        Clears the session and resets the model.
+    """
     
     def __init__(self, 
 #                 max_lenght = -1,
